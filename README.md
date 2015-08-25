@@ -13,8 +13,6 @@
 
 # Spring.io
 
-
-
 Essential elements we must have:
 
  - Projects are listed in a grid 
@@ -36,6 +34,8 @@ Essential elements:
  - All projects must be listed (grid preferred)
  - Project representation should be minimal: logo and short description (two sentences tops)
  -- Do not load the main page up with other project links (those can go in the project page itself)
+ - Link to tomitribe.com in footer of every page
+ - Tomitribe.io description that this is a community site, "trove of tribe tools and projects"
 
 Non-essential points:
 
