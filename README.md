@@ -44,10 +44,11 @@ Non-essential points:
 
 # Project Page
 
-Best example:
+Best examples:
 
  - http://projects.spring.io/spring-boot/
-
+ - https://www.adobe.com/creativecloud/catalog/desktop.html
+ - 
 Essential elements:
 
  - Small splash area with larger version of logo, more descriptive text
