@@ -13,18 +13,53 @@
 
 # Spring.io
 
-Best example of what we need: http://spring.io
+
 
 Essential elements we must have:
 
- - Projects are listed in a grid http://spring.io/projects
+ - Projects are listed in a grid 
  - Each project has a logo
  - All the logos have a consistent feel
  - Short description of projects - two sentences max
  
+
+# Main Page (Projects list)
+
+We need a hybrid of these two pages as our main page
+
+ - http://spring.io
+ - http://spring.io/projects
+
+Essential elements:
+
+ - We want a small splash area at the top
+ - All projects must be listed (grid preferred)
+ - Project representation should be minimal: logo and short description (two sentences tops)
+ -- Do not load the main page up with other project links (those can go in the project page itself)
+
 Non-essential points:
 
- - Spring.io main page (main page will be the projects page)
  - Blogs section.  Not needed yet.
- - No guides or docs yet either.  Documentation for each project can go on the project page, but not needed on the main page.
+ - No guides or docs yet either.  Documentation for each project can go on the project page, but not needed on the main page.  Tomitribe.io isn't a "platform" so no need to present it as such with a "getting started" or other type of media on the main page.  Again "getting started" is fine for each project's page.
 
+# Project Page
+
+Best example:
+
+ - http://projects.spring.io/spring-boot/
+
+Essential elements:
+
+ - Small splash area with larger version of logo, more descriptive text
+ - Feature list
+ - Maven coordinates
+ - Quick start
+ - Version list
+ - Documentation link
+
+# Documentation Page
+
+Essential elements
+
+ - Table of contents
+ - Numbered sections
