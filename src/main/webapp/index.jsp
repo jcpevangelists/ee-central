@@ -4,9 +4,10 @@
 <c:set var="req" value="${pageContext.request}"/>
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="uri" value="${req.requestURI}"/>
+<c:set var="scheme" value="${req.scheme}"/>
 <html ng-app="tribeio">
 <head><title>Tomitribe.io</title>
-    <base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/"/>
+    <base href="${fn:substring(url, fn:length(scheme) + 1, fn:length(url) - fn:length(uri))}${req.contextPath}/"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" href="app/style/sprite.css"/>
