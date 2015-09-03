@@ -20,4 +20,3 @@ app.controller('MainController', ['$element', function ($element) {
 app.controller('TwitterController', ['$element', function ($element) {
 
 }]);
-
