@@ -1,0 +1,5 @@
+*.iml
+.idea
+target/
+static/node_modules/
+src/main/webapp/app
