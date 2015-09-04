@@ -1,75 +1,68 @@
-div(ng-controller="MainController")
+div
     header
         section(class="tribe-page-title")
             h1 Welcome to #[span Tomitribe.io]
             h4 A trove of tribe tools & projects for your java applications
         section.tribe-projects-shortcut
-            span Learn more
-            a(href="#")
-                span
-    div.tribe-main-content
+            span Check out all
+            a(href="#") open source projects
+    .tribe-main-content
         section.tribe-projects
-            div.tribe-projects
+            div.tribe-projects-caroussel-arrow
+                a
+                    span.left
+            div(ng-controller="ProjectsCarousselController", class="tribe-projects-caroussel")
                 article
-                    img(src="//placehold.it/350x350")
-                    h3 Crest
-                    p Simplifies Java command-line tool writing with built-in Command-registration, help text and
-                    validation.
+                    div.tribe-project-title
+                        div
+                            img(src="//placehold.it/100x100")
+                        h3 Crest
+                    div.tribe-project-short-descr
+                        img(src="//placehold.it/50x50")
+                        div.space
+                        div.text
+                            p Simplifies Java command-line tool writing with built-in Command-registration, help text and validation.
                 article
-                    img(src="//placehold.it/350x350")
-                    h3 http-signatures-java
-                    p.
-                        Provides a secure and reliable mechanism to digitally sign a HTTP message which verifies
-                        sender identification and message integrity.
+                    div.tribe-project-title
+                        div
+                            img(src="//placehold.it/100x100")
+                        h3 http-signatures-java
+                    div.tribe-project-short-descr
+                        img(src="//placehold.it/50x50")
+                        div.space
+                        div.text
+                            p.
+                                Provides a secure and reliable mechanism to digitally sign a HTTP message which verifies
+                                sender identification and message integrity.
                 article
-                    img(src="//placehold.it/350x350")
-                    h3 Hodao
-                    p.
-                        Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
-                        Apache TomEE abstract-bean concept.
-
-        section.tribe-about
-            div.tribe-section-separator
-            h1 About #[span Tomitribe.io]
-            div.tribe-articles
-                article
-                    img(src="//placehold.it/50x50")
-                    div
-                        h3 Aenean ut ante sem
-                        p.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum at purus eget pretium. Duis non
-                            purus auctor, vestibulum magna eu, commodo diam. Aenean ut ante sem. Aenean auctor a ligula nec ultrices.
-                            Aliquam mattis orci non nisi interdum tempor ut id odio. Etiam accumsan tempor ante. Maecenas varius neque
-                            diam, lacinia blandit turpis fermentum ac.
-                        a(href="#") learn more
-                article
-                    img(src="//placehold.it/50x50")
-                    div
-                        h3 Vestibulum fringilla luctus justo at pellentesque
-                        p.
-                            Maecenas sagittis non velit eu tincidunt. Vestibulum fringilla luctus justo at pellentesque. Sed erat
-                            neque, imperdiet vitae fringilla non, vestibulum non eros. Morbi accumsan nibh magna, id blandit lorem
-                            fringilla vel. Sed augue dui, mattis eget magna id, lacinia tempus justo. Maecenas consectetur tortor
-                            quis ornare faucibus. Praesent eu est iaculis neque auctor laoreet. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit.
-                        a(href="#") learn more
-                article
-                    img(src="//placehold.it/50x50")
-                    div
-                        h3 Donec finibus mi velit
-                        p.
-                            Aenean iaculis at nulla eleifend blandit. Suspendisse dolor lacus, consequat sed fringilla non, egestas
-                            faucibus enim. Aliquam quis placerat nunc. Donec finibus mi velit, id egestas orci interdum sit amet.
-                            Quisque nec urna vitae turpis auctor rhoncus nec ac arcu.
-                        a(href="#") learn more
-        section(class="tribe-twitter-updates", ng-controller="TwitterController")
+                    div.tribe-project-title
+                        div
+                            img(src="//placehold.it/100x100")
+                        h3 Hodao
+                    div.tribe-project-short-descr
+                        img(src="//placehold.it/50x50")
+                        div.space
+                        div.text
+                            p.
+                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
+                                Apache TomEE abstract-bean concept.
+                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
+                                Apache TomEE abstract-bean concept.
+                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
+                                Apache TomEE abstract-bean concept.
+                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
+                                Apache TomEE abstract-bean concept.
+            div.tribe-projects-caroussel-arrow
+                a
+                    span.right
+        section.tribe-twitter-updates
         section.tribe-os-quotes
-            div.tribe-section-separator
+            .tribe-section-separator
             h1 What people say about open source
             p.
                 Aenean auctor a ligula nec ultrices. Aliquam mattis orci non nisi interdum tempor ut id odio. Etiam accumsan
                 tempor ante. Maecenas varius neque diam, lacinia blandit turpis fermentum ac.
-            div.tribe-os-quotes
+            .tribe-os-quotes
                 article
                     img(src="//placehold.it/350x350")
                     h3 Michael Connor

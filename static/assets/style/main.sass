@@ -1,6 +1,7 @@
 @import "base"
 
 $section-height: 100px
+$tomitribe-orange: rgb(181, 88, 27)
 header
   display: flex
   flex-direction: column
@@ -31,50 +32,28 @@ header
 
     > h4
       font-size: 1em
-      color: darken(rgb(255, 165, 0), 10)
+      color: $tomitribe-orange
 
   section.tribe-projects-shortcut
     width: 100%
     display: flex
     justify-content: center
     align-items: center
+    flex-wrap: wrap
     height: $section-height
-    background: rgba(255, 165, 0, 0.8)
+    background: transparentize($tomitribe-orange, 0.2)
     text-transform: uppercase
     text-align: center
+    color: rgb(251, 255, 255)
 
-    // learn more text
-    > span
-      padding-right: 10px
+    > *
+      margin: 0 7px 0 7px
 
-    // arrow down
     > a
-      background: #111
-      height: ($section-height - 20)
-      width: ($section-height - 20)
-      border-radius: 50%
-      font-size: 0.5em
-      display: flex
-      justify-content: center
-      align-items: center
-      > span
-        width: 0
-        height: 0
-        border-style: solid
-        border-width: 3em 3em 0 3em
-        border-color: #ffffff transparent transparent transparent
-        transform: rotate(360deg)
-        &:after
-          content: ''
-          position: absolute
-          top: -3.2em
-          left: -3em
-          width: 0
-          height: 0
-          border-style: solid
-          border-width: 3em 3em 0 3em
-          border-color: #111 transparent transparent transparent
-          transform: rotate(360deg)
+      border: 2px rgb(251, 255, 255) solid
+      padding: 5px 15px 5px 15px
+      text-decoration: none
+      color: rgb(251, 255, 255)
 
 div.tribe-section-separator
   width: 100px
@@ -83,7 +62,6 @@ div.tribe-section-separator
 
 div.tribe-main-content
   > section
-    padding: 10px
     > h1
       padding: 0 0 10px 0
       text-transform: uppercase
@@ -91,49 +69,79 @@ div.tribe-main-content
       span
         font-weight: bold
 
-section.tribe-about
-  > div.tribe-articles
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    background-color: lighten(gray, 47)
-    > article
-      max-width: 350px
-      display: flex
-      align-items: flex-start
-      margin: 5px
-      img
-        padding-right: 5px
-      p
-        padding-bottom: 2px
-      a
-        text-decoration: none
-        color: gray
-        font-size: .9em
-      h3
-        padding-bottom: 5px
-      h3, a
-        text-transform: uppercase
-
 section.tribe-projects
-  background-color: lighten(gray, 40)
-  div.tribe-projects
-    padding-top: 10px
+  background-color: rgb(247, 247, 247)
+  display: flex
+  justify-content: center
+  > div.tribe-projects-caroussel-arrow
+    width: 30px
+    background-color: transparentize(gray, 0.2)
+    margin: 5px
+
+  > div.tribe-projects-caroussel
     display: flex
     flex-wrap: wrap
+    height: 290px
+    overflow: hidden
     justify-content: center
-
     article
       margin: 5px
-      max-width: 350px
+      width: 290px
+      height: 280px
       background-color: white
-      > img
+      > div
+        transition: display 0.5s
+
+      > div.tribe-project-title
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
         width: 100%
-      > h3, > p
-        padding: 5px
+        height: 100%
+        > div
+          background-color: rgb(212, 216, 219)
+          flex-grow: 1
+          width: 100%
+          display: flex
+          flex-direction: column
+          justify-content: center
+          align-items: center
+          > img
+            max-width: 100px
+        > h3
+          text-transform: uppercase
+          padding: 10px 0 0 15px
+          width: 100%
+          height: 50px
+
+      > div.tribe-project-short-descr
+        display: none
+        background-color: rgb(231, 114, 37)
+        width: 100%
+        height: 100%
+        > img
+          margin: 15px 0 15px 15px
+        > div.space
+          border: solid white 1px
+          margin: 0 0 0 15px
+          width: 100px
+        > div.text
+          color: white
+          font-size: 10px
+          height: 180px
+          margin: 15px 15px 15px 15px
+          overflow: hidden
+
+      &:hover
+        > div:first-child
+          display: none
+        > div:nth-child(2)
+          display: block
 
 section.tribe-os-quotes
   background-color: lighten(gray, 40)
+  padding: 10px
   div.tribe-os-quotes
     padding-top: 10px
     display: flex
