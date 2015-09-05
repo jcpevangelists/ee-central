@@ -18,6 +18,7 @@ header
     align-items: center
     width: 100%
     flex-grow: 1
+    color: rgb(251, 255, 255)
 
     > h1, > h4
       padding: 0 10px 0 10px
@@ -57,7 +58,7 @@ header
 
 div.tribe-section-separator
   width: 100px
-  border: solid red 1px
+  border: solid gray 1px
   margin: 5px 0 5px 0
 
 div.tribe-main-content
@@ -72,72 +73,86 @@ div.tribe-main-content
 section.tribe-projects
   background-color: rgb(247, 247, 247)
   display: flex
+  flex-direction: column
   justify-content: center
-  > div.tribe-projects-caroussel-arrow
-    width: 30px
-    background-color: transparentize(gray, 0.2)
-    margin: 5px
-
-  > div.tribe-projects-caroussel
+  align-items: center
+  > div:first-child
+    max-width: 954px
+    padding-top: 20px
+    padding-bottom: 20px
+    > h1
+      text-transform: uppercase
+  > div:nth-child(2)
     display: flex
-    flex-wrap: wrap
-    height: 290px
-    overflow: hidden
     justify-content: center
-    article
-      margin: 5px
-      width: 290px
-      height: 280px
-      background-color: white
-      > div
-        transition: display 0.5s
+    align-items: center
+    > i
+      font-size: 2em
+      color: rgb(212, 216, 219)
+      transition: color .2s
+      &:hover
+        cursor: pointer
+        color: black
 
-      > div.tribe-project-title
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        width: 100%
-        height: 100%
-        > div
-          background-color: rgb(212, 216, 219)
-          flex-grow: 1
-          width: 100%
+    > div.tribe-projects-caroussel
+      display: flex
+      flex-wrap: wrap
+      height: 290px
+      overflow: hidden
+      justify-content: center
+      article
+        margin: 5px
+        width: 290px
+        height: 280px
+        background-color: white
+        > div.tribe-project-title
           display: flex
           flex-direction: column
           justify-content: center
           align-items: center
-          > img
-            max-width: 100px
-        > h3
-          text-transform: uppercase
-          padding: 10px 0 0 15px
           width: 100%
-          height: 50px
+          height: 100%
+          > div
+            background-color: rgb(212, 216, 219)
+            flex-grow: 1
+            width: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            > i
+              zoom: 0.30
+          > h3
+            text-transform: uppercase
+            padding: 10px 0 0 15px
+            width: 100%
+            height: 50px
 
-      > div.tribe-project-short-descr
-        display: none
-        background-color: rgb(231, 114, 37)
-        width: 100%
-        height: 100%
-        > img
-          margin: 15px 0 15px 15px
-        > div.space
-          border: solid white 1px
-          margin: 0 0 0 15px
-          width: 100px
-        > div.text
-          color: white
-          font-size: 10px
-          height: 180px
-          margin: 15px 15px 15px 15px
-          overflow: hidden
-
-      &:hover
-        > div:first-child
+        > div.tribe-project-short-descr
           display: none
-        > div:nth-child(2)
-          display: block
+          background-color: rgb(231, 114, 37)
+          width: 100%
+          height: 100%
+          > img
+            zoom: 0.30
+            border: 0
+            margin: 15px 0 15px 15px
+          > div.space
+            border: solid white 1px
+            margin: 0 0 0 15px
+            width: 100px
+          > div.text
+            color: white
+            font-size: 10px
+            height: 180px
+            margin: 15px 15px 15px 15px
+            overflow: hidden
+
+        &:hover
+          > div:first-child
+            display: none
+          > div:nth-child(2)
+            display: block
 
 section.tribe-os-quotes
   background-color: lighten(gray, 40)

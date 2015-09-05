@@ -15,7 +15,15 @@ angular.module('tribeio', ['ngRoute'])
     .controller('ProjectsCarousselController', ['$element', '$location', '$scope', function ($element, $location, $scope) {
         $element.find('article').on('click', function () {
             $location.url('/project-details');
-            $scope.$apply()
+            $scope.$apply();
+        });
+        $element.find('i.tribe-left').on('click', function () {
+            var article = $element.find('article:last-child');
+            article.detach().appendTo('div.tribe-projects-caroussel');
+        });
+        $element.find('i.tribe-right').on('click', function () {
+            var article = $element.find('article:first-child');
+            article.detach().prependTo('div.tribe-projects-caroussel');
         });
     }])
     .controller('ProjectDetailController', ['$element', function ($element) {

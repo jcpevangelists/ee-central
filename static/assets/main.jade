@@ -1,83 +1,15 @@
 div
     header
         section(class="tribe-page-title")
-            h1 Welcome to #[span Tomitribe.io]
+            h1 Welcome to #[span Tomitribe Community]
             h4 A trove of tribe tools & projects for your java applications
         section.tribe-projects-shortcut
             span Check out all
             a(href="#") open source projects
     .tribe-main-content
-        section.tribe-projects
-            div.tribe-projects-caroussel-arrow
-                a
-                    span.left
-            div(ng-controller="ProjectsCarousselController", class="tribe-projects-caroussel")
-                article
-                    div.tribe-project-title
-                        div
-                            img(src="//placehold.it/100x100")
-                        h3 Crest
-                    div.tribe-project-short-descr
-                        img(src="//placehold.it/50x50")
-                        div.space
-                        div.text
-                            p Simplifies Java command-line tool writing with built-in Command-registration, help text and validation.
-                article
-                    div.tribe-project-title
-                        div
-                            img(src="//placehold.it/100x100")
-                        h3 http-signatures-java
-                    div.tribe-project-short-descr
-                        img(src="//placehold.it/50x50")
-                        div.space
-                        div.text
-                            p.
-                                Provides a secure and reliable mechanism to digitally sign a HTTP message which verifies
-                                sender identification and message integrity.
-                article
-                    div.tribe-project-title
-                        div
-                            img(src="//placehold.it/100x100")
-                        h3 Hodao
-                    div.tribe-project-short-descr
-                        img(src="//placehold.it/50x50")
-                        div.space
-                        div.text
-                            p.
-                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
-                                Apache TomEE abstract-bean concept.
-                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
-                                Apache TomEE abstract-bean concept.
-                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
-                                Apache TomEE abstract-bean concept.
-                                Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the
-                                Apache TomEE abstract-bean concept.
-            div.tribe-projects-caroussel-arrow
-                a
-                    span.right
-        section.tribe-twitter-updates
-        section.tribe-os-quotes
-            .tribe-section-separator
-            h1 What people say about open source
-            p.
-                Aenean auctor a ligula nec ultrices. Aliquam mattis orci non nisi interdum tempor ut id odio. Etiam accumsan
-                tempor ante. Maecenas varius neque diam, lacinia blandit turpis fermentum ac.
-            .tribe-os-quotes
-                article
-                    img(src="//placehold.it/350x350")
-                    h3 Michael Connor
-                    h4 Company Name
-                    blockquote Sed consectetur, velit eu mollis porta, nulla purus ullamcorper lectus, sed porta leo tellus commodo nisi. Nulla euismod mauris eget magna mattis gravida.
-                article
-                    img(src="//placehold.it/350x350")
-                    h3 Robert Doe
-                    h4 Company Name
-                    blockquote Praesent fringilla nisl vel tortor faucibus, ut efficitur diam auctor. Praesent consectetur congue tempor.
-                article
-                    img(src="//placehold.it/350x350")
-                    h3 Luis Wickham
-                    h4 Company Name
-                    blockquote Maecenas nec tellus ante. Aliquam efficitur lorem et sapien lacinia maximus. Morbi sit amet nisl justo. Nunc sed ex consequat, aliquam diam sed, rutrum urna. Donec nec auctor diam.
+        ng-include(src="'app/projects-carousel.html'")
+        ng-include(src="'app/twitter-updates.html'")
+        ng-include(src="'app/os-quotes.html'")
     footer
         p.
             Copyright © 2015 Tomitribe.  All Rights Reserved.  Community Terms of Service, Terms of Service and Privacy Policy.

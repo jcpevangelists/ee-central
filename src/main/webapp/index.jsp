@@ -9,7 +9,8 @@
 <head><title>Tomitribe.io</title>
     <base href="${fn:substring(url, fn:length(scheme) + 1, fn:length(url) - fn:length(uri))}${req.contextPath}/"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic,300"/>
     <link rel="stylesheet" href="app/style/sprite.css"/>
     <link rel="stylesheet" href="app/style/main.css"/>
     <meta charset="UTF-8">
