@@ -8,8 +8,16 @@ header
   justify-content: center
   align-items: center
   height: 100vh
-  background: url("../images/header.jpg") no-repeat left bottom
-  background-size: cover
+
+  div.tribe-header-image
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: url("../images/header.jpg") no-repeat left bottom
+    background-size: cover
+    z-index: -1
 
   section.tribe-page-title
     display: flex
@@ -27,7 +35,7 @@ header
 
     > h1
       font-size: 2em
-      font-weight: normal
+      font-weight: 300
       > span
         font-weight: bold
 
@@ -66,7 +74,7 @@ div.tribe-main-content
     > h1
       padding: 0 0 10px 0
       text-transform: uppercase
-      font-weight: normal
+      font-weight: 300
       span
         font-weight: bold
 
@@ -76,6 +84,8 @@ section.tribe-projects
   flex-direction: column
   justify-content: center
   align-items: center
+  padding-left: 10px
+  padding-right: 10px
   > div:first-child
     max-width: 954px
     padding-top: 20px

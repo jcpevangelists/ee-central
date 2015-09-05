@@ -31,4 +31,13 @@ angular.module('tribeio', ['ngRoute'])
     }])
     .controller('ProjectsController', ['$element', function ($element) {
 
+    }])
+    .controller('HeaderImageController', ['$element', function ($element) {
+        $(window).scroll(function() {
+            var step = $(this).scrollTop();
+            $element.css({
+                'transform': 'translateY(' + (step / 3) + 'px)'
+            });
+        });
+
     }]);
