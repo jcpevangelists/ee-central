@@ -1,0 +1,32 @@
+section.tribe-os-quotes
+  background-color: lighten(gray, 40)
+  padding: 10px
+  div.tribe-os-quotes
+    padding-top: 10px
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    article
+      max-width: 350px
+      margin: 0 5px 5px 0
+      padding: 10px
+      background-color: white
+      display: flex
+      flex-direction: column
+      border-bottom: solid red 2px
+      > *
+        align-self: center
+      > img
+        $img-width: 100px
+        width: $img-width
+        border-radius: ($img-width / 2)
+      > h3, > h4
+        text-transform: uppercase
+      > h3
+        padding: 20px 0 0 0
+        color: red
+      > blockquote
+        padding: 30px 0 0 0
+        color: lighten(gray, 20)
+        &:before, &:after
+          content: '"'
