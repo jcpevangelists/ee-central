@@ -61,7 +61,9 @@ gulp.task('uglify', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
-        .pipe(uglify())
+        .pipe(uglify({
+            mangle: false // otherwhise the sourcemap/debugger does not work properly.
+        }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('../src/main/webapp/app/'));
 });

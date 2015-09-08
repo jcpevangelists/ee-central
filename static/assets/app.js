@@ -13,17 +13,24 @@ angular.module('tribeio', ['ngRoute'])
         });
     }])
     .controller('ProjectsCarousselController', ['$element', '$location', '$scope', function ($element, $location, $scope) {
+        var carousel = $element.find('div.tribe-projects-caroussel').first();
         $element.find('article').on('click', function () {
             $location.url('/project-details');
             $scope.$apply();
         });
         $element.find('i.tribe-left').on('click', function () {
-            var article = $element.find('article:last-child');
-            article.detach().appendTo('div.tribe-projects-caroussel');
+            var article = $element.find('article:first-child');
+            article.detach();
+            $scope.$apply();
+            article.appendTo(carousel);
+            $scope.$apply();
         });
         $element.find('i.tribe-right').on('click', function () {
-            var article = $element.find('article:first-child');
-            article.detach().prependTo('div.tribe-projects-caroussel');
+            var article = $element.find('article:last-child');
+            article.detach();
+            $scope.$apply();
+            article.prependTo(carousel);
+            $scope.$apply();
         });
     }])
     .controller('HeaderImageController', ['$element', function ($element) {
