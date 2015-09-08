@@ -4,7 +4,9 @@ header
   flex-direction: column
   justify-content: center
   align-items: center
-  height: 100vh
+  height: 80vh
+  @media(max-width: 500px)
+    height: 100vh
 
   div.tribe-header-image
     position: absolute
@@ -51,6 +53,10 @@ header
     text-transform: uppercase
     text-align: center
     color: rgb(251, 255, 255)
+
+    @media(max-width: 390px)
+      > span
+        display: none
 
     > *
       margin: 0 7px 0 7px
