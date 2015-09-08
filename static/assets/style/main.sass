@@ -1,172 +1,23 @@
 @import "base"
-
-$section-height: 100px
-header
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  height: 100vh
-  background: url("../images/header.jpg") no-repeat left bottom
-  background-size: cover
-
-  section.tribe-page-title
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    width: 100%
-    flex-grow: 1
-
-    > h1, > h4
-      padding: 0 10px 0 10px
-      text-align: center
-      text-transform: uppercase
-
-    > h1
-      font-size: 2em
-      font-weight: normal
-      > span
-        font-weight: bold
-
-    > h4
-      font-size: 1em
-      color: darken(rgb(255, 165, 0), 10)
-
-  section.tribe-projects-shortcut
-    width: 100%
-    display: flex
-    justify-content: center
-    align-items: center
-    height: $section-height
-    background: rgba(255, 165, 0, 0.8)
-    text-transform: uppercase
-    text-align: center
-
-    // learn more text
-    > span
-      padding-right: 10px
-
-    // arrow down
-    > a
-      background: #111
-      height: ($section-height - 20)
-      width: ($section-height - 20)
-      border-radius: 50%
-      font-size: 0.5em
-      display: flex
-      justify-content: center
-      align-items: center
-      > span
-        width: 0
-        height: 0
-        border-style: solid
-        border-width: 3em 3em 0 3em
-        border-color: #ffffff transparent transparent transparent
-        transform: rotate(360deg)
-        &:after
-          content: ''
-          position: absolute
-          top: -3.2em
-          left: -3em
-          width: 0
-          height: 0
-          border-style: solid
-          border-width: 3em 3em 0 3em
-          border-color: #111 transparent transparent transparent
-          transform: rotate(360deg)
+@import "main_header"
 
 div.tribe-section-separator
   width: 100px
-  border: solid red 1px
-  margin: 5px 0 5px 0
+  border: solid gray 1px
 
 div.tribe-main-content
   > section
-    padding: 10px
     > h1
       padding: 0 0 10px 0
       text-transform: uppercase
-      font-weight: normal
+      font-weight: 300
       span
         font-weight: bold
 
-section.tribe-about
-  > div.tribe-articles
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    background-color: lighten(gray, 47)
-    > article
-      max-width: 350px
-      display: flex
-      align-items: flex-start
-      margin: 5px
-      img
-        padding-right: 5px
-      p
-        padding-bottom: 2px
-      a
-        text-decoration: none
-        color: gray
-        font-size: .9em
-      h3
-        padding-bottom: 5px
-      h3, a
-        text-transform: uppercase
-
-section.tribe-projects
-  background-color: lighten(gray, 40)
-  div.tribe-projects
-    padding-top: 10px
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-
-    article
-      margin: 5px
-      max-width: 350px
-      background-color: white
-      > img
-        width: 100%
-      > h3, > p
-        padding: 5px
-
-section.tribe-os-quotes
-  background-color: lighten(gray, 40)
-  div.tribe-os-quotes
-    padding-top: 10px
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    article
-      max-width: 350px
-      margin: 0 5px 5px 0
-      padding: 10px
-      background-color: white
-      display: flex
-      flex-direction: column
-      border-bottom: solid red 2px
-      > *
-        align-self: center
-      > img
-        $img-width: 100px
-        width: $img-width
-        border-radius: ($img-width / 2)
-      > h3, > h4
-        text-transform: uppercase
-      > h3
-        padding: 20px 0 0 0
-        color: red
-      > blockquote
-        padding: 30px 0 0 0
-        color: lighten(gray, 20)
-        &:before, &:after
-          content: '"'
-
-section.tribe-twitter-updates
-  height: 500px
-  background-image: url("../images/twitter-bg.jpg")
+@import "main_projects_carousel"
+@import "main_project_highlight"
+@import "main_os_quotes"
+@import "main_twitter_updates"
 
 footer
   background-color: black

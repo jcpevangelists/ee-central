@@ -25,7 +25,7 @@ gulp.task('css', gulpsync.sync(['sass', 'autoprefixer']));
 
 gulp.task('sass', function () {
     return gulp.src('./assets/**/*.sass')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(gulp.dest('../src/main/webapp/app/'));
 });
 
@@ -61,7 +61,9 @@ gulp.task('uglify', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
-        .pipe(uglify())
+        .pipe(uglify({
+            mangle: false // otherwhise the sourcemap/debugger does not work properly.
+        }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('../src/main/webapp/app/'));
 });

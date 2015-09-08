@@ -1,0 +1,68 @@
+$tomitribe-orange: rgb(181, 88, 27)
+header
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 80vh
+  @media(max-width: 500px)
+    height: 100vh
+
+  div.tribe-header-image
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: url("../images/header.jpg") no-repeat left bottom
+    background-size: cover
+    z-index: -1
+
+  section.tribe-page-title
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 100%
+    flex-grow: 1
+    color: rgb(251, 255, 255)
+
+    > h1, > h4
+      padding: 0 10px 0 10px
+      text-align: center
+      text-transform: uppercase
+
+    > h1
+      font-size: 2em
+      font-weight: 300
+      > span
+        font-weight: bold
+
+    > h4
+      font-size: 1em
+      color: $tomitribe-orange
+
+  section.tribe-projects-shortcut
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-wrap: wrap
+    height: 100px
+    background: transparentize($tomitribe-orange, 0.2)
+    text-transform: uppercase
+    text-align: center
+    color: rgb(251, 255, 255)
+
+    @media(max-width: 390px)
+      > span
+        display: none
+
+    > *
+      margin: 0 7px 0 7px
+
+    > a
+      border: 2px rgb(251, 255, 255) solid
+      padding: 5px 15px 5px 15px
+      text-decoration: none
+      color: rgb(251, 255, 255)
