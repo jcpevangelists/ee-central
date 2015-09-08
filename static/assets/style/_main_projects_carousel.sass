@@ -1,3 +1,4 @@
+$tomitribe-orange: rgb(181, 88, 27)
 section.tribe-projects
   background-color: rgb(247, 247, 247)
   display: flex
@@ -9,10 +10,12 @@ section.tribe-projects
   > div:first-child
     max-width: 954px
     padding-top: 20px
-    padding-bottom: 20px
+    padding-bottom: 40px
     > h1
       text-transform: uppercase
+      padding-bottom: 20px
   > div:nth-child(2)
+    max-width: 1050px
     display: flex
     justify-content: center
     align-items: center
@@ -27,59 +30,43 @@ section.tribe-projects
     > div.tribe-projects-caroussel
       display: flex
       flex-wrap: wrap
-      height: 290px
+      height: 320px
       overflow: hidden
       justify-content: center
       article
+        &:hover
+          cursor: pointer
+          border: solid $tomitribe-orange 2px
         margin: 5px
-        width: 290px
+        max-width: 290px
         height: 280px
         background-color: white
-        > div.tribe-project-title
+        padding: 15px
+        > div
+          max-width: 90px
+          height: 90px
           display: flex
           flex-direction: column
           justify-content: center
           align-items: center
+          border-bottom: solid red 1px
+          padding-bottom: 15px
+          > i
+            zoom: 0.40
+        > h3
+          text-transform: uppercase
+          padding: 10px 0 0 15px
+          font-weight: normal
           width: 100%
-          height: 100%
-          > div
-            background-color: rgb(212, 216, 219)
-            flex-grow: 1
-            width: 100%
-            display: flex
-            flex-direction: column
-            justify-content: center
-            align-items: center
-            > i
-              zoom: 0.30
-          > h3
-            text-transform: uppercase
-            padding: 10px 0 0 15px
-            width: 100%
-            height: 50px
+          height: 50px
 
-        > div.tribe-project-short-descr
-          display: none
-          background-color: rgb(231, 114, 37)
-          width: 100%
-          height: 100%
-          > img
-            zoom: 0.30
-            border: 0
-            margin: 15px 0 15px 15px
-          > div.space
-            border: solid white 1px
-            margin: 0 0 0 15px
-            width: 100px
-          > div.text
-            color: white
-            font-size: 10px
-            height: 180px
-            margin: 15px 15px 15px 15px
-            overflow: hidden
-
-        &:hover
-          > div:first-child
-            display: none
-          > div:nth-child(2)
-            display: block
+  > a
+    color: $tomitribe-orange
+    border: solid black 2px
+    padding: 10px 40px 10px 40px
+    margin: 20px 0 20px 0
+    text-transform: uppercase
+    font-size: 12px
+    font-weight: normal
+    &:hover
+      cursor: pointer

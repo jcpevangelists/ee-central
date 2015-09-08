@@ -26,12 +26,6 @@ angular.module('tribeio', ['ngRoute'])
             article.detach().prependTo('div.tribe-projects-caroussel');
         });
     }])
-    .controller('ProjectDetailController', ['$element', function ($element) {
-
-    }])
-    .controller('ProjectsController', ['$element', function ($element) {
-
-    }])
     .controller('HeaderImageController', ['$element', function ($element) {
         $(window).scroll(function() {
             var step = $(this).scrollTop();

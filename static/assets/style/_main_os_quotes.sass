@@ -1,8 +1,19 @@
 section.tribe-os-quotes
+  padding: 20px 40px 40px 40px
   background-color: lighten(gray, 40)
-  padding: 10px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  > div:first-child
+    max-width: 954px
+    padding-bottom: 20px
+  h1, h3, h4
+    text-transform: uppercase
+  p
+    padding-bottom: 40px
+    padding-top: 20px
   div.tribe-os-quotes
-    padding-top: 10px
     display: flex
     flex-wrap: wrap
     justify-content: center
@@ -20,8 +31,6 @@ section.tribe-os-quotes
         $img-width: 100px
         width: $img-width
         border-radius: ($img-width / 2)
-      > h3, > h4
-        text-transform: uppercase
       > h3
         padding: 20px 0 0 0
         color: red
