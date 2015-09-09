@@ -1,3 +1,41 @@
 section.tribe-twitter-updates
-  height: 500px
+  height: 300px
   background-image: url("../images/twitter-bg.jpg")
+  color: white
+  > div
+    width: 100%
+    height: 100%
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    display: flex
+    > div.tribe-section-separator
+      border-color: white
+    > h1
+      text-transform: uppercase
+      text-align: center
+      padding-bottom: 60px
+    > div.tweet
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      display: flex
+      padding-left: 20px
+      padding-right: 20px
+      > p
+        text-align: center
+      > a
+        text-decoration: none
+        color: white
+        padding-bottom: 20px
+      > p.date
+        font-size: 10px
+        padding-bottom: 20px
+    div.arrows
+      i:first-child
+        padding-right: 5px
+      i
+        font-weight: 100
+        &:hover
+          cursor: pointer
+

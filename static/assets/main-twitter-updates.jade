@@ -1,0 +1,11 @@
+section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
+    div
+        .tribe-section-separator
+        h1 Twitter latest updates
+        div.tweet
+            p {{tweet.text}}
+            a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
+            p.date {{tweet.timestamp | date:'d MMM yyyy'}}
+        div.arrows
+            i.tribe-left.fa.fa-lg.fa-arrow-circle-o-left
+            i.tribe-right.fa.fa-lg.fa-arrow-circle-o-right

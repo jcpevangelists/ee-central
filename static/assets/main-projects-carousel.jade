@@ -1,0 +1,18 @@
+section(ng-controller="ProjectsCarousselController", class="tribe-projects")
+    div
+        .tribe-section-separator
+        h1 Project carousel
+        p.
+            Aenean auctor a ligula nec ultrices. Aliquam mattis orci non nisi interdum tempor ut id odio. Etiam accumsan
+            tempor ante. Maecenas varius neque diam, lacinia blandit turpis fermentum ac.
+    div
+        i.tribe-left.fa.fa-lg.fa-arrow-circle-o-left
+        div.tribe-projects-caroussel
+            article(ng-repeat="project in projects")
+                a(href="project-details/{{project.name}}")
+                    div
+                        i(class="icon icon-images-sprite_icon_{{project.name}}")
+                    h3 {{project.name}}
+                    p {{project.shortDescription}}
+        i.tribe-right.fa.fa-lg.fa-arrow-circle-o-right
+    a(href="projects") see all projects
