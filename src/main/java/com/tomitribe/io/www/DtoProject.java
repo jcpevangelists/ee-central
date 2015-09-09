@@ -19,4 +19,7 @@ public class DtoProject {
     @Setter
     private String shortDescription;
 
+    @Getter
+    @Setter
+    private String longDescription;
 }
