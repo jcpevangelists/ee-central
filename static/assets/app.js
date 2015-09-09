@@ -3,6 +3,7 @@ angular.module('tribeio', [
     'tribe-projects-carousel',
     'tribe-twitter',
     'tribe-project-details',
+    'tribe-project-highlight',
     'ngRoute'])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.when('/', {
