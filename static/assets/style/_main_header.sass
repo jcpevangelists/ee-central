@@ -5,9 +5,14 @@ header
   justify-content: center
   align-items: center
   height: 80vh
-  @media(max-width: 500px)
+  > a
+    position: absolute
+    top: 20px
+    left: 20px
+  @media(max-width: 600px)
     height: 100vh
-
+    > a.icon.icon-images-sprite_tomi-opensource-logo
+      display: none
   div.tribe-header-image
     position: absolute
     left: 0
