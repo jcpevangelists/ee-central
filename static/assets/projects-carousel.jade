@@ -8,25 +8,11 @@ section(ng-controller="ProjectsCarousselController", class="tribe-projects")
     div
         i.tribe-left.fa.fa-lg.fa-arrow-circle-o-left
         div.tribe-projects-caroussel
-            article
-                div
-                    i.icon.icon-images-sprite_Icon_cloud_lock
-                h3 Crest
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ante diam, dapibus id vehicula auctor, blandit in leo. Maecenas dolor felis, gravida non dapibus ac, euismod vitae tortor.
-            article
-                div
-                    i.icon.icon-images-sprite_Icon_diamond
-                h3 http-signatures-java
-                p Morbi ornare dictum placerat. Donec at est erat. Vivamus ac vulputate nulla. Fusce id viverra purus. Proin vestibulum quam eget risus facilisis ornare.
-            article
-                div
-                    i.icon.icon-images-sprite_Icon_injection
-                h3 Hoao
-                p Nulla rutrum diam placerat malesuada consequat. Nam nec justo non justo pretium rhoncus.
-            article
-                div
-                    i.icon.icon-images-sprite_Icon_eye_gear
-                h3 Dictum
-                p Curabitur porta ex id risus dictum congue mollis at odio. Mauris sed arcu scelerisque tortor ultricies sollicitudin in in ipsum.
+            article(ng-repeat="project in projects")
+                a(href="project-details/{{project.name}}")
+                    div
+                        i(class="icon icon-images-sprite_icon_{{project.name}}")
+                    h3 {{project.name}}
+                    p {{project.shortDescription}}
         i.tribe-right.fa.fa-lg.fa-arrow-circle-o-right
     a see all projects
