@@ -1,4 +1,5 @@
 angular.module('tribeio', [
+    'tribe-projects',
     'tribe-projects-carousel',
     'tribe-twitter',
     'tribe-project-details',

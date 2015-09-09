@@ -1,1 +1,7 @@
-p projects.jade
+section(ng-controller="ProjectsController", class="tribe-all-projects")
+    article(ng-repeat="project in projects")
+        a(href="project-details/{{project.name}}")
+            div
+                i(class="icon icon-images-sprite_icon_{{project.name}}")
+            h3 {{project.name}}
+            p {{project.shortDescription}}

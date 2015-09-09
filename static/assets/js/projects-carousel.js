@@ -1,7 +1,10 @@
-angular.module('tribe-projects-carousel', [])
-    .controller('ProjectsCarousselController', ['$element', '$location', '$http', '$scope', function ($element, $location, $http, $scope) {
-        $http.get('rest/projects').success(function (data) {
-            $scope.projects = data.dtoProject;
+angular.module('tribe-projects-carousel', ['tribe-projects-service'])
+    .controller('ProjectsCarousselController', ['$element', 'tribeProjectsService', '$scope', '$timeout', function ($element, tribeProjectsService, $scope, $timeout) {
+        tribeProjectsService.onLoad(function (projects) {
+            $scope.projects = projects;
+            $timeout(function () {
+                $scope.$apply();
+            }, 0);
         });
         var carousel = $element.find('div.tribe-projects-caroussel').first();
         $element.find('i.tribe-left').on('click', function () {
