@@ -1,15 +1,15 @@
 section(ng-controller="ProjectHighlightController", class="tribe-project-highlight")
-    .background
-        .layer
+    .tribe-background
+        .tribe-layer
     .tribe-project-highlight-content
         .tribe-project-highlight-image
             img(src="{{highligtedProject.snapshot}}")
         .tribe-cms
-            .title
+            .tribe-title
                 div
                     img(src="{{highligtedProject.icon}}")
                 h3 {{highligtedProject.name}}
-            div(ng-bind-html="highligtedProject.description", class="content")
-            .buttons
+            div(ng-bind-html="highligtedProject.description", class="tribe-content")
+            .tribe-buttons
                 a(href="project-details/{{highligtedProject.name}}") Learn more
                 a(href="projects") All projects

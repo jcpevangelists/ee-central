@@ -1,6 +1,13 @@
-div(ng-controller="ProjectDetailsController")
+div(ng-controller="ProjectDetailsController", class="tribe-project-details")
     header
-        h1 {{project.name}}
-    section.tribe-project-details
+        a(href="").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
+        .tribe-project-name
+            div
+                img(src="{{project.icon}}")
+            h1 {{project.name}}
+            p {{project.shortDescription}}
+    section
         div(ng-bind-html="project.documentation", class="content")
+        .tribe-sidebar
+            p lalalala
     ng-include(src="'app/footer.html'")
