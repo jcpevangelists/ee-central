@@ -36,7 +36,6 @@ public class ServiceProjects {
     private String getText(String projectName, String documentName) {
         try {
             // TODO grab the string from https://raw.githubusercontent.com/tomitribe/<PROJECT_NAME>/master/tomitribe_ui_long_description.adoc
-            //final String url = "https://dl.dropboxusercontent.com/u/1459144/test/docs/" + projectName + "/" + documentName;
             final String url = "http://127.0.0.1:8080/tomitribe-io/docs/" + projectName + "/" + documentName;
             return new Scanner(new URL(url).openStream(), "UTF-8").useDelimiter("\\A").next();
         } catch (IOException e) {
