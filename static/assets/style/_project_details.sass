@@ -1,0 +1,57 @@
+div.tribe-project-details
+  background-color: rgb(247, 247, 247)
+  > header
+    padding: 40px 150px 40px 150px
+    color: white
+    background: url("../images/project-detail-background.jpg") no-repeat right bottom
+    background-size: cover
+    > a.tribe-icon
+      display: block
+      margin-bottom: 20px
+    > div.tribe-project-name
+      > div
+        > img
+          width: auto
+          height: 80px
+          padding-bottom: 20px
+          margin-bottom: 20px
+          border-bottom: solid gray 1px
+      > h1
+        text-transform: capitalize
+        margin-bottom: 10px
+      > p
+        max-width: 400px
+  > section
+    margin: 40px 150px 40px 150px
+    display: flex
+    justify-content: center
+    > div.tribe-sidebar
+      flex-shrink: 0
+      width: 280px
+      background-color: green
+      margin-left: 10px
+    > div.tribe-content
+      overflow: auto
+      background-color: white
+      padding: 10px
+
+  @media (max-width: 960px)
+    > header
+      padding: 40px
+    > section
+      margin: 40px
+      flex-wrap: wrap
+      > div.tribe-sidebar
+        flex-shrink: 1
+        margin-top: 10px
+        margin-left: 0
+
+  @media (max-width: 700px)
+    > section
+      margin: 10px
+      flex-wrap: wrap
+
+  @media (max-width: 400px)
+    > section
+      > div.tribe-sidebar
+        width: 100%
