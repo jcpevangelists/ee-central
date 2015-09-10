@@ -23,4 +23,12 @@ public class DtoProject {
     @Getter
     @Setter
     private String longDescription;
+
+    @Getter
+    @Setter
+    private String snapshot;
+
+    @Getter
+    @Setter
+    private String icon;
 }
