@@ -31,4 +31,8 @@ public class DtoProject {
     @Getter
     @Setter
     private String icon;
+
+    @Getter
+    @Setter
+    private String documentation;
 }

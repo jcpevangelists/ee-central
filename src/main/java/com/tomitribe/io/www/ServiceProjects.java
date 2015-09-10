@@ -51,7 +51,8 @@ public class ServiceProjects {
                 getText(name, "short_description.txt"),
                 asciidoctor.render(getText(name, "long_description.adoc"), Collections.<String, Object>emptyMap()),
                 "https://tests.veronezi.org/tomitribe-io/docs/" + name + "/snapshot.png", // TODO use the real path
-                "https://tests.veronezi.org/tomitribe-io/docs/" + name + "/icon.png" // TODO use the real path
+                "https://tests.veronezi.org/tomitribe-io/docs/" + name + "/icon.png", // TODO use the real path
+                asciidoctor.render(getText(name, "documentation.adoc"), Collections.<String, Object>emptyMap())
         );
     }
 

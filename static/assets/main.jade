@@ -1,4 +1,4 @@
-div
+div.trime-home
     header
         div(class="tribe-header-image", ng-controller="HeaderImageController")
         a(href=".").icon.icon-images-sprite_tomi-opensource-logo
@@ -13,6 +13,4 @@ div
         ng-include(src="'app/main-project-highlight.html'")
         ng-include(src="'app/main-twitter-updates.html'")
         ng-include(src="'app/main-os-quotes.html'")
-    footer
-        p.
-            Copyright © 2015 Tomitribe.  All Rights Reserved.  Community Terms of Service, Terms of Service and Privacy Policy.
+    ng-include(src="'app/footer.html'")
