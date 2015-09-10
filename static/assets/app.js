@@ -25,4 +25,26 @@ angular.module('tribeio', [
                 'transform': 'translateY(' + (step / 3) + 'px)'
             });
         });
+    }])
+    .directive('prism', ['$timeout', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function ($scope, $element, $attrs) {
+                $scope.$watch(
+                    function () {
+                        return $scope.$eval($attrs.ngBindHtml);
+                    },
+                    function (value) {
+                        $timeout(function () {
+                            $element.find('pre').each(function() {
+                                $(this).addClass('line-numbers');
+                            });
+                            $element.find('code').each(function() {
+                                Prism.highlightElement(this);
+                            });
+                        });
+                    }
+                );
+            }
+        }
     }]);

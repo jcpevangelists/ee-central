@@ -1,5 +1,5 @@
 div.tribe-project-details
-  background-color: rgb(247, 247, 247)
+  //background-color: rgb(247, 247, 247)
   > header
     padding: 40px 150px 40px 150px
     color: white
@@ -33,7 +33,29 @@ div.tribe-project-details
     > div.tribe-content
       overflow: auto
       background-color: white
-      padding: 10px
+      padding: 20px
+
+      h1, h2, h3, h4, h5, h6
+        margin-bottom: 10px
+        &:first-child
+          margin-top: 10px
+
+      div.paragraph, div.admonitionblock.note, div.listingblock
+        margin-top: 10px
+        &:first-child
+          margin-top: 0
+
+      div.listingblock
+        > div.content
+          background-color: rgb(245, 245, 245)
+          border: solid rgb(202, 202, 202) 1px
+          padding: 10px 10px 10px 0
+
+      div.admonitionblock.note
+        table
+          td
+            border: 1px solid #ddd
+            padding: 6px 13px 6px 13px
 
   @media (max-width: 960px)
     > header
