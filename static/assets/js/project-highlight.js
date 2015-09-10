@@ -1,6 +1,7 @@
 angular.module('tribe-project-highlight', [])
     .controller('ProjectHighlightController', ['$scope', '$timeout', '$sce', 'tribeProjectsService', function ($scope, $timeout, $sce, tribeProjectsService) {
-        tribeProjectsService.onLoad(function (projects) {
+        tribeProjectsService.onLoad(function (data) {
+            var projects = data.getAll();
             // just grabbing a random project for now TODO
             var project = projects[Math.floor((Math.random() * projects.length))];
             var description = project.longDescription;

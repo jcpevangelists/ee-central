@@ -1,7 +1,7 @@
 angular.module('tribe-projects-carousel', ['tribe-projects-service'])
     .controller('ProjectsCarousselController', ['$element', 'tribeProjectsService', '$scope', '$timeout', function ($element, tribeProjectsService, $scope, $timeout) {
         tribeProjectsService.onLoad(function (projects) {
-            $scope.projects = projects;
+            $scope.projects = projects.getAll();
             $timeout(function () {
                 $scope.$apply();
             }, 0);

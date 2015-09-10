@@ -1,2 +1,6 @@
-section(ng-controller="ProjectDetailsController", class="tribe-project-details")
-    p {{projectName}}
+div(ng-controller="ProjectDetailsController")
+    header
+        h1 {{project.name}}
+    section.tribe-project-details
+        div(ng-bind-html="project.documentation", class="content")
+    ng-include(src="'app/footer.html'")
