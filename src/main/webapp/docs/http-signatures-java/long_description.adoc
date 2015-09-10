@@ -1,0 +1,8 @@
+HTTP signatures provide a mechanism by which a shared secret key can be used to digitally "sign" a HTTP message to both verify the
+identity of the sender and verify that the message has not been tampered with in-transit.
+
+This is done by contatinating the desired HTTP Headers together to form a string called a "Signing String".  An encrypted
+hash (digitial signature) is made of the Signing String using either an asymmetric algorithm (`rsa-sha256`) with a
+public/private key pair or a symmetric algorithm (`hmac-sha256`) with a shared secret key.
+
+Finally, the encrypted bytes are Base64 encoded and added to the `Authorization` header, along with the `keyId`, signing algorithm, header names, and the signature itself.

@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@EqualsAndHashCode(of = {"name"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @XmlRootElement

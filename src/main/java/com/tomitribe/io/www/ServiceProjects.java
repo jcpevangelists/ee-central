@@ -3,11 +3,15 @@ package com.tomitribe.io.www;
 import org.asciidoctor.Asciidoctor;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Timeout;
+import javax.ejb.TimerService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.asciidoctor.Asciidoctor.Factory.create;
 
@@ -23,43 +27,49 @@ https://github.com/tomitribe/sabot
 @Singleton
 @Startup
 public class ServiceProjects {
-    private final List<DtoProject> projects = Collections.synchronizedList(new ArrayList<DtoProject>());
+    @Resource
+    private TimerService timerService;
 
-    @PostConstruct
-    void startup() throws IOException {
-        final Asciidoctor asciidoctor = create();
-        final Map<String, Object> adocOptions = new HashMap<String, Object>();
-        // TODO grab the string from https://raw.githubusercontent.com/tomitribe/<PROJECT_NAME>/master/tomitribe_ui_long_description.adoc
-        final String adocText = new Scanner(ServiceProjects.class.getResourceAsStream("/docs/crest/long_description.adoc"), "UTF-8").useDelimiter("\\A").next();
-        projects.add(new DtoProject(
-                "crest", //name
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ante diam, dapibus id vehicula auctor, blandit in leo. Maecenas dolor felis, gravida non dapibus ac, euismod vitae tortor.", //shortDescription
-                asciidoctor.render(adocText, adocOptions)
-        ));
-        projects.add(new DtoProject(
-                "http-signatures-java", //name
-                "Morbi ornare dictum placerat. Donec at est erat. Vivamus ac vulputate nulla. Fusce id viverra purus. Proin vestibulum quam eget risus facilisis ornare.", //shortDescription
-                asciidoctor.render(adocText, adocOptions)
-        ));
-        projects.add(new DtoProject(
-                "hoao", //name
-                "Nulla rutrum diam placerat malesuada consequat. Nam nec justo non justo pretium rhoncus.", //shortDescription
-                asciidoctor.render(adocText, adocOptions)
-        ));
-        projects.add(new DtoProject(
-                "crest-ssh-connector", //name
-                "Curabitur porta ex id risus dictum congue mollis at odio. Mauris sed arcu scelerisque tortor ultricies sollicitudin in in ipsum.", //shortDescription
-                asciidoctor.render(adocText, adocOptions)
-        ));
-        projects.add(new DtoProject(
-                "sabot", //name
-                "Curabitur laoreet arcu ut metus bibendum, eget semper justo dignissim. Suspendisse quis justo efficitur, mattis dui in, dignissim tellus.", //shortDescription
-                asciidoctor.render(adocText, adocOptions)
-        ));
+    private final Set<DtoProject> projects = Collections.synchronizedSet(new HashSet<DtoProject>());
+    private final Asciidoctor asciidoctor = create();
+
+    private String getText(String projectName, String documentName) {
+        try {
+            // TODO grab the string from https://raw.githubusercontent.com/tomitribe/<PROJECT_NAME>/master/tomitribe_ui_long_description.adoc
+            //final String url = "https://dl.dropboxusercontent.com/u/1459144/test/docs/" + projectName + "/" + documentName;
+            final String url = "http://127.0.0.1:8080/tomitribe-io/docs/" + projectName + "/" + documentName;
+            return new Scanner(new URL(url).openStream(), "UTF-8").useDelimiter("\\A").next();
+        } catch (IOException e) {
+            throw new UnmanagedException(e);
+        } catch (NoSuchElementException noSuchElementException) {
+            return "";
+        }
     }
 
-    public List<DtoProject> getProjects() {
-        return Collections.unmodifiableList(projects);
+    private DtoProject mountDtoProject(String name) {
+        return new DtoProject(
+                name,
+                getText(name, "short_description.txt"),
+                asciidoctor.render(getText(name, "long_description.adoc"), Collections.<String, Object>emptyMap())
+        );
+    }
+
+    @PostConstruct
+    void init() {
+        timerService.createTimer(0, TimeUnit.MINUTES.toMillis(1), "Update documentation timer");
+    }
+
+    @Timeout
+    public void updateProjects() {
+        projects.add(mountDtoProject("crest"));
+        projects.add(mountDtoProject("crest-ssh-connector"));
+        projects.add(mountDtoProject("hodao"));
+        projects.add(mountDtoProject("http-signatures-java"));
+        projects.add(mountDtoProject("sabot"));
+    }
+
+    public Set<DtoProject> getProjects() {
+        return Collections.unmodifiableSet(projects);
     }
 
 }
