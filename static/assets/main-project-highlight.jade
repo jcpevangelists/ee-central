@@ -3,10 +3,11 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
         .layer
     .tribe-project-highlight-content
         .tribe-project-highlight-image
+            img(src="{{highligtedProject.snapshot}}")
         .tribe-cms
             .title
                 div
-                    i(class="icon icon-images-sprite_icon_{{highligtedProject.name}}")
+                    img(src="{{highligtedProject.icon}}")
                 h3 {{highligtedProject.name}}
             div(ng-bind-html="highligtedProject.description", class="content")
             .buttons

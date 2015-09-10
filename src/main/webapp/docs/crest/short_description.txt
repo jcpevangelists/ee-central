@@ -1,0 +1,1 @@
+Simplifies Java command-line tool writing with built-in Command-registration, help text and validation.

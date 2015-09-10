@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.util.List;
+import java.util.Set;
 
 @Path("/projects")
 @Produces("application/json")
@@ -14,7 +14,7 @@ public class RestProjects {
     ServiceProjects serviceProjects;
 
     @GET
-    public List<DtoProject> list() {
+    public Set<DtoProject> list() {
         return serviceProjects.getProjects();
     }
 }

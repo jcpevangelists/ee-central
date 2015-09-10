@@ -1,0 +1,1 @@
+Provides helpful libraries for Data Access Object (DAO) persistence code; inspired by the Apache TomEE abstract-bean concept.

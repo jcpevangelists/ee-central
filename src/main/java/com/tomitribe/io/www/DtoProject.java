@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@EqualsAndHashCode(of = {"name"})
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @XmlRootElement
@@ -22,4 +23,12 @@ public class DtoProject {
     @Getter
     @Setter
     private String longDescription;
+
+    @Getter
+    @Setter
+    private String snapshot;
+
+    @Getter
+    @Setter
+    private String icon;
 }
