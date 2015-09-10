@@ -1,8 +1,12 @@
+$tomitribe-orange: rgb(181, 88, 27)
+$section-height: 700px
 section.tribe-project-highlight
-  height: 700px
+  height: $section-height
   width: 100%
+  position: relative
+  color: white
   > div.background
-    position: relative
+    position: absolute
     left: 0
     top: 0
     width: 100%
@@ -14,3 +18,82 @@ section.tribe-project-highlight
       width: 100%
       height: 100%
       background-color: rgba(0, 0, 0, 0.85)
+
+  > div.tribe-project-highlight-content
+    width: 100%
+    height: 100%
+    display: flex
+    > div.tribe-project-highlight-image
+      flex-grow: 1
+
+    > div.tribe-cms
+      max-width: 700px
+      $buttons-height: 40px
+      $content-padding: 10px
+      $title-height: 250px
+      > div.title
+        width: 100%
+        height: $title-height
+        display: flex
+        flex-direction: column
+        justify-content: center
+        margin-left: 10px
+        > div
+          max-width: 90px
+          height: 90px
+          display: flex
+          flex-direction: column
+          justify-content: center
+          align-items: center
+          border-bottom: solid red 1px
+          padding-bottom: 15px
+          > i
+            zoom: 0.40
+        > h3
+          text-transform: uppercase
+          padding: 10px 0 0 15px
+          font-weight: normal
+      > div.content
+        height: $section-height - $title-height - $buttons-height - (3 * $content-padding)
+        overflow: auto
+        margin: 0 $content-padding $content-padding $content-padding
+        font-size: 15px
+        *
+          margin-bottom: 5px
+        p, ul
+          margin-bottom: 10px
+        ul
+          list-style: none
+          li
+            &:before
+              content: '>\00a0'
+              float: left
+      > div.buttons
+        height: $buttons-height
+        display: flex
+        align-items: center
+        margin: $content-padding
+        > a
+          text-decoration: none
+          color: white
+          border: solid white 2px
+          height: $buttons-height
+          line-height: $buttons-height
+          text-align: center
+          text-transform: uppercase
+          font-size: 12px
+          font-weight: normal
+          margin-right: 5px
+          width: 150px
+          &:hover
+            cursor: pointer
+          &:first-child
+            border-color: $tomitribe-orange
+            background-color: $tomitribe-orange
+        @media(max-width: 360px)
+          > a
+            width: 100%
+            &:last-child
+              margin-right: 0
+
+

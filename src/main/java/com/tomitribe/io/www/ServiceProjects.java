@@ -30,7 +30,7 @@ public class ServiceProjects {
         final Asciidoctor asciidoctor = create();
         final Map<String, Object> adocOptions = new HashMap<String, Object>();
         // TODO grab the string from https://raw.githubusercontent.com/tomitribe/<PROJECT_NAME>/master/tomitribe_ui_long_description.adoc
-        final String adocText = new Scanner(new URL("https://raw.githubusercontent.com/tomitribe/crest/master/README.adoc").openStream(), "UTF-8").useDelimiter("\\A").next();
+        final String adocText = new Scanner(ServiceProjects.class.getResourceAsStream("/docs/crest/long_description.adoc"), "UTF-8").useDelimiter("\\A").next();
         projects.add(new DtoProject(
                 "crest", //name
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ante diam, dapibus id vehicula auctor, blandit in leo. Maecenas dolor felis, gravida non dapibus ac, euismod vitae tortor.", //shortDescription
