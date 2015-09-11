@@ -10,6 +10,9 @@ angular.module('tribe-project-details', [])
                     documentation: $sce.trustAsHtml(project.documentation),
                     icon: project.icon
                 };
+                $scope.otherProjects = _.filter(projects.getAll(), function (item) {
+                    return item.name !== project.name;
+                });
                 $timeout(function () {
                     $scope.$apply();
                 }, 0);

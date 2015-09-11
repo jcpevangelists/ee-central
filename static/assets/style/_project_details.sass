@@ -1,5 +1,6 @@
+$tomitribe-orange: rgb(181, 88, 27)
 div.tribe-project-details
-  //background-color: rgb(247, 247, 247)
+  background-color: rgb(247, 247, 247)
   > header
     padding: 40px 150px 40px 150px
     color: white
@@ -25,11 +26,57 @@ div.tribe-project-details
     margin: 40px 150px 40px 150px
     display: flex
     justify-content: center
+
     > div.tribe-sidebar
       flex-shrink: 0
-      width: 280px
-      background-color: green
+      width: 300px
       margin-left: 10px
+      > div.tribe-contributors
+        > h4
+          font-weight: normal
+          text-align: center
+          margin-bottom: 5px
+        > div.tribe-contributors-list
+          display: flex
+          flex-wrap: wrap
+          > a
+            margin: 5px
+      > div.tribe-other-projects
+        margin-top: 20px
+        > h4
+          font-weight: normal
+          margin-bottom: 10px
+        > article
+          margin-bottom: 10px
+          > a
+            text-decoration: none
+            color: black
+            display: flex
+            align-items: center
+            > img
+              padding: 5px
+              border: solid transparent 1px
+              flex-shrink: 0
+              width: auto
+              height: 50px
+            > div
+              margin-left: 10px
+              > p
+                font-size: 10px
+                width: 235px
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+          &:hover
+            > a
+              > img
+                border: solid $tomitribe-orange 1px
+                background-color: white
+              > div
+                > h4
+                  color: $tomitribe-orange
+
+
     > div.tribe-content
       overflow: auto
       background-color: white
@@ -77,3 +124,5 @@ div.tribe-project-details
     > section
       > div.tribe-sidebar
         width: 100%
+        > div.tribe-contributors > h4, > div.tribe-other-projects > h4
+          text-align: center
