@@ -1,7 +1,16 @@
-section(ng-controller="ProjectsController", class="tribe-all-projects")
-    article(ng-repeat="project in projects")
-        a(href="project-details/{{project.name}}")
+div(ng-controller="ProjectsController", class="tribe-all-projects")
+    header
+        a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
+        .tribe-title
             div
-                i(class="icon icon-images-sprite_icon_{{project.name}}")
-            h3 {{project.name}}
-            p {{project.shortDescription}}
+            h1 Our opensource projects
+    section
+        article(ng-repeat="project in projects")
+            div
+                img(src="{{project.icon}}")
+            div
+                h3 {{project.name}}
+                p {{project.shortDescription}}
+            div
+                a(href="project-details/{{project.name}}") check it out
+    ng-include(src="'app/footer.html'")
