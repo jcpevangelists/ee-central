@@ -26,6 +26,8 @@ section.tribe-project-highlight
     > div.tribe-project-highlight-image
       flex-grow: 1
       position: relative
+      @media(max-width: 360px)
+        display: none
       > img
         width: 700px
         position: absolute
@@ -55,17 +57,18 @@ section.tribe-project-highlight
           > img
             width: auto
             height: 100px
-        > h3
+        > h2
           text-transform: uppercase
-          padding: 10px 0 0 15px
+          padding: 10px 0 0 0
           font-weight: normal
       > div.tribe-content
         height: $section-height - $title-height - $buttons-height - (3 * $content-padding)
         overflow: auto
         margin: 0 $content-padding $content-padding $content-padding
         font-size: 15px
+        word-wrap: break-word
         a
-
+          color: white
         *
           margin-bottom: 5px
         p, ul
@@ -103,5 +106,6 @@ section.tribe-project-highlight
             width: 100%
             &:last-child
               margin-right: 0
+
 
 
