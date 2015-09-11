@@ -1,12 +1,16 @@
 # Hodao
 
-Helper library for DAOs.  Inspired by the great Hodor himself.  Boilerplate persistence code tends to be like him -- simple and repetitive.
+Helper library for DAOs.  Inspired by the great Hodor himself.  Boilerplate persistence code tends to be like him
+-- simple and repetitive.
 
 Hodor hodor hodor persist. Hodor hodor hodor merge.  Hodor hodor hodor delete.  Hodor HODOR!
 
-Hodao takes advantage of Apache TomEE's abstract-bean concept.  The DAO is declared abstract and boilerplate methods can be simply annotated and handled by the framework.  Unlike purely interface-based approaches, this still allows you to use plain Java code for persistence logic that falls outside what the framework handles.
+Hodao takes advantage of Apache TomEE's abstract-bean concept.  The DAO is declared abstract and boilerplate methods
+can be simply annotated and handled by the framework.  Unlike purely interface-based approaches, this still allows
+you to use plain Java code for persistence logic that falls outside what the framework handles.
 
-The guts of the "framework" are [less than 500 lines of code](https://github.com/tomitribe/hodao/blob/master/src/main/java/org/tomitribe/hodao/impl/PersistenceHandler.java).  The rest is pure annotations.  **Copy/paste reuse encouraged, forks encouraged, _change it to fit you_!**
+The guts of the "framework" are https://github.com/tomitribe/hodao/blob/master/src/main/java/org/tomitribe/hodao/impl/PersistenceHandler.java[less than 500 lines of code].
+The rest is pure annotations.  **Copy/paste reuse encouraged, forks encouraged, _change it to fit you_!**
 
 Requires Apache TomEE 1.5.x or newer.
 
@@ -14,7 +18,8 @@ Requires Apache TomEE 1.5.x or newer.
 
 To use, simply declare your EJB as abstract and implement `java.lang.reflect.InvocationHandler` as follows.
 
-````
+[source,java]
+----
 import org.tomitribe.hodao.impl.PersistenceHandler;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,7 +40,7 @@ public abstract class BookCrud implements InvocationHandler {
         return PersistenceHandler.invoke(this.em, method, args);
     }
 }
-````
+----
 
 From here you can leverage the following annotations to abstract out common `javax.persistence.EntityManager` boilerplate.
 
@@ -50,7 +55,8 @@ All of which map to their simple JPA `EntityManager` equivalent.
 
 ### Simple example
 
-````
+[source,java]
+----
 import org.tomitribe.hodao.Find;
 import org.tomitribe.hodao.MaxResults;
 import org.tomitribe.hodao.Merge;
@@ -99,38 +105,41 @@ public abstract class BookDao implements InvocationHandler {
         return PersistenceHandler.invoke(this.em, method, args);
     }
 }
-````
+----
 
 ### @Persist for `EntityManager.persist`
 
 Valid examples of `@Persist` include:
 
-````
+[source,java]
+----
     @Persist
     public abstract Book create(final Book book);
 
     @Persist
     public abstract void anotherAwesomeMovie(final Movie movie);
-````
+----
 
 
 ### @Merge for `EntityManager.merge`
 
 Valid examples of `@Merge` include:
 
-````
+[source,java]
+----
     @Merge
     public abstract Book update(final Book book);
 
     @Merge
     public abstract Color update(final Color color);
-````
+----
 
 ### @Find for `EntityManager.find`
 
 Valid examples of `@Find` include:
 
-````
+[source,java]
+----
     @Find
     public abstract Book find(final Long bookId);
 
@@ -142,16 +151,17 @@ Valid examples of `@Find` include:
 
     @Find
     public abstract Color lookFor(final ColorID customPrimaryKey);
-````
+----
 
 ### @Remove for `EntityManager.remove`
 
 Valid examples of `@Remove` include:
 
-````
+[source,java]
+----
     @Remove
     public abstract void delete(final Book book);
 
     @Remove
     public abstract void rottenTomatoes(final Movie movie);
-````
+----

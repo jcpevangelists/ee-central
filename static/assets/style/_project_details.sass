@@ -63,7 +63,7 @@ div.tribe-project-details
               margin-left: 10px
               > p
                 font-size: 10px
-                width: 235px
+                width: 225px
                 white-space: nowrap
                 overflow: hidden
                 text-overflow: ellipsis
@@ -76,11 +76,11 @@ div.tribe-project-details
                 > h4
                   color: $tomitribe-orange
 
-
     > div.tribe-content
       overflow: auto
       background-color: white
       padding: 20px
+      word-wrap: break-word
 
       h1, h2, h3, h4, h5, h6
         margin-bottom: 10px
@@ -96,7 +96,11 @@ div.tribe-project-details
         > div.content
           background-color: rgb(245, 245, 245)
           border: solid rgb(202, 202, 202) 1px
-          padding: 10px 10px 10px 0
+          > pre.highlight
+            margin: 0
+            padding-right: 0
+            padding-top: 0
+            padding-bottom: 0
 
       div.admonitionblock.note
         table
