@@ -12,22 +12,8 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
-                    a(href="#")
-                        img(src="//placehold.it/50x50")
+                    a(ng-repeat="contributor in project.contributors", href="https://github.com/{{contributor.login}}/")
+                        img(src="{{contributor.avatarUrl}}")
             .tribe-other-projects
                 h4 Other projects
                 article(ng-repeat="project in otherProjects")
