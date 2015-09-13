@@ -33,7 +33,8 @@ div.tribe-all-projects
       width: 300px
       flex-shrink: 0
       margin: 4px
-      border: solid rgb(214, 218, 221) 1px
+      background-color: white
+      border: solid white 1px
       > div
         &:first-child
           background-color: rgb(214, 218, 221)
@@ -64,11 +65,13 @@ div.tribe-all-projects
             padding: 10px 15px 10px 15px
             font-size: 12px
             font-weight: normal
-            &:hover
-              color: white
-              background-color: black
       &:hover
         border: solid $tomitribe-orange 1px
+        > div
+          &:last-child
+            > a
+              color: white
+              background-color: black
 
   @media (max-width: 960px)
     > header
