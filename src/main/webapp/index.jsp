@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
-<ng-view></ng-view>
+<ng-view autoscroll="true"></ng-view>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script type="text/javascript" src="thirdparty/prism/prism.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>

@@ -1,31 +1,32 @@
 package com.tomitribe.io.www
 
+import org.yaml.snakeyaml.Yaml
+
 import javax.annotation.PostConstruct
+import javax.ejb.Lock
+import javax.ejb.LockType
 import javax.ejb.Singleton
+import javax.ejb.Startup
+import java.text.SimpleDateFormat
 
 @Singleton
+@Startup
 class ServiceTwitter {
-    private final List<DtoTweet> tweets = Collections.synchronizedList([])
+    private final SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy")
+    private List<DtoTweet> tweets = []
 
     @PostConstruct
     void startup() {
-        tweets << new DtoTweet(
-                text: "Pellentesque sed velit tristique, sodales leo in, sodales magna",
-                author: "mauris",
-                timestamp: 0L
-        )
-        tweets << new DtoTweet(
-                text: "Aliquam quis ex a mauris ornare feugiat a ac orci.",
-                author: "turpis",
-                timestamp: 0L
-        )
-        tweets << new DtoTweet(
-                text: "Ut a mauris lectus. Aliquam rhoncus tincidunt ipsum commodo sollicitudin.",
-                author: "egestas",
-                timestamp: 0L
-        )
+        tweets = new Yaml().loadAll(this.getClass().getResource('/tweets.yaml').text).collect {
+            new DtoTweet(
+                    text: it.text,
+                    author: it.author,
+                    timestamp: formatter.parse(it.date).time
+            )
+        }
     }
 
+    @Lock(LockType.READ)
     List<DtoTweet> getTweets() {
         Collections.unmodifiableList(tweets)
     }

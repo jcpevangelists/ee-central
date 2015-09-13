@@ -2,6 +2,8 @@ package com.tomitribe.io.www
 
 import javax.annotation.PostConstruct
 import javax.annotation.Resource
+import javax.ejb.Lock
+import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.ejb.Startup
 import javax.ejb.Timeout
@@ -49,10 +51,11 @@ class ServiceProjects {
                     }
             )
         }
-        timerService.createTimer(0, TimeUnit.MINUTES.toMillis(30), "Update documentation timer")
+        timerService.createTimer(TimeUnit.SECONDS.toMillis(15), TimeUnit.MINUTES.toMillis(30), "Update documentation timer")
     }
 
     @Timeout
+    @Lock(LockType.READ)
     void updateProjects() {
         try {
             projects = github.projects
@@ -87,6 +90,7 @@ class ServiceProjects {
         }
     }
 
+    @Lock(LockType.READ)
     public Set<DtoProject> getProjects() {
         new HashSet<DtoProject>(projects);
     }
