@@ -36,10 +36,10 @@ angular.module('tribeio', [
                     },
                     function (value) {
                         $timeout(function () {
-                            $element.find('pre').each(function() {
+                            $element.find('pre').each(function () {
                                 $(this).addClass('line-numbers');
                             });
-                            $element.find('code').each(function() {
+                            $element.find('code').each(function () {
                                 Prism.highlightElement(this);
                             });
                         });

@@ -8,7 +8,8 @@ angular.module('tribe-project-details', [])
                     name: project.name,
                     shortDescription: project.shortDescription,
                     documentation: $sce.trustAsHtml(project.documentation),
-                    icon: project.icon
+                    icon: project.icon,
+                    contributors: _.isArray(project.contributors) ? project.contributors : [project.contributors]
                 };
                 $scope.otherProjects = _.filter(projects.getAll(), function (item) {
                     return item.name !== project.name;
