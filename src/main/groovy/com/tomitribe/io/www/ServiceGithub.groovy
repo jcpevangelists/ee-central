@@ -5,6 +5,7 @@ import org.asciidoctor.Asciidoctor
 import org.yaml.snakeyaml.Yaml
 
 import javax.ejb.Stateless
+import javax.inject.Inject
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -14,10 +15,15 @@ class ServiceGithub {
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create()
     private String token = System.getenv()['github_atoken']
 
+    @Inject
+    private HttpBean http
+
     Set<DtoContributor> getContributors(String projectName) {
-        def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token".toURL()
-        new JsonSlurper().parseText(url.text).collect {
-            def githubContributor = new JsonSlurper().parseText("https://api.github.com/users/${it.name}".toURL().text)
+        def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token"
+        new JsonSlurper().parseText(http.getUrlContent(url)).collect {
+            def githubContributor = new JsonSlurper().parseText(
+                    http.getUrlContent("https://api.github.com/users/${it.login}")
+            )
             new DtoContributor(
                     login: it.login,
                     avatarUrl: it.avatar_url,
@@ -29,7 +35,7 @@ class ServiceGithub {
     private String loadGithubResource(String projectName, String resourceName) {
         def url = "https://raw.githubusercontent.com/tomitribe/${projectName}/master/${resourceName}?access_token=$token"
         try {
-            return url.toURL().text
+            return http.getUrlContent(url)
         } catch (FileNotFoundException ignore) {
             // this project does not have a documentation
         } catch (exception) {
@@ -64,12 +70,14 @@ class ServiceGithub {
         def result = []
         while (true) {
             def pageUrl = "https://api.github.com/orgs/tomitribe/repos?page=${page++}&per_page=20&access_token=$token"
-            def json = new JsonSlurper().parseText(pageUrl.toURL().text)
+            def json = new JsonSlurper().parseText(http.getUrlContent(pageUrl))
             if (!json) {
                 break
             }
             result.addAll(json.collect({
-                def ioConfig = new Yaml().load(loadGithubResource(it.name as String, 'community.yaml'))
+                def ioConfig = new Yaml().load(loadGithubResource(
+                        it.name as String, 'community.yaml')
+                )
                 if (!ioConfig || !ioConfig.snapshot?.trim() || !ioConfig.icon?.trim()) {
                     return new DtoProject()
                 }
