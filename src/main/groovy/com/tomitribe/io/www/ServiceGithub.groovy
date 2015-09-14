@@ -74,27 +74,31 @@ class ServiceGithub {
             if (!json) {
                 break
             }
+            def emptyProject = new DtoProject()
             result.addAll(json.collect({
                 def ioConfig = new Yaml().load(loadGithubResource(
                         it.name as String, 'community.yaml')
                 )
                 if (!ioConfig || !ioConfig.snapshot?.trim() || !ioConfig.icon?.trim()) {
-                    return new DtoProject()
+                    return emptyProject
                 }
-                def longDescription = adocToHtml(getText(ioConfig.long_description as String) ?: loadGithubResource(it.name as String,
-                        'community.io/long_description.adoc')).trim()
-                def documentation = adocToHtml(getText(ioConfig.documentation as String) ?: loadGithubResource(it.name as String,
-                        'README.adoc')).trim()
+                def longDescription = adocToHtml(getText(ioConfig.long_description as String)).trim()
+                def documentation = adocToHtml(getText(ioConfig.documentation as String) ?:
+                        loadGithubResource(it.name as String, 'README.adoc')).trim()
+                def shortDescription = (getText(ioConfig.short_description as String) ?: it.description)?.trim()
+                if (!longDescription || !documentation || !shortDescription) {
+                    return emptyProject
+                }
                 new DtoProject(
                         name: it.name,
-                        shortDescription: (getText(ioConfig.short_description as String) ?: it.description)?.trim(),
+                        shortDescription: shortDescription,
                         longDescription: longDescription,
                         snapshot: ioConfig.snapshot,
                         icon: ioConfig.icon,
                         documentation: documentation,
                         contributors: getContributors(it.name as String)
                 )
-            }).findAll { it.name && it.shortDescription && it.longDescription && it.documentation })
+            }).findAll { it != emptyProject })
         }
         result
     }
