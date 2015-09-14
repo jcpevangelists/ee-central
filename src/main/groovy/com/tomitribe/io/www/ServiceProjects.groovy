@@ -51,7 +51,11 @@ class ServiceProjects {
                     }
             )
         }
-        timerService.createTimer(TimeUnit.SECONDS.toMillis(15), TimeUnit.MINUTES.toMillis(30), "Update documentation timer")
+        timerService.createTimer(
+                TimeUnit.SECONDS.toMillis(projects ? 0 : 15),
+                TimeUnit.MINUTES.toMillis(30),
+                "Update documentation timer"
+        )
     }
 
     @Timeout
