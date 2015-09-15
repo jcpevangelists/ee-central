@@ -29,12 +29,14 @@ class ServiceProjects {
     @PersistenceContext(unitName = "tribeio-pu")
     private EntityManager em
 
-    private Set<DtoProject> projects = Collections.synchronizedSet([] as Set)
+    private Set<DtoProject> projects = []
 
     @PostConstruct
+    @Lock(LockType.READ)
+    // No need to lock it. We simply create a new instance of the projects list on every refresh.
     void init() {
         // load cache from db
-        projects = em.createQuery("SELECT e FROM EntityProject e").resultList.collect { EntityProject entityProject ->
+        projects = em.createQuery('SELECT e FROM EntityProject e').resultList.collect { EntityProject entityProject ->
             new DtoProject(
                     name: entityProject.name,
                     shortDescription: entityProject.shortDescription,
@@ -71,15 +73,12 @@ class ServiceProjects {
         // update cache
         projects.each { DtoProject projectBean ->
             Set<EntityContributor> contributors = projectBean.contributors.collect { DtoContributor contributorBean ->
-                EntityContributor contributor = mappedContributors.get(contributorBean.login)
-                if (!contributor) {
-                    contributor = em.merge(new EntityContributor(
-                            login: contributorBean.login,
-                            name: contributorBean.name,
-                            avatarUrl: contributorBean.avatarUrl
-                    ))
-                    mappedContributors << [(contributorBean.login): contributor]
-                }
+                EntityContributor contributor = mappedContributors.get(contributorBean.login) ?: em.merge(new EntityContributor(
+                        login: contributorBean.login,
+                        name: contributorBean.name,
+                        avatarUrl: contributorBean.avatarUrl
+                ))
+                mappedContributors << [(contributorBean.login): contributor]
                 contributor
             }
             em.merge(new EntityProject(
