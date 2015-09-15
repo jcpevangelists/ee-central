@@ -94,7 +94,7 @@ class ServiceProjects {
     }
 
     @Lock(LockType.READ)
-    public Set<DtoProject> getProjects() {
+    Set<DtoProject> getProjects() {
         new HashSet<DtoProject>(projects);
     }
 }
