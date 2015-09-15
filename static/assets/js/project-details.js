@@ -6,6 +6,7 @@ angular.module('tribe-project-details', [])
                 var project = projects.getByName($routeParams.project);
                 $scope.project = {
                     name: project.name,
+                    friendlyName: project.friendlyName,
                     shortDescription: project.shortDescription,
                     documentation: $sce.trustAsHtml(project.documentation),
                     icon: project.icon,

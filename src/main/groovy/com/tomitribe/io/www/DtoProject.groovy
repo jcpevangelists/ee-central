@@ -15,6 +15,9 @@ class DtoProject {
     String name
 
     @XmlElement
+    String friendlyName
+
+    @XmlElement
     String shortDescription
 
     @XmlElement

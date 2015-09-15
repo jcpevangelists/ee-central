@@ -7,6 +7,7 @@ angular.module('tribe-project-highlight', [])
             var description = project.longDescription;
             $scope.highligtedProject = {
                 name: project.name,
+                friendlyName: project.friendlyName,
                 description: $sce.trustAsHtml(description),
                 snapshot: project.snapshot,
                 icon: project.icon
