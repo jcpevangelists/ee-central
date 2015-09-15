@@ -10,6 +10,8 @@ angular.module('tribeio', [
             templateUrl: 'app/main.html'
         }).when('/projects', {
             templateUrl: 'app/projects.html'
+        }).when('/contributors', {
+            templateUrl: 'app/contributors.html'
         }).when('/project-details/:project', {
             templateUrl: 'app/project-details.html'
         });
