@@ -4,7 +4,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
         .tribe-project-name
             div
                 img(src="{{project.icon}}")
-            h1 {{project.name}}
+            h1 {{project.friendlyName ? project.friendlyName : project.name}}
             p {{project.shortDescription}}
     section
         div(ng-bind-html="project.documentation", class="tribe-content", prism)
@@ -20,6 +20,6 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                     a(href="project-details/{{project.name}}")
                         img(src="{{project.icon}}")
                         div
-                            h4 {{project.name}}
+                            h4 {{project.friendlyName ? project.friendlyName : project.name}}
                             p {{project.shortDescription}}
     ng-include(src="'app/footer.html'")

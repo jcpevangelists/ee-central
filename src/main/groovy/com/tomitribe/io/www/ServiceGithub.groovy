@@ -91,6 +91,7 @@ class ServiceGithub {
                 }
                 new DtoProject(
                         name: it.name,
+                        friendlyName: ioConfig.friendly_name,
                         shortDescription: shortDescription,
                         longDescription: longDescription,
                         snapshot: ioConfig.snapshot,

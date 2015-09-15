@@ -12,7 +12,7 @@ section(ng-controller="ProjectsCarousselController", class="tribe-projects")
                 a(href="project-details/{{project.name}}")
                     div
                         img(src="{{project.icon}}")
-                    h3 {{project.name}}
+                    h3 {{project.friendlyName ? project.friendlyName : project.name}}
                     p {{project.shortDescription}}
         i.tribe-right.fa.fa-lg.fa-arrow-circle-o-right
     a(href="projects") see all projects
