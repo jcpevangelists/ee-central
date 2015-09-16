@@ -22,7 +22,6 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                                 td
                                     a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") reference
             .tribe-contributors
-                tbody
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list
                     a(ng-repeat="contributor in project.contributors", href="https://github.com/{{contributor.login}}/")
