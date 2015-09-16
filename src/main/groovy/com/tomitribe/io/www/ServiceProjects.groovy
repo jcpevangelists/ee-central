@@ -50,7 +50,8 @@ class ServiceProjects {
                                 name: entityContributor.name,
                                 avatarUrl: entityContributor.avatarUrl
                         )
-                    }
+                    },
+                    tags: entityProject.tags
             )
         }
         timerService.createTimer(
@@ -88,7 +89,8 @@ class ServiceProjects {
                     snapshot: projectBean.snapshot,
                     icon: projectBean.icon,
                     documentation: projectBean.documentation,
-                    contributors: contributors
+                    contributors: contributors,
+                    tags: projectBean.tags
             ))
         }
     }

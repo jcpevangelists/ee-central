@@ -22,7 +22,7 @@ class ServiceGithub {
         def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token"
         new JsonSlurper().parseText(http.getUrlContent(url)).collect {
             def githubContributor = new JsonSlurper().parseText(
-                    http.getUrlContent("https://api.github.com/users/${it.login}")
+                    http.getUrlContent("https://api.github.com/users/${it.login}?access_token=$token")
             )
             new DtoContributor(
                     login: it.login,
@@ -32,8 +32,8 @@ class ServiceGithub {
         }
     }
 
-    private String loadGithubResource(String projectName, String resourceName) {
-        def url = "https://raw.githubusercontent.com/tomitribe/${projectName}/master/${resourceName}?access_token=$token"
+    private String loadGithubResource(String projectName, String release, String resourceName) {
+        def url = "https://raw.githubusercontent.com/tomitribe/${projectName}/$release/${resourceName}?access_token=$token"
         try {
             return http.getUrlContent(url)
         } catch (FileNotFoundException ignore) {
@@ -68,6 +68,10 @@ class ServiceGithub {
     List<DtoProject> getProjects() {
         int page = 1
         def result = []
+        Map<String, Set<String>> publishedTagsMap = [:]
+        new Yaml().loadAll(this.getClass().getResource('/published_docs.yaml').text).each {
+            publishedTagsMap.put(it.project, it.tags)
+        }
         while (true) {
             def pageUrl = "https://api.github.com/orgs/tomitribe/repos?page=${page++}&per_page=20&access_token=$token"
             def json = new JsonSlurper().parseText(http.getUrlContent(pageUrl))
@@ -76,15 +80,27 @@ class ServiceGithub {
             }
             def emptyProject = new DtoProject()
             result.addAll(json.collect({
+                Set<String> publishedTags = publishedTagsMap.get(it.name)
+                if(!publishedTags) {
+                    return emptyProject
+                }
+                List<String> tags = new JsonSlurper().parseText(
+                        http.getUrlContent("https://api.github.com/repos/tomitribe/${it.name}/tags?access_token=$token")
+                ).collect({ it.name })
+                String release = tags.find({ publishedTags.contains(it) })
+                if (!release) {
+                    return emptyProject
+                }
+
                 def ioConfig = new Yaml().load(loadGithubResource(
-                        it.name as String, 'community.yaml')
+                        it.name as String, release, 'community.yaml')
                 )
                 if (!ioConfig || !ioConfig.snapshot?.trim() || !ioConfig.icon?.trim()) {
                     return emptyProject
                 }
                 def longDescription = adocToHtml(getText(ioConfig.long_description as String)).trim()
                 def documentation = adocToHtml(getText(ioConfig.documentation as String) ?:
-                        loadGithubResource(it.name as String, 'README.adoc')).trim()
+                        loadGithubResource(it.name as String, release, 'README.adoc')).trim()
                 def shortDescription = (getText(ioConfig.short_description as String) ?: it.description)?.trim()
                 if (!longDescription || !documentation || !shortDescription) {
                     return emptyProject
@@ -97,7 +113,8 @@ class ServiceGithub {
                         snapshot: ioConfig.snapshot,
                         icon: ioConfig.icon,
                         documentation: documentation,
-                        contributors: getContributors(it.name as String)
+                        contributors: getContributors(it.name as String),
+                        tags: tags.findAll({ publishedTags.contains(it) })
                 )
             }).findAll { it != emptyProject })
         }

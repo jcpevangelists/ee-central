@@ -28,7 +28,7 @@ class GithubTest extends Specification {
 
         then:
         http.getUrlContent("$restReposPrefix/$projectName/contributors?access_token=$token") >> contributorsJson
-        http.getUrlContent("https://api.github.com/users/my_user") >> '{"name": "my user name"}'
+        http.getUrlContent("https://api.github.com/users/my_user?access_token=$token") >> '{"name": "my user name"}'
         contributors.size() == 1
         contributors[0] == new DtoContributor(
                 name: 'my user name',
@@ -48,22 +48,42 @@ class GithubTest extends Specification {
                 asciidoctor: asciidoctor
         )
         def projectName = 'my-cool-project'
+        def projectNoRelease = 'my-cool-project-no-release'
+        def projectNoPublishedRelease = 'my-cool-project-no-published-release'
         def projectWithBadDocs = 'my-cool-project-bad-asciidoc'
         def projectWithoutConfig = 'my-cool-project-no-config'
         def projectGithubWentMad = 'my-cool-project-github-mad'
         def projectNoDocWithReadme = 'my-cool-project-no-doc-with-readme'
-        def projectJson = JsonOutput.toJson([[name: projectName], [name: projectWithBadDocs],
-                                             [name: projectWithoutConfig], [name: projectGithubWentMad],
-                                             [name: projectNoDocWithReadme]])
+        def projectList = [[name: projectName], [name: projectWithBadDocs],
+                           [name: projectWithoutConfig], [name: projectGithubWentMad],
+                           [name: projectNoDocWithReadme], [name: projectNoRelease],
+                           [name: projectNoPublishedRelease]]
+        def projectJson = JsonOutput.toJson(projectList)
         def contributorsJson = JsonOutput.toJson([[login: "my_user", avatar_url: 'http://dummy/avatar.png']])
 
         when:
         def projects = srv.getProjects()
 
         then:
+        projectList.each {
+            if (it.name == projectNoRelease) {
+                http.getUrlContent("https://api.github.com/repos/tomitribe/$projectNoRelease/tags?access_token=$token") >> JsonOutput.toJson([])
+            } else {
+                http.getUrlContent("https://api.github.com/repos/tomitribe/${it.name}/tags?access_token=$token") >> JsonOutput.toJson([[name: "v0.0.1"], [name: "v0.0.1-beta"]])
+            }
+        }
         http.getUrlContent("https://api.github.com/orgs/tomitribe/repos?page=1&per_page=20&access_token=$token") >> projectJson
         http.getUrlContent("https://api.github.com/orgs/tomitribe/repos?page=2&per_page=20&access_token=$token") >> '[]'
-        http.getUrlContent("$rawUrlPrefix/$projectName/master/community.yaml?access_token=$token") >> """
+        // good configuration data
+        http.getUrlContent("$rawUrlPrefix/$projectName/v0.0.1/community.yaml?access_token=$token") >> """
+icon: http://dummy/icon.png
+snapshot: http://dummy/snapshot.png
+long_description: my long description
+documentation: my documentation
+short_description: my short description
+"""
+        // good configuration data but no published release
+        http.getUrlContent("$rawUrlPrefix/$projectNoPublishedRelease/v0.0.1/community.yaml?access_token=$token") >> """
 icon: http://dummy/icon.png
 snapshot: http://dummy/snapshot.png
 long_description: my long description
@@ -71,7 +91,7 @@ documentation: my documentation
 short_description: my short description
 """
         // configuration data with bad field
-        http.getUrlContent("$rawUrlPrefix/$projectWithBadDocs/master/community.yaml?access_token=$token") >> """
+        http.getUrlContent("$rawUrlPrefix/$projectWithBadDocs/v0.0.1/community.yaml?access_token=$token") >> """
 icon: http://dummy/icon.png
 snapshot: http://dummy/snapshot.png
 long_description: pretend this is bad doc
@@ -79,24 +99,24 @@ documentation: my documentation
 short_description: my short description
 """
         // no documentation field
-        http.getUrlContent("$rawUrlPrefix/$projectNoDocWithReadme/master/community.yaml?access_token=$token") >> """
+        http.getUrlContent("$rawUrlPrefix/$projectNoDocWithReadme/v0.0.1/community.yaml?access_token=$token") >> """
 icon: http://dummy/icon.png
 snapshot: http://dummy/snapshot.png
 long_description: my long description
 short_description: my short description
 """
-        http.getUrlContent("$rawUrlPrefix/$projectNoDocWithReadme/master/README.adoc?access_token=$token") >> "doc from readme"
+        http.getUrlContent("$rawUrlPrefix/$projectNoDocWithReadme/v0.0.1/README.adoc?access_token=$token") >> "doc from readme"
         // no configuration data
-        http.getUrlContent("$rawUrlPrefix/$projectWithoutConfig/master/community.yaml?access_token=$token") >> {
+        http.getUrlContent("$rawUrlPrefix/$projectWithoutConfig/v0.0.1/community.yaml?access_token=$token") >> {
             throw new FileNotFoundException()
         }
         // with weird exceptions
-        http.getUrlContent("$rawUrlPrefix/$projectGithubWentMad/master/community.yaml?access_token=$token") >> {
+        http.getUrlContent("$rawUrlPrefix/$projectGithubWentMad/v0.0.1/community.yaml?access_token=$token") >> {
             throw new Exception('weird exception')
         }
         http.getUrlContent("$restReposPrefix/$projectName/contributors?access_token=$token") >> contributorsJson
         http.getUrlContent("$restReposPrefix/$projectNoDocWithReadme/contributors?access_token=$token") >> contributorsJson
-        http.getUrlContent("https://api.github.com/users/my_user") >> '{"name": "my user name"}'
+        http.getUrlContent("https://api.github.com/users/my_user?access_token=$token") >> '{"name": "my user name"}'
         asciidoctor.render('doc from readme', Collections.<String, Object> emptyMap()) >> '<p>doc from readme</p>'
         asciidoctor.render('my documentation', Collections.<String, Object> emptyMap()) >> '<p>my documentation</p>'
         asciidoctor.render('my long description', Collections.<String, Object> emptyMap()) >> '<p>my long description</p>'
@@ -115,7 +135,8 @@ short_description: my short description
                         name: 'my user name',
                         login: 'my_user',
                         avatarUrl: 'http://dummy/avatar.png'
-                )]
+                )],
+                tags: ['v0.0.1']
         )
         projects[1] == new DtoProject(
                 name: projectNoDocWithReadme,
@@ -128,7 +149,8 @@ short_description: my short description
                         name: 'my user name',
                         login: 'my_user',
                         avatarUrl: 'http://dummy/avatar.png'
-                )]
+                )],
+                tags: ['v0.0.1']
         )
     }
 }
