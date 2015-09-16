@@ -31,7 +31,36 @@ div.tribe-project-details
       flex-shrink: 0
       width: 300px
       margin-left: 10px
+      > div.tribe-releases
+        > h4
+          margin: 5px 5px 10px 5px
+          font-weight: normal
+          text-transform: capitalize
+        > div
+          padding: 5px 10px 5px 10px
+          background-color: #ffffff
+          > table
+            width: 100%
+            a
+              color: #E57125
+              text-decoration: none
+
+            > tbody
+              > tr
+                font-size: 15px
+                > th
+                  padding-bottom: 10px
+                  width: 50%
+                  text-align: left
+                  text-transform: uppercase
+                  font-weight: bold
+                > td
+                  width: 50%
+                  text-align: left
+                  padding-bottom: 2px
+
       > div.tribe-contributors
+        margin-top: 20px
         > h4
           font-weight: normal
           text-align: center
@@ -86,6 +115,10 @@ div.tribe-project-details
       background-color: white
       padding: 20px
       word-wrap: break-word
+
+      img
+        max-width: 100%
+        height: auto
 
       h1, h2, h3, h4, h5, h6
         margin-bottom: 10px
