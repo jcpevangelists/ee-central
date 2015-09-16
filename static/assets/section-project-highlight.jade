@@ -11,5 +11,5 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
                 h2 {{highligtedProject.friendlyName ? highligtedProject.friendlyName : highligtedProject.name}}
             div(ng-bind-html="highligtedProject.description", class="tribe-content", prism)
             .tribe-buttons
-                a(href="project-details/{{highligtedProject.name}}") Learn more
+                a(href="projects/{{highligtedProject.name}}") Learn more
                 a(href="projects") All projects

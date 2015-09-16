@@ -67,34 +67,19 @@ class ProjectsTest extends Specification {
         then:
         1 * em.createQuery('SELECT e FROM EntityProject e') >> query
         1 * query.resultList >> [queryResultProject]
-        1 * timerService.createTimer(_, _, "Update documentation timer")
+        1 * timerService.createTimer(_, 'First time load documentation timer')
         projects == [projectDto] as Set
-    }
-
-    class GithubMadException extends Exception {}
-
-    def "update projects but github goes mad once"() {
-        setup:
-        def github = Mock(ServiceGithub)
-        def srv = new ServiceProjects(
-                github: github
-        )
-
-        when:
-        srv.updateProjects()
-
-        then:
-        1 * github.projects >> { throw new GithubMadException() }
-        notThrown(GithubMadException)
     }
 
     def "update projects"() {
         setup:
         def github = Mock(ServiceGithub)
         def em = Mock(EntityManager)
+        def timerService = Mock(TimerService)
         def srv = new ServiceProjects(
                 github: github,
-                em: em
+                em: em,
+                timerService: timerService
         )
         def contributor = new EntityContributor(
                 login: 'login',
@@ -106,6 +91,7 @@ class ProjectsTest extends Specification {
         srv.updateProjects()
 
         then:
+        1 * timerService.createTimer(_, "Documentation update timer")
         1 * github.projects >> [new DtoProject(
                 name: 'project-name',
                 shortDescription: 'my short description',

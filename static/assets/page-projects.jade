@@ -1,9 +1,5 @@
 div(ng-controller="ProjectsController", class="tribe-all-projects")
-    header
-        a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
-        .tribe-title
-            div
-            h1 projects
+    include header-projects
     section
         article(ng-repeat="project in projects")
             div
@@ -12,5 +8,5 @@ div(ng-controller="ProjectsController", class="tribe-all-projects")
                 h3 {{project.friendlyName ? project.friendlyName : project.name}}
                 p {{project.shortDescription}}
             div
-                a(href="project-details/{{project.name}}") check it out
-    ng-include(src="'app/footer.html'")
+                a(href="projects/{{project.name}}") check it out
+include footer

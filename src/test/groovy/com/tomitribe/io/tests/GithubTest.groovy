@@ -8,6 +8,8 @@ import groovy.json.JsonOutput
 import org.asciidoctor.Asciidoctor
 import spock.lang.Specification
 
+import javax.ejb.TimerService
+
 class GithubTest extends Specification {
     def rawUrlPrefix = 'https://raw.githubusercontent.com/tomitribe'
     def restReposPrefix = 'https://api.github.com/repos/tomitribe'
@@ -42,10 +44,12 @@ class GithubTest extends Specification {
         def http = Mock(HttpBean)
         def token = 'my_secret'
         def asciidoctor = Mock(Asciidoctor)
+        def timerService = Mock(TimerService)
         def srv = new ServiceGithub(
                 token: token,
                 http: http,
-                asciidoctor: asciidoctor
+                asciidoctor: asciidoctor,
+                timerService: timerService
         )
         def projectName = 'my-cool-project'
         def projectNoRelease = 'my-cool-project-no-release'
@@ -62,6 +66,7 @@ class GithubTest extends Specification {
         def contributorsJson = JsonOutput.toJson([[login: "my_user", avatar_url: 'http://dummy/avatar.png']])
 
         when:
+        srv.updateProjects()
         def projects = srv.getProjects()
 
         then:

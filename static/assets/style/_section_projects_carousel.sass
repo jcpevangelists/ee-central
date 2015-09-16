@@ -1,4 +1,4 @@
-$tomitribe-orange: rgb(181, 88, 27)
+@import "variables"
 
 section.tribe-projects
   background-color: rgb(247, 247, 247)
@@ -35,7 +35,7 @@ section.tribe-projects
       transition: color .2s
       &:hover
         cursor: pointer
-        color: black
+        color: $tomitribe-black
 
     > div.tribe-projects-caroussel
       display: flex
@@ -54,7 +54,7 @@ section.tribe-projects
         background-color: white
         padding: 15px
         > a
-          color: black
+          color: $tomitribe-black
           display: flex
           flex-direction: column
           justify-content: center
@@ -83,7 +83,7 @@ section.tribe-projects
 
   > a
     color: $tomitribe-orange
-    border: solid black 2px
+    border: solid $tomitribe-black 2px
     padding: 10px 40px 10px 40px
     margin: 20px 0 20px 0
     text-transform: uppercase

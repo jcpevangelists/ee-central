@@ -1,0 +1,94 @@
+package com.tomitribe.io.tests
+
+import com.tomitribe.io.www.DtoContributor
+import com.tomitribe.io.www.EntityContributor
+import com.tomitribe.io.www.ServiceContributors
+import com.tomitribe.io.www.ServiceGithub
+import spock.lang.Specification
+
+import javax.ejb.TimerService
+import javax.persistence.EntityManager
+import javax.persistence.Query
+
+class ContributorsTest extends Specification {
+
+
+    def "init contributors list"() {
+        setup:
+        def em = Mock(EntityManager)
+        def query = Mock(Query)
+        def github = Mock(ServiceGithub)
+        def timerService = Mock(TimerService)
+
+        def srv = new ServiceContributors(
+                em: em,
+                github: github,
+                timerService: timerService
+        )
+        def queryResultContributor = [new EntityContributor(
+                login: 'cool_guy',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool guy',
+        ), new EntityContributor(
+                login: 'cool_but_unmanaged',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool but unmanaged',
+        )]
+        when:
+        srv.init()
+        def contributors = srv.contributors
+
+        then:
+        1 * em.createQuery('SELECT e FROM EntityContributor e') >> query
+        1 * query.resultList >> queryResultContributor
+        1 * timerService.createTimer(_, 'First time load contributors timer')
+        contributors == [new DtoContributor(
+                login: 'cool_guy',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool guy',
+                title: 'super geek',
+                bio: 'I love computers!'
+        ), new DtoContributor(
+                login: 'cool_but_unmanaged',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool but unmanaged'
+        )] as Set
+    }
+
+    def "update contributors"() {
+        setup:
+        def github = Mock(ServiceGithub)
+        def timerService = Mock(TimerService)
+        def srv = new ServiceContributors(
+                github: github,
+                timerService: timerService
+        )
+
+        when:
+        srv.updateContributors()
+
+        then:
+        1 * timerService.createTimer(_, "Contributors update timer")
+        1 * github.contributors >> [new DtoContributor(
+                login: 'cool_guy',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool guy'
+        ), new DtoContributor(
+                login: 'cool_but_unmanaged',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool but unmanaged'
+        )]
+        srv.contributors == [new DtoContributor(
+                login: 'cool_guy',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool guy',
+                title: 'super geek',
+                bio: 'I love computers!'
+        ), new DtoContributor(
+                login: 'cool_but_unmanaged',
+                avatarUrl: 'http://dummy/avatar.png',
+                name: 'cool but unmanaged'
+        )] as Set
+    }
+
+}

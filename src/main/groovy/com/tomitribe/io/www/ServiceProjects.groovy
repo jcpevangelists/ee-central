@@ -12,12 +12,14 @@ import javax.inject.Inject
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
 import java.util.concurrent.TimeUnit
-import java.util.logging.Level
 import java.util.logging.Logger
 
 @Singleton
 @Startup
 class ServiceProjects {
+    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
+    public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
+
     private Logger logger = Logger.getLogger(this.class.name)
 
     @Resource
@@ -32,8 +34,6 @@ class ServiceProjects {
     private Set<DtoProject> projects = []
 
     @PostConstruct
-    @Lock(LockType.READ)
-    // No need to lock it. We simply create a new instance of the projects list on every refresh.
     void init() {
         // load cache from db
         projects = em.createQuery('SELECT e FROM EntityProject e').resultList.collect { EntityProject entityProject ->
@@ -54,22 +54,22 @@ class ServiceProjects {
                     tags: entityProject.tags
             )
         }
-        timerService.createTimer(
-                TimeUnit.SECONDS.toMillis(projects ? 0 : 15),
-                TimeUnit.MINUTES.toMillis(30),
-                "Update documentation timer"
-        )
+        timerService.createTimer(FIRST_UPDATE_DELAY, "First time load documentation timer")
     }
 
     @Timeout
     @Lock(LockType.READ)
     void updateProjects() {
-        try {
-            projects = github.projects
-        } catch (issue) {
-            logger.log(Level.WARNING, "Impossible to load projects from github", issue)
+        def githubProjects = github.projects
+        if (githubProjects == null) {
+            // Not yet initialized. Try again later.
+            logger.info("The github projects list is not yet initialized. I will try again in ${FIRST_UPDATE_DELAY}ms.")
+            timerService.createTimer(FIRST_UPDATE_DELAY, "First time load documentation timer")
             return
         }
+        projects = githubProjects
+        // schedule next update
+        timerService.createTimer(UPDATE_INTERVAL, "Documentation update timer")
         Map<String, EntityContributor> mappedContributors = [:]
         // update cache
         projects.each { DtoProject projectBean ->
@@ -90,13 +90,14 @@ class ServiceProjects {
                     icon: projectBean.icon,
                     documentation: projectBean.documentation,
                     contributors: contributors,
-                    tags: projectBean.tags
+                    tags: projectBean.tags,
+                    friendlyName: projectBean.friendlyName
             ))
         }
     }
 
     @Lock(LockType.READ)
     Set<DtoProject> getProjects() {
-        new HashSet<DtoProject>(projects);
+        projects;
     }
 }

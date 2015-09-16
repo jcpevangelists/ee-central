@@ -4,19 +4,40 @@ import groovy.json.JsonSlurper
 import org.asciidoctor.Asciidoctor
 import org.yaml.snakeyaml.Yaml
 
-import javax.ejb.Stateless
+import javax.annotation.PostConstruct
+import javax.annotation.Resource
+import javax.ejb.Lock
+import javax.ejb.LockType
+import javax.ejb.Singleton
+import javax.ejb.Timeout
+import javax.ejb.TimerService
 import javax.inject.Inject
+import java.util.concurrent.TimeUnit
 import java.util.logging.Level
 import java.util.logging.Logger
 
-@Stateless
+@Singleton
+@Lock(LockType.READ)
 class ServiceGithub {
+    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
+
     private Logger logger = Logger.getLogger(this.class.name)
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create()
     private String token = System.getenv()['github_atoken']
 
+    private Set<DtoProject> projects
+    private Set<DtoContributor> contributors
+
     @Inject
     private HttpBean http
+
+    @Resource
+    private TimerService timerService
+
+    @PostConstruct
+    void init() {
+        timerService.createTimer(0, "First time twitter load")
+    }
 
     Set<DtoContributor> getContributors(String projectName) {
         def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token"
@@ -65,12 +86,15 @@ class ServiceGithub {
         }
     }
 
-    List<DtoProject> getProjects() {
+    @Timeout
+    void updateProjects() {
         int page = 1
-        def result = []
-        Map<String, Set<String>> publishedTagsMap = [:]
-        new Yaml().loadAll(this.getClass().getResource('/published_docs.yaml').text).each {
-            publishedTagsMap.put(it.project, it.tags)
+        def newProjects = []
+        Map<String, DtoContributor> newContributors = [:]
+        Map<String, Set<String>> publishedTagsMap = new Yaml().loadAll(
+                this.getClass().getResource('/published_docs.yaml').text
+        ).collectEntries {
+            [(it.project), it.tags]
         }
         while (true) {
             def pageUrl = "https://api.github.com/orgs/tomitribe/repos?page=${page++}&per_page=20&access_token=$token"
@@ -79,9 +103,9 @@ class ServiceGithub {
                 break
             }
             def emptyProject = new DtoProject()
-            result.addAll(json.collect({
+            newProjects.addAll(json.collect({
                 Set<String> publishedTags = publishedTagsMap.get(it.name)
-                if(!publishedTags) {
+                if (!publishedTags) {
                     return emptyProject
                 }
                 List<String> tags = new JsonSlurper().parseText(
@@ -91,7 +115,6 @@ class ServiceGithub {
                 if (!release) {
                     return emptyProject
                 }
-
                 def ioConfig = new Yaml().load(loadGithubResource(
                         it.name as String, release, 'community.yaml')
                 )
@@ -105,6 +128,10 @@ class ServiceGithub {
                 if (!longDescription || !documentation || !shortDescription) {
                     return emptyProject
                 }
+                def projectContributors = getContributors(it.name as String)
+                projectContributors.each { DtoContributor projectContributor ->
+                    newContributors.put(projectContributor.name, projectContributor)
+                }
                 new DtoProject(
                         name: it.name,
                         friendlyName: ioConfig.friendly_name,
@@ -113,11 +140,21 @@ class ServiceGithub {
                         snapshot: ioConfig.snapshot,
                         icon: ioConfig.icon,
                         documentation: documentation,
-                        contributors: getContributors(it.name as String),
+                        contributors: projectContributors,
                         tags: tags.findAll({ publishedTags.contains(it) })
                 )
             }).findAll { it != emptyProject })
         }
-        result
+        this.projects = newProjects
+        this.contributors = newContributors.values()
+        timerService.createTimer(UPDATE_INTERVAL, "Reload twitter")
+    }
+
+    Set<DtoProject> getProjects() {
+        projects
+    }
+
+    Set<DtoContributor> getContributors() {
+        contributors
     }
 }

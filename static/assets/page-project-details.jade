@@ -1,11 +1,5 @@
 div(ng-controller="ProjectDetailsController", class="tribe-project-details")
-    header
-        a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
-        .tribe-project-name
-            div
-                img(src="{{project.icon}}")
-            h1 {{project.friendlyName ? project.friendlyName : project.name}}
-            p {{project.shortDescription}}
+    include header-project-details
     section
         div(ng-bind-html="project.documentation", class="tribe-content", prism)
         .tribe-sidebar
@@ -29,9 +23,9 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
             .tribe-other-projects
                 h4 Other projects
                 article(ng-repeat="project in otherProjects")
-                    a(href="project-details/{{project.name}}")
+                    a(href="projects/{{project.name}}")
                         img(src="{{project.icon}}")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
                             p {{project.shortDescription}}
-    ng-include(src="'app/footer.html'")
+include footer

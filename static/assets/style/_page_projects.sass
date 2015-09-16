@@ -1,28 +1,8 @@
-$tomitribe-orange: rgb(181, 88, 27)
+@import "variables"
+
 div.tribe-all-projects
   background-color: rgb(247, 247, 247)
-  > header
-    padding: 40px 150px 40px 150px
-    color: white
-    background: url("../images/projects-background.jpg") no-repeat right bottom
-    background-size: cover
-    > a.tribe-icon
-      display: block
-      margin-bottom: 20px
-    > div.tribe-title
-      flex-direction: column
-      justify-content: center
-      align-items: center
-      display: flex
-      > div
-        width: 100px
-        border-bottom: solid $tomitribe-orange 1px
-        margin-bottom: 10px
-      > h1
-        text-transform: capitalize
-        text-align: center
-        font-size: 40px
-        margin-bottom: 40px
+  @import "header_projects"
 
   > section
     margin: 40px 150px 40px 150px
@@ -58,8 +38,8 @@ div.tribe-all-projects
           align-items: center
           display: flex
           > a
-            border: solid black 2px
-            color: black
+            border: solid $tomitribe-black 2px
+            color: $tomitribe-black
             text-decoration: none
             text-transform: uppercase
             padding: 10px 15px 10px 15px
@@ -71,20 +51,16 @@ div.tribe-all-projects
           &:last-child
             > a
               color: white
-              background-color: black
+              background-color: $tomitribe-black
 
-  @media (max-width: 960px)
-    > header
-      padding: 40px
-    > section
+
+    @media (max-width: 960px)
       margin: 40px
 
-  @media (max-width: 700px)
-    > section
+    @media (max-width: 700px)
       margin: 10px
 
-  @media (max-width: 400px)
-    > section
+    @media (max-width: 400px)
       margin-left: 0
       margin-right: 0
       > article

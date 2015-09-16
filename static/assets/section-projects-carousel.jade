@@ -9,7 +9,7 @@ section(ng-controller="ProjectsCarousselController", class="tribe-projects")
         i.tribe-left.fa.fa-lg.fa-arrow-circle-o-left
         .tribe-projects-caroussel
             article(ng-repeat="project in projects")
-                a(href="project-details/{{project.name}}")
+                a(href="projects/{{project.name}}")
                     div
                         img(src="{{project.icon}}")
                     h3 {{project.friendlyName ? project.friendlyName : project.name}}

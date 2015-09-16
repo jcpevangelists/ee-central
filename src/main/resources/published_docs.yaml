@@ -1,12 +1,30 @@
 %YAML 1.2
 ---
+project: public_project_test
+tags:
+  - v0.0.1
+
+---
+project: public_project_test_2
+tags:
+  - v0.0.1
+
+---
+project: public_project_test_3
+tags:
+  - v0.0.1
+
+---
+project: public_project_test_4
+tags:
+  - v0.0.1
+
+---
 project: public_project_test_5
 tags:
   - v0.0.2
   - v0.0.4
   - v0.0.3
-
----
-project: public_project_test
-tags:
-  - v0.0.1
+  - v0.0.5
+  - v0.0.5-fix-01
+  - v0.0.6
