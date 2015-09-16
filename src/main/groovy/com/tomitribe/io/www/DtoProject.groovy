@@ -34,4 +34,7 @@ class DtoProject {
 
     @XmlElement
     Set<DtoContributor> contributors
+
+    @XmlElement
+    Set<String> tags
 }

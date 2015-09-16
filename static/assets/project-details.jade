@@ -9,6 +9,18 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
     section
         div(ng-bind-html="project.documentation", class="tribe-content", prism)
         .tribe-sidebar
+            .tribe-releases
+                h4 releases & documentation
+                div
+                    table
+                        tbody
+                            tr
+                                th release
+                                th documentation
+                            tr(ng-repeat="tag in project.tags")
+                                td {{tag}}
+                                td
+                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") reference
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list

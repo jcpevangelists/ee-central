@@ -3,6 +3,7 @@ package com.tomitribe.io.www
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
+import javax.persistence.ElementCollection
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Lob
@@ -27,4 +28,7 @@ class EntityProject {
 
     @ManyToMany(mappedBy = "projects")
     Set<EntityContributor> contributors
+
+    @ElementCollection
+    Set<String> tags
 }
