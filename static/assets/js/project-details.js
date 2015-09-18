@@ -20,4 +20,31 @@ angular.module('tribe-project-details', [])
                     $scope.$apply();
                 }, 0);
             });
-        }]);
+        }
+    ])
+    .directive('prism', ['$timeout', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function ($scope, $element, $attrs) {
+                $scope.$watch(
+                    function () {
+                        return $scope.$eval($attrs.ngBindHtml);
+                    },
+                    function (value) {
+                        $timeout(function () {
+                            $element.find('pre.highlight').each(function () {
+                                var preEl = $(this);
+                                var codeEl = preEl.find('code.language-java');
+                                if (codeEl.length) {
+                                    preEl.addClass('line-numbers');
+                                    codeEl.each(function () {
+                                        Prism.highlightElement(this);
+                                    });
+                                }
+                            });
+                        });
+                    }
+                );
+            }
+        }
+    }]);

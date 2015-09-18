@@ -5,14 +5,15 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
 
-@Path("/projects")
+@Path("/contributors")
 @Produces("application/json")
-class RestProjects {
+class RestContributors {
     @Inject
-    private ServiceProjects serviceProjects
+    private ServiceContributors serviceContributors
 
     @GET
-    Set<DtoProject> list() {
-        serviceProjects.projects
+    Set<DtoContributor> list() {
+        serviceContributors.contributors
     }
+
 }

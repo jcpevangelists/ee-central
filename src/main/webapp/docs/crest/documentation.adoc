@@ -337,7 +337,7 @@ you can retrieve them. However to make it easier to work with you can inject the
 Out stream (out and error ones) needs to be `PrintStream` typed and input is typed as a `InputStream`.
 Just use these types as command parameters and decorate it with `@In`/`@Out`/`@Err`:
 
-[source]
+[source,java]
 ----
 public class IOMe {
     @org.tomitribe.crest.api.Command
@@ -580,7 +580,7 @@ that will output a small uber jar with all the required dependencies.
 If you don't want to inject in all your commands the same N parameters you can modelize them as an object.
 Just use standard parameters as constructor parameters of the bean:
 
-[source]
+[source,java]
 ----
 public class ColorfulCmd {
     @Command
@@ -592,7 +592,7 @@ public class ColorfulCmd {
 
 To identify `Params` as an "option aware" parameter just decorate it with `@Options`:
 
-[source]
+[source,java]
 ----
 @Options
 public class Params { // getters omitted for brevity
@@ -620,7 +620,7 @@ you can desire to use `--background.r` and `--foreground.r` (same for g, b, a).
 
 Just use `@Option` in the method parameter to do so:
 
-[source]
+[source,java]
 ----
 public class ColorfulCmd {
     @Command
@@ -637,7 +637,7 @@ NOTE: the '.' is not automatically added to allow you use to another convention 
 If you reuse the same parameter model accross command parameter you'll surely want to override some default in some cases.
 For that purpose just use `@Defaults` and define the mappings you want:
 
-[source]
+[source,java]
 ----
 public class ColorfulCmd {
     @Command

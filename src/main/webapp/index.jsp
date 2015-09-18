@@ -26,6 +26,6 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
-<script type="text/javascript" src="app/app.min.js"></script>
+<script type="text/javascript" src="app/js/app.min.js"></script>
 </body>
 </html>

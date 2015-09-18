@@ -66,7 +66,7 @@ gulp.task('uglify', function () {
             mangle: false // otherwhise the sourcemap/debugger does not work properly.
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('../src/main/webapp/app/'));
+        .pipe(gulp.dest('../src/main/webapp/app/js/'));
 });
 
 gulp.task('clean', function () {

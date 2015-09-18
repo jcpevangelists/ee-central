@@ -1,0 +1,13 @@
+section(ng-controller="ContributorsListController", class="tribe-contributors-list")
+    .tribe-section-separator
+    h1 meet the contributors
+    p.
+        Aenean auctor a ligula nec ultrices. Aliquam mattis orci non nisi interdum tempor ut id odio. Etiam accumsan
+        tempor ante. Maecenas varius neque diam, lacinia blandit turpis fermentum ac.
+    div
+        article(ng-repeat="contributor in contributors")
+            img(src="{{contributor.avatarUrl}}")
+            h3 {{contributor.name}}
+            h4 {{contributor.title}}
+            div
+            p {{contributor.bio}}

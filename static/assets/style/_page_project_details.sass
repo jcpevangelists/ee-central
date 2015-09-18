@@ -1,27 +1,9 @@
-$tomitribe-orange: rgb(181, 88, 27)
+@import "variables"
+
 div.tribe-project-details
+  @import "header_project_details"
+
   background-color: rgb(247, 247, 247)
-  > header
-    padding: 40px 150px 40px 150px
-    color: white
-    background: url("../images/project-detail-background.jpg") no-repeat right bottom
-    background-size: cover
-    > a.tribe-icon
-      display: block
-      margin-bottom: 20px
-    > div.tribe-project-name
-      > div
-        > img
-          width: auto
-          height: 80px
-          padding-bottom: 20px
-          margin-bottom: 20px
-          border-bottom: solid gray 1px
-      > h1
-        text-transform: capitalize
-        margin-bottom: 10px
-      > p
-        max-width: 400px
   > section
     margin: 40px 150px 40px 150px
     display: flex
@@ -42,7 +24,7 @@ div.tribe-project-details
           > table
             width: 100%
             a
-              color: #E57125
+              color: $tomitribe-orange
               text-decoration: none
 
             > tbody
@@ -83,7 +65,7 @@ div.tribe-project-details
           margin-bottom: 10px
           > a
             text-decoration: none
-            color: black
+            color: $tomitribe-black
             display: flex
             align-items: center
             > img
@@ -146,10 +128,7 @@ div.tribe-project-details
             border: 1px solid #ddd
             padding: 6px 13px 6px 13px
 
-  @media (max-width: 960px)
-    > header
-      padding: 40px
-    > section
+    @media (max-width: 1100px)
       margin: 40px
       flex-wrap: wrap
       > div.tribe-sidebar
@@ -157,13 +136,11 @@ div.tribe-project-details
         margin-top: 10px
         margin-left: 0
 
-  @media (max-width: 700px)
-    > section
+    @media (max-width: 700px)
       margin: 10px
       flex-wrap: wrap
 
-  @media (max-width: 400px)
-    > section
+    @media (max-width: 400px)
       > div.tribe-sidebar
         width: 100%
         > div.tribe-contributors > h4, > div.tribe-other-projects > h4

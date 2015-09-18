@@ -1,0 +1,26 @@
+@import "variables"
+
+> header
+  padding: 40px 150px 40px 150px
+  color: white
+  background: url("../images/project-detail-background.jpg") no-repeat right bottom
+  background-size: cover
+  > a.tribe-icon
+    display: block
+    margin-bottom: 20px
+  > div.tribe-project-name
+    > div
+      > img
+        width: auto
+        height: 80px
+        padding-bottom: 20px
+        margin-bottom: 20px
+        border-bottom: solid gray 1px
+    > h1
+      text-transform: capitalize
+      margin-bottom: 10px
+    > p
+      max-width: 400px
+
+  @media (max-width: 960px)
+    padding: 40px

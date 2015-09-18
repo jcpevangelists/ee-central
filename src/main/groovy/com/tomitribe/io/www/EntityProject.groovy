@@ -8,6 +8,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Lob
 import javax.persistence.ManyToMany
+import javax.xml.bind.annotation.XmlElement
 
 @Entity
 @EqualsAndHashCode(excludes = ['contributors'])
@@ -15,6 +16,9 @@ import javax.persistence.ManyToMany
 class EntityProject {
     @Id
     String name
+
+    @XmlElement
+    String friendlyName
 
     String shortDescription
 
