@@ -2,11 +2,40 @@
 
 footer.tribe-footer
   > div:first-child
-    height: 100px
-    background-color: $tomitribe-gray
+    height: 150px
+    background-color: #18191B
+    display: flex
+    align-items: center
+    justify-content: space-between
+    > a
+      margin-left: 150px
+      flex-shrink: 0
+      margin-right: 10px
+    > section
+      margin-right: 150px
+
+    @media (max-width: 960px)
+      > a
+        margin-left: 40px
+      > section
+        margin-right: 40px
+
+    @media (max-width: 550px)
+      > a
+        margin-left: 0
+      > section
+        margin-right: 0
+      flex-direction: column
+      justify-content: center
+
   > div:last-child
-    background-color: $tomitribe-black
-    color: $tomitribe-black
+    height: 70px
+    background-color: #000000
+    color: $tomitribe-white
     font-size: .8em
     text-align: center
-    padding: 10px 5px 10px 5px
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    display: flex
+

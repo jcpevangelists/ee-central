@@ -5,33 +5,53 @@ section.tribe-about-tomitribe
   padding: (6 * $padding) (2 * 6 * $padding) (6 * $padding) (2 * 6 * $padding)
   display: flex
   justify-content: center
+  align-items: center
   > div.tribe-about-images
-    padding-right: 10px
-    > img
+    padding-right: 20px
+    > div.tribe-picture
+      margin: 0 0 1px 0
       width: 500px
-      height: auto
+      height: 500px
+      background-size: cover
+      transition: background-image .2s ease-in-out
+      background-position: center
+
+    > div.tribe-thumbnails
+      display: flex
+      > div
+        height: 50px
+        flex-grow: 1
+        margin: 0 1px 1px 1px
+        background-size: cover
+        &:hover
+          cursor: pointer
+
   > div.tribe-about-text
     max-width: 500px
     > h1
-      font-size: 15px
+      font-size: 30px
       padding-bottom: 15px
     > p
-      font-size: 12px
+      font-size: 15px
       padding-bottom: 10px
       &:last-child
         padding-bottom: 0
 
   @media (max-width: 1220px)
     flex-wrap: wrap
+    > div.tribe-about-images
+      padding-right: 0
     > div.tribe-about-text
       > h1
         padding-top: 15px
 
   @media (max-width: 700px)
     padding: $padding (2 * $padding) $padding (2 * $padding)
+    flex-flow: column
     > div.tribe-about-images
-      > img
-        max-width: 100%
+      width: 100%
+      > div.tribe-picture
+        width: 100%
 
   @media (max-width: 400px)
     padding: $padding
