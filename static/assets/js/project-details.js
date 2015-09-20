@@ -38,7 +38,7 @@ angular.module('tribe-project-details', [])
                                 if (codeEl.length) {
                                     preEl.addClass('line-numbers');
                                     codeEl.each(function () {
-                                        Prism.highlightElement(this);
+                                        hljs.highlightBlock(this);
                                     });
                                 }
                             });

@@ -1,6 +1,8 @@
+@import "variables"
+
 section.tribe-os-quotes
   padding: 20px 40px 40px 40px
-  background-color: lighten(gray, 40)
+  background-color: $tomitribe-lightergray
   display: flex
   flex-direction: column
   justify-content: center
@@ -21,6 +23,7 @@ section.tribe-os-quotes
   h1, h3, h4
     text-transform: uppercase
   div.tribe-os-quotes
+    max-width: 750px
     display: flex
     flex-wrap: wrap
     justify-content: center
@@ -28,7 +31,7 @@ section.tribe-os-quotes
       max-width: 350px
       margin: 0 5px 5px 0
       padding: 10px
-      background-color: white
+      background-color: $tomitribe-white
       display: flex
       flex-direction: column
       border-bottom: solid red 2px
@@ -43,6 +46,6 @@ section.tribe-os-quotes
         color: red
       > blockquote
         padding: 30px 0 0 0
-        color: lighten(gray, 20)
+        color: $tomitribe-grey
         &:before, &:after
           content: '"'

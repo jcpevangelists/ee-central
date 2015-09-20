@@ -14,15 +14,14 @@
           href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic,300"/>
     <link rel="stylesheet" href="app/style/sprite.css"/>
     <link rel="stylesheet" href="app/style/main.css"/>
-    <link rel="stylesheet" href="thirdparty/prism/prism.css"/>
+    <link rel="stylesheet" href="thirdparty/highlight/github.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
 <ng-view autoscroll="true"></ng-view>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-<script type="text/javascript" src="thirdparty/prism/prism.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
+<script type="text/javascript" src="thirdparty/highlight/highlight.pack.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
