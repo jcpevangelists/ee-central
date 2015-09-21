@@ -48,7 +48,9 @@ class ServiceGithub {
             new DtoContributor(
                     login: it.login,
                     avatarUrl: it.avatar_url,
-                    name: githubContributor.name
+                    name: githubContributor.name,
+                    company: githubContributor.company,
+                    location: githubContributor.location
             )
         }
     }

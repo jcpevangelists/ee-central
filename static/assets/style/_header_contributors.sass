@@ -5,8 +5,12 @@
   color: white
   background: url("../images/project-detail-background.jpg") no-repeat right bottom
   background-size: cover
-  > a.tribe-icon
-    display: block
+  > div.tribe-logo
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    width: 100%
+    min-height: 66px
     margin-bottom: 20px
   > div.tribe-project-name
     > div
@@ -21,7 +25,7 @@
       margin-bottom: 10px
       font-size: 40px
     > p
-      max-width: 400px
+      max-width: 700px
 
   @media (max-width: 960px)
     padding: 40px

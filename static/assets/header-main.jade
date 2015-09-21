@@ -1,7 +1,9 @@
 header
     div
         div(class="tribe-header-image", ng-controller="HeaderImageController")
-        a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
+        .tribe-logo
+            a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
+            include section-menu
         section.tribe-page-title
             h1 Welcome to the #[span Tomitribe Community]
             h4 A trove of tribe tools & projects for your java applications

@@ -23,7 +23,19 @@ class DtoContributor {
     String name
 
     @XmlElement
-    String title
+    String company
+
+    @XmlElement
+    String location
+
+    @XmlElement
+    String googlePlus
+
+    @XmlElement
+    String twitter
+
+    @XmlElement
+    String linkedin
 
     @XmlElement
     String bio

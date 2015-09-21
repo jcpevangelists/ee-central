@@ -10,4 +10,11 @@ div(ng-controller="ProjectsController", class="tribe-all-projects")
                     p {{project.shortDescription}}
                 .tribe-project-buttons
                     a(href="projects/{{project.name}}") check it out
+                    .tribe-project-share
+                        h5 share it
+                        div
+                            a(href="https://twitter.com/intent/tweet?text=Check out https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
+                                i.fa.fa-twitter
+                            a(href="http://www.facebook.com/sharer/sharer.php?u=https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
+                                i.fa.fa-facebook
 include footer
