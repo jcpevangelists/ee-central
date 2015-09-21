@@ -1,14 +1,19 @@
+@import "variables"
+
 section.tribe-os-quotes
-  padding: 20px 40px 40px 40px
-  background-color: lighten(gray, 40)
+  padding: 0 40px 0 40px
+  background-color: $tomitribe-lightergray
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   > div
     max-width: 1200px
+    &:first-child
+      > div
+        margin: 60px 0 30px 0
   > div:first-child
-    padding-bottom: 20px
+    padding-bottom: 30px
     flex-direction: column
     justify-content: center
     align-items: center
@@ -17,18 +22,19 @@ section.tribe-os-quotes
       text-align: center
     > h1
       text-transform: uppercase
-      padding-bottom: 20px
+      padding-bottom: 30px
   h1, h3, h4
     text-transform: uppercase
   div.tribe-os-quotes
+    max-width: 770px
     display: flex
     flex-wrap: wrap
-    justify-content: center
+    margin: 0 0 60px 0
     article
       max-width: 350px
-      margin: 0 5px 5px 0
+      margin: 15px 15px 0 0
       padding: 10px
-      background-color: white
+      background-color: $tomitribe-white
       display: flex
       flex-direction: column
       border-bottom: solid red 2px
@@ -43,6 +49,6 @@ section.tribe-os-quotes
         color: red
       > blockquote
         padding: 30px 0 0 0
-        color: lighten(gray, 20)
+        color: $tomitribe-grey
         &:before, &:after
           content: '"'

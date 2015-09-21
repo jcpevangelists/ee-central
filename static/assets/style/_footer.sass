@@ -1,32 +1,20 @@
 @import "variables"
+@import "section_social"
 
 footer.tribe-footer
+  a
+    text-decoration: none
+    color: $tomitribe-white
+    &:hover
+      text-decoration: underline
   > div:first-child
+    padding: 10px
     height: 150px
-    background-color: #18191B
+    background-color: $tomitribe-footer-header-background-color
     display: flex
+    flex-wrap: wrap
     align-items: center
-    justify-content: space-between
-    > a
-      margin-left: 150px
-      flex-shrink: 0
-      margin-right: 10px
-    > section
-      margin-right: 150px
-
-    @media (max-width: 960px)
-      > a
-        margin-left: 40px
-      > section
-        margin-right: 40px
-
-    @media (max-width: 550px)
-      > a
-        margin-left: 0
-      > section
-        margin-right: 0
-      flex-direction: column
-      justify-content: center
+    justify-content: space-around
 
   > div:last-child
     height: 70px
@@ -38,4 +26,5 @@ footer.tribe-footer
     justify-content: center
     align-items: center
     display: flex
+    padding: 0 10px 0 10px
 

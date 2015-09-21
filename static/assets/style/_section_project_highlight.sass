@@ -1,8 +1,6 @@
 @import "variables"
 
-$section-height: 700px
 section.tribe-project-highlight
-  height: $section-height
   width: 100%
   position: relative
   color: white
@@ -22,29 +20,43 @@ section.tribe-project-highlight
 
   > div.tribe-project-highlight-content
     width: 100%
-    height: 100%
     display: flex
+    @media(max-width: 1200px)
+      flex-wrap: wrap-reverse
+
     > div.tribe-project-highlight-image
+      display: flex
       flex-grow: 1
-      position: relative
+      justify-content: flex-end
+      align-items: flex-end
+      > img
+        margin: 50px 50px 0 0
+        max-width: 600px
+        height: auto
+        @media(max-width: 630px)
+          max-width: 400px
+        @media(max-width: 420px)
+          max-width: 320px
+
+      @media(max-width: 1200px)
+        flex-wrap: wrap-reverse
+        justify-content: center
+        flex-grow: 1
+        > img
+          margin: 50px 10px 0 10px
       @media(max-width: 360px)
         display: none
-      > img
-        width: 700px
-        position: absolute
-        bottom: 0
-        right: 50px
+
 
     > div.tribe-cms
       max-width: 700px
       $buttons-height: 40px
       $content-padding: 10px
       $title-height: 250px
+      display: flex
+      flex-direction: column
       > div.tribe-title
-        height: $title-height
-        display: flex
-        flex-direction: column
-        justify-content: center
+        margin-top: 50px
         padding-left: 10px
         > div
           max-width: 90px
@@ -63,8 +75,7 @@ section.tribe-project-highlight
           padding: 10px 0 0 0
           font-weight: normal
       > div.tribe-content
-        height: $section-height - $title-height - $buttons-height - (3 * $content-padding)
-        overflow: auto
+        flex-grow: 1
         margin: 0 $content-padding $content-padding $content-padding
         font-size: 15px
         word-wrap: break-word
@@ -103,8 +114,11 @@ section.tribe-project-highlight
             border-color: $tomitribe-orange
             background-color: $tomitribe-orange
         @media(max-width: 360px)
+          margin: 0 0 $content-padding 0
+          width: 100%
+          display: flex
+          justify-content: center
           > a
-            width: 100%
             &:last-child
               margin-right: 0
 

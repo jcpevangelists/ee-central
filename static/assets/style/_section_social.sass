@@ -1,0 +1,22 @@
+@import "variables"
+
+section.tribe-social
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  display: flex
+  color: $tomitribe-white
+  > h1
+    text-transform: capitalize
+    font-size: 15px
+    color: $tomitribe-grey
+  > div
+    display: flex
+    justify-content: center
+    align-items: center
+    > a
+      padding: 10px
+      margin: 5px 0 0 5px
+      background-color: lighten($tomitribe-footer-header-background-color, 10%)
+      &:hover
+        background-color: $tomitribe-orange

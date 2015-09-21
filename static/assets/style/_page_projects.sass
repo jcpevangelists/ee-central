@@ -1,23 +1,35 @@
 @import "variables"
 
 div.tribe-all-projects
-  background-color: rgb(247, 247, 247)
+  background-color: $tomitribe-lightergray
   @import "header_projects"
 
-  > section
-    margin: 40px 150px 40px 150px
+  > div
+    width: 100%
     display: flex
-    flex-wrap: wrap
+    flex-direction: column
     justify-content: center
-    > article
-      width: 300px
-      flex-shrink: 0
-      margin: 4px
-      background-color: white
-      border: solid white 1px
-      > div
-        &:first-child
-          background-color: rgb(214, 218, 221)
+    align-items: center
+
+    > section
+      margin: 90px 150px 70px 150px
+      display: flex
+      flex-wrap: wrap
+      width: 990px
+      @media (max-width: 1200px)
+        width: 660px
+      @media (max-width: 670px)
+        max-width: 330px
+
+      > article
+        margin: 15px
+        width: 300px
+        flex-shrink: 0
+        background-color: white
+        > div.tribe-project-icon
+          background-color: $tomitribe-grey
+          border: solid $tomitribe-grey
+          border-width: 1px 1px 0 1px
           flex-direction: column
           justify-content: center
           align-items: center
@@ -26,15 +38,20 @@ div.tribe-all-projects
             width: auto
             height: 120px
             margin: 40px
-        &:nth-child(2)
+        > div.tribe-project-short-description
           padding: 15px
-          background-color: white
+          background-color: $tomitribe-white
+          border: solid $tomitribe-white
+          border-width: 0 1px 0 1px
           height: 100px
           > h3
             text-transform: uppercase
             font-weight: normal
-        &:last-child
-          margin: 15px
+        > div.tribe-project-buttons
+          padding: 15px
+          background-color: $tomitribe-white
+          border: solid $tomitribe-white
+          border-width: 0 1px 1px 1px
           align-items: center
           display: flex
           > a
@@ -45,23 +62,17 @@ div.tribe-all-projects
             padding: 10px 15px 10px 15px
             font-size: 12px
             font-weight: normal
-      &:hover
-        border: solid $tomitribe-orange 1px
-        > div
-          &:last-child
+        &:hover
+          > div
+            border-color: $tomitribe-orange
+          > div.tribe-project-buttons
             > a
               color: white
               background-color: $tomitribe-black
 
-
-    @media (max-width: 960px)
-      margin: 40px
-
-    @media (max-width: 700px)
-      margin: 10px
-
-    @media (max-width: 400px)
-      margin-left: 0
-      margin-right: 0
-      > article
-        flex-shrink: 1
+      @media (max-width: 400px)
+        width: 100%
+        margin-left: 0
+        margin-right: 0
+        > article
+          flex-shrink: 1

@@ -1,1 +1,0 @@
-No CDN for this guy. We need to download it from http://prismjs.com/download.html

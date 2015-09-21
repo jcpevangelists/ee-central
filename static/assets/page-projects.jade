@@ -1,12 +1,13 @@
 div(ng-controller="ProjectsController", class="tribe-all-projects")
     include header-projects
-    section
-        article(ng-repeat="project in projects")
-            div
-                img(src="{{project.icon}}")
-            div
-                h3 {{project.friendlyName ? project.friendlyName : project.name}}
-                p {{project.shortDescription}}
-            div
-                a(href="projects/{{project.name}}") check it out
+    div
+        section
+            article(ng-repeat="project in projects")
+                .tribe-project-icon
+                    img(src="{{project.icon}}")
+                .tribe-project-short-description
+                    h3 {{project.friendlyName ? project.friendlyName : project.name}}
+                    p {{project.shortDescription}}
+                .tribe-project-buttons
+                    a(href="projects/{{project.name}}") check it out
 include footer
