@@ -40,8 +40,10 @@ class ServiceContributors {
         new Yaml().loadAll(this.getClass().getResource('/contributors_bio.yaml').text).collect {
             new DtoContributor(
                     login: it.login,
-                    title: it.title,
-                    bio: it.bio
+                    bio: it.bio,
+                    googlePlus: it.google_plus,
+                    twitter: it.twitter,
+                    linkedin: it.linkedin
             )
         }
     }
@@ -55,10 +57,14 @@ class ServiceContributors {
             if (dto) {
                 dto.name = entityContributor.name
                 dto.avatarUrl = entityContributor.avatarUrl
+                dto.location = entityContributor.location
+                dto.company = entityContributor.company
             } else {
                 dto = new DtoContributor(
                         login: entityContributor.login,
                         name: entityContributor.name,
+                        company: entityContributor.company,
+                        location: entityContributor.location,
                         avatarUrl: entityContributor.avatarUrl
                 )
             }
@@ -80,7 +86,9 @@ class ServiceContributors {
         contributors = githubContributors.collect { DtoContributor dtoContributor ->
             def dto = managedContributors.get(dtoContributor.login)
             if (dto) {
-                dtoContributor.title = dto.title
+                dtoContributor.googlePlus = dto.googlePlus
+                dtoContributor.twitter = dto.twitter
+                dtoContributor.linkedin = dto.linkedin
                 dtoContributor.bio = dto.bio
             }
             dtoContributor

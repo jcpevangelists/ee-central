@@ -1,22 +1,23 @@
 %YAML 1.2
 ---
 login: tveronezi
-title: ut neque
+google_plus: tveronezi
+twitter: tveronezi
+linkedin: tveronezi
 bio: >
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel vestibulum quam. Quisque porttitor in risus
   in imperdiet. Donec commodo fringilla porta. Cras gravida neque enim, vitae elementum massa auctor quis. Nunc laoreet
   ante diam, quis pellentesque justo consequat quis.
 
+
 ---
 login: danielsoro
-title: ut neque
 bio: >
   Pellentesque ut neque ac dui convallis ullamcorper sit amet non libero. Etiam eget turpis lacus. Nam nulla nisl,
   fringilla et odio posuere, accumsan volutpat nunc. Vestibulum at luctus tortor.
 
 ---
 login: jeanouii
-title: ut neque
 bio: >
   Mauris viverra ex ex, nec ullamcorper metus semper vitae. Integer in ullamcorper nibh, eu ullamcorper urna. Donec
   nec tortor rhoncus, mollis erat in, euismod augue. Nunc dictum sem vel tortor auctor lobortis. Nam nec ex consequat,
@@ -24,7 +25,6 @@ bio: >
 
 ---
 login: rmannibucau
-title: ut neque
 bio: >
   Nunc sed pretium nisl, quis semper tortor. Suspendisse laoreet facilisis elit vitae placerat. Donec id diam
   consequat, elementum massa eu, elementum nulla. Nulla sit amet nisl feugiat, scelerisque felis ultricies,
@@ -33,7 +33,6 @@ bio: >
 
 ---
 login: dblevins
-title: ut neque
 bio: >
   Sed convallis ante enim, ac aliquam risus suscipit ut. Etiam tincidunt congue suscipit. Donec vehicula felis nunc,
   non aliquet libero tristique nec. Etiam faucibus turpis non orci blandit bibendum. Class aptent taciti sociosqu
@@ -41,7 +40,6 @@ bio: >
 
 ---
 login: jgallimore
-title: ut neque
 bio: >
   Aenean id velit vitae lorem auctor euismod a sed nibh. Phasellus pharetra aliquet lacus. Duis condimentum, augue
   a tincidunt scelerisque, risus erat molestie arcu, at elementum dui urna in nisi. Nunc rutrum quam vel neque
@@ -50,7 +48,6 @@ bio: >
 
 ---
 login: radcortez
-title: ut neque
 bio: >
   Ut venenatis tempor egestas. Quisque mauris ante, varius a nisl sit amet, pharetra vehicula nunc. Sed tortor augue,
   gravida non dignissim vitae, imperdiet a sapien. Phasellus metus justo, finibus nec rhoncus quis, aliquam in lacus.
@@ -58,7 +55,6 @@ bio: >
 
 ---
 login: AndyGee
-title: ut neque
 bio: >
   am malesuada, eros a semper dictum, nibh metus ultricies ligula, ac congue ligula eros eget magna. Nulla auctor
   purus tincidunt, tristique lacus ac, vestibulum diam. Donec nec sapien a velit pretium rutrum. Cras finibus risus

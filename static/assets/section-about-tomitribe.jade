@@ -1,6 +1,6 @@
 section.tribe-about-tomitribe
     div(class="tribe-about-images", ng-controller="ContributorsPicturesController")
-        div(class="tribe-picture" style="background-image: url(pics/{{selected}})", ng-cloak)
+        .tribe-picture
         .tribe-thumbnails
             div(ng-repeat="pic in pictures", style="background-image: url(pics/small_{{pic}})", ng-click="changePicture(pic)")
 

@@ -8,6 +8,8 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
         article(ng-repeat="contributor in contributors")
             img(src="{{contributor.avatarUrl}}")
             h3 {{contributor.name}}
-            h4 {{contributor.title}}
+            h4 {{contributor.company ? contributor.company : '-'}}
+            h5 {{contributor.location ? contributor.location : '-'}}
             div
             p {{contributor.bio}}
+

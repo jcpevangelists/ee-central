@@ -46,7 +46,6 @@ class ContributorsTest extends Specification {
                 login: 'cool_guy',
                 avatarUrl: 'http://dummy/avatar.png',
                 name: 'cool guy',
-                title: 'super geek',
                 bio: 'I love computers!'
         ), new DtoContributor(
                 login: 'cool_but_unmanaged',
@@ -82,7 +81,6 @@ class ContributorsTest extends Specification {
                 login: 'cool_guy',
                 avatarUrl: 'http://dummy/avatar.png',
                 name: 'cool guy',
-                title: 'super geek',
                 bio: 'I love computers!'
         ), new DtoContributor(
                 login: 'cool_but_unmanaged',

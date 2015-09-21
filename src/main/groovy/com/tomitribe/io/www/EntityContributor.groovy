@@ -18,6 +18,10 @@ class EntityContributor {
 
     String name
 
+    String company
+
+    String location
+
     @ManyToMany
     Set<EntityProject> projects
 }
