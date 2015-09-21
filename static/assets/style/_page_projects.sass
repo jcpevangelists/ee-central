@@ -55,14 +55,24 @@ div.tribe-all-projects
           align-items: center
           justify-content: space-between
           display: flex
-          > a, > div.tribe-project-share a
+          > a, > div.tribe-project-share > div > a
             color: $tomitribe-black
-          > div.tribe-project-share a
-            margin-left: 5px
-            &:first-child
-              margin-left: 0
-            &:hover
-              color: $tomitribe-orange
+          > div.tribe-project-share
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            > h5
+              text-transform: uppercase
+              margin-bottom: 5px
+            > div
+              > a
+                color: $tomitribe-black
+                margin-left: 5px
+                &:first-child
+                  margin-left: 0
+                &:hover
+                  color: $tomitribe-orange
           > a
             border: solid $tomitribe-black 2px
             text-decoration: none

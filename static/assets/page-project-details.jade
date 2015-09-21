@@ -28,4 +28,13 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
                             p {{project.shortDescription}}
+            .tribe-project-share
+                h4 Share it with a friend
+                div
+                    div
+                        a(href="https://twitter.com/intent/tweet?text=Check out https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
+                            i.fa.fa-twitter
+                    div
+                        a(href="http://www.facebook.com/sharer/sharer.php?u=https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
+                            i.fa.fa-facebook
 include footer
