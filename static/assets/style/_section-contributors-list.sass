@@ -1,31 +1,37 @@
 @import "variables"
 
 section.tribe-contributors-list
-  margin: 30px
+  margin: 0 30px 0 30px
   background-color: $tomitribe-white
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   > div.tribe-section-separator
-    margin-bottom: 10px
+    margin: 60px 0 30px 0
   > h1
     font-size: 30px
     text-transform: uppercase
-    margin-bottom: 10px
+    margin-bottom: 30px
   > p
     font-size: 15px
-    margin-bottom: 15px
-    max-width: 500px
+    margin-bottom: 60px
+    max-width: 700px
     @media (max-width: 450px)
       width: 100%
       padding: 0 10px 0 10px
   > div
     display: flex
     flex-wrap: wrap
-    justify-content: center
+    justify-content: space-between
+    width: 945px
+    @media (max-width: 960px)
+      width: 630px
+    @media (max-width: 650px)
+      width: 300px
+
     > article
-      margin: 10px 5px 0 5px
+      margin: 0 15px 100px 0
       $width: 300px
       width: $width
       > h3
