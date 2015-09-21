@@ -5,11 +5,9 @@ import org.yaml.snakeyaml.Yaml
 import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Stateless
-import java.text.SimpleDateFormat
 
 @Stateless
 class ServiceTwitter {
-    private final SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy")
 
     @Lock(LockType.READ)
     List<DtoTweet> getTweets() {
@@ -17,7 +15,7 @@ class ServiceTwitter {
             new DtoTweet(
                     text: it.text,
                     author: it.author,
-                    timestamp: formatter.parse(it.date).time
+                    timestamp: Date.parse('M/d/yyyy', it.date as String).time
             )
         }
     }
