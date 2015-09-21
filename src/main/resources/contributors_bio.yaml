@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 login: tveronezi
-google_plus: tveronezi
+google_plus: "+ThiagoVeronezi"
 twitter: tveronezi
 linkedin: tveronezi
 bio: >
@@ -40,6 +40,7 @@ bio: >
 
 ---
 login: jgallimore
+twitter: jongallimore
 bio: >
   Aenean id velit vitae lorem auctor euismod a sed nibh. Phasellus pharetra aliquet lacus. Duis condimentum, augue
   a tincidunt scelerisque, risus erat molestie arcu, at elementum dui urna in nisi. Nunc rutrum quam vel neque

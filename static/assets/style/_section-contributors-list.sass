@@ -36,6 +36,8 @@ section.tribe-contributors-list
       margin: 0 15px 100px 0
       $width: 300px
       width: $width
+      display: flex
+      flex-direction: column
       > h3
         font-weight: 200
         font-size: 20px
@@ -50,10 +52,20 @@ section.tribe-contributors-list
         font-size: 13px
       > p
         font-size: 15px
+        flex-grow: 1
       > img
         width: $width
         height: auto
-      > div
+      > div.tribe-contributor-title-separator
         width: 100%
         border-top: solid $tomitribe-lightgray 1px
         margin: 15px 0 15px 0
+      > div.tribe-social-links
+        display: flex
+        margin: 15px 0 15px 0
+        > div
+          padding-right: 5px
+          > a
+            color: $tomitribe-black
+            &:hover
+              color: $tomitribe-orange
