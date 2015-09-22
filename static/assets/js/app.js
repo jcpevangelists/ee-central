@@ -28,4 +28,15 @@ angular.module('tribeio', [
                 'transform': 'translateY(' + (step / 3) + 'px)'
             });
         });
+    }])
+    .directive('scrollToTop', ['$timeout', function ($timeout) {
+        return {
+            link: function ($scope, $element) {
+                $element.on('click', function () {
+                    $timeout(function () {
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                    });
+                });
+            }
+        }
     }]);

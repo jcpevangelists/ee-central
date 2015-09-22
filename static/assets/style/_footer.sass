@@ -2,9 +2,10 @@
 @import "section_social"
 
 footer.tribe-footer
+  *
+    color: $tomitribe-gray
   a
     text-decoration: none
-    color: $tomitribe-white
     &:hover
       text-decoration: underline
   > div:first-child
@@ -18,11 +19,9 @@ footer.tribe-footer
 
   > div:last-child
     padding: 0 150px 0 150px
-    @media (max-width: 960px)
+    @media (max-width: 1050px)
       padding: 0 40px 0 40px
-    @media (max-height: 450px)
-      padding: 0 20px 0 20px
-    height: 70px
+    min-height: 70px
     background-color: #000000
     color: $tomitribe-white
     font-size: .8em
@@ -33,9 +32,16 @@ footer.tribe-footer
     @media (max-width: 900px)
       flex-direction: column
       justify-content: center
+      > div, > p
+        margin: 10px
+      > p
+        margin-bottom: 0
     > div
       flex-direction: column
       justify-content: center
       align-items: center
       display: flex
-
+      &:hover
+        cursor: pointer
+        > span
+          text-decoration: underline

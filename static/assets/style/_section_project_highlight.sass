@@ -13,48 +13,38 @@ section.tribe-project-highlight
     background: url("../images/project-highlight-background.jpg") no-repeat right bottom
     background-size: cover
     z-index: -1
-    > div.tribe-layer
-      width: 100%
-      height: 100%
-      background-color: rgba(0, 0, 0, 0.85)
 
   > div.tribe-project-highlight-content
     width: 100%
     display: flex
-    @media(max-width: 1200px)
-      flex-wrap: wrap-reverse
+    justify-content: flex-end
 
     > div.tribe-project-highlight-image
       display: flex
-      flex-grow: 1
+      flex-shrink: 1
       justify-content: flex-end
       align-items: flex-end
       > img
         margin: 50px 50px 0 0
         max-width: 600px
         height: auto
-        @media(max-width: 630px)
-          max-width: 400px
-        @media(max-width: 420px)
-          max-width: 320px
 
-      @media(max-width: 1200px)
-        flex-wrap: wrap-reverse
-        justify-content: center
-        flex-grow: 1
-        > img
-          margin: 50px 10px 0 10px
-      @media(max-width: 360px)
+      @media(max-width: 720px)
         display: none
 
 
     > div.tribe-cms
+      flex-shrink: 0
+      @media(max-width: 720px)
+        flex-shrink: 1
       max-width: 700px
       $buttons-height: 40px
       $content-padding: 10px
       $title-height: 250px
       display: flex
       flex-direction: column
+      *
+        color: $tomitribe-white
       > div.tribe-title
         margin-top: 50px
         padding-left: 10px
@@ -71,18 +61,22 @@ section.tribe-project-highlight
             width: auto
             height: 100px
         > h2
+          margin: 30px 0 30px 0
+          font-size: 30px
           text-transform: uppercase
           padding: 10px 0 0 0
-          font-weight: normal
       > div.tribe-content
         flex-grow: 1
-        margin: 0 $content-padding $content-padding $content-padding
+        margin: 0 $content-padding 0 $content-padding
         font-size: 15px
         word-wrap: break-word
+        color: $tomitribe-white
         a
-          color: white
+          color: $tomitribe-white
         *
           margin-bottom: 5px
+          &:last-child
+            margin-bottom: 0
         p, ul
           margin-bottom: 10px
         ul
@@ -95,7 +89,7 @@ section.tribe-project-highlight
         height: $buttons-height
         display: flex
         align-items: center
-        margin: $content-padding
+        margin: 50px $content-padding 50px $content-padding
         > a
           text-decoration: none
           color: white
@@ -114,11 +108,12 @@ section.tribe-project-highlight
             border-color: $tomitribe-orange
             background-color: $tomitribe-orange
         @media(max-width: 360px)
-          margin: 0 0 $content-padding 0
+          margin: 50px 0 50px 0
           width: 100%
           display: flex
           justify-content: center
           > a
+            width: 140px
             &:last-child
               margin-right: 0
 

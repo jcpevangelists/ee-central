@@ -23,20 +23,24 @@ section.tribe-os-quotes
     > h1
       text-transform: uppercase
       padding-bottom: 30px
+    > p
+      max-width: 700px
   h1, h3, h4
     text-transform: uppercase
   div.tribe-os-quotes
-    max-width: 770px
+    max-width: 1200px
+    @media (max-width: 1300px)
+      max-width: 800px
+    @media (max-width: 900px)
+      max-width: 400px
     display: flex
     flex-wrap: wrap
     margin: 0 0 60px 0
     article
       max-width: 350px
-      margin: 15px 15px 0 0
+      margin: 15px
       padding: 10px
       background-color: $tomitribe-white
-      display: flex
-      flex-direction: column
       border-bottom: solid $tomitribe-orange 2px
       > *
         align-self: center
