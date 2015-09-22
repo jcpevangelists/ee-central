@@ -31,7 +31,7 @@ class ServiceContributors {
     @Inject
     private ServiceGithub github
 
-    @PersistenceContext(unitName = "tribeio-pu")
+    @PersistenceContext(unitName = 'tribeio-pu')
     private EntityManager em
 
     private Set<DtoContributor> contributors = []
@@ -70,7 +70,7 @@ class ServiceContributors {
             }
             dto
         }
-        timerService.createTimer(FIRST_UPDATE_DELAY, "First time load contributors timer")
+        timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
     }
 
     @Timeout
@@ -79,7 +79,7 @@ class ServiceContributors {
         if (githubContributors == null) {
             // Not yet initialized. Try again later.
             logger.info("The github contributors list is not yet initialized. I will try again in ${FIRST_UPDATE_DELAY}ms.")
-            timerService.createTimer(FIRST_UPDATE_DELAY, "First time load contributors timer")
+            timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
             return
         }
         Map<String, DtoContributor> managedContributors = getManagedContributors().collectEntries { [(it.login): it] }
@@ -94,7 +94,7 @@ class ServiceContributors {
             dtoContributor
         }
         // schedule next update
-        timerService.createTimer(UPDATE_INTERVAL, "Contributors update timer")
+        timerService.createTimer(UPDATE_INTERVAL, 'Contributors update timer')
     }
 
     Set<DtoContributor> getContributors() {

@@ -28,7 +28,7 @@ class ServiceProjects {
     @Inject
     private ServiceGithub github
 
-    @PersistenceContext(unitName = "tribeio-pu")
+    @PersistenceContext(unitName = 'tribeio-pu')
     private EntityManager em
 
     private Set<DtoProject> projects = []
@@ -54,7 +54,7 @@ class ServiceProjects {
                     tags: entityProject.tags
             )
         }
-        timerService.createTimer(FIRST_UPDATE_DELAY, "First time load documentation timer")
+        timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load documentation timer')
     }
 
     @Timeout
@@ -64,12 +64,12 @@ class ServiceProjects {
         if (githubProjects == null) {
             // Not yet initialized. Try again later.
             logger.info("The github projects list is not yet initialized. I will try again in ${FIRST_UPDATE_DELAY}ms.")
-            timerService.createTimer(FIRST_UPDATE_DELAY, "First time load documentation timer")
+            timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load documentation timer')
             return
         }
         projects = githubProjects
         // schedule next update
-        timerService.createTimer(UPDATE_INTERVAL, "Documentation update timer")
+        timerService.createTimer(UPDATE_INTERVAL, 'Documentation update timer')
         Map<String, EntityContributor> mappedContributors = [:]
         // update cache
         projects.each { DtoProject projectBean ->

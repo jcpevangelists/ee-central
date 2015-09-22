@@ -5,8 +5,8 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
 
-@Path("/contributors")
-@Produces("application/json")
+@Path('/contributors')
+@Produces('application/json')
 class RestContributors {
     @Inject
     private ServiceContributors serviceContributors

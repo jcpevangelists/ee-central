@@ -30,7 +30,7 @@ class EntityProject {
     @Lob
     String documentation
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(mappedBy = 'projects')
     Set<EntityContributor> contributors
 
     @ElementCollection
