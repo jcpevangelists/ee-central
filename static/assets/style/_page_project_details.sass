@@ -3,16 +3,20 @@
 div.tribe-project-details
   @import "header_project_details"
 
-  background-color: rgb(247, 247, 247)
+  background-color: $tomitribe-lightergray
   > section
-    margin: 40px 150px 40px 150px
+    background-color: $tomitribe-lightergray
+    margin: 40px 10px 0 10px
+    padding-bottom: 40px
     display: flex
     justify-content: center
+    @media (max-width: 1250px)
+      flex-wrap: wrap
 
     > div.tribe-sidebar
       flex-shrink: 0
       width: 300px
-      margin-left: 10px
+      margin-left: 46px
       > div.tribe-releases
         > h4
           margin: 5px 5px 10px 5px
@@ -119,6 +123,10 @@ div.tribe-project-details
       background-color: white
       padding: 20px
       word-wrap: break-word
+      width: 830px
+      flex-shrink: 0
+      @media (max-width: 890px)
+        flex-shrink: 1
 
       img
         max-width: 100%
@@ -152,20 +160,3 @@ div.tribe-project-details
             border: 1px solid #ddd
             padding: 6px 13px 6px 13px
 
-    @media (max-width: 1100px)
-      margin: 40px
-      flex-wrap: wrap
-      > div.tribe-sidebar
-        flex-shrink: 1
-        margin-top: 10px
-        margin-left: 0
-
-    @media (max-width: 700px)
-      margin: 10px
-      flex-wrap: wrap
-
-    @media (max-width: 400px)
-      > div.tribe-sidebar
-        width: 100%
-        > div.tribe-contributors > h4, > div.tribe-other-projects > h4
-          text-align: center

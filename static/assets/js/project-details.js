@@ -4,6 +4,7 @@ angular.module('tribe-project-details', [])
         function ($scope, $routeParams, $sce, $timeout, tribeProjectsService) {
             tribeProjectsService.onLoad(function (projects) {
                 var project = projects.getByName($routeParams.project);
+                $scope.baseFullPath = $('head base').first().attr('href');
                 $scope.project = {
                     name: project.name,
                     friendlyName: project.friendlyName,
