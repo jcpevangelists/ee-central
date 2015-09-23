@@ -2,7 +2,8 @@
 
 > header
   padding: 40px 150px 40px 150px
-  color: white
+  *
+    color: $tomitribe-white
   background: url("../images/projects-background.jpg") no-repeat right bottom
   background-size: cover
   > div.tribe-logo
@@ -11,7 +12,11 @@
     flex-wrap: wrap
     width: 100%
     min-height: 66px
-    margin-bottom: 20px
+    margin-bottom: 130px
+    @media screen and (max-height: 600px)
+      margin-bottom: 100px
+    @media screen and (max-height: 400px)
+      margin-bottom: 50px
   > div.tribe-title
     flex-direction: column
     justify-content: center
@@ -25,7 +30,17 @@
       text-transform: capitalize
       text-align: center
       font-size: 40px
-      margin-bottom: 40px
+      margin-top: 30px
+      margin-bottom: 30px
+    > h2
+      max-width: 900px
+      margin-bottom: 125px
+      @media screen and (max-height: 600px)
+        margin-bottom: 100px
+      @media screen and (max-height: 400px)
+        margin-bottom: 50px
+      font-size: 20px
+      text-align: center
 
   @media (max-width: 960px)
     padding: 40px

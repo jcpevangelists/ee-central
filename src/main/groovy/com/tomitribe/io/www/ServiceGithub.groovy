@@ -36,7 +36,7 @@ class ServiceGithub {
 
     @PostConstruct
     void init() {
-        timerService.createTimer(0, "First time twitter load")
+        timerService.createTimer(0, 'First time twitter load')
     }
 
     Set<DtoContributor> getContributors(String projectName) {
@@ -64,7 +64,7 @@ class ServiceGithub {
         } catch (exception) {
             logger.log(Level.WARNING, "Impossible to load resource ${url}", exception)
         }
-        return ""
+        return ''
     }
 
     private String adocToHtml(String adoc) {
@@ -76,7 +76,7 @@ class ServiceGithub {
                 logger.log(Level.FINE, adoc)
             }
         }
-        return ""
+        return ''
     }
 
     private String getText(String ioConfigFieldContent) {
@@ -149,7 +149,7 @@ class ServiceGithub {
         }
         this.projects = newProjects
         this.contributors = newContributors.values()
-        timerService.createTimer(UPDATE_INTERVAL, "Reload twitter")
+        timerService.createTimer(UPDATE_INTERVAL, 'Reload twitter')
     }
 
     Set<DtoProject> getProjects() {

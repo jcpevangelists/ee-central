@@ -5,8 +5,8 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
 
-@Path("/projects")
-@Produces("application/json")
+@Path('/projects')
+@Produces('application/json')
 class RestProjects {
     @Inject
     private ServiceProjects serviceProjects

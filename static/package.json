@@ -1,5 +1,6 @@
 {
   "name": "tomitribe-io-website-compiler",
+  "version": "0.0.1",
   "description": "The tomitribe.io website resources compiler",
   "author": "Tomitribe <contact@tomitribe.com>",
   "repository": {
@@ -22,5 +23,8 @@
     "gulp-watch": "4.3.5",
     "jstransformer-marked": "1.0.1"
   },
-  "engine": "node >= 0.12.7"
+  "engine": "node >= 0.12.7",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
 }

@@ -1,5 +1,3 @@
-Not shown!
-
 == CREST
 
 Command-line API styled after JAX-RS

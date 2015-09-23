@@ -4,6 +4,7 @@ angular.module('tribe-project-details', [])
         function ($scope, $routeParams, $sce, $timeout, tribeProjectsService) {
             tribeProjectsService.onLoad(function (projects) {
                 var project = projects.getByName($routeParams.project);
+                $scope.baseFullPath = $('head base').first().attr('href');
                 $scope.project = {
                     name: project.name,
                     friendlyName: project.friendlyName,
@@ -36,7 +37,6 @@ angular.module('tribe-project-details', [])
                                 var preEl = $(this);
                                 var codeEl = preEl.find('code.language-java');
                                 if (codeEl.length) {
-                                    preEl.addClass('line-numbers');
                                     codeEl.each(function () {
                                         hljs.highlightBlock(this);
                                     });
