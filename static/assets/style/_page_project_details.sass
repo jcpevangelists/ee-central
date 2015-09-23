@@ -122,41 +122,10 @@ div.tribe-project-details
       overflow: auto
       background-color: white
       padding: 20px
-      word-wrap: break-word
+      //word-wrap: break-word
       width: 830px
       flex-shrink: 0
       @media (max-width: 890px)
         flex-shrink: 1
 
-      img
-        max-width: 100%
-        height: auto
-
-      h1, h2, h3, h4, h5, h6
-        margin-bottom: 10px
-        &:first-child
-          margin-top: 10px
-
-      div.paragraph, div.admonitionblock.note, div.listingblock
-        margin-top: 10px
-        &:first-child
-          margin-top: 0
-
-      div.listingblock
-        font-size: 13px
-        font-weight: 300
-        > div.content
-          background-color: rgb(245, 245, 245)
-          border: solid rgb(202, 202, 202) 1px
-          > pre.highlight
-            margin: 0
-            padding-right: 0
-            padding-top: 0
-            padding-bottom: 0
-
-      div.admonitionblock.note
-        table
-          td
-            border: 1px solid #ddd
-            padding: 6px 13px 6px 13px
-
+      @import "page_project_details_documentation"

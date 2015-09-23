@@ -37,7 +37,6 @@ angular.module('tribe-project-details', [])
                                 var preEl = $(this);
                                 var codeEl = preEl.find('code.language-java');
                                 if (codeEl.length) {
-                                    preEl.addClass('line-numbers');
                                     codeEl.each(function () {
                                         hljs.highlightBlock(this);
                                     });
