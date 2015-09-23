@@ -5,13 +5,13 @@ section.tribe-about-tomitribe
   padding: (6 * $padding) (2 * 6 * $padding) (6 * $padding) (2 * 6 * $padding)
   display: flex
   justify-content: center
-  align-items: center
+  align-items: flex-start
   > div.tribe-about-images
     padding-right: 20px
     > div.tribe-picture
-      margin: 0 0 1px 0
+      margin: 40px 0 1px 0
       width: 600px
-      height: 500px
+      height: 400px
       background-size: cover
       transition: background-image 1s ease-in-out
       background-position: center
@@ -28,9 +28,14 @@ section.tribe-about-tomitribe
 
   > div.tribe-about-text
     max-width: 500px
+    > div:first-child
+      width: 100px
+      border-bottom: solid $tomitribe-gray 1px
+      margin: 0 0 30px 0
     > h1
       font-size: 30px
       padding-bottom: 15px
+      text-transform: uppercase
     > p
       font-size: 15px
       padding-bottom: 10px
