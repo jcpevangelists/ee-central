@@ -6,7 +6,7 @@ angular.module('tribe-projects-carousel', ['tribe-projects-service'])
                 $scope.$apply();
             }, 0);
         });
-        var carousel = $element.find('div.tribe-projects-caroussel').first();
+        var carousel = $element.find('div.tribe-projects-caroussel > div').first();
         $element.find('i.tribe-left').on('click', function () {
             var article = $element.find('article:first-child');
             $scope.$apply();

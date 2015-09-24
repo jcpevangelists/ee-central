@@ -7,6 +7,7 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
             .tribe-title
                 div
                     img(src="{{highligtedProject.icon}}")
+                    div
                 h2 {{highligtedProject.friendlyName ? highligtedProject.friendlyName : highligtedProject.name}}
             div(ng-bind-html="highligtedProject.description", class="tribe-content", prism)
             .tribe-buttons

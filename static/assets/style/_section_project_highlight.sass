@@ -55,16 +55,16 @@ section.tribe-project-highlight
           flex-direction: column
           justify-content: center
           align-items: center
-          border-bottom: solid $tomitribe-orange 2px
-          padding-bottom: 15px
           > img
             width: auto
             height: 100px
+          > div
+            border-bottom: solid $tomitribe-orange 2px
+            width: 30px
         > h2
           margin: 30px 0 30px 0
           font-size: 30px
           text-transform: uppercase
-          padding: 10px 0 0 0
       > div.tribe-content
         flex-grow: 1
         margin: 0 $content-padding 0 $content-padding
@@ -104,7 +104,7 @@ section.tribe-project-highlight
           width: 150px
           &:hover
             cursor: pointer
-          &:first-child
+          &:hover
             border-color: $tomitribe-orange
             background-color: $tomitribe-orange
         @media(max-width: 360px)
