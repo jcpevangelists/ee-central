@@ -5,7 +5,10 @@ google_plus: "+ThiagoVeronezi"
 twitter: tveronezi
 linkedin: tveronezi
 bio: >
-  Thiago is passionate frontend and backend developer with well rounded skills in Java, Groovy, Scala, JavaScript, HTML, CSS and much more. Being a versatile developer was not enough, Thiago joined the Open Source community to learn about the underpinning of the Apache TomEE application sever. As an official Tomitribe team member, he's helping create and support awesome software.
+  Thiago is passionate frontend and backend developer with well rounded skills in Java, Groovy, Scala, JavaScript,
+  HTML, CSS and much more. Being a versatile developer was not enough, Thiago joined the Open Source community to
+  learn about the underpinning of the Apache TomEE application sever. As an official Tomitribe team member, he's
+  helping create and support awesome software.
 
 ---
 login: RockClimberT
@@ -13,7 +16,10 @@ google_plus: "114843480487246536889"
 twitter: RockClimberT
 linkedin: theresanguyen7
 bio: >
-Theresa has more than fifteen years of business strategy and marketing experience in open source enterprise technology and software & hardware retail distribution. As a fan and supporter of the Open Source community, she's committed to Tomitribe's mission to drive Apache TomEE adoption in the commercial and public sectors, while building a talented team. 
+  Theresa has more than fifteen years of business strategy and marketing experience in open source enterprise
+  technology and software & hardware retail distribution. As a fan and supporter of the Open Source community,
+  she's committed to Tomitribe's mission to drive Apache TomEE adoption in the commercial and public sectors,
+  while building a talented team.
 
 ---
 login: danielsoro
@@ -21,7 +27,10 @@ google_plus:  "105443736155724702456"
 twitter: dvlc_
 linkedIn: danielvlcunha
 bio: >
-  Daniel is firm believer in Open Source community membership and contributes to Tomitribe, Apache Software Foundation (TomEE), JBoss, Spring, VRaptor and Caelum Stalla projects. He's also a committer to projects like DeltaSpike, Yougi, Lightweight EE and JBoss Aesh. Today you can find him speaking about Apache TomEE, RESTful Web Services andother Java related topics at Latin American conferences, JUGs and workshops.
+  Daniel is firm believer in Open Source community membership and contributes to Tomitribe, Apache Software
+  Foundation (TomEE), JBoss, Spring, VRaptor and Caelum Stalla projects. He's also a committer to projects like
+  DeltaSpike, Yougi, Lightweight EE and JBoss Aesh. Today you can find him speaking about Apache TomEE, RESTful
+  Web Services andother Java related topics at Latin American conferences, JUGs and workshops.
 
 ---
 login: jeanouii
@@ -51,7 +60,15 @@ google_plus: "100060848769498298713"
 twitter: jongallimore
 linkedin: jonathan-gallimore/2/284/121
 bio: >
-  Jonathan is a hardcore Apache TomEE committer, developer and trainer at Tomitribe. He is a user-turned-contributor of Open Source software starting with Apache TomEE in 2007. Some of his projects include with EJB 3.1 compliance, OpenEJB Eclipse Plug-in, early Tomcat 7 integration (that became the basis for TomEE) and the first version of the TomEE Arquillian adapter.  From developer to architect, Jon worked on Java EE projects across the media, banking, and sports industries. His community resource projects include collaboration with Codenvy and Hazelcast. Jon has contributed technical write-ups to JAX Magazine and the Tomitribe blog, along with being a speaker at local JUGs, JAX London and ApacheCon conferences. You can find Jon’s technical postings at www.tomitribe.com/blog.
+  Jonathan is a hardcore Apache TomEE committer, developer and trainer at Tomitribe. He is a user-turned-contributor
+  of Open Source software starting with Apache TomEE in 2007. Some of his projects include with EJB 3.1 compliance,
+  OpenEJB Eclipse Plug-in, early Tomcat 7 integration (that became the basis for TomEE) and the first version of the
+  TomEE Arquillian adapter.
+
+  From developer to architect, Jon worked on Java EE projects across the media, banking,
+  and sports industries. His community resource projects include collaboration with Codenvy and Hazelcast. Jon has
+  contributed technical write-ups to JAX Magazine and the Tomitribe blog, along with being a speaker at local JUGs,
+  JAX London and ApacheCon conferences. You can find Jon’s technical postings at www.tomitribe.com/blog.
 
 ---
 login: radcortez
