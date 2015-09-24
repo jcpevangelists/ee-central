@@ -19,53 +19,58 @@ section.tribe-contributors-list
     font-size: 15px
     margin-bottom: 60px
     max-width: 700px
+    text-align: center
     @media (max-width: 450px)
       width: 100%
       padding: 0 10px 0 10px
   > div
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
-    width: 945px
-    @media (max-width: 960px)
-      width: 630px
-    @media (max-width: 650px)
-      width: 300px
+    width: 990px
+    @media (max-width: 1100px)
+      width: 660px
+    @media (max-width: 700px)
+      max-width: 300px
 
     > article
-      margin: 0 15px 100px 0
+      margin: 0 15px 100px 15px
       $width: 300px
-      width: $width
+      max-width: $width
       display: flex
       flex-direction: column
       > h3
-        font-weight: 200
-        font-size: 20px
+        font-size: 16px
         text-transform: uppercase
+        margin-top: 20px
+        font-weight: 400
       > h4
         margin-top: 2px
         color: $tomitribe-orange
         text-transform: uppercase
-        font-size: 15px
+        font-size: 14px
+        font-weight: 300
       > h5
         margin-top: 2px
-        font-size: 13px
+        font-size: 12px
+        font-weight: normal
       > p
-        font-size: 15px
+        font-size: 13px
         flex-grow: 1
       > img
-        width: $width
+        width: 100%
         height: auto
       > div.tribe-contributor-title-separator
         width: 100%
         border-top: solid $tomitribe-lightgray 1px
-        margin: 15px 0 15px 0
+        margin: 20px 0 20px 0
       > div.tribe-social-links
         display: flex
         margin: 15px 0 15px 0
         > div
           padding-right: 5px
           > a
-            color: $tomitribe-black
+            > i
+              color: $tomitribe-lightgray
             &:hover
-              color: $tomitribe-orange
+              > i
+                color: $tomitribe-orange

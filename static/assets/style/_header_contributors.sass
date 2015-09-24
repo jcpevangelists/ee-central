@@ -2,31 +2,45 @@
 
 > header
   padding: 40px 150px 40px 150px
+  @media (max-width: 1000px)
+    padding: 40px
+  @media (max-width: 700px)
+    padding: 40px 20px 40px 20px
   *
     color: $tomitribe-white
-  background: url("../images/project-detail-background.jpg") no-repeat right bottom
+  background: url("../images/contributors-background.jpg") no-repeat right bottom
   background-size: cover
   > div.tribe-logo
     display: flex
     justify-content: space-between
+    @media (max-width: 660px)
+      justify-content: center
     flex-wrap: wrap
     width: 100%
     min-height: 66px
-    margin-bottom: 20px
-  > div.tribe-project-name
+    margin-bottom: 130px
+    @media screen and (max-height: 600px)
+      margin-bottom: 100px
+    @media screen and (max-height: 400px)
+      margin-bottom: 50px
+  > div.tribe-contributors-title
     > div
-      > img
-        width: auto
-        height: 80px
-        padding-bottom: 20px
-        margin-bottom: 20px
-        border-bottom: solid gray 1px
+      width: 100px
+      border-bottom: solid $tomitribe-gray 1px
+      margin-bottom: 10px
     > h1
       text-transform: capitalize
-      margin-bottom: 10px
       font-size: 40px
-    > p
-      max-width: 700px
+      margin-top: 30px
+      margin-bottom: 30px
+    > h2
+      max-width: 900px
+      font-size: 20px
+      margin-bottom: 125px
+      @media screen and (max-height: 600px)
+        margin-bottom: 100px
+      @media screen and (max-height: 400px)
+        margin-bottom: 50px
 
   @media (max-width: 960px)
     padding: 40px

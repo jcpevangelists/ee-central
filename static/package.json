@@ -23,8 +23,5 @@
     "gulp-watch": "4.3.5",
     "jstransformer-marked": "1.0.1"
   },
-  "engine": "node >= 0.12.7",
-  "devDependencies": {
-    "gulp": "^3.9.0"
-  }
+  "engine": "node >= 0.12.7"
 }
