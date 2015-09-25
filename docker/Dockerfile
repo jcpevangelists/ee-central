@@ -52,4 +52,5 @@ RUN npm install -g lwip@0.0.7
 
 COPY container_build.sh /opt/
 RUN chmod u+x /opt/container_build.sh
+
 CMD /opt/container_build.sh

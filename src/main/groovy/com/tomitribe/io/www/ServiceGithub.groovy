@@ -12,6 +12,7 @@ import javax.ejb.Singleton
 import javax.ejb.Timeout
 import javax.ejb.TimerService
 import javax.inject.Inject
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -82,7 +83,7 @@ class ServiceGithub {
     private String getText(String ioConfigFieldContent) {
         try {
             // Return the content of the url, if this string represents one.
-            return ioConfigFieldContent.toURL().text
+            return ioConfigFieldContent.toURL().getText(StandardCharsets.UTF_8.name())
         } catch (ignore) {
             return ioConfigFieldContent
         }
@@ -94,7 +95,7 @@ class ServiceGithub {
         def newProjects = []
         Map<String, DtoContributor> newContributors = [:]
         Map<String, Set<String>> publishedTagsMap = new Yaml().loadAll(
-                this.getClass().getResource('/published_docs.yaml').text
+                this.getClass().getResource('/published_docs.yaml').getText(StandardCharsets.UTF_8.name())
         ).collectEntries {
             [(it.project), it.tags]
         }
