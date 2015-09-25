@@ -37,8 +37,7 @@ section.tribe-contributors-list
       margin: 0 15px 70px 15px
       $width: 300px
       max-width: $width
-      display: flex
-      flex-direction: column
+      position: relative
       > h3
         font-size: 16px
         text-transform: uppercase
@@ -55,10 +54,9 @@ section.tribe-contributors-list
         font-size: 12px
         font-weight: normal
       > p
-        margin: 0 10px 0 10px
+        margin: 0 10px 46px 10px
         font-size: 13px
         flex-grow: 1
-        line-height: 2
       > img
         width: 100%
         height: auto
@@ -66,6 +64,8 @@ section.tribe-contributors-list
         border-top: solid $tomitribe-lightgray 1px
         margin: 20px 10px 20px 10px
       > div.tribe-social-links
+        position: absolute
+        bottom: 0
         display: flex
         margin: 15px 10px 15px 10px
         > div

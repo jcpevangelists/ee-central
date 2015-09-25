@@ -26,7 +26,7 @@ section.tribe-project-highlight
       align-items: flex-end
       width: 50%
       > img
-        max-width: 600px
+        width: 600px
         height: auto
 
       @media(max-width: 720px)
@@ -48,20 +48,21 @@ section.tribe-project-highlight
       > div.tribe-title
         margin-top: 50px
         padding-left: 10px
+        $img-size: 90px
         > div
-          max-width: 90px
-          height: 90px
+          max-width: $img-size
+          height: $img-size
           display: flex
           flex-direction: column
           justify-content: center
           align-items: center
           > img
-            width: auto
-            height: 90px
+            width: $img-size
+            height: $img-size
           > div
             border-bottom: solid $tomitribe-orange 2px
             margin: 30px 0 30px 0
-            width: 90px
+            width: $img-size
         > h2
           margin: 30px 0 30px 0
           font-size: 30px
