@@ -68,7 +68,7 @@
                 <artifactId>tomee-maven-plugin</artifactId>
                 <version>${tomee.version}</version>
                 <configuration>
-                    <context>tomitribe-io</context>
+                    <context>ROOT</context>
                     <tomeeClassifier>plus</tomeeClassifier>
                 </configuration>
             </plugin>

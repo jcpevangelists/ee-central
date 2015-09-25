@@ -2,6 +2,9 @@ angular.module('tribe-project-details', [])
     .controller('ProjectDetailsController', [
         '$scope', '$routeParams', '$sce', '$timeout', 'tribeProjectsService',
         function ($scope, $routeParams, $sce, $timeout, tribeProjectsService) {
+            $scope.openPopup = function (url) {
+                window.open(url, 'name', 'width=600,height=400');
+            };
             tribeProjectsService.onLoad(function (projects) {
                 var project = projects.getByName($routeParams.project);
                 $scope.baseFullPath = $('head base').first().attr('href');

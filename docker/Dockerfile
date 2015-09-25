@@ -48,7 +48,9 @@ RUN npm install -g gulp-sync@0.1.4
 RUN npm install -g gulp-watch@4.3.5
 RUN npm install -g marked@0.3.5
 RUN npm install -g jstransformer-marked@1.0.1
+RUN npm install -g lwip@0.0.7
 
 COPY container_build.sh /opt/
 RUN chmod u+x /opt/container_build.sh
+
 CMD /opt/container_build.sh

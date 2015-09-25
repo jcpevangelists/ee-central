@@ -17,27 +17,27 @@ section.tribe-project-highlight
   > div.tribe-project-highlight-content
     width: 100%
     display: flex
-    justify-content: flex-end
 
     > div.tribe-project-highlight-image
+      margin: 0 20px 0 0
+      flex-grow: 1
       display: flex
-      flex-shrink: 1
       justify-content: flex-end
       align-items: flex-end
+      width: 50%
       > img
-        margin: 50px 50px 0 0
         max-width: 600px
         height: auto
 
       @media(max-width: 720px)
         display: none
 
-
     > div.tribe-cms
-      flex-shrink: 0
+      margin: 0 0 0 20px
       @media(max-width: 720px)
-        flex-shrink: 1
-      max-width: 700px
+        margin: 0
+      flex-grow: 1
+      width: 50%
       $buttons-height: 40px
       $content-padding: 10px
       $title-height: 250px
@@ -95,8 +95,9 @@ section.tribe-project-highlight
           text-transform: uppercase
           font-size: 12px
           font-weight: normal
-          margin-right: 5px
           width: 150px
+          &:first-child
+            margin-right: 15px
           &:hover
             cursor: pointer
           &:hover
