@@ -10,8 +10,6 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
             h3 {{contributor.name}}
             h4 {{contributor.company ? contributor.company : '-'}}
             h5 {{contributor.location ? contributor.location : '-'}}
-            .tribe-contributor-title-separator
-            p {{contributor.bio}}
             .tribe-social-links
                 div
                     a(href="https://github.com/{{contributor.login}}")
@@ -25,3 +23,7 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
                 div(ng-if="contributor.googlePlus")
                     a(href="https://plus.google.com/{{contributor.googlePlus}}/posts")
                         i.fa.fa-google-plus
+            .tribe-contributor-title-separator
+            .tribe-user-projects
+                div(ng-repeat="contributions in contributor.contributions")
+                    img(src="{{contributions.project.icon}}")

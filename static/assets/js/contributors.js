@@ -1,20 +1,31 @@
-angular.module('tribe-contributors', ['tribe-contributors-service', 'tribe-pictures-service'])
+angular.module('tribe-contributors', ['tribe-contributors-service', 'tribe-pictures-service', 'tribe-projects-service'])
     .controller('ContributorsListController', [
-        '$scope', '$routeParams', '$sce', '$timeout', 'tribeContributorsService',
-        function ($scope, $routeParams, $sce, $timeout, tribeContributorsService) {
-            tribeContributorsService.onLoad(function (contributors) {
-                $scope.contributors = _.sortBy(contributors.getAll(), function (contributor) {
-                    var contributions = _.isArray(contributor.contributions) ? contributor.contributions : [contributor.contributions];
-                    var totalContributions = _.reduce(_.map(contributions, function (contrib) {
-                        return contrib.contributions;
-                    }), function (memo, contrib) {
-                        return memo + contrib;
+        '$scope', '$routeParams', '$sce', '$timeout', 'tribeContributorsService', 'tribeProjectsService',
+        function ($scope, $routeParams, $sce, $timeout, tribeContributorsService, tribeProjectsService) {
+            tribeProjectsService.onLoad(function (projectsData) {
+                tribeContributorsService.onLoad(function (contributors) {
+                    var contributors = _.sortBy(contributors.getAll(), function (contributor) {
+                        var contributions = _.isArray(contributor.contributions) ? contributor.contributions : [contributor.contributions];
+                        var totalContributions = _.reduce(_.map(contributions, function (contrib) {
+                            return contrib.contributions;
+                        }), function (memo, contrib) {
+                            return memo + contrib;
+                        });
+                        return -1 * totalContributions;
                     });
-                    return -1 * totalContributions;
+                    $scope.contributors = _.map(contributors, function (contributor) {
+                        var contributions = _.isArray(contributor.contributions) ? contributor.contributions : [contributor.contributions];
+                        contributor.contributions = _.map(contributions, function (contrib) {
+                            contrib.project = projectsData.getByName(contrib.project);
+                            return contrib;
+                        });
+                        return contributor;
+                    });
+
+                    $timeout(function () {
+                        $scope.$apply();
+                    }, 0);
                 });
-                $timeout(function () {
-                    $scope.$apply();
-                }, 0);
             });
         }
     ])
