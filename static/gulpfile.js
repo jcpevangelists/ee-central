@@ -1,4 +1,4 @@
-var applicationContext = 'tomitribe-io';
+var applicationContext = 'ROOT';
 
 var gulp = require('gulp');
 var jade = require('gulp-jade');

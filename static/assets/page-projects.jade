@@ -15,8 +15,11 @@ div(ng-controller="ProjectsController", class="tribe-all-projects")
                         .tribe-project-share
                             h5 share it
                             div
-                                a(href="http://www.facebook.com/sharer/sharer.php?u=https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
-                                    i.fa.fa-facebook.fa-2
-                                a(href="https://twitter.com/intent/tweet?text=Check out https:{{baseFullPath}}projects/{{project.name}}", target="_blank")
-                                    i.fa.fa-twitter.fa-2
+                                i(ng-click="openPopup('https://twitter.com/intent/tweet?text=Check out http:' + baseFullPath + 'projects/' + project.name)")
+                                    i.fa.fa-twitter
+                                i(ng-click="openPopup('http://www.facebook.com/sharer/sharer.php?u=http:' + baseFullPath + 'projects/' + project.name)")
+                                    i.fa.fa-facebook
+
+
+
 include footer
