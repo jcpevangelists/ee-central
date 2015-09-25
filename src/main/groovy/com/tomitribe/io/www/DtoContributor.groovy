@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement
 @EqualsAndHashCode
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
 class DtoContributor {
+
     @XmlElement
     String login
 
@@ -39,5 +40,8 @@ class DtoContributor {
 
     @XmlElement
     String bio
+
+    @XmlElement
+    Set<DtoContributions> contributions
 
 }

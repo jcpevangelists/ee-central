@@ -32,7 +32,7 @@ class GithubTest extends Specification {
         http.getUrlContent("$restReposPrefix/$projectName/contributors?access_token=$token") >> contributorsJson
         http.getUrlContent("https://api.github.com/users/my_user?access_token=$token") >> '{"name": "my user name"}'
         contributors.size() == 1
-        contributors[0] == new DtoContributor(
+        contributors[0].contributor == new DtoContributor(
                 name: 'my user name',
                 login: 'my_user',
                 avatarUrl: 'http://dummy/avatar.png'

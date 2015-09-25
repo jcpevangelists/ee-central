@@ -28,6 +28,7 @@ class ServiceGithub {
 
     private Set<DtoProject> projects
     private Set<DtoContributor> contributors
+    private Set<DtoContributions> contributions
 
     @Inject
     private HttpBean http
@@ -40,19 +41,26 @@ class ServiceGithub {
         timerService.createTimer(0, 'First time twitter load')
     }
 
-    Set<DtoContributor> getContributors(String projectName) {
+    def getContributors(String projectName) {
         def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token"
         new JsonSlurper().parseText(http.getUrlContent(url)).collect {
             def githubContributor = new JsonSlurper().parseText(
                     http.getUrlContent("https://api.github.com/users/${it.login}?access_token=$token")
             )
-            new DtoContributor(
-                    login: it.login,
-                    avatarUrl: it.avatar_url,
-                    name: githubContributor.name,
-                    company: githubContributor.company,
-                    location: githubContributor.location
-            )
+            [
+                    contributor  : new DtoContributor(
+                            login: it.login,
+                            avatarUrl: it.avatar_url,
+                            name: githubContributor.name,
+                            company: githubContributor.company,
+                            location: githubContributor.location
+                    ),
+                    contributions: new DtoContributions(
+                            project: projectName,
+                            login: it.login,
+                            contributions: it.contributions as Integer
+                    )
+            ]
         }
     }
 
@@ -94,6 +102,7 @@ class ServiceGithub {
         int page = 1
         def newProjects = []
         Map<String, DtoContributor> newContributors = [:]
+        Set<DtoContributions> newContributions = []
         Map<String, Set<String>> publishedTagsMap = new Yaml().loadAll(
                 this.getClass().getResource('/published_docs.yaml').getText(StandardCharsets.UTF_8.name())
         ).collectEntries {
@@ -132,8 +141,10 @@ class ServiceGithub {
                     return emptyProject
                 }
                 def projectContributors = getContributors(it.name as String)
-                projectContributors.each { DtoContributor projectContributor ->
+                projectContributors.each { data ->
+                    def projectContributor = data.contributor
                     newContributors.put(projectContributor.name, projectContributor)
+                    newContributions << data.contributions
                 }
                 new DtoProject(
                         name: it.name,
@@ -143,13 +154,14 @@ class ServiceGithub {
                         snapshot: ioConfig.snapshot,
                         icon: ioConfig.icon,
                         documentation: documentation,
-                        contributors: projectContributors,
+                        contributors: projectContributors.collect { it.contributor },
                         tags: tags.findAll({ publishedTags.contains(it) })
                 )
             }).findAll { it != emptyProject })
         }
         this.projects = newProjects
         this.contributors = newContributors.values()
+        this.contributions = newContributions
         timerService.createTimer(UPDATE_INTERVAL, 'Reload twitter')
     }
 
@@ -159,5 +171,9 @@ class ServiceGithub {
 
     Set<DtoContributor> getContributors() {
         contributors
+    }
+
+    Set<DtoContributions> getContributions() {
+        contributions
     }
 }

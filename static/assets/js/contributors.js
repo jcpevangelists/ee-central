@@ -3,7 +3,15 @@ angular.module('tribe-contributors', ['tribe-contributors-service', 'tribe-pictu
         '$scope', '$routeParams', '$sce', '$timeout', 'tribeContributorsService',
         function ($scope, $routeParams, $sce, $timeout, tribeContributorsService) {
             tribeContributorsService.onLoad(function (contributors) {
-                $scope.contributors = contributors.getAll();
+                $scope.contributors = _.sortBy(contributors.getAll(), function (contributor) {
+                    var contributions = _.isArray(contributor.contributions) ? contributor.contributions : [contributor.contributions];
+                    var totalContributions = _.reduce(_.map(contributions, function (contrib) {
+                        return contrib.contributions;
+                    }), function (memo, contrib) {
+                        return memo + contrib;
+                    });
+                    return -1 * totalContributions;
+                });
                 $timeout(function () {
                     $scope.$apply();
                 }, 0);
@@ -20,7 +28,7 @@ angular.module('tribe-contributors', ['tribe-contributors-service', 'tribe-pictu
                 $timeout(function () {
                     $scope.$apply();
                 }, 0);
-                $scope.changePicture = function(pic) {
+                $scope.changePicture = function (pic) {
                     $scope.selected = pic;
                     $element.find('.tribe-picture').css('background-image', 'url(pics/' + $scope.selected + ')')
                     $timeout(function () {

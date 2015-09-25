@@ -53,6 +53,13 @@ class ServiceContributors {
     void init() {
         Map<String, DtoContributor> managedContributors = getManagedContributors().collectEntries { [(it.login): it] }
         // load cache from db
+        def contributions = em.createQuery('SELECT e FROM EntityContributions e').resultList.collect({ EntityContributions entityContributions ->
+            new DtoContributions(
+                    login: entityContributions.contributor.login,
+                    project: entityContributions.project.name,
+                    contributions: entityContributions.contributions
+            )
+        }).groupBy { it.login }
         contributors = em.createQuery('SELECT e FROM EntityContributor e').resultList.collect { EntityContributor entityContributor ->
             def dto = managedContributors.get(entityContributor.login)
             if (dto) {
@@ -69,6 +76,7 @@ class ServiceContributors {
                         avatarUrl: entityContributor.avatarUrl
                 )
             }
+            dto.contributions = contributions.get(entityContributor.login)
             dto
         }
         timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
@@ -83,6 +91,7 @@ class ServiceContributors {
             timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
             return
         }
+        def contributions = (github.contributions ?: []).groupBy { it.login }
         Map<String, DtoContributor> managedContributors = getManagedContributors().collectEntries { [(it.login): it] }
         contributors = githubContributors.collect { DtoContributor dtoContributor ->
             def dto = managedContributors.get(dtoContributor.login)
@@ -92,8 +101,10 @@ class ServiceContributors {
                 dtoContributor.linkedin = dto.linkedin
                 dtoContributor.bio = dto.bio
             }
+            dtoContributor.contributions = contributions.get(dtoContributor.login)
             dtoContributor
         }
+
         // schedule next update
         timerService.createTimer(UPDATE_INTERVAL, 'Contributors update timer')
     }
