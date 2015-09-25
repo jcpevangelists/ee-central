@@ -41,6 +41,7 @@ class ServiceProjects {
                     name: entityProject.name,
                     shortDescription: entityProject.shortDescription,
                     longDescription: entityProject.longDescription,
+                    friendlyName: entityProject.friendlyName,
                     snapshot: entityProject.snapshot,
                     icon: entityProject.icon,
                     documentation: entityProject.documentation,

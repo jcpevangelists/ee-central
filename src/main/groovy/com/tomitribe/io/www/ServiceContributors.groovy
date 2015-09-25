@@ -13,6 +13,7 @@ import javax.ejb.TimerService
 import javax.inject.Inject
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
 
@@ -37,7 +38,7 @@ class ServiceContributors {
     private Set<DtoContributor> contributors = []
 
     private Set<DtoContributor> getManagedContributors() {
-        new Yaml().loadAll(this.getClass().getResource('/contributors_bio.yaml').text).collect {
+        new Yaml().loadAll(this.getClass().getResource('/contributors_bio.yaml').getText(StandardCharsets.UTF_8.name())).collect {
             new DtoContributor(
                     login: it.login,
                     bio: it.bio,
