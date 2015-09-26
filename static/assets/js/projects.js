@@ -1,13 +1,15 @@
-angular.module('tribe-projects', ['tribe-projects-service'])
-    .controller('ProjectsController', ['tribeProjectsService', '$scope', '$timeout', function (tribeProjectsService, $scope, $timeout) {
-        $scope.openPopup = function (url) {
-            window.open(url, 'name', 'width=600,height=400');
-        };
-        tribeProjectsService.onLoad(function (projects) {
-            $scope.projects = projects.getAll();
-            $scope.baseFullPath = $('head base').first().attr('href');
-            $timeout(function () {
-                $scope.$apply();
-            }, 0);
-        });
-    }]);
+angular.module('tribe-projects', ['tribe-app-service'])
+    .controller('ProjectsController',
+    ['tribeAppService', '$scope', '$timeout',
+        function (tribeAppService, $scope, $timeout) {
+            $scope.openPopup = function (url) {
+                window.open(url, 'name', 'width=600,height=400');
+            };
+            tribeAppService.whenReady(function (data) {
+                $scope.projects = _.values(data.projects);
+                $scope.baseFullPath = $('head base').first().attr('href');
+                $timeout(function () {
+                    $scope.$apply();
+                }, 0);
+            });
+        }]);

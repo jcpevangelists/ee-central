@@ -1,7 +1,7 @@
 @import "variables"
 
 > header
-  min-height: $tribe-header-height
+  min-height: $tribe-header-height - 20vh
   @media (max-width: 700px) and (max-height: 450px)
     min-height: 100vh
   @media (max-width: 450px) and (max-height: 700px)
@@ -38,7 +38,7 @@
           padding-bottom: 20px
           margin-bottom: 20px
           border-bottom: solid $tomitribe-orange 1px
-    $base-font-size: 16px
+    $base-font-size: 20px
     $title-h1-font-size: $base-font-size * 2
     > h1
       text-transform: capitalize
@@ -47,22 +47,3 @@
     > p
       max-width: 700px
       font-size: $base-font-size
-
-    @media (max-height: 800px)
-      > h1
-        font-size: $title-h1-font-size - $title-h1-font-size * .2
-      > p
-        font-size: $base-font-size - $base-font-size * .2
-
-    @media (max-height: 750px)
-      > h1
-        font-size: $title-h1-font-size - $title-h1-font-size * .3
-      > p
-        font-size: $base-font-size - $base-font-size * .3
-
-    @media (max-height: 500px)
-      > h1
-        font-size: $title-h1-font-size - $title-h1-font-size * .4
-      > p
-        font-size: $base-font-size - $base-font-size * .4
-

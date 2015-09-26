@@ -1,6 +1,7 @@
 package com.tomitribe.io.tests
 
 import com.tomitribe.io.www.DtoContributor
+import com.tomitribe.io.www.EntityContributions
 import com.tomitribe.io.www.EntityContributor
 import com.tomitribe.io.www.ServiceContributors
 import com.tomitribe.io.www.ServiceGithub
@@ -17,6 +18,7 @@ class ContributorsTest extends Specification {
         setup:
         def em = Mock(EntityManager)
         def query = Mock(Query)
+        def queryContributions = Mock(Query)
         def github = Mock(ServiceGithub)
         def timerService = Mock(TimerService)
 
@@ -40,6 +42,8 @@ class ContributorsTest extends Specification {
 
         then:
         1 * em.createQuery('SELECT e FROM EntityContributor e') >> query
+        1 * em.createQuery('SELECT e FROM EntityContributions e') >> queryContributions
+        1 * queryContributions.resultList >> []
         1 * query.resultList >> queryResultContributor
         1 * timerService.createTimer(_, 'First time load contributors timer')
         contributors == [new DtoContributor(

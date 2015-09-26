@@ -62,6 +62,7 @@ class ServiceProjects {
     @Lock(LockType.READ)
     void updateProjects() {
         def githubProjects = github.projects
+        def githubContributions = github.contributions
         if (githubProjects == null) {
             // Not yet initialized. Try again later.
             logger.info("The github projects list is not yet initialized. I will try again in ${FIRST_UPDATE_DELAY}ms.")
@@ -93,6 +94,13 @@ class ServiceProjects {
                     contributors: contributors,
                     tags: projectBean.tags,
                     friendlyName: projectBean.friendlyName
+            ))
+        }
+        githubContributions.each { DtoContributions contributions ->
+            em.merge(new EntityContributions(
+                    contributions: contributions.contributions,
+                    project: em.find(EntityProject, contributions.project),
+                    contributor: em.find(EntityContributor, contributions.login),
             ))
         }
     }
