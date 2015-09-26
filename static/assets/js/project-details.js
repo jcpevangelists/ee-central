@@ -1,24 +1,17 @@
-angular.module('tribe-project-details', [])
+angular.module('tribe-project-details', ['tribe-app-service'])
     .controller('ProjectDetailsController', [
-        '$scope', '$routeParams', '$sce', '$timeout', 'tribeProjectsService',
-        function ($scope, $routeParams, $sce, $timeout, tribeProjectsService) {
+        '$scope', '$routeParams', '$sce', '$timeout', 'tribeAppService',
+        function ($scope, $routeParams, $sce, $timeout, tribeAppService) {
             $scope.openPopup = function (url) {
                 window.open(url, 'name', 'width=600,height=400');
             };
-            tribeProjectsService.onLoad(function (projects) {
-                var project = projects.getByName($routeParams.project);
+            tribeAppService.whenReady(function (data) {
+                var project = data.projects[$routeParams.project];
                 $scope.baseFullPath = $('head base').first().attr('href');
-                $scope.project = {
-                    name: project.name,
-                    friendlyName: project.friendlyName,
-                    shortDescription: project.shortDescription,
-                    documentation: $sce.trustAsHtml(project.documentation),
-                    icon: project.icon,
-                    contributors: _.isArray(project.contributors) ? project.contributors : [project.contributors],
-                    tags: _.isArray(project.tags) ? project.tags : [project.tags]
-                };
-                $scope.otherProjects = _.filter(projects.getAll(), function (item) {
-                    return item.name !== project.name;
+                $scope.project = _.clone(project);
+                $scope.project.documentation = $sce.trustAsHtml(project.documentation);
+                $scope.otherProjects = _.filter(_.keys(projects), function (item) {
+                    return item !== project.name;
                 });
                 $timeout(function () {
                     $scope.$apply();
