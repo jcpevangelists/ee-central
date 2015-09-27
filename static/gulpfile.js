@@ -46,7 +46,7 @@ gulp.task('sprites', function () {
     return sprity.src({
         src: './assets/**/sprite_*.{png,jpg}',
         style: '../sprite.css',
-        margin: 10,
+        margin: 1,
         prefix: 'tribe-icon'
     }).pipe(gulpif('*.png', gulp.dest('../src/main/webapp/app/images'), gulp.dest('../src/main/webapp/app/style/')));
 });

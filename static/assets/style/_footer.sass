@@ -12,8 +12,6 @@ footer.tribe-footer
     color: $tomitribe-gray
   a
     text-decoration: none
-    &:hover
-      text-decoration: underline
   > div:first-child
     min-height: 150px
     background-color: $tomitribe-footer-header-background-color
@@ -33,6 +31,9 @@ footer.tribe-footer
     justify-content: space-between
     align-items: center
     display: flex
+    a
+      &:hover
+        text-decoration: underline
     @media (max-width: 900px)
       flex-direction: column
       justify-content: center

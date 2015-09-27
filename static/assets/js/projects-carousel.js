@@ -9,20 +9,19 @@ angular.module('tribe-projects-carousel', ['tribe-app-service'])
                 }, 0);
             });
             var carousel = $element.find('div.tribe-projects-caroussel > div').first();
-            $element.find('i.tribe-left').on('click', function () {
-                var article = $element.find('article:first-child');
-                $scope.$apply();
-                article.detach();
-                $scope.$apply();
-                article.appendTo(carousel);
-                $scope.$apply();
-            });
-            $element.find('i.tribe-right').on('click', function () {
-                var article = $element.find('article:last-child');
-                $scope.$apply();
-                article.detach();
-                $scope.$apply();
-                article.prependTo(carousel);
-                $scope.$apply();
-            });
+            $scope.onClick = function (dir) {
+                var article;
+                if ('left' === dir) {
+                    article = $element.find('article:last-child');
+                    article.detach();
+                    article.prependTo(carousel);
+                } else {
+                    article = $element.find('article:first-child');
+                    article.detach();
+                    article.appendTo(carousel);
+                }
+                $timeout(function () {
+                    $scope.$apply();
+                }, 0);
+            };
         }]);
