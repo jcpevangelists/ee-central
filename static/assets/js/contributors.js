@@ -22,7 +22,9 @@ angular.module('tribe-contributors', ['tribe-app-service'])
         '$element', '$scope', '$routeParams', '$sce', '$timeout', 'tribeAppService',
         function ($element, $scope, $routeParams, $sce, $timeout, tribeAppService) {
             tribeAppService.whenReady(function (data) {
-                $scope.pictures = data.pictures;
+                $scope.pictures = _.map(data.pictures, function(pic) {
+                    return pic.name;
+                });
                 $scope.selected = $scope.pictures[Math.floor((Math.random() * $scope.pictures.length))];
                 $element.find('.tribe-picture').css('background-image', 'url(pics/' + $scope.selected + ')')
                 $timeout(function () {
