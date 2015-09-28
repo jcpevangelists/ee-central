@@ -10,7 +10,7 @@ angular.module('tribe-project-details', ['tribe-app-service'])
                 $scope.baseFullPath = $('head base').first().attr('href');
                 $scope.project = _.clone(project);
                 $scope.project.documentation = $sce.trustAsHtml(project.documentation);
-                $scope.otherProjects = _.filter(_.keys(projects), function (item) {
+                $scope.otherProjects = _.filter(_.values(data.projects), function (item) {
                     return item !== project.name;
                 });
                 $timeout(function () {
