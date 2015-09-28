@@ -1,1 +1,0 @@
-Allows extremely precise configuration injection of  environment-aware Contexts and Dependency Injection (CDI) Extensions into applications.

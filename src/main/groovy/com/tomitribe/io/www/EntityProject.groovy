@@ -23,7 +23,11 @@ class EntityProject {
 
     @Lob
     String longDescription
+
+    @Lob
     String snapshot
+
+    @Lob
     String icon
 
     @Lob

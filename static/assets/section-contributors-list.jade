@@ -27,4 +27,4 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
             .tribe-user-projects
                 div(ng-repeat="contributions in contributor.contributions")
                     a(href="projects/{{contributions.project.name}}")
-                        img(src="{{contributions.project.icon}}")
+                        img(src="data:image/png;base64,{{contributions.project.icon}}")

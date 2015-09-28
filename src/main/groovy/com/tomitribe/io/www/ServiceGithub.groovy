@@ -12,7 +12,6 @@ import javax.ejb.Singleton
 import javax.ejb.Timeout
 import javax.ejb.TimerService
 import javax.inject.Inject
-import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -22,7 +21,7 @@ import java.util.logging.Logger
 class ServiceGithub {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
 
-    private Logger logger = Logger.getLogger(this.class.name)
+    private Logger logger = Logger.getLogger('tribeio.github')
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create()
     private String token = System.getenv()['github_atoken']
 
@@ -64,18 +63,6 @@ class ServiceGithub {
         }
     }
 
-    private String loadGithubResource(String projectName, String release, String resourceName) {
-        def url = "https://raw.githubusercontent.com/tomitribe/${projectName}/$release/${resourceName}?access_token=$token"
-        try {
-            return http.getUrlContent(url)
-        } catch (FileNotFoundException ignore) {
-            // this project does not have a documentation
-        } catch (exception) {
-            logger.log(Level.WARNING, "Impossible to load resource ${url}", exception)
-        }
-        return ''
-    }
-
     private String adocToHtml(String adoc) {
         if (adoc) {
             try {
@@ -88,15 +75,6 @@ class ServiceGithub {
         return ''
     }
 
-    private String getText(String ioConfigFieldContent) {
-        try {
-            // Return the content of the url, if this string represents one.
-            return ioConfigFieldContent.toURL().getText(StandardCharsets.UTF_8.name())
-        } catch (ignore) {
-            return ioConfigFieldContent
-        }
-    }
-
     @Timeout
     void updateProjects() {
         int page = 1
@@ -104,8 +82,7 @@ class ServiceGithub {
         Map<String, DtoContributor> newContributors = [:]
         Set<DtoContributions> newContributions = []
         Map<String, Set<String>> publishedTagsMap = new Yaml().loadAll(
-                this.getClass().getResource('/published_docs.yaml').getText(StandardCharsets.UTF_8.name())
-        ).collectEntries {
+                http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml')).collectEntries {
             [(it.project), it.tags]
         }
         while (true) {
@@ -123,21 +100,24 @@ class ServiceGithub {
                 List<String> tags = new JsonSlurper().parseText(
                         http.getUrlContent("https://api.github.com/repos/tomitribe/${it.name}/tags?access_token=$token")
                 ).collect({ it.name })
+                tags << 'master' // all projects contain a master branch
                 String release = tags.find({ publishedTags.contains(it) })
                 if (!release) {
                     return emptyProject
                 }
-                def ioConfig = new Yaml().load(loadGithubResource(
-                        it.name as String, release, 'community.yaml')
-                )
-                if (!ioConfig || !ioConfig.snapshot?.trim() || !ioConfig.icon?.trim()) {
-                    return emptyProject
-                }
-                def longDescription = adocToHtml(getText(ioConfig.long_description as String)).trim()
-                def documentation = adocToHtml(getText(ioConfig.documentation as String) ?:
-                        loadGithubResource(it.name as String, release, 'README.adoc')).trim()
-                def shortDescription = (getText(ioConfig.short_description as String) ?: it.description)?.trim()
-                if (!longDescription || !documentation || !shortDescription) {
+                def snapshot = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${it.name}/snapshot.png")
+                def icon = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${it.name}/icon.png")
+                def longDescription = adocToHtml(
+                        http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/long_description.adoc")
+                ).trim()
+                def documentation = adocToHtml(
+                        http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/documentation.adoc") ?:
+                                http.loadGithubResource(it.name as String, release, 'README.adoc')
+                ).trim()
+                def shortDescription = (
+                        http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/short_description.txt")
+                                ?: it.description)?.trim()
+                if (!longDescription || !documentation || !shortDescription || !snapshot || !icon) {
                     return emptyProject
                 }
                 def projectContributors = getContributors(it.name as String)
@@ -148,11 +128,10 @@ class ServiceGithub {
                 }
                 new DtoProject(
                         name: it.name,
-                        friendlyName: ioConfig.friendly_name,
                         shortDescription: shortDescription,
                         longDescription: longDescription,
-                        snapshot: ioConfig.snapshot,
-                        icon: ioConfig.icon,
+                        snapshot: snapshot,
+                        icon: icon,
                         documentation: documentation,
                         contributors: projectContributors.collect { it.contributor },
                         tags: tags.findAll({ publishedTags.contains(it) })

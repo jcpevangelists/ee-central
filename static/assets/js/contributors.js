@@ -26,13 +26,13 @@ angular.module('tribe-contributors', ['tribe-app-service'])
                     return pic.name;
                 });
                 $scope.selected = $scope.pictures[Math.floor((Math.random() * $scope.pictures.length))];
-                $element.find('.tribe-picture').css('background-image', 'url(pics/' + $scope.selected + ')')
+                $element.find('.tribe-picture').css('background-image', 'url(rest/images/about/' + $scope.selected + ')')
                 $timeout(function () {
                     $scope.$apply();
                 }, 0);
                 $scope.changePicture = function (pic) {
                     $scope.selected = pic;
-                    $element.find('.tribe-picture').css('background-image', 'url(pics/' + $scope.selected + ')')
+                    $element.find('.tribe-picture').css('background-image', 'url(rest/images/about/' + $scope.selected + ')')
                     $timeout(function () {
                         $scope.$apply();
                     }, 0);

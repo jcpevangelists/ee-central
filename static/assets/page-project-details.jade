@@ -24,7 +24,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                 h4 Other projects
                 article(ng-repeat="project in otherProjects")
                     a(href="projects/{{project.name}}")
-                        img(src="{{project.icon}}")
+                        img(src="data:image/png;base64,{{project.icon}}")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
                             p {{project.shortDescription}}

@@ -19,17 +19,17 @@ class RestApplication {
     @Inject
     private ServiceTwitter serviceTwitter
 
+    @Inject
+    private ServicePictures servicePictures
+
     @GET
     DtoPage get(@Context ServletContext context) {
-        Set<DtoPicture> pics = new File(context.getRealPath('/pics/')).listFiles({ File dir, String name ->
-            !name.startsWith('small_')
-        } as FilenameFilter).collect {
-            new DtoPicture(name: it.name)
-        }
         new DtoPage(
                 contributors: serviceContributors.contributors,
                 projects: serviceProjects.projects,
-                pictures: pics,
+                pictures: servicePictures.pictures.findAll {
+                    !it.name.startsWith('small_')
+                },
                 tweets: serviceTwitter.tweets
         )
     }

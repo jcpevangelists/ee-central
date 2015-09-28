@@ -4,6 +4,6 @@ header
         include section-menu
     .tribe-project-name
         div
-            img(src="{{project.icon}}")
+            img(src="data:image/png;base64,{{project.icon}}")
         h1 {{project.friendlyName ? project.friendlyName : project.name}}
         p {{project.shortDescription}}
