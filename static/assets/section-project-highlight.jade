@@ -2,11 +2,11 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
     .tribe-background
     .tribe-project-highlight-content
         .tribe-project-highlight-image
-            img(src="data:image/png;base64,{{highligtedProject.snapshot}}")
+            img(ng-src="data:image/png;base64,{{highligtedProject.snapshot}}")
         .tribe-cms
             .tribe-title
                 div
-                    img(src="data:image/png;base64,{{highligtedProject.icon}}")
+                    img(ng-src="data:image/png;base64,{{highligtedProject.icon}}")
                     div
                 h2 {{highligtedProject.friendlyName ? highligtedProject.friendlyName : highligtedProject.name}}
             div(ng-bind-html="highligtedProject.description", class="tribe-content", prism)

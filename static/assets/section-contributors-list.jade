@@ -6,7 +6,7 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
         tempor ante. Maecenas varius neque diam, lacinia blandit turpis fermentum ac.
     div
         article(ng-repeat="contributor in contributors")
-            img(src="{{contributor.avatarUrl}}")
+            img(ng-src="{{contributor.avatarUrl}}")
             h3 {{contributor.name}}
             h4 {{contributor.company ? contributor.company : '-'}}
             h5 {{contributor.location ? contributor.location : '-'}}
@@ -27,4 +27,4 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
             .tribe-user-projects
                 div(ng-repeat="contributions in contributor.contributions")
                     a(href="projects/{{contributions.project.name}}")
-                        img(src="data:image/png;base64,{{contributions.project.icon}}")
+                        img(ng-src="data:image/png;base64,{{contributions.project.icon}}")
