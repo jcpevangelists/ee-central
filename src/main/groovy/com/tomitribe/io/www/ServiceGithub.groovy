@@ -20,7 +20,7 @@ import java.util.logging.Logger
 @Singleton
 @Lock(LockType.READ)
 class ServiceGithub {
-    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
+    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
 
     private Logger logger = Logger.getLogger('tribeio.github')
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create()

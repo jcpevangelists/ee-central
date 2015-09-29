@@ -21,7 +21,7 @@ import java.util.logging.Logger
 @Startup
 @Lock(LockType.READ)
 class ServiceContributors {
-    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
+    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
 
     private Logger logger = Logger.getLogger('tribeio.github')

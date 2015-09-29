@@ -18,7 +18,7 @@ import java.util.logging.Logger
 @Singleton
 @Startup
 class ServiceProjects {
-    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
+    public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
 
     private Logger logger = Logger.getLogger('tribeio.github')
