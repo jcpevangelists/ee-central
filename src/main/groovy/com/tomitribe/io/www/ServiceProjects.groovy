@@ -7,6 +7,7 @@ import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.ejb.Startup
 import javax.ejb.Timeout
+import javax.ejb.Timer
 import javax.ejb.TimerService
 import javax.inject.Inject
 import javax.persistence.EntityManager
@@ -20,7 +21,7 @@ class ServiceProjects {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
 
-    private Logger logger = Logger.getLogger(this.class.name)
+    private Logger logger = Logger.getLogger('tribeio.github')
 
     @Resource
     private TimerService timerService
@@ -32,6 +33,8 @@ class ServiceProjects {
     private EntityManager em
 
     private Set<DtoProject> projects = []
+
+    private Timer timer
 
     @PostConstruct
     void init() {
@@ -55,12 +58,17 @@ class ServiceProjects {
                     tags: entityProject.tags
             )
         }
-        timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load documentation timer')
+        timer = timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load documentation timer')
     }
 
     @Timeout
     @Lock(LockType.READ)
-    void updateProjects() {
+    void update() {
+        try {
+            timer?.cancel()
+        } catch (ignore) {
+            // no-op
+        }
         def githubProjects = github.projects
         def githubContributions = github.contributions
         if (githubProjects == null) {
@@ -69,12 +77,9 @@ class ServiceProjects {
             timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load documentation timer')
             return
         }
-        projects = githubProjects
-        // schedule next update
-        timerService.createTimer(UPDATE_INTERVAL, 'Documentation update timer')
         Map<String, EntityContributor> mappedContributors = [:]
         // update cache
-        projects.each { DtoProject projectBean ->
+        githubProjects.each { DtoProject projectBean ->
             Set<EntityContributor> contributors = projectBean.contributors.collect { DtoContributor contributorBean ->
                 EntityContributor contributor = mappedContributors.get(contributorBean.login) ?: em.merge(new EntityContributor(
                         login: contributorBean.login,
@@ -103,6 +108,9 @@ class ServiceProjects {
                     contributor: em.find(EntityContributor, contributions.login),
             ))
         }
+        projects = githubProjects
+        // schedule next update
+        timer = timerService.createTimer(UPDATE_INTERVAL, 'Documentation update timer')
     }
 
     @Lock(LockType.READ)

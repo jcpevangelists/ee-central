@@ -1,1 +1,0 @@
-Provides a secure and reliable mechanism to digitally sign a HTTP message which verifies sender identification and message integrity.

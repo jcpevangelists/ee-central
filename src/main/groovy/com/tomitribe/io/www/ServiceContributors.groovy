@@ -9,11 +9,11 @@ import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.ejb.Startup
 import javax.ejb.Timeout
+import javax.ejb.Timer
 import javax.ejb.TimerService
 import javax.inject.Inject
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
-import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
 
@@ -24,7 +24,7 @@ class ServiceContributors {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
 
-    private Logger logger = Logger.getLogger(this.class.name)
+    private Logger logger = Logger.getLogger('tribeio.github')
 
     @Resource
     private TimerService timerService
@@ -37,8 +37,13 @@ class ServiceContributors {
 
     private Set<DtoContributor> contributors = []
 
+    @Inject
+    private HttpBean http
+
+    Timer timer
+
     private Set<DtoContributor> getManagedContributors() {
-        new Yaml().loadAll(this.getClass().getResource('/contributors_bio.yaml').getText(StandardCharsets.UTF_8.name())).collect {
+        new Yaml().loadAll(http.loadGithubResource('tomitribe.io.config', 'master', 'contributors.yaml')).collect {
             new DtoContributor(
                     login: it.login,
                     bio: it.bio,
@@ -79,11 +84,16 @@ class ServiceContributors {
             dto.contributions = contributions.get(entityContributor.login)
             dto
         }
-        timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
+        timer = timerService.createTimer(FIRST_UPDATE_DELAY, 'First time load contributors timer')
     }
 
     @Timeout
-    void updateContributors() {
+    void update() {
+        try {
+            timer?.cancel()
+        } catch (ignore) {
+            // no-op
+        }
         def githubContributors = github.contributors
         if (githubContributors == null) {
             // Not yet initialized. Try again later.
@@ -104,9 +114,8 @@ class ServiceContributors {
             dtoContributor.contributions = contributions.get(dtoContributor.login)
             dtoContributor
         }
-
         // schedule next update
-        timerService.createTimer(UPDATE_INTERVAL, 'Contributors update timer')
+        timer = timerService.createTimer(UPDATE_INTERVAL, 'Contributors update timer')
     }
 
     Set<DtoContributor> getContributors() {

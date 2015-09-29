@@ -1,1 +1,0 @@
-The Crest connector provides an interactive shell environment that can be accessed via SSH.

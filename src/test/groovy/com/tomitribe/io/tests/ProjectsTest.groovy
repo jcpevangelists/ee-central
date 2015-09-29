@@ -88,7 +88,7 @@ class ProjectsTest extends Specification {
         )
 
         when:
-        srv.updateProjects()
+        srv.update()
 
         then:
         1 * timerService.createTimer(_, "Documentation update timer")

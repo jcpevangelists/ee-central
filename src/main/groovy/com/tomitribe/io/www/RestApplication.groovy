@@ -6,6 +6,7 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.core.Context
+import javax.ws.rs.core.Response
 
 @Path('/application')
 @Produces('application/json')
@@ -19,18 +20,33 @@ class RestApplication {
     @Inject
     private ServiceTwitter serviceTwitter
 
+    @Inject
+    private ServicePictures servicePictures
+
+    @Inject
+    private ServiceGithub serviceGithub
+
     @GET
     DtoPage get(@Context ServletContext context) {
-        Set<DtoPicture> pics = new File(context.getRealPath('/pics/')).listFiles({ File dir, String name ->
-            !name.startsWith('small_')
-        } as FilenameFilter).collect {
-            new DtoPicture(name: it.name)
-        }
         new DtoPage(
                 contributors: serviceContributors.contributors,
                 projects: serviceProjects.projects,
-                pictures: pics,
+                pictures: servicePictures.pictures.findAll {
+                    !it.name.startsWith('small_')
+                },
                 tweets: serviceTwitter.tweets
         )
+    }
+
+
+    @GET
+    @Path('/update')
+    Response update() {
+        serviceGithub.update()
+        serviceProjects.update()
+        servicePictures.update()
+        serviceTwitter.update()
+        serviceContributors.update()
+        Response.ok().build()
     }
 }
