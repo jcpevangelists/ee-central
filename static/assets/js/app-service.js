@@ -1,5 +1,6 @@
 angular.module('tribe-app-service', [])
     .factory('tribeAppService', ['$http', function ($http) {
+        var getPromise = $http.get('rest/application');
 
         function buildMap(list, key) {
             var map = {};
@@ -18,7 +19,7 @@ angular.module('tribe-app-service', [])
 
         return {
             whenReady: function (callback) {
-                $http.get('rest/application').success(function (data) {
+                getPromise.success(function (data) {
                     var contributors = normalizeArray(data.dtoPage.contributors);
                     _.each(contributors, function (contributor) {
                         contributor.contributions = normalizeArray(contributor.contributions);
