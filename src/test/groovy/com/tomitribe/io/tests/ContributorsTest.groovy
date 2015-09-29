@@ -1,7 +1,6 @@
 package com.tomitribe.io.tests
 
 import com.tomitribe.io.www.DtoContributor
-import com.tomitribe.io.www.EntityContributions
 import com.tomitribe.io.www.EntityContributor
 import com.tomitribe.io.www.HttpBean
 import com.tomitribe.io.www.ServiceContributors
@@ -76,7 +75,7 @@ class ContributorsTest extends Specification {
         )
 
         when:
-        srv.updateContributors()
+        srv.update()
 
         then:
         1 * http.loadGithubResource('tomitribe.io.config', 'master', 'contributors.yaml') >>

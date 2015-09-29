@@ -10,7 +10,6 @@ import javax.ejb.Timeout
 import javax.ejb.TimerService
 import javax.inject.Inject
 import java.util.concurrent.TimeUnit
-import java.util.logging.Logger
 
 @Singleton
 @Startup
@@ -18,8 +17,6 @@ import java.util.logging.Logger
 class ServicePictures {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(5)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
-
-    private Logger logger = Logger.getLogger(this.class.name)
 
     @Resource
     private TimerService timerService

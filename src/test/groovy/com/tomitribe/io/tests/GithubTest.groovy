@@ -57,7 +57,7 @@ class GithubTest extends Specification {
         def projectJson = JsonOutput.toJson(projectList)
 
         when:
-        srv.updateProjects()
+        srv.update()
         def projects = srv.getProjects()
 
         then:

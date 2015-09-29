@@ -10,6 +10,7 @@ import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Singleton
 import javax.ejb.Timeout
+import javax.ejb.Timer
 import javax.ejb.TimerService
 import javax.inject.Inject
 import java.util.concurrent.TimeUnit
@@ -35,9 +36,11 @@ class ServiceGithub {
     @Resource
     private TimerService timerService
 
+    private Timer timer
+
     @PostConstruct
     void init() {
-        timerService.createTimer(0, 'First time twitter load')
+        timer = timerService.createTimer(0, 'First time ServiceGithub load')
     }
 
     def getContributors(String projectName) {
@@ -76,7 +79,12 @@ class ServiceGithub {
     }
 
     @Timeout
-    void updateProjects() {
+    void update() {
+        try {
+            timer?.cancel()
+        } catch (ignore) {
+            // no-op
+        }
         int page = 1
         def newProjects = []
         Map<String, DtoContributor> newContributors = [:]
@@ -141,7 +149,7 @@ class ServiceGithub {
         this.projects = newProjects
         this.contributors = newContributors.values()
         this.contributions = newContributions
-        timerService.createTimer(UPDATE_INTERVAL, 'Reload twitter')
+        timer = timerService.createTimer(UPDATE_INTERVAL, 'Reload ServiceGithub')
     }
 
     Set<DtoProject> getProjects() {

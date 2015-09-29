@@ -21,7 +21,9 @@
     "del": "2.0.0",
     "gulp-sync": "0.1.4",
     "gulp-watch": "4.3.5",
-    "jstransformer-marked": "1.0.1"
+    "jstransformer-marked": "1.0.1",
+    "bower": "1.5.3",
+    "gulp-bower": "0.0.10"
   },
   "engine": "node >= 0.12.7"
 }
