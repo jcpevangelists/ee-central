@@ -108,7 +108,7 @@ class ServiceGithub {
                 List<String> tags = new JsonSlurper().parseText(
                         http.getUrlContent("https://api.github.com/repos/tomitribe/${it.name}/tags?access_token=$token")
                 ).collect({ it.name })
-                tags << 'master' // all projects contain a master branch
+                tags.add(0, 'master') // all projects contain a master branch
                 String release = tags.find({ publishedTags.contains(it) })
                 if (!release) {
                     return emptyProject
