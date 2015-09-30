@@ -69,7 +69,7 @@ class ServiceGithub {
     private String adocToHtml(String adoc) {
         if (adoc) {
             try {
-                return asciidoctor.render(adoc, Collections.<String, Object> emptyMap())
+                return asciidoctor.render(adoc, [:])
             } catch (exception) {
                 logger.log(Level.WARNING, 'Impossible to generate html from adoc.', exception)
                 logger.log(Level.FINE, adoc)
