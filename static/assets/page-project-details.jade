@@ -10,11 +10,11 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                         tbody
                             tr
                                 th release
-                                th documentation
+                                th doc
                             tr(ng-repeat="tag in project.tags")
                                 td {{tag}}
                                 td
-                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") reference
+                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") ref
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list

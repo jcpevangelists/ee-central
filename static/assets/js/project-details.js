@@ -31,7 +31,7 @@ angular.module('tribe-project-details', ['tribe-app-service'])
                         $timeout(function () {
                             $element.find('pre.highlight').each(function () {
                                 var preEl = $(this);
-                                preEl.find('code').addClass('hljs');
+                                preEl.find('code').addClass('hljs').css('font-family', 'courier, monospace');
                                 var codeEl = preEl.find('code.language-java, code.language-xml');
                                 $timeout(function () {
                                     $scope.$apply();

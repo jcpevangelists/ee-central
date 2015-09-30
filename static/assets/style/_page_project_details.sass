@@ -35,17 +35,19 @@ div.tribe-project-details
 
             > tbody
               > tr
-                font-size: 15px
+                $tribe-ref-width: 50px
                 > th
                   padding-bottom: 10px
-                  width: 50%
                   text-align: left
                   text-transform: uppercase
                   font-weight: bold
+                  &:last-child
+                    width: $tribe-ref-width
                 > td
-                  width: 50%
                   text-align: left
                   padding-bottom: 2px
+                  &:last-child
+                    width: $tribe-ref-width
 
       > div.tribe-contributors
         margin-top: 20px
@@ -107,8 +109,9 @@ div.tribe-project-details
               height: 50px
             > div
               margin-left: 10px
+              > h4
+                font-weight: normal
               > p
-                font-size: 10px
                 width: 225px
                 white-space: nowrap
                 overflow: hidden
@@ -127,7 +130,6 @@ div.tribe-project-details
       overflow: auto
       background-color: white
       padding: 20px
-      //word-wrap: break-word
       width: 830px
       flex-shrink: 0
       @media (max-width: 890px)
