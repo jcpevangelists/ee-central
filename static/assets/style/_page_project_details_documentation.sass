@@ -11,6 +11,12 @@ code
 
 pre
   background-color: $tomitribe-lightergray
+  $line_height: 1
+  line-height: $line_height
+  > *
+    line-height: $line_height
+  span
+    line-height: $line_height
 
 *
   font-size: $tomitribe-p-size
@@ -22,6 +28,19 @@ li
   p, code
     margin: 0
 
+div.admonitionblock
+  margin: 0 0 10px 0
+  > table
+    width: 100%
+    td
+      padding: 10px
+      border: solid $tomitribe-lightergray 1px
+      div.title
+        text-align: center
+      &:first-child
+        border-right: 0
+        background-color: $tomitribe-lightergray
+
 div.listingblock
   > div.content
     > pre
@@ -31,6 +50,9 @@ div.listingblock
       background-color: $tomitribe-lightergray
       code
         padding: 20px
+
+code
+  background-color: $tomitribe-lightergray
 
 p, div.listingblock
   margin: 0 0 20px 0
