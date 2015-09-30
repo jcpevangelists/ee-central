@@ -29,7 +29,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
                             p {{project.shortDescription}}
             .tribe-project-share
-                h4 Share it with a friend
+                h4 Share with friends
                 div
                     div(ng-click="openPopup('https://twitter.com/intent/tweet?text=Check out http:' + baseFullPath + 'projects/' + project.name)")
                         i.fa.fa-twitter

@@ -38,9 +38,12 @@ angular.module('tribe-app-service', [])
                         projects = buildMap(projects, 'name');
 
                         _.each(_.values(contributors), function (contributor) {
+                            var commits = 0;
                             _.each(contributor.contributions, function (contribution) {
                                 contribution.project = projects[contribution.project];
+                                commits = commits + contribution.contributions;
                             });
+                            contributor.commits = commits;
                         });
                         var pictures = normalizeArray(data.dtoPage.pictures);
                         var tweets = normalizeArray(data.dtoPage.tweets);
