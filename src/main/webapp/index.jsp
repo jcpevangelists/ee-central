@@ -5,14 +5,28 @@
         // doc base
         (function () {
             var contextPath = '<%=request.getContextPath()%>';
-            var reqUrl = '<%=request.getRequestURL()%>'
-                    .replace(/^http:/, '')
-                    .replace(/^https:/, '')
-                    .replace(/^\/\//, '')
-                    .replace(/^[^\/]*/, '')
-                    .replace(new RegExp('^' + contextPath, "i"), '');
-            var baseUrl = document.location.pathname.replace(new RegExp(reqUrl + '$', 'i'), '');
-            document.write("<base href='//" + document.location.hostname + baseUrl + "/' />");
+            var result = '';
+            if(document.location.href === '<%=request.getRequestURL()%>') {
+                if(document.location.port) {
+                    result = "//" + document.location.hostname + ":" + document.location.port + contextPath + "/";
+                } else {
+                    result = "//" + document.location.hostname + contextPath + "/";
+                }
+            } else {
+                var reqUrl = '<%=request.getRequestURL()%>'
+                        .replace(/^http:/, '')
+                        .replace(/^https:/, '')
+                        .replace(/^\/\//, '')
+                        .replace(/^[^\/]*/, '')
+                        .replace(new RegExp('^' + contextPath, "i"), '');
+                var baseUrl = document.location.pathname.replace(new RegExp(reqUrl + '$', 'i'), '');
+                if(document.location.port) {
+                    result = "//" + document.location.hostname + ":" + document.location.port + baseUrl + "/";
+                } else {
+                    result = "//" + document.location.hostname + baseUrl + "/";
+                }
+            }
+            document.write("<base href='" + result + "' />");
         }());
     </script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
