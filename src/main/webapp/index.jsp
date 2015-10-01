@@ -1,12 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html ng-app="tribeio">
 <head><title>Tomitribe.io</title>
     <script>
+        // doc base
         (function () {
-            var base = document.createElement('base');
-            base.href = '//' + document.location.host + "<c:url value='/'/>";
-            document.getElementsByTagName('head')[0].appendChild(base);
+            var reqUrl = '<%=request.getRequestURL()%>'
+                    .replace(/^https:/, '')
+                    .replace(/^http:/, '')
+                    .replace(/^\/\//, '')
+                    .replace(new RegExp('^' + document.location.hostname, "i"), '');
+            var contextPath = '<%=request.getContextPath()%>';
+            var baseUrl = document.location.pathname.replace(new RegExp(reqUrl + '$', 'i'), '');
+            document.write("<base href='//" + document.location.hostname + baseUrl + contextPath + "/' />");
         }());
     </script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
