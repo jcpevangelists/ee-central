@@ -1,6 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html ng-app="tribeio">
 <head><title>Tomitribe.io</title>
+    <script>
+        (function () {
+            var base = document.createElement('base');
+            base.href = '//' + document.location.host + "<c:url value='/'/>";
+            document.getElementsByTagName('head')[0].appendChild(base);
+        }());
+    </script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link rel="stylesheet"
@@ -13,11 +21,6 @@
 </head>
 <body>
 <ng-view autoscroll="true"></ng-view>
-<script>
-var base = document.createElement('base');
-base.href = '//' + document.location.host + document.location.pathname;
-document.getElementsByTagName('head')[0].appendChild(base);
-</script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script type="text/javascript" src="thirdparty/highlight/highlight.pack.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
