@@ -4,14 +4,14 @@
     <script>
         // doc base
         (function () {
+            var contextPath = '<%=request.getContextPath()%>';
             var reqUrl = '<%=request.getRequestURL()%>'
-                    .replace(/^https:/, '')
                     .replace(/^http:/, '')
                     .replace(/^\/\//, '')
-                    .replace(new RegExp('^' + document.location.hostname, "i"), '');
-            var contextPath = '<%=request.getContextPath()%>';
+                    .replace(/^[^\/]*/, '')
+                    .replace(new RegExp('^' + contextPath, "i"), '');
             var baseUrl = document.location.pathname.replace(new RegExp(reqUrl + '$', 'i'), '');
-            document.write("<base href='//" + document.location.hostname + baseUrl + contextPath + "/' />");
+            document.write("<base href='//" + document.location.hostname + baseUrl + "/' />");
         }());
     </script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
