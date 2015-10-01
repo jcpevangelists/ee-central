@@ -7,6 +7,7 @@
             var contextPath = '<%=request.getContextPath()%>';
             var reqUrl = '<%=request.getRequestURL()%>'
                     .replace(/^http:/, '')
+                    .replace(/^https:/, '')
                     .replace(/^\/\//, '')
                     .replace(/^[^\/]*/, '')
                     .replace(new RegExp('^' + contextPath, "i"), '');
