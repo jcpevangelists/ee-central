@@ -7,7 +7,7 @@ section(ng-controller="ContributorsListController", class="tribe-contributors-li
     div
         article(ng-repeat="contributor in contributors")
             img(ng-src="{{contributor.avatarUrl}}")
-            h3 {{contributor.name}} #[span ({{contributor.commits}})]
+            h3 {{contributor.name}}
             h4 {{contributor.company ? contributor.company : '-'}}
             h5 {{contributor.location ? contributor.location : '-'}}
             .tribe-social-links
