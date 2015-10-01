@@ -27,6 +27,8 @@ div.tribe-all-projects
         flex-shrink: 0
         display: flex
         flex-direction: column
+        a
+          text-decoration: none
         background-color: $tomitribe-white
         > div.tribe-project-icon
           background-color: $tomitribe-lightgray
@@ -36,21 +38,23 @@ div.tribe-all-projects
           justify-content: center
           align-items: center
           display: flex
-          > img
-            width: auto
-            height: 120px
-            margin: 40px
+          > a
+            > img
+              width: auto
+              height: 120px
+              margin: 40px
         > div.tribe-project-short-description
           flex-grow: 1
           padding: 20px
           background-color: $tomitribe-white
           border: solid $tomitribe-white
           border-width: 0 1px 0 1px
-          > h3
-            margin-top: 20px
-            margin-bottom: 30px
-            text-transform: uppercase
-            font-size: 20px
+          > a
+            > h3
+              margin-top: 20px
+              margin-bottom: 30px
+              text-transform: uppercase
+              font-size: 20px
         > div.tribe-project-buttons
           padding: 0 20px 20px 20px
           background-color: $tomitribe-white
