@@ -1,16 +1,16 @@
 @import "variables"
 
 > header
-  min-height: $tribe-header-height - 20vh
+  min-height: $tribe-header-height
   @media (max-width: 700px) and (max-height: 450px)
     min-height: 100vh
   @media (max-width: 450px) and (max-height: 700px)
     min-height: 100vh
-  padding: 40px 150px 40px 150px
+  padding: 40px 150px 0 150px
   @media (max-width: 1000px)
-    padding: 40px
+    padding: 40px 40px 0 40px
   @media (max-width: 700px)
-    padding: 40px 20px 40px 20px
+    padding: 40px 20px 0 20px
   *
     color: $tomitribe-white
   background: url("../images/project-detail-background.jpg") no-repeat right bottom
@@ -32,6 +32,13 @@
     flex-flow: column
     justify-content: center
     > div
+      &:last-child
+        > a
+          text-decoration: none
+          margin: 50px 10px 0 0
+          font-size: 20px
+          &:hover
+            color: $tomitribe-orange
       > img
         width: auto
         height: 80px
@@ -41,7 +48,7 @@
     $base-font-size: 20px
     $title-h1-font-size: $base-font-size * 2
     > h1
-      text-transform: capitalize
+      text-transform: uppercase
       margin-bottom: 10px
       font-size: $title-h1-font-size
     > p

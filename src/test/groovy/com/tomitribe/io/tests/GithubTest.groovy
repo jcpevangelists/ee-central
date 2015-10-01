@@ -74,10 +74,10 @@ class GithubTest extends Specification {
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/icon.png") >> 'my_icon.png'
 
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/long_description.adoc") >> 'my_long_description'
-        asciidoctor.render('my_long_description', Collections.<String, Object> emptyMap()) >> '<p>my_long_description</p>'
+        asciidoctor.render('my_long_description', _) >> '<p>my_long_description</p>'
 
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/documentation.adoc") >> 'my_documentation'
-        asciidoctor.render('my_documentation', Collections.<String, Object> emptyMap()) >> '<p>my_documentation</p>'
+        asciidoctor.render('my_documentation', _) >> '<p>my_documentation</p>'
 
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/short_description.txt") >> 'my_short_description'
 

@@ -4,8 +4,10 @@ angular.module('tribe-project-highlight', ['tribe-app-service'])
         function ($scope, $timeout, $sce, tribeAppService) {
             tribeAppService.whenReady(function (data) {
                 var projects = _.values(data.projects);
-                // just grabbing a random project for now TODO
-                var project = projects[Math.floor((Math.random() * projects.length))];
+                // crest is hardcoded as the only highlighted project for now TODO
+                var project = _.find(projects, function (item) {
+                    return item.name === 'crest';
+                });
                 var description = project.longDescription;
                 $scope.highligtedProject = {
                     name: project.name,

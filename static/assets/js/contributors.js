@@ -4,13 +4,7 @@ angular.module('tribe-contributors', ['tribe-app-service'])
         function ($scope, $routeParams, $sce, $timeout, tribeAppService) {
             tribeAppService.whenReady(function (data) {
                 $scope.contributors = _.sortBy(data.contributors, function (contributor) {
-                    var contributions = _.isArray(contributor.contributions) ? contributor.contributions : [contributor.contributions];
-                    var totalContributions = _.reduce(_.map(contributions, function (contrib) {
-                        return contrib.contributions;
-                    }), function (memo, contrib) {
-                        return memo + contrib;
-                    });
-                    return -1 * totalContributions;
+                    return -1 * contributor.commits;
                 });
                 $timeout(function () {
                     $scope.$apply();

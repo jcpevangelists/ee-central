@@ -7,3 +7,6 @@ header
             img(ng-src="data:image/png;base64,{{project.icon}}")
         h1 {{project.friendlyName ? project.friendlyName : project.name}}
         p {{project.shortDescription}}
+        div
+            a(href="https://github.com/tomitribe/{{project.name}}", class="fa fa-github")
+            a(href="https://github.com/tomitribe/{{project.name}}/issues", class="fa fa-exclamation-circle")

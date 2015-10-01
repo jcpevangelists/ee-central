@@ -10,11 +10,11 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                         tbody
                             tr
                                 th release
-                                th documentation
+                                th doc
                             tr(ng-repeat="tag in project.tags")
                                 td {{tag}}
                                 td
-                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") reference
+                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") ref
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list
@@ -27,9 +27,8 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                         img(ng-src="data:image/png;base64,{{project.icon}}")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
-                            p {{project.shortDescription}}
             .tribe-project-share
-                h4 Share it with a friend
+                h4 Share with friends
                 div
                     div(ng-click="openPopup('https://twitter.com/intent/tweet?text=Check out http:' + baseFullPath + 'projects/' + project.name)")
                         i.fa.fa-twitter

@@ -17,33 +17,29 @@ section.tribe-project-highlight
   > div.tribe-project-highlight-content
     width: 100%
     display: flex
-
     > div.tribe-project-highlight-image
-      margin: 0 20px 0 0
-      flex-grow: 1
-      display: flex
-      justify-content: flex-end
-      align-items: flex-end
-      width: 50%
-      min-height: 650px
+      align-self: flex-end
+      overflow: hidden
       > img
         width: auto
-        height: 500px
-
-      @media(max-width: 720px)
+        height: 600px
+      @media(max-width: 840px)
         display: none
-
     > div.tribe-cms
-      margin: 0 0 0 20px
-      @media(max-width: 720px)
-        margin: 0
-      flex-grow: 1
-      width: 50%
       $buttons-height: 40px
       $content-padding: 10px
       $title-height: 250px
       display: flex
       flex-direction: column
+      flex-shrink: 0
+      margin: 0 0 0 40px
+      @media(max-width: 840px)
+        flex-shrink: 1
+        margin: 0 20px 0 20px
+      @media(max-width: 360px)
+        margin: 0 5px 0 5px
+      width: 800px
+
       *
         color: $tomitribe-white
       > div.tribe-title
@@ -74,19 +70,12 @@ section.tribe-project-highlight
           color: $tomitribe-white
         *
           margin-top: 10px
-          line-height: 1.2
           &:first-child
             margin-top: 0
-        ul
-          line-height: 1
-          *
-            line-height: 1
         p, ul
           margin-bottom: 15px
           &:last-child
             margin-bottom: 0
-        p
-          max-width: 500px
       > div.tribe-buttons
         height: $buttons-height
         display: flex

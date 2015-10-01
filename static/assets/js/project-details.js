@@ -31,12 +31,19 @@ angular.module('tribe-project-details', ['tribe-app-service'])
                         $timeout(function () {
                             $element.find('pre.highlight').each(function () {
                                 var preEl = $(this);
-                                var codeEl = preEl.find('code.language-java');
+                                preEl.find('code').addClass('hljs').css('font-family', 'courier, monospace');
+                                var codeEl = preEl.find('code.language-java, code.language-xml');
+                                $timeout(function () {
+                                    $scope.$apply();
+                                }, 0);
                                 if (codeEl.length) {
                                     codeEl.each(function () {
                                         hljs.highlightBlock(this);
                                     });
                                 }
+                                $timeout(function () {
+                                    $scope.$apply();
+                                }, 0);
                             });
                         });
                     }

@@ -5,7 +5,7 @@ section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
         .tribe-tweet
             p {{tweet.text}}
             a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
-            p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}} @TOMITRIBE
+            p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}}
         .tribe-arrows
             div(class="tribe-icon tribe-icon-images-sprite_arrow", ng-click="onClick('left')")
             div(class="tribe-icon tribe-icon-images-sprite_arrow tribe-right", ng-click="onClick()")
