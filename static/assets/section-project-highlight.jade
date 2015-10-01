@@ -1,8 +1,6 @@
 section(ng-controller="ProjectHighlightController", class="tribe-project-highlight")
     .tribe-background
     .tribe-project-highlight-content
-        .tribe-project-highlight-image
-            img(ng-src="data:image/png;base64,{{highligtedProject.snapshot}}")
         .tribe-cms
             .tribe-title
                 div
@@ -13,3 +11,6 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
             .tribe-buttons
                 a(href="projects/{{highligtedProject.name}}") Learn more
                 a(href="projects") All projects
+        .tribe-project-highlight-image
+            img(ng-src="data:image/png;base64,{{highligtedProject.snapshot}}")
+

@@ -49,7 +49,10 @@ $title-h4-font-size: $title-h1-font-size / 2
         font-size: $title-h1-font-size
         font-weight: 300
         color: $tomitribe-white
+        line-height: 1
         > span
+          line-height: 1
+          font-size: $title-h1-font-size
           font-weight: bold
           color: $tomitribe-white
 
@@ -58,19 +61,19 @@ $title-h4-font-size: $title-h1-font-size / 2
         color: $tomitribe-orange
 
       @media (max-height: 800px)
-        > h1
+        > h1, > h1 span
           font-size: $title-h1-font-size - $title-h1-font-size * .2
         > h4
           font-size: $title-h4-font-size - $title-h4-font-size * .2
 
       @media (max-height: 750px)
-        > h1
+        > h1, > h1 span
           font-size: $title-h1-font-size - $title-h1-font-size * .3
         > h4
           font-size: $title-h4-font-size - $title-h4-font-size * .3
 
       @media (max-height: 500px)
-        > h1
+        > h1, > h1 span
           font-size: $title-h1-font-size - $title-h1-font-size * .4
         > h4
           font-size: $title-h4-font-size - $title-h4-font-size * .4

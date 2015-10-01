@@ -1,12 +1,12 @@
 @import "variables"
 
 > header
-  min-height: $tribe-header-height - 20vh
+  min-height: $tribe-header-height
   @media (max-width: 700px) and (max-height: 450px)
     min-height: 100vh
   @media (max-width: 450px) and (max-height: 700px)
     min-height: 100vh
-  padding: 40px 150px 40px 150px
+  padding: 40px 150px 0 150px
   @media (max-width: 1000px)
     padding: 40px 40px 0 40px
   @media (max-width: 700px)
@@ -25,9 +25,7 @@
     flex-wrap: wrap
     width: 100%
     min-height: 66px
-    margin-bottom: 130px
-    @media screen and (max-height: 600px)
-      margin-bottom: 100px
+    margin-bottom: 70px
     @media screen and (max-height: 400px)
       margin-bottom: 50px
   > div.tribe-contributors-title
@@ -38,7 +36,7 @@
       border-bottom: solid $tomitribe-orange 1px
       margin-bottom: 10px
     > h1
-      text-transform: capitalize
+      text-transform: uppercase
       font-size: $title-h1-font-size
       margin-top: 30px
       margin-bottom: 30px
