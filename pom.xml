@@ -9,7 +9,6 @@
         <version>5</version>
     </parent>
 
-    <groupId>com.tomitribe</groupId>
     <artifactId>tomitribe-io-www</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
