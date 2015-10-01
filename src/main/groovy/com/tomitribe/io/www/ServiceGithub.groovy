@@ -24,7 +24,6 @@ class ServiceGithub {
 
     private Logger logger = Logger.getLogger('tribeio.github')
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create()
-    private String token = System.getenv()['github_atoken']
 
     private Set<DtoProject> projects
     private Set<DtoContributor> contributors
@@ -44,10 +43,10 @@ class ServiceGithub {
     }
 
     def getContributors(String projectName) {
-        def url = "https://api.github.com/repos/tomitribe/$projectName/contributors?access_token=$token"
-        new JsonSlurper().parseText(http.getUrlContent(url)).collect {
+        def url = "https://api.github.com/repos/tomitribe/$projectName/contributors"
+        new JsonSlurper().parseText(http.getUrlContentWithToken(url)).collect {
             def githubContributor = new JsonSlurper().parseText(
-                    http.getUrlContent("https://api.github.com/users/${it.login}?access_token=$token")
+                    http.getUrlContentWithToken("https://api.github.com/users/${it.login}")
             )
             [
                     contributor  : new DtoContributor(
@@ -94,8 +93,8 @@ class ServiceGithub {
             [(it.project), it.tags]
         }
         while (true) {
-            def pageUrl = "https://api.github.com/orgs/tomitribe/repos?page=${page++}&per_page=20&access_token=$token"
-            def json = new JsonSlurper().parseText(http.getUrlContent(pageUrl))
+            def pageUrl = "https://api.github.com/orgs/tomitribe/repos?page=${page++}&per_page=20"
+            def json = new JsonSlurper().parseText(http.getUrlContentWithToken(pageUrl))
             if (!json) {
                 break
             }
@@ -106,7 +105,7 @@ class ServiceGithub {
                     return emptyProject
                 }
                 List<String> tags = new JsonSlurper().parseText(
-                        http.getUrlContent("https://api.github.com/repos/tomitribe/${it.name}/tags?access_token=$token")
+                        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/${it.name}/tags")
                 ).collect({ it.name })
                 tags.add(0, 'master') // all projects contain a master branch
                 String release = tags.find({ publishedTags.contains(it) })

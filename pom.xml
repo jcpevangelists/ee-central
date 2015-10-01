@@ -13,14 +13,19 @@
     <artifactId>tomitribe-io-www</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>tomitribe-io-www</name>
+    <name>Tomitribe :: IO :: Website</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <tomee.version>1.7.2</tomee.version>
         <openejb.version>4.7.2</openejb.version>
-        <javaee.api>6.0-5</javaee.api>
+        <javaee.api>6.0-6</javaee.api>
         <groovy.version>2.4.4</groovy.version>
+
+        <frontend.skip>false</frontend.skip>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.openejb</groupId>
@@ -75,7 +80,10 @@
                 <version>${tomee.version}</version>
                 <configuration>
                     <context>ROOT</context>
-                    <tomeeClassifier>plus</tomeeClassifier>
+                    <tomeeGroupId>com.tomitribe.tribestream</tomeeGroupId>
+                    <tomeeArtifactId>tribestream</tomeeArtifactId>
+                    <tomeeVersion>0.71</tomeeVersion>
+                    <tomeeClassifier>ignore</tomeeClassifier>
                 </configuration>
             </plugin>
             <plugin>
@@ -133,8 +141,51 @@
                     <skip>true</skip> <!-- FIXME -->
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.26</version>
+                <executions>
+                  <execution>
+                      <id>install-node-and-npm</id>
+                    <phase>generate-resources</phase>
+                      <goals>
+                          <goal>install-node-and-npm</goal>
+                      </goals>
+                      <configuration>
+                          <nodeVersion>v0.12.4</nodeVersion>
+                          <npmVersion>2.10.1</npmVersion>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>npm-install</id>
+                    <phase>generate-resources</phase>
+                      <goals>
+                          <goal>npm</goal>
+                      </goals>
+                      <configuration>
+                          <arguments>install</arguments>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>gulp-build</id>
+                      <phase>generate-resources</phase>
+                      <goals>
+                          <goal>gulp</goal>
+                      </goals>
+                      <configuration>
+                          <arguments>build</arguments>
+                      </configuration>
+                  </execution>
+                </executions>
+                <configuration>
+                    <installDirectory>target/frontend-work</installDirectory>
+                    <workingDirectory>static</workingDirectory>
+                    <skip>${frontend.skip}</skip> <!-- each execution uses a diff system prop, just merge them -->
+                </configuration>
+            </plugin>
         </plugins>
-        <finalName>tomitribe-io</finalName>
+        <finalName>tomitribe-io</finalName> <!-- FIXME: keep default -->
     </build>
 
     <repositories>

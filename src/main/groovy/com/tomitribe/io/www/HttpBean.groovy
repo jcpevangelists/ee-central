@@ -8,15 +8,15 @@ import java.util.logging.Logger
 
 class HttpBean {
     private Logger logger = Logger.getLogger('tribeio.http')
-    private String token = System.getenv()['github_atoken']
+    private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 
-    String getUrlContent(String path) {
-        path.toURL().getText(StandardCharsets.UTF_8.name())
+    String getUrlContentWithToken(String path) {
+        (path + (path.contains('?') ? '&' : '?') + "access_token=$token").toURL().getText(StandardCharsets.UTF_8.name())
     }
 
     def loadGithubResourceJson(String projectName, String release, String resourceName) {
         def url = "https://api.github.com/repos/tomitribe/$projectName/contents/$resourceName?access_token=$token&ref=$release"
-        new JsonSlurper().parseText(getUrlContent(url))
+        new JsonSlurper().parseText(getUrlContentWithToken(url))
     }
 
     String loadGithubResourceEncoded(String projectName, String release, String resourceName) {

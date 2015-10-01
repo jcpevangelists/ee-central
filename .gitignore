@@ -3,3 +3,5 @@
 target/
 static/node_modules/
 src/main/webapp/app
+npm-debug.log
+node_tmp

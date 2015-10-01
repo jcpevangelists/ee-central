@@ -18,10 +18,8 @@ class GithubTest extends Specification {
     def "getting the list of contributors"() {
         setup:
         def http = Mock(HttpBean)
-        def token = 'my_secret'
         def projectName = 'myproject'
         def srv = new ServiceGithub(
-                token: token,
                 http: http
         )
         def contributorsJson = JsonOutput.toJson([[login: "my_user", avatar_url: 'http://dummy/avatar.png']])
@@ -30,8 +28,8 @@ class GithubTest extends Specification {
         def contributors = srv.getContributors(projectName)
 
         then:
-        http.getUrlContent("$restReposPrefix/$projectName/contributors?access_token=$token") >> contributorsJson
-        http.getUrlContent("https://api.github.com/users/my_user?access_token=$token") >> '{"name": "my user name"}'
+        http.getUrlContentWithToken("$restReposPrefix/$projectName/contributors") >> contributorsJson
+        http.getUrlContentWithToken("https://api.github.com/users/my_user") >> '{"name": "my user name"}'
         contributors.size() == 1
         contributors[0].contributor == new DtoContributor(
                 name: 'my user name',
@@ -47,7 +45,6 @@ class GithubTest extends Specification {
         def asciidoctor = Mock(Asciidoctor)
         def timerService = Mock(TimerService)
         def srv = new ServiceGithub(
-                token: token,
                 http: http,
                 asciidoctor: asciidoctor,
                 timerService: timerService
@@ -65,10 +62,10 @@ class GithubTest extends Specification {
         http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml') >>
                 this.getClass().getResource('/published_docs.yaml').getText(StandardCharsets.UTF_8.name())
 
-        http.getUrlContent("https://api.github.com/orgs/tomitribe/repos?page=1&per_page=20&access_token=$token") >> projectJson
-        http.getUrlContent("https://api.github.com/orgs/tomitribe/repos?page=2&per_page=20&access_token=$token") >> '[]'
+        http.getUrlContentWithToken("https://api.github.com/orgs/tomitribe/repos?page=1&per_page=20") >> projectJson
+        http.getUrlContentWithToken("https://api.github.com/orgs/tomitribe/repos?page=2&per_page=20") >> '[]'
 
-        http.getUrlContent("https://api.github.com/repos/tomitribe/my-cool-project/tags?access_token=$token") >> JsonOutput.toJson([[name: "v0.0.1"], [name: "v0.0.1-beta"]])
+        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/my-cool-project/tags") >> JsonOutput.toJson([[name: "v0.0.1"], [name: "v0.0.1-beta"]])
 
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/snapshot.png") >> 'my_snapshot.png'
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/icon.png") >> 'my_icon.png'
@@ -81,9 +78,9 @@ class GithubTest extends Specification {
 
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/short_description.txt") >> 'my_short_description'
 
-        http.getUrlContent("https://api.github.com/repos/tomitribe/my-cool-project/contributors?access_token=$token") >> getClass().getResource('/contributors.json').getText(StandardCharsets.UTF_8.name())
+        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/my-cool-project/contributors") >> getClass().getResource('/contributors.json').getText(StandardCharsets.UTF_8.name())
 
-        http.getUrlContent("https://api.github.com/users/my_login?access_token=$token") >> getClass().getResource('/my_login_contributor.json').getText(StandardCharsets.UTF_8.name())
+        http.getUrlContentWithToken("https://api.github.com/users/my_login") >> getClass().getResource('/my_login_contributor.json').getText(StandardCharsets.UTF_8.name())
 
         projects.size() == 1
         projects[0] == new DtoProject(
