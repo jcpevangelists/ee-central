@@ -16,6 +16,23 @@ class RestPictures {
     @Inject
     private ServicePictures servicePictures
 
+    @Inject
+    private ServiceProjects serviceProjects
+
+    @GET
+    @Path('/project/snapshot/{projectName}')
+    Response getProjectSnapshot(@PathParam("projectName") String projectName) {
+        def builder = Response.ok(
+                serviceProjects.projects.find({ it.name == projectName }).snapshot.decodeBase64(),
+                new MimetypesFileTypeMap().getContentType('snapshot.png')
+        )
+        def cc = new CacheControl()
+        cc.setPrivate(false)
+        cc.setMaxAge(TimeUnit.DAYS.toSeconds(1) as Integer)
+        builder.cacheControl(cc)
+        builder.build()
+    }
+
     @GET
     @Path('/about/{image}')
     Response getAboutPicture(@PathParam("image") String image) {
