@@ -3,7 +3,8 @@ section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
         .tribe-section-separator
         h1 Twitter latest updates
         .tribe-tweet
-            p {{tweet.text}}
+            .tribe-tweet-text
+                p {{tweet.text}}
             a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
             p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}}
         .tribe-arrows
