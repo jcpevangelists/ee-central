@@ -5,7 +5,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
         .tribe-sidebar
             .tribe-releases
                 h4 releases & documentation
-                div
+                div.tribe-releases
                     table
                         tbody
                             tr
@@ -15,6 +15,12 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                                 td {{tag}}
                                 td
                                     a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") ref
+                div.tribe-separator
+                    div
+                div.tribe-github-links
+                    a(href="https://github.com/tomitribe/{{project.name}}") source code
+                    span and
+                    a(href="https://github.com/tomitribe/{{project.name}}/issues") known issues
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list
