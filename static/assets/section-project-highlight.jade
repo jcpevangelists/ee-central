@@ -12,5 +12,5 @@ section(ng-controller="ProjectHighlightController", class="tribe-project-highlig
                 a(href="projects/{{highligtedProject.name}}") Learn more
                 a(href="projects") All projects
         .tribe-project-highlight-image
-            img(ng-src="data:image/png;base64,{{highligtedProject.snapshot}}")
+            img(ng-src="rest/images/project/snapshot/{{highligtedProject.name}}")
 

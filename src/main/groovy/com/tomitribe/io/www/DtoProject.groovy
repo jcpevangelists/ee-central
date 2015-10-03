@@ -25,7 +25,6 @@ class DtoProject {
     @XmlElement
     String longDescription
 
-    @XmlElement
     String snapshot
 
     @XmlElement
