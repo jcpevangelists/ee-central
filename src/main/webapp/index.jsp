@@ -40,6 +40,21 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
+<script>
+    // Google Analytics
+    (function() {
+        try {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-38816470-2', 'auto');
+            ga('send', 'pageview');
+        } catch(e) {
+            window.console.log(e);
+        }
+    }());
+</script>
 <ng-view autoscroll="true"></ng-view>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script type="text/javascript" src="thirdparty/highlight/highlight.pack.js"></script>
