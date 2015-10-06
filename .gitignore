@@ -2,6 +2,7 @@
 .idea
 target/
 static/node_modules/
+static/bower_components/
 src/main/webapp/app
 npm-debug.log
 node_tmp
