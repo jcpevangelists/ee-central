@@ -12,6 +12,7 @@ var sprity = require('sprity');
 var gulpif = require('gulp-if');
 var gulpsync = require('gulp-sync')(gulp);
 var watch = require('gulp-watch');
+var bower = require('gulp-bower');
 
 gulp.task('jade', function () {
     return gulp.src('./assets/**/*.jade')
@@ -21,7 +22,15 @@ gulp.task('jade', function () {
         .pipe(gulp.dest('../src/main/webapp/app/'))
 });
 
-gulp.task('css', gulpsync.sync(['sass', 'autoprefixer']));
+gulp.task('css', gulpsync.sync(['css-build', 'css-third-party']));
+gulp.task('css-build', gulpsync.sync(['sass', 'autoprefixer']));
+gulp.task('css-third-party', function () {
+    return gulp.src([
+        './bower_components/normalize-css/normalize.css',
+        './bower_components/font-awesome/css/font-awesome.css',
+        './bower_components/highlight/src/styles/default.css'
+    ]).pipe(concat('third-party.css')).pipe(gulp.dest('../src/main/webapp/app/style/'));
+});
 
 gulp.task('sass', function () {
     return gulp.src('./assets/**/*.sass')
@@ -51,8 +60,21 @@ gulp.task('sprites', function () {
     }).pipe(gulpif('*.png', gulp.dest('../src/main/webapp/app/images'), gulp.dest('../src/main/webapp/app/style/')));
 });
 
-gulp.task('js', gulpsync.sync(['copy-js', 'uglify']));
+gulp.task('bower', function () {
+    return bower();
+});
 
+gulp.task('js', gulpsync.sync(['js-build', 'js-third-party']));
+gulp.task('js-build', gulpsync.sync(['copy-js', 'uglify']));
+gulp.task('js-third-party', function () {
+    return gulp.src([
+        './bower_components/underscore/underscore-min.js',
+        './bower_components/highlight/src/highlight.js',
+        './bower_components/jquery/dist/jquery.min.js',
+        './bower_components/angular/angular.min.js',
+        './bower_components/angular-route/angular-route.min.js'
+    ]).pipe(concat('third-party.js')).pipe(gulp.dest('../src/main/webapp/app/js/'));
+});
 gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
         .pipe(gulp.dest('../src/main/webapp/app/'));
@@ -80,7 +102,7 @@ gulp.task('copy-to-target', function () {
         .pipe(gulp.dest('../target/apache-tomee/webapps/' + applicationContext + '/app/'));
 });
 
-gulp.task('build', gulpsync.sync(['clean', 'jade', 'css', 'images', 'js', 'copy-to-target']));
+gulp.task('build', gulpsync.sync(['clean', 'bower', 'jade', 'css', 'images', 'js', 'copy-to-target']));
 gulp.task('default', ['build'], function () {
     gulp.watch('./assets/**/*', ['build']);
 });

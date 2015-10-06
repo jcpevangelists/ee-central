@@ -2,7 +2,12 @@
   "name": "tomitribe.io",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "1.4.5",
-    "angular-route": "1.4.5"
+    "jquery": "2.1.4",
+    "highlight": "8.8.0",
+    "underscore": "1.8.3",
+    "angular": "1.4.7",
+    "angular-route": "1.4.7",
+    "normalize-css": "normalize.css#3.0.3",
+    "font-awesome": "4.4.0"
   }
 }
