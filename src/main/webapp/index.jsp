@@ -31,8 +31,7 @@
     </script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic,300"/>
     <link rel="stylesheet" href="app/style/third-party.css"/>
-    <link rel="stylesheet" href="app/style/sprite.css"/>
-    <link rel="stylesheet" href="app/style/main.css"/>
+    <link rel="stylesheet" href="app/style/app.css"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
