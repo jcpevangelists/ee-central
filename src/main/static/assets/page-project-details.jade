@@ -1,0 +1,43 @@
+div(ng-controller="ProjectDetailsController", class="tribe-project-details")
+    include header-project-details
+    section
+        div(ng-bind-html="project.documentation", class="tribe-content", prism)
+        .tribe-sidebar
+            .tribe-releases
+                h4 releases & documentation
+                div.tribe-releases
+                    table
+                        tbody
+                            tr
+                                th release
+                                th doc
+                            tr(ng-repeat="tag in project.tags")
+                                td {{tag}}
+                                td
+                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") ref
+                div.tribe-separator
+                    div
+                div.tribe-github-links
+                    a(href="https://github.com/tomitribe/{{project.name}}") source code
+                    span and
+                    a(href="https://github.com/tomitribe/{{project.name}}/issues") known issues
+            .tribe-contributors
+                h4 Cool people that helped make this happen
+                .tribe-contributors-list
+                    a(ng-repeat="contributor in project.contributors", href="https://github.com/{{contributor.login}}/")
+                        img(ng-src="{{contributor.avatarUrl}}")
+            .tribe-other-projects
+                h4 Other projects
+                article(ng-repeat="project in otherProjects")
+                    a(href="projects/{{project.name}}")
+                        img(ng-src="data:image/png;base64,{{project.icon}}")
+                        div
+                            h4 {{project.friendlyName ? project.friendlyName : project.name}}
+            .tribe-project-share
+                h4 Share with friends
+                div
+                    div(ng-click="openPopup('https://twitter.com/intent/tweet?text=Check out http:' + baseFullPath + 'projects/' + project.name)")
+                        i.fa.fa-twitter
+                    div(ng-click="openPopup('http://www.facebook.com/sharer/sharer.php?u=http:' + baseFullPath + 'projects/' + project.name)")
+                        i.fa.fa-facebook
+include footer

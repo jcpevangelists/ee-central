@@ -1,0 +1,9 @@
+header
+    .tribe-logo
+        a(href=".").tribe-icon.tribe-icon-images-sprite_tomi-opensource-logo
+        include section-menu
+    .tribe-project-name
+        div
+            img(ng-src="data:image/png;base64,{{project.icon}}")
+        h1 {{project.friendlyName ? project.friendlyName : project.name}}
+        p {{project.shortDescription}}

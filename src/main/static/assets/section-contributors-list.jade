@@ -1,0 +1,30 @@
+section(ng-controller="ContributorsListController", class="tribe-contributors-list")
+    .tribe-section-separator
+    h1 meet the contributors
+    p.
+        The heroes who carved out precious time in the lives to create and contribute to the Tomitribe.IO community.
+        Great minds think alike, so where’s your code?
+    div
+        article(ng-repeat="contributor in contributors")
+            img(ng-src="{{contributor.avatarUrl}}")
+            h3 {{contributor.name}}
+            h4 {{contributor.company ? contributor.company : '-'}}
+            h5 {{contributor.location ? contributor.location : '-'}}
+            .tribe-social-links
+                div
+                    a(href="https://github.com/{{contributor.login}}")
+                        i.fa.fa-github
+                div(ng-if="contributor.twitter")
+                    a(href="https://twitter.com/{{contributor.twitter}}")
+                        i.fa.fa-twitter
+                div(ng-if="contributor.linkedin")
+                    a(href="https://www.linkedin.com/in/{{contributor.linkedin}}")
+                        i.fa.fa-linkedin
+                div(ng-if="contributor.googlePlus")
+                    a(href="https://plus.google.com/{{contributor.googlePlus}}/posts")
+                        i.fa.fa-google-plus
+            .tribe-contributor-title-separator
+            .tribe-user-projects
+                div(ng-repeat="contributions in contributor.contributions")
+                    a(href="projects/{{contributions.project.name}}")
+                        img(ng-src="data:image/png;base64,{{contributions.project.icon}}")

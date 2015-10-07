@@ -1,0 +1,12 @@
+section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
+    div
+        .tribe-section-separator
+        h1 Twitter latest updates
+        .tribe-tweet
+            .tribe-tweet-text
+                p {{tweet.text}}
+            a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
+            p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}}
+        .tribe-arrows
+            div(class="tribe-icon tribe-icon-images-sprite_arrow", ng-click="onClick('left')")
+            div(class="tribe-icon tribe-icon-images-sprite_arrow tribe-right", ng-click="onClick()")

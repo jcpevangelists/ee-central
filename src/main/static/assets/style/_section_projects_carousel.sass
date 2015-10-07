@@ -1,0 +1,118 @@
+@import "variables"
+
+section.tribe-projects
+  background-color: rgb(247, 247, 247)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding-left: 10px
+  padding-right: 10px
+  a
+    text-decoration: none
+  > div:first-child
+    max-width: 960px
+    padding-top: 60px
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    display: flex
+    > h1, > p
+      text-align: center
+    > h1
+      text-transform: uppercase
+      padding-top: 30px
+      padding-bottom: 30px
+    > p
+      font-size: 20px
+      padding-bottom: 60px
+      max-width: 700px
+  > div:nth-child(2)
+    max-width: 1090px
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    > .tribe-icon-images-sprite_arrow
+      font-size: 2em
+      color: rgb(212, 216, 219)
+      transition: opacity .2s
+      opacity: 0.5
+      &:hover
+        opacity: 1
+      &:first-child
+        margin-right: 30px
+      &:last-child
+        margin-left: 30px
+        transform: rotate(180deg)
+      @media (max-width: 450px)
+        &:first-child
+          margin-right: 5px
+        &:last-child
+          margin-left: 5px
+
+      &:hover
+        cursor: pointer
+        color: $tomitribe-black
+
+    > div.tribe-projects-caroussel
+      width: 1000px
+      @media (max-width: 1120px)
+        width: 640px
+      @media (max-width: 780px)
+        width: 304px
+      @media (max-width: 400px)
+        width: 254px
+      @media (max-width: 340px)
+        width: 204px
+
+      overflow-x: hidden
+      > div
+        width: 2000px
+        display: flex
+        article
+          border: 2px solid white
+          border-bottom-color: $tomitribe-orange
+          &:hover
+            border: solid $tomitribe-orange 2px
+          margin-right: 30px
+          width: 295px
+          @media (max-width: 400px)
+            width: 250px
+          @media (max-width: 340px)
+            width: 200px
+          flex-direction: column
+          background-color: white
+          > a
+            color: $tomitribe-black
+            > div
+              width: 90px
+              margin: 0 auto
+              border-bottom: solid $tomitribe-orange 2px
+              padding: 28px 0 30px 0
+              margin-bottom: 30px
+              > img
+                width: auto
+                height: 80px
+            > h3
+              text-transform: uppercase
+              margin: 0 0 30px 0
+              text-align: center
+              font-weight: normal
+              width: 100%
+            > p
+              text-align: center
+              margin: 0 10px 30px 10px
+
+  > a
+    color: $tomitribe-orange
+    border: solid $tomitribe-black 2px
+    padding: 20px 70px 20px 70px
+    margin: 50px 0 50px 0
+    text-transform: uppercase
+    font-size: 12px
+    font-weight: normal
+    &:hover
+      color: $tomitribe-white
+      background-color: $tomitribe-black
+      cursor: pointer
