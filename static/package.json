@@ -23,7 +23,8 @@
     "gulp-watch": "4.3.5",
     "jstransformer-marked": "1.0.1",
     "bower": "1.5.3",
-    "gulp-bower": "0.0.10"
+    "gulp-bower": "0.0.10",
+    "gulp-jslint": "0.2.2"
   },
   "engine": "node >= 0.12.7"
 }

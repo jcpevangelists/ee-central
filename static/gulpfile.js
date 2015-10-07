@@ -13,6 +13,7 @@ var gulpif = require('gulp-if');
 var gulpsync = require('gulp-sync')(gulp);
 var watch = require('gulp-watch');
 var bower = require('gulp-bower');
+var jslint = require('gulp-jslint');
 
 gulp.task('jade', function () {
     return gulp.src('./assets/**/*.jade')
@@ -74,7 +75,24 @@ gulp.task('bower', function () {
 });
 
 gulp.task('js', gulpsync.sync(['js-build', 'js-third-party']));
-gulp.task('js-build', gulpsync.sync(['copy-js', 'uglify']));
+gulp.task('js-build', gulpsync.sync(['lint', 'copy-js', 'uglify']));
+gulp.task('lint', function () {
+    return gulp.src('./assets/**/*.js')
+        .pipe(jslint({
+            node: false,
+            evil: false,
+            nomen: true,
+            vars: true,
+            global: [],
+            predef: ['angular', '_', 'window', '$', 'hljs'],
+            reporter: 'default',
+            edition: '2014-07-08',
+            // specify whether or not
+            // to show 'PASS' messages
+            // for built-in reporter
+            errorsOnly: false
+        }));
+});
 gulp.task('js-third-party', function () {
     return gulp.src([
         './bower_components/underscore/underscore-min.js',
