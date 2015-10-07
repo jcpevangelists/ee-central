@@ -196,7 +196,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>tomitribe-io</finalName> <!-- FIXME: keep default -->
     </build>
 
     <repositories>
