@@ -192,3 +192,7 @@ When you execute `mvn frontend:karma`, a browser window will popup.
 == How to update the application on production?
 
 Please follow the infra documentation: https://github.com/tomitribe/infra/blob/master/tomitribe-io-www/README.adoc
+
+== How to publish a project?
+
+Please follow the configuration documentation: https://github.com/tomitribe/tomitribe.io.config/blob/master/README.adoc
