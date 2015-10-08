@@ -4,12 +4,8 @@ It features the most relevant opensource projects and tools developed with the h
 
 == How to build and run the application locally?
 
-You will need a tomitribe github access token and a system property with this value.
-
-[source, bash]
-----
-export github_atoken=TOKEN_HERE
-----
+You will need a tomitribe github access token. You can use this value as a environment value (*github_atoken*) or
+a system property (*io.github.token*). If both are set, *io.github.token* will be used.
 
 If you don't have a token, ask link:https://tomitribe.slack.com/messages/@theresa[Theresa] for it.
 
