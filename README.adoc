@@ -17,8 +17,8 @@ http://localhost:8080/
 This application heavily depends on link:https://nodejs.org/[node.js] and link:http://gulpjs.com/[gulp] to build all the
 static resources. These tools will execute tons of actions not yet available in the java world; at least not as handy
 as available on node.js. The good news is that we don't need to worry about a thing. It will feel like any regular
-maven project. `mvn clean install tomee:run` will do all the heavy lifting for us. It downloads all the dependencies
-and executes node.js and gulp for us. It will also start the tomee server at the port 8080.
+maven project. `mvn clean install tomee:run` will perform all the heavy lifting. It downloads the dependencies
+and executes node.js, gulp and the tomee server.
 
 == What about front-end development?
 
@@ -147,6 +147,52 @@ tveronezi@ubatuba:tomitribe.io$ mvn frontend:gulp
 [INFO] [10:49:49] Finished 'sync group6:1' after 82 ms
 [INFO] [10:49:49] Starting 'default'...
 [INFO] [10:49:49] Finished 'default' after 43 ms
+----
+
+== Unit testing
+
+We have two types of tests: backend and frontend. The frontend testing
+is somewhat special because it uses link:http://karma-runner.github.io/0.13/index.html[karma]. It's transparent for
+the devepolers because both tests are triggered by the same `mvn clean install`.
+
+Sometimes we are interested on frontend testing only. We can do it by executing the karma from the *src/main/static*
+directory.
+
+----
+tveronezi@ubatuba:static$ karma start
+08 10 2015 09:49:24.069:WARN [karma]: No captured browser, open http://localhost:9876/
+08 10 2015 09:49:24.079:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
+08 10 2015 09:49:24.085:INFO [launcher]: Starting browser PhantomJS
+08 10 2015 09:49:24.324:INFO [PhantomJS 1.9.8 (Linux 0.0.0)]: Connected on socket 4nOw6FtTfivMpvr7AAAA with id 42779858
+PhantomJS 1.9.8 (Linux 0.0.0): Executed 1 of 1 SUCCESS (0.04 secs / 0.008 secs)
+----
+
+The default browser is PhantonJS. In order to debug with the help of a real browser, uncomment this line in
+link:https://github.com/tomitribe/tomitribe.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
+
+[source:javascript]
+----
+// start these browsers
+// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+browsers: [
+    // 'Chrome', // uncomment me for local unit testing [not in a headless server]
+    'PhantomJS'
+],
+----
+
+When you execute `karma start`, a browser window will popup.
+
+=== Installing karma for direct use
+
+In order to be able to call *karma* from your command line, you will need to install it.
+
+----
+sudo npm install karma@0.13.10 -g
+sudo npm install karma-jasmine@0.3.6 -g
+sudo npm install phantomjs@1.9.18 -g
+sudo npm install karma-phantomjs-launcher@0.2.1 -g
+sudo npm install karma-chrome-launcher@0.2.1 -g
+sudo npm install karma-spec-reporter@0.0.20 -g
 ----
 
 == How to update the application on production?
