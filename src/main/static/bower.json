@@ -7,6 +7,7 @@
     "underscore": "1.8.3",
     "angular": "1.4.7",
     "angular-route": "1.4.7",
+    "angular-mocks": "1.4.7",
     "normalize-css": "normalize.css#3.0.3",
     "font-awesome": "4.4.0"
   }

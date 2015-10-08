@@ -24,7 +24,15 @@
     "jstransformer-marked": "1.0.1",
     "bower": "1.5.3",
     "gulp-bower": "0.0.10",
-    "gulp-jslint": "0.2.2"
+    "gulp-jslint": "0.2.2",
+    "gulp-jasmine": "2.1.0",
+    "karma": "0.13.10",
+    "karma-jasmine": "0.3.6",
+    "phantomjs": "1.9.18",
+    "karma-phantomjs-launcher": "0.2.1",
+    "karma-chrome-launcher": "0.2.1",
+    "karma-spec-reporter": "0.0.20",
+    "gulp-karma": "0.0.5"
   },
   "engine": "node >= 0.12.7"
 }

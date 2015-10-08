@@ -14,6 +14,7 @@ var gulpsync = require('gulp-sync')(gulp);
 var watch = require('gulp-watch');
 var bower = require('gulp-bower');
 var jslint = require('gulp-jslint');
+var KarmaServer = require('karma').Server;
 
 gulp.task('jade', function () {
     return gulp.src('./assets/**/*.jade')
@@ -35,32 +36,26 @@ gulp.task('css-third-party', function () {
 gulp.task('css-third-party-resources', function () {
     return gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/fonts'));
 });
-
 gulp.task('sass', function () {
     return gulp.src('./assets/**/*.sass')
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(gulp.dest('../../../target/static-resources/app/'));
 });
-
 gulp.task('autoprefixer', function () {
     return gulp.src('../../../target/static-resources/app/style/main.css')
         .pipe(autoprefixer({}))
         .pipe(gulp.dest('../../../target/static-resources/app/style/'));
 });
-
 gulp.task('css-concat', function () {
     return gulp.src(['../../../target/static-resources/app/style/sprite.css', '../../../target/static-resources/app/style/main.css'])
         .pipe(concat('app.css'))
         .pipe(gulp.dest('../../../target/static-resources/app/style/'))
 });
-
 gulp.task('images', gulpsync.sync(['copy-images', 'sprites']));
-
 gulp.task('copy-images', function () {
     return gulp.src(['./assets/**/*.png', './assets/**/*.jpg'])
         .pipe(gulp.dest('../../../target/static-resources/app/'));
 });
-
 gulp.task('sprites', function () {
     return sprity.src({
         src: './assets/**/sprite_*.{png,jpg}',
@@ -74,7 +69,13 @@ gulp.task('bower', function () {
     return bower();
 });
 
-gulp.task('js', gulpsync.sync(['js-build', 'js-third-party']));
+gulp.task('js', gulpsync.sync(['js-test', 'js-build', 'js-third-party']));
+gulp.task('js-test', function (done) {
+    new KarmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
 gulp.task('js-build', gulpsync.sync(['lint', 'copy-js', 'uglify']));
 gulp.task('lint', function () {
     return gulp.src('./assets/**/*.js')
