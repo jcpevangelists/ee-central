@@ -101,11 +101,11 @@ gulp.task('lint', function () {
 });
 gulp.task('js-third-party', function () {
     return gulp.src([
-        './bower_components/underscore/underscore-min.js',
+        './bower_components/underscore/underscore.js',
         './bower_components/highlight/src/highlight.js',
-        './bower_components/jquery/dist/jquery.min.js',
-        './bower_components/angular/angular.min.js',
-        './bower_components/angular-route/angular-route.min.js'
+        './bower_components/jquery/dist/jquery.js',
+        './bower_components/angular/angular.js',
+        './bower_components/angular-route/angular-route.js'
     ]).pipe(concat('third-party.js')).pipe(gulp.dest('../../../target/static-resources/app/js/'));
 });
 gulp.task('copy-js', function () {
