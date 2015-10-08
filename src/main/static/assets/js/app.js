@@ -24,9 +24,10 @@
                 requireBase: false
             });
         }])
-        .controller('HeaderImageController', ['$element', function ($element) {
-            $(window).scroll(function () {
-                var step = $(this).scrollTop();
+        .controller('HeaderImageController', ['$element', '$window', function ($element, $window) {
+            var el = $($window);
+            el.scroll(function () {
+                var step = el.scrollTop();
                 $element.css({
                     'transform': 'translateY(' + (step / 3) + 'px)'
                 });
