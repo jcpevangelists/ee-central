@@ -195,7 +195,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <karmaConfPath>src/main/static/karma.conf.js</karmaConfPath>
+                            <karmaConfPath>karma.conf.js</karmaConfPath>
                         </configuration>
                     </execution>
                 </executions>
