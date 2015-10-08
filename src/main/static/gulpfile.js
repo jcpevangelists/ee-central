@@ -15,6 +15,7 @@ var watch = require('gulp-watch');
 var bower = require('gulp-bower');
 var jslint = require('gulp-jslint');
 var KarmaServer = require('karma').Server;
+var es = require('event-stream');
 
 gulp.task('jade', function () {
     return gulp.src('./assets/**/*.jade')
@@ -28,13 +29,17 @@ gulp.task('css', gulpsync.sync(['css-build', 'css-third-party', 'css-third-party
 gulp.task('css-build', gulpsync.sync(['sass', 'autoprefixer', 'css-concat']));
 gulp.task('css-third-party', function () {
     return gulp.src([
+        './bower_components/lato/css/lato.css',
         './bower_components/normalize-css/normalize.css',
         './bower_components/font-awesome/css/font-awesome.css',
         './bower_components/highlight/src/styles/default.css'
     ]).pipe(concat('third-party.css')).pipe(gulp.dest('../../../target/static-resources/app/style/'));
 });
 gulp.task('css-third-party-resources', function () {
-    return gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/fonts'));
+    return es.concat(
+        gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/fonts')),
+        gulp.src('./bower_components/lato/font/**/*').pipe(gulp.dest('../../../target/static-resources/app/font'))
+    );
 });
 gulp.task('sass', function () {
     return gulp.src('./assets/**/*.sass')
