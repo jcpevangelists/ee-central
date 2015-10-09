@@ -18,8 +18,8 @@
             });
         }])
         .controller('ProjectHighlightController', [
-            '$scope', '$timeout', '$sce', 'tribeAppService',
-            function ($scope, $timeout, $sce, tribeAppService) {
+            '$scope', '$sce', 'tribeAppService',
+            function ($scope, $sce, tribeAppService) {
                 tribeAppService.whenReady(function (data) {
                     var projects = _.values(data.projects);
                     // crest is hardcoded as the only highlighted project for now TODO
@@ -34,15 +34,12 @@
                         snapshot: project.snapshot,
                         icon: project.icon
                     };
-                    $timeout(function () {
-                        $scope.$apply();
-                    }, 0);
                 });
             }
         ])
         .controller('ProjectsCarousselController', [
-            '$element', 'tribeAppService', '$scope', '$timeout',
-            function ($element, tribeAppService, $scope, $timeout) {
+            '$element', 'tribeAppService', '$scope',
+            function ($element, tribeAppService, $scope) {
                 tribeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
                 });
