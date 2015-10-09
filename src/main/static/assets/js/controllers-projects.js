@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-projects', ['tribe-app-service'])
+    angular.module('tribe-projects', ['tribe-app-service', 'ngRoute'])
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/projects', {
+                templateUrl: 'app/page-projects.html'
+            });
+        }])
         .controller('ProjectsController', ['tribeAppService', '$scope', '$timeout',
             function (tribeAppService, $scope, $timeout) {
                 $scope.openPopup = function (url) {

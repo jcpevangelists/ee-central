@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-project-details', ['tribe-app-service'])
+    angular.module('tribe-project-details', ['tribe-app-service', 'ngRoute'])
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/projects/:project', {
+                templateUrl: 'app/page-project-details.html'
+            });
+        }])
         .controller('ProjectDetailsController', [
             '$scope', '$routeParams', '$sce', '$timeout', 'tribeAppService',
             function ($scope, $routeParams, $sce, $timeout, tribeAppService) {

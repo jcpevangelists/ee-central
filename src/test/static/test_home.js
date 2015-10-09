@@ -1,5 +1,5 @@
-describe("test suite: module: tribeio", function () {
-    beforeEach(module('tribeio'));
+describe("test suite: home page", function () {
+    beforeEach(module('tribe-controllers-home'));
 
     it("contains spec with an expectation", function () {
         var controller;
@@ -32,5 +32,6 @@ describe("test suite: module: tribeio", function () {
         expect(JSON.stringify(cssValue)).toBe(JSON.stringify({
             'transform': 'translateY(1px)'
         }));
+        expect(true).toBe(true);
     });
 });

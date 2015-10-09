@@ -78,8 +78,11 @@ gulp.task('js', gulpsync.sync(['js-test', 'js-build', 'js-third-party']));
 gulp.task('js-test', function (done) {
     new KarmaServer({
         configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, done).start();
+        singleRun: true,
+        autoWatch: false
+    }, function() {
+        done(); // avoiding karma to shutdown watch on test failures.
+    }).start();
 });
 gulp.task('js-build', gulpsync.sync(['lint', 'copy-js', 'uglify']));
 gulp.task('lint', function () {
@@ -93,10 +96,7 @@ gulp.task('lint', function () {
             predef: ['angular', '_', 'window', '$', 'hljs'],
             reporter: 'default',
             edition: '2014-07-08',
-            // specify whether or not
-            // to show 'PASS' messages
-            // for built-in reporter
-            errorsOnly: false
+            errorsOnly: true
         }));
 });
 gulp.task('js-third-party', function () {
@@ -137,5 +137,8 @@ gulp.task('copy-to-target', function () {
 
 gulp.task('build', gulpsync.sync(['clean', 'bower', 'jade', 'images', 'css', 'js']));
 gulp.task('default', gulpsync.sync(['build', 'copy-to-target']), function () {
-    gulp.watch('./assets/**/*', gulpsync.sync(['build', 'copy-to-target']));
+    gulp.watch(
+        ['./assets/**/*', '../../test/**/*.js'],
+        gulpsync.sync(['build', 'copy-to-target'])
+    );
 });
