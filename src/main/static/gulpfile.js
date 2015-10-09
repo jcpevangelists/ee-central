@@ -80,24 +80,26 @@ gulp.task('js-test', function (done) {
         configFile: __dirname + '/karma.conf.js',
         singleRun: true,
         autoWatch: false
-    }, function() {
+    }, function () {
         done(); // avoiding karma to shutdown watch on test failures.
     }).start();
 });
 gulp.task('js-build', gulpsync.sync(['lint', 'copy-js', 'uglify']));
 gulp.task('lint', function () {
-    return gulp.src('./assets/**/*.js')
-        .pipe(jslint({
+    return gulp.src('./assets/**/*.js').pipe(jslint({
             node: false,
             evil: false,
             nomen: true,
             vars: true,
+            unparam: true,
             global: [],
             predef: ['angular', '_', 'window', '$', 'hljs'],
-            reporter: 'default',
             edition: '2014-07-08',
-            errorsOnly: true
-        }));
+            errorsOnly: true,
+        }).on('error', function () {
+            // no-op
+        })
+    );
 });
 gulp.task('js-third-party', function () {
     return gulp.src([

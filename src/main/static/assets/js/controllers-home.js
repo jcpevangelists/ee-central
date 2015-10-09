@@ -45,36 +45,32 @@
             function ($element, tribeAppService, $scope, $timeout) {
                 tribeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
-                    $timeout(function () {
-                        $scope.$apply();
-                    }, 0);
                 });
-                var carousel = $element.find('div.tribe-projects-caroussel > div').first();
-                $scope.onClick = function (dir) {
-                    var article;
-                    if ('left' === dir) {
-                        article = $element.find('article:last-child');
-                        article.detach();
-                        article.prependTo(carousel);
-                    } else {
-                        article = $element.find('article:first-child');
-                        article.detach();
-                        article.appendTo(carousel);
-                    }
-                    $timeout(function () {
-                        $scope.$apply();
-                    }, 0);
-                };
             }
         ])
-        .directive('scrollToTop', ['$timeout', function ($timeout) {
+        .directive('tribeProjectsCarousel', [function () {
             return {
-                link: function ($scope) {
-                    $scope.scrollToTop = function () {
-                        $timeout(function () {
-                            $("html, body").animate({scrollTop: 0}, "slow");
-                        });
-                    };
+                link: function ($scope, $element) {
+                    var carousel = $element.find('div.tribe-projects-caroussel > div').first();
+                    $element.find('div:first-child').bind('click', function () {
+                        var article = $element.find('article:last-child');
+                        article.detach();
+                        article.prependTo(carousel);
+                    });
+                    $element.find('div:last-child').bind('click', function () {
+                        var article = $element.find('article:first-child');
+                        article.detach();
+                        article.appendTo(carousel);
+                    });
+                }
+            };
+        }])
+        .directive('tribeScrollToTop', [function () {
+            return {
+                link: function ($scope, $element) {
+                    $element.bind('click', function () {
+                        angular.element('html, body').animate({scrollTop: 0}, "slow");
+                    });
                 }
             };
         }]);
