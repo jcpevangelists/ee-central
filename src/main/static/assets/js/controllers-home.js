@@ -9,7 +9,7 @@
             });
         }])
         .controller('HeaderImageController', ['$element', '$window', function ($element, $window) {
-            var el = $($window);
+            var el = angular.element($window);
             el.scroll(function () {
                 var step = el.scrollTop();
                 $element.css({
