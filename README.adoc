@@ -110,14 +110,14 @@ tveronezi@ubatuba:tomitribe.io$ mvn frontend:gulp
 [INFO] [10:49:48] Starting 'sync group3:0'...
 [INFO] [10:49:48] Starting 'sync group4:0'...
 [INFO] [10:49:48] Starting 'lint'...
-[INFO] [10:49:48]        assets/js/app-service.js
+[INFO] [10:49:48]        assets/js/services-app.js
 [INFO] [10:49:48]        assets/js/app.js
-[INFO] [10:49:48]        assets/js/contributors.js
-[INFO] [10:49:48]        assets/js/project-details.js
-[INFO] [10:49:48]        assets/js/project-highlight.js
-[INFO] [10:49:48]        assets/js/projects-carousel.js
-[INFO] [10:49:48]        assets/js/projects.js
-[INFO] [10:49:48]        assets/js/twitter.js
+[INFO] [10:49:48]        assets/js/controllers-contributors.js
+[INFO] [10:49:48]        assets/js/controllers-project-details.js
+[INFO] [10:49:48]        assets/js/controllers-project-highlight.js
+[INFO] [10:49:48]        assets/js/controllers-projects-carousel.js
+[INFO] [10:49:48]        assets/js/controllers-projects.js
+[INFO] [10:49:48]        assets/js/controllers-twitter.js
 [INFO] [10:49:48] Finished 'lint' after 127 ms
 [INFO] [10:49:48] Finished 'sync group4:0' after 129 ms
 [INFO] [10:49:48] Starting 'sync group4:1'...

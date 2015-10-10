@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-contributors', ['tribe-app-service'])
+    angular.module('tribe-contributors', ['tribe-app-service', 'ngRoute'])
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/contributors', {
+                templateUrl: 'app/page-contributors.html'
+            });
+        }])
         .controller('ContributorsListController', [
             '$scope', '$timeout', 'tribeAppService',
             function ($scope, $timeout, tribeAppService) {

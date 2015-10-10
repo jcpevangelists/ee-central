@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-project-details', ['tribe-app-service'])
+    angular.module('tribe-project-details', ['tribe-app-service', 'ngRoute'])
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/projects/:project', {
+                templateUrl: 'app/page-project-details.html'
+            });
+        }])
         .controller('ProjectDetailsController', [
             '$scope', '$routeParams', '$sce', '$timeout', 'tribeAppService',
             function ($scope, $routeParams, $sce, $timeout, tribeAppService) {
@@ -10,15 +15,12 @@
                 };
                 tribeAppService.whenReady(function (data) {
                     var project = data.projects[$routeParams.project];
-                    $scope.baseFullPath = $('head base').first().attr('href');
+                    $scope.baseFullPath = angular.element('head base').first().attr('href');
                     $scope.project = _.clone(project);
                     $scope.project.documentation = $sce.trustAsHtml(project.documentation);
                     $scope.otherProjects = _.filter(_.values(data.projects), function (item) {
                         return item.name !== project.name;
                     });
-                    $timeout(function () {
-                        $scope.$apply();
-                    }, 0);
                 });
             }
         ])

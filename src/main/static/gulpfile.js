@@ -32,13 +32,12 @@ gulp.task('css-third-party', function () {
         './bower_components/lato/css/lato.css',
         './bower_components/normalize-css/normalize.css',
         './bower_components/font-awesome/css/font-awesome.css',
-        './bower_components/highlight/src/styles/default.css'
-    ]).pipe(concat('third-party.css')).pipe(gulp.dest('../../../target/static-resources/app/style/'));
+    ]).pipe(concat('source.css')).pipe(gulp.dest('../../../target/static-resources/app/third-party/style'));
 });
 gulp.task('css-third-party-resources', function () {
     return es.concat(
-        gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/fonts')),
-        gulp.src('./bower_components/lato/font/**/*').pipe(gulp.dest('../../../target/static-resources/app/font'))
+        gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/third-party/fonts')),
+        gulp.src('./bower_components/lato/font/**/*').pipe(gulp.dest('../../../target/static-resources/app/third-party/font'))
     );
 });
 gulp.task('sass', function () {
@@ -78,35 +77,36 @@ gulp.task('js', gulpsync.sync(['js-test', 'js-build', 'js-third-party']));
 gulp.task('js-test', function (done) {
     new KarmaServer({
         configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, done).start();
+        singleRun: true,
+        autoWatch: false
+    }, function () {
+        done(); // avoiding karma to shutdown watch on test failures.
+    }).start();
 });
 gulp.task('js-build', gulpsync.sync(['lint', 'copy-js', 'uglify']));
 gulp.task('lint', function () {
-    return gulp.src('./assets/**/*.js')
-        .pipe(jslint({
+    return gulp.src('./assets/**/*.js').pipe(jslint({
             node: false,
             evil: false,
             nomen: true,
             vars: true,
+            unparam: true,
             global: [],
             predef: ['angular', '_', 'window', '$', 'hljs'],
-            reporter: 'default',
             edition: '2014-07-08',
-            // specify whether or not
-            // to show 'PASS' messages
-            // for built-in reporter
-            errorsOnly: false
-        }));
+            errorsOnly: true,
+        }).on('error', function () {
+            // no-op
+        })
+    );
 });
 gulp.task('js-third-party', function () {
     return gulp.src([
         './bower_components/underscore/underscore.js',
-        './bower_components/highlight/src/highlight.js',
         './bower_components/jquery/dist/jquery.js',
         './bower_components/angular/angular.js',
         './bower_components/angular-route/angular-route.js'
-    ]).pipe(concat('third-party.js')).pipe(gulp.dest('../../../target/static-resources/app/js/'));
+    ]).pipe(concat('source.js')).pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
 });
 gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
@@ -137,5 +137,8 @@ gulp.task('copy-to-target', function () {
 
 gulp.task('build', gulpsync.sync(['clean', 'bower', 'jade', 'images', 'css', 'js']));
 gulp.task('default', gulpsync.sync(['build', 'copy-to-target']), function () {
-    gulp.watch('./assets/**/*', gulpsync.sync(['build', 'copy-to-target']));
+    gulp.watch(
+        ['./assets/**/*', '../../test/**/*.js'],
+        gulpsync.sync(['build', 'copy-to-target'])
+    );
 });
