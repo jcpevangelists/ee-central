@@ -15,15 +15,12 @@
                 };
                 tribeAppService.whenReady(function (data) {
                     var project = data.projects[$routeParams.project];
-                    $scope.baseFullPath = $('head base').first().attr('href');
+                    $scope.baseFullPath = angular.element('head base').first().attr('href');
                     $scope.project = _.clone(project);
                     $scope.project.documentation = $sce.trustAsHtml(project.documentation);
                     $scope.otherProjects = _.filter(_.values(data.projects), function (item) {
                         return item.name !== project.name;
                     });
-                    $timeout(function () {
-                        $scope.$apply();
-                    }, 0);
                 });
             }
         ])

@@ -38,8 +38,8 @@
             }
         ])
         .controller('ProjectsCarousselController', [
-            '$element', 'tribeAppService', '$scope',
-            function ($element, tribeAppService, $scope) {
+            'tribeAppService', '$scope',
+            function (tribeAppService, $scope) {
                 tribeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
                 });

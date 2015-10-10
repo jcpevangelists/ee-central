@@ -32,13 +32,12 @@ gulp.task('css-third-party', function () {
         './bower_components/lato/css/lato.css',
         './bower_components/normalize-css/normalize.css',
         './bower_components/font-awesome/css/font-awesome.css',
-        './bower_components/highlight/src/styles/default.css'
-    ]).pipe(concat('third-party.css')).pipe(gulp.dest('../../../target/static-resources/app/style/'));
+    ]).pipe(concat('source.css')).pipe(gulp.dest('../../../target/static-resources/app/third-party/style'));
 });
 gulp.task('css-third-party-resources', function () {
     return es.concat(
-        gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/fonts')),
-        gulp.src('./bower_components/lato/font/**/*').pipe(gulp.dest('../../../target/static-resources/app/font'))
+        gulp.src('./bower_components/font-awesome/fonts/*').pipe(gulp.dest('../../../target/static-resources/app/third-party/fonts')),
+        gulp.src('./bower_components/lato/font/**/*').pipe(gulp.dest('../../../target/static-resources/app/third-party/font'))
     );
 });
 gulp.task('sass', function () {
@@ -104,11 +103,10 @@ gulp.task('lint', function () {
 gulp.task('js-third-party', function () {
     return gulp.src([
         './bower_components/underscore/underscore.js',
-        './bower_components/highlight/src/highlight.js',
         './bower_components/jquery/dist/jquery.js',
         './bower_components/angular/angular.js',
         './bower_components/angular-route/angular-route.js'
-    ]).pipe(concat('third-party.js')).pipe(gulp.dest('../../../target/static-resources/app/js/'));
+    ]).pipe(concat('source.js')).pipe(gulp.dest('../../../target/static-resources/app/third-party/'));
 });
 gulp.task('copy-js', function () {
     return gulp.src('./assets/**/*.js')
