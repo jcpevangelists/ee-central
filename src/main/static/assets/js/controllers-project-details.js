@@ -10,12 +10,8 @@
         .controller('ProjectDetailsController', [
             '$scope', '$routeParams', '$sce', 'tribeAppService',
             function ($scope, $routeParams, $sce, tribeAppService) {
-                $scope.openPopup = function (url) {
-                    window.open(url, 'name', 'width=600,height=400');
-                };
                 tribeAppService.whenReady(function (data) {
                     var project = data.projects[$routeParams.project];
-                    $scope.baseFullPath = angular.element('head base').first().attr('href');
                     $scope.project = _.clone(project);
                     $scope.project.documentation = $sce.trustAsHtml(project.documentation);
                     $scope.otherProjects = _.filter(_.values(data.projects), function (item) {
