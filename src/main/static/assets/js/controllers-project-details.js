@@ -8,8 +8,8 @@
             });
         }])
         .controller('ProjectDetailsController', [
-            '$scope', '$routeParams', '$sce', '$timeout', 'tribeAppService',
-            function ($scope, $routeParams, $sce, $timeout, tribeAppService) {
+            '$scope', '$routeParams', '$sce', 'tribeAppService',
+            function ($scope, $routeParams, $sce, tribeAppService) {
                 $scope.openPopup = function (url) {
                     window.open(url, 'name', 'width=600,height=400');
                 };
@@ -35,20 +35,11 @@
                         function () {
                             $timeout(function () {
                                 $element.find('pre.highlight').each(function () {
-                                    var preEl = $(this);
+                                    var preEl = angular.element(this);
                                     preEl.find('code').addClass('hljs');
-                                    var codeEl = preEl.find('code.language-java, code.language-xml');
-                                    $timeout(function () {
-                                        $scope.$apply();
-                                    }, 0);
-                                    if (codeEl.length) {
-                                        codeEl.each(function () {
-                                            hljs.highlightBlock(this);
-                                        });
-                                    }
-                                    $timeout(function () {
-                                        $scope.$apply();
-                                    }, 0);
+                                    preEl.find('code.language-java, code.language-xml').each(function () {
+                                        hljs.highlightBlock(this);
+                                    });
                                 });
                             });
                         }

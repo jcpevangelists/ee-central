@@ -33,7 +33,9 @@
     "karma-chrome-launcher": "0.2.1",
     "karma-spec-reporter": "0.0.20",
     "gulp-karma": "0.0.5",
-    "event-stream": "3.3.1"
+    "event-stream": "3.3.1",
+    "jasmine": "2.3.2",
+    "jasmine-core": "2.3.4"
   },
   "engine": "node >= 0.12.7"
 }
