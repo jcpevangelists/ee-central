@@ -21,17 +21,19 @@ describe("main app module share directive", function () {
             $rootScope.$digest();
             element.triggerHandler('click');
         };
-        spyOn($window, 'open');
+        var spy = spyOn($window, 'open');
         simulateClick('twitter');
         expect($window.open).toHaveBeenCalledWith(
             'https://twitter.com/intent/tweet?text=Check out http:' + $rootScope.baseFullPath + 'projects/my_project',
             'name', 'width=600,height=400'
         );
+        spy.calls.reset();
         simulateClick('facebook');
         expect($window.open).toHaveBeenCalledWith(
             'http://www.facebook.com/sharer/sharer.php?u=http:' + $rootScope.baseFullPath + 'projects/my_project',
             'name', 'width=600,height=400'
         );
+        spy.calls.reset();
         simulateClick('facebook-clone');
         expect($window.open).not.toHaveBeenCalled();
     });
