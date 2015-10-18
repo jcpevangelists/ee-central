@@ -208,6 +208,13 @@
         </plugins>
     </build>
 
+    <scm>
+        <url>scm:git:git@github.com:tomitribe/tomitribe.io.git</url>
+        <connection>scm:git:git@github.com:tomitribe/tomitribe.io.git</connection>
+        <developerConnection>scm:git:git@github.com:tomitribe/tomitribe.io.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <repositories>
         <repository>
             <id>tomitribe-all</id>
