@@ -10,13 +10,29 @@ class HttpBean {
     private Logger logger = Logger.getLogger('tribeio.http')
     private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 
+    URL getUrlWithToken(String path) {
+        (path + (path.contains('?') ? '&' : '?') + "access_token=$token").toURL()
+    }
+
     String getUrlContentWithToken(String path) {
-        (path + (path.contains('?') ? '&' : '?') + "access_token=$token").toURL().getText(StandardCharsets.UTF_8.name())
+        getUrlWithToken(path).getText(StandardCharsets.UTF_8.name())
     }
 
     def loadGithubResourceJson(String projectName, String release, String resourceName) {
         def url = "https://api.github.com/repos/tomitribe/$projectName/contents/$resourceName?access_token=$token&ref=$release"
         new JsonSlurper().parseText(getUrlContentWithToken(url))
+    }
+
+    String loadGithubResourceHtml(String projectName, String release, String resourceName) {
+        def url = "https://api.github.com/repos/tomitribe/$projectName/contents/$resourceName?access_token=$token&ref=$release"
+        try {
+            getUrlWithToken(url).getText(
+                    [requestProperties: [Accept: 'application/vnd.github.3.html']],
+                    StandardCharsets.UTF_8.name()
+            )
+        } catch (FileNotFoundException ignore) {
+            return ''
+        }
     }
 
     String loadGithubResourceEncoded(String projectName, String release, String resourceName) {

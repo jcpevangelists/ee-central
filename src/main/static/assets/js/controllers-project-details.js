@@ -19,28 +19,5 @@
                     });
                 });
             }
-        ])
-        .directive('prism', ['$timeout', function ($timeout) {
-            return {
-                restrict: 'A',
-                link: function ($scope, $element, $attrs) {
-                    $scope.$watch(
-                        function () {
-                            return $scope.$eval($attrs.ngBindHtml);
-                        },
-                        function () {
-                            $timeout(function () {
-                                $element.find('pre.highlight').each(function () {
-                                    var preEl = angular.element(this);
-                                    preEl.find('code').addClass('hljs');
-                                    preEl.find('code.language-java, code.language-xml').each(function () {
-                                        hljs.highlightBlock(this);
-                                    });
-                                });
-                            });
-                        }
-                    );
-                }
-            };
-        }]);
+        ]);
 }());

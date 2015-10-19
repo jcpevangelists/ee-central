@@ -1,7 +1,6 @@
 package com.tomitribe.io.www
 
 import groovy.json.JsonSlurper
-import org.asciidoctor.Asciidoctor
 import org.yaml.snakeyaml.Yaml
 
 import javax.annotation.PostConstruct
@@ -14,16 +13,11 @@ import javax.ejb.Timer
 import javax.ejb.TimerService
 import javax.inject.Inject
 import java.util.concurrent.TimeUnit
-import java.util.logging.Level
-import java.util.logging.Logger
 
 @Singleton
 @Lock(LockType.READ)
 class ServiceGithub {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
-
-    private Logger logger = Logger.getLogger('tribeio.github')
-    private Asciidoctor asciidoctor = Asciidoctor.Factory.create()
 
     private Set<DtoProject> projects
     private Set<DtoContributor> contributors
@@ -65,18 +59,6 @@ class ServiceGithub {
         }
     }
 
-    private String adocToHtml(String adoc) {
-        if (adoc) {
-            try {
-                return asciidoctor.render(adoc, [:])
-            } catch (exception) {
-                logger.log(Level.WARNING, 'Impossible to generate html from adoc.', exception)
-                logger.log(Level.FINE, adoc)
-            }
-        }
-        return ''
-    }
-
     @Timeout
     void update() {
         try {
@@ -114,13 +96,9 @@ class ServiceGithub {
                 }
                 def snapshot = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${it.name}/snapshot.png")
                 def icon = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${it.name}/icon.png")
-                def longDescription = adocToHtml(
-                        http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/long_description.adoc")
-                ).trim()
-                def documentation = adocToHtml(
-                        http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/documentation.adoc") ?:
-                                http.loadGithubResource(it.name as String, release, 'README.adoc')
-                ).trim()
+                def longDescription = http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/${it.name}/long_description.adoc").trim()
+                def documentation = http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/${it.name}/documentation.adoc").trim() ?:
+                        http.loadGithubResourceHtml(it.name as String, release, 'README.adoc')?.trim()
                 def shortDescription = (
                         http.loadGithubResource('tomitribe.io.config', 'master', "docs/${it.name}/short_description.txt")
                                 ?: it.description)?.trim()

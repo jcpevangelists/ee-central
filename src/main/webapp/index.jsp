@@ -29,8 +29,6 @@
             document.write("<base href='" + result + "' />");
         }());
     </script>
-    <!-- no bower for highlight (https://github.com/isagalaev/highlight.js/issues/182#issuecomment-29251147) -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css"/>
     <link rel="stylesheet" href="app/third-party/style/source.css"/>
     <link rel="stylesheet" href="app/style/app.css"/>
     <meta charset="UTF-8">
@@ -53,10 +51,6 @@
     }());
 </script>
 <ng-view autoscroll="true"></ng-view>
-<!-- no bower for highlight (https://github.com/isagalaev/highlight.js/issues/182#issuecomment-29251147) -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/java.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/bash.min.js"></script>
 <script type="text/javascript" src="app/third-party/source.js"></script>
 <script type="text/javascript" src="app/js/app.min.js"></script>
 </body>
