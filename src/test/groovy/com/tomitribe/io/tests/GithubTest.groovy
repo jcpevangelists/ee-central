@@ -5,14 +5,12 @@ import com.tomitribe.io.www.DtoProject
 import com.tomitribe.io.www.HttpBean
 import com.tomitribe.io.www.ServiceGithub
 import groovy.json.JsonOutput
-import org.asciidoctor.Asciidoctor
 import spock.lang.Specification
 
 import javax.ejb.TimerService
 import java.nio.charset.StandardCharsets
 
 class GithubTest extends Specification {
-    def rawUrlPrefix = 'https://raw.githubusercontent.com/tomitribe'
     def restReposPrefix = 'https://api.github.com/repos/tomitribe'
 
     def "getting the list of contributors"() {
@@ -42,11 +40,9 @@ class GithubTest extends Specification {
         setup:
         def http = Mock(HttpBean)
         def token = 'my_secret'
-        def asciidoctor = Mock(Asciidoctor)
         def timerService = Mock(TimerService)
         def srv = new ServiceGithub(
                 http: http,
-                asciidoctor: asciidoctor,
                 timerService: timerService
         )
 
@@ -70,11 +66,9 @@ class GithubTest extends Specification {
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/snapshot.png") >> 'my_snapshot.png'
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/icon.png") >> 'my_icon.png'
 
-        http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/long_description.adoc") >> 'my_long_description'
-        asciidoctor.render('my_long_description', _) >> '<p>my_long_description</p>'
+        http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project/long_description.adoc") >> '<p>my_long_description</p>'
 
-        http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/documentation.adoc") >> 'my_documentation'
-        asciidoctor.render('my_documentation', _) >> '<p>my_documentation</p>'
+        http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project/documentation.adoc") >> '<p>my_documentation</p>'
 
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/short_description.txt") >> 'my_short_description'
 
