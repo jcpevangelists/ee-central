@@ -39,7 +39,6 @@ class GithubTest extends Specification {
     def "getting the list of projects"() {
         setup:
         def http = Mock(HttpBean)
-        def token = 'my_secret'
         def timerService = Mock(TimerService)
         def srv = new ServiceGithub(
                 http: http,
@@ -96,5 +95,19 @@ class GithubTest extends Specification {
                 tags: ['v0.0.1']
         )
 
+    }
+
+    def "getting sorted list of projects"() {
+        setup:
+        def srv = new ServiceGithub()
+
+        when:
+        def projects = srv.sortMyConfigFile(
+                [[project: 'z'], [project: 'a'], [project: 'b']],
+                [[name: 'b'], [name: 'a'], [name: 'z']]
+        ).collect { it.name }
+
+        then:
+        projects == ['z', 'a', 'b']
     }
 }

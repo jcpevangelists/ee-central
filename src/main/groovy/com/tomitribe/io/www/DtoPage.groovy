@@ -15,7 +15,7 @@ class DtoPage {
     Set<DtoContributor> contributors
 
     @XmlElement
-    Set<DtoProject> projects
+    List<DtoProject> projects
 
     @XmlElement
     Set<DtoPicture> pictures

@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 class ServiceGithub {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
 
-    private Set<DtoProject> projects
+    private List<DtoProject> projects
     private Set<DtoContributor> contributors
     private Set<DtoContributions> contributions
 
@@ -59,6 +59,11 @@ class ServiceGithub {
         }
     }
 
+    private List<DtoProject> sortMyConfigFile(List publishedDocsConfiguration, List newProjects) {
+        def publishProjectsNames = publishedDocsConfiguration.collect { it.project }
+        return newProjects.sort { publishProjectsNames.indexOf(it.name) }
+    }
+
     @Timeout
     void update() {
         try {
@@ -70,8 +75,10 @@ class ServiceGithub {
         def newProjects = []
         Map<String, DtoContributor> newContributors = [:]
         Set<DtoContributions> newContributions = []
-        Map<String, Set<String>> publishedTagsMap = new Yaml().loadAll(
-                http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml')).collectEntries {
+        def publishedDocsConfiguration = new Yaml().loadAll(
+                http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml')
+        ).collect({ it })
+        Map<String, Set<String>> publishedTagsMap = publishedDocsConfiguration.collectEntries {
             [(it.project), it.tags]
         }
         while (true) {
@@ -123,13 +130,13 @@ class ServiceGithub {
                 )
             }).findAll { it != emptyProject })
         }
-        this.projects = newProjects
+        this.projects = sortMyConfigFile(publishedDocsConfiguration, newProjects)
         this.contributors = newContributors.values()
         this.contributions = newContributions
         timer = timerService.createTimer(UPDATE_INTERVAL, 'Reload ServiceGithub')
     }
 
-    Set<DtoProject> getProjects() {
+    List<DtoProject> getProjects() {
         projects
     }
 
