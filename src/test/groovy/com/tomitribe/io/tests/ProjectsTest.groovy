@@ -68,7 +68,7 @@ class ProjectsTest extends Specification {
         1 * em.createQuery('SELECT e FROM EntityProject e') >> query
         1 * query.resultList >> [queryResultProject]
         1 * timerService.createTimer(_, 'First time load documentation timer')
-        projects == [projectDto] as Set
+        projects == [projectDto]
     }
 
     def "update projects"() {

@@ -32,7 +32,7 @@ class ServiceProjects {
     @PersistenceContext(unitName = 'tribeio-pu')
     private EntityManager em
 
-    private Set<DtoProject> projects = []
+    private List<DtoProject> projects = []
 
     private Timer timer
 
@@ -114,7 +114,7 @@ class ServiceProjects {
     }
 
     @Lock(LockType.READ)
-    Set<DtoProject> getProjects() {
+    List<DtoProject> getProjects() {
         projects;
     }
 }
