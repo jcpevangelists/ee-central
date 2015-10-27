@@ -9,6 +9,7 @@
     "angular-mocks": "1.4.7",
     "normalize-css": "normalize.css#3.0.3",
     "font-awesome": "4.4.0",
-    "lato": "0.3.0"
+    "lato": "0.3.0",
+    "bootstrap-sass": "3.3.5"
   }
 }
