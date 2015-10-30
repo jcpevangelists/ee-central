@@ -27,16 +27,6 @@ section.tribe-menu
     &:hover
       color: $tomitribe-orange
 
-header
-  section.tribe-menu
-    > div
-      &:hover
-        > ul
-          display: block
-          > li
-            display: block
-            text-align: right
-
 @media (max-width: 660px)
   header
     section.tribe-menu
@@ -44,6 +34,12 @@ header
       top: 20px
       right: 20px
       div
+        &:hover
+          > ul
+            display: block
+            > li
+              display: block
+              text-align: right
         > .tribe-collapsed-menu
           display: block
         > ul
