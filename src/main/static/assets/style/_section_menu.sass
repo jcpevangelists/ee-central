@@ -7,6 +7,9 @@ section.tribe-menu
   justify-content: center
   align-items: center
   > div
+    display: flex
+    flex-direction: column
+    align-items: flex-end
     > .tribe-collapsed-menu
       > i
         color: $tomitribe-white
@@ -16,8 +19,6 @@ section.tribe-menu
       > li
         display: inline
     &:hover
-      > .tribe-collapsed-menu
-        display: none
       > ul
         display: block
         > li
@@ -43,10 +44,18 @@ section.tribe-menu
           display: block
         > ul
           background-color: transparentize($tomitribe-black, .2)
-          margin: 0
+          margin: 0 15px 0 0
           padding: 20px
           display: none
           > li
             > a
               margin: 0
               padding: 10px
+              font-size: 20px
+
+@media (max-width: 570px)
+  footer
+    section.tribe-menu
+      div
+        > ul
+          padding-left: 0
