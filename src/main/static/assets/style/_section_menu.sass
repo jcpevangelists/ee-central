@@ -6,11 +6,47 @@ section.tribe-menu
   text-transform: uppercase
   justify-content: center
   align-items: center
+  > div
+    > .tribe-collapsed-menu
+      > i
+        color: $tomitribe-white
+      display: none
+    > ul
+      list-style-type: none
+      > li
+        display: inline
+    &:hover
+      > .tribe-collapsed-menu
+        display: none
+      > ul
+        display: block
+        > li
+          display: block
+          text-align: right
 
-  > a
+  a
     margin: 10px
     font-size: 13px
     text-decoration: none
     color: $tomitribe-lightgray
     &:hover
       color: $tomitribe-orange
+
+@media (max-width: 660px)
+  header
+    section.tribe-menu
+      position: absolute
+      top: 20px
+      right: 20px
+      div
+        > .tribe-collapsed-menu
+          display: block
+        > ul
+          background-color: transparentize($tomitribe-black, .2)
+          margin: 0
+          padding: 20px
+          display: none
+          > li
+            > a
+              margin: 0
+              padding: 10px
