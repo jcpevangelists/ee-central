@@ -18,12 +18,6 @@ section.tribe-menu
       list-style-type: none
       > li
         display: inline
-    &:hover
-      > ul
-        display: block
-        > li
-          display: block
-          text-align: right
 
   a
     margin: 10px
@@ -32,6 +26,16 @@ section.tribe-menu
     color: $tomitribe-lightgray
     &:hover
       color: $tomitribe-orange
+
+header
+  section.tribe-menu
+    > div
+      &:hover
+        > ul
+          display: block
+          > li
+            display: block
+            text-align: right
 
 @media (max-width: 660px)
   header
