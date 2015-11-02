@@ -7,7 +7,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class HttpBean {
-    private Logger logger = Logger.getLogger('tribeio.http')
+    private Logger logger = Logger.getLogger('tribeio')
     private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 
     URL getUrlWithToken(String path) {
