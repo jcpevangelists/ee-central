@@ -33,11 +33,5 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                         img(ng-src="data:image/png;base64,{{project.icon}}")
                         div
                             h4 {{project.friendlyName ? project.friendlyName : project.name}}
-            .tribe-project-share
-                h4 Share with friends
-                div
-                    div(tribe-share-project="twitter")
-                        i.fa.fa-twitter
-                    div(tribe-share-project="facebook")
-                        i.fa.fa-facebook
+            include section-share-with-friends
 include footer
