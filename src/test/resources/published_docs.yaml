@@ -10,12 +10,10 @@ tags:
   - v0.0.1
 
 ---
-project: my-cool-project-bad-asciidoc
-tags:
-  - v0.0.1
+project: my-cool-project-no-listed-tag
 
 ---
-project: my-cool-project-no-config
+project: my-cool-project-no-long-description
 tags:
   - v0.0.1
 

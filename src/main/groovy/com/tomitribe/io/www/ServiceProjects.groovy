@@ -21,7 +21,7 @@ class ServiceProjects {
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
     public static final long FIRST_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(5)
 
-    private Logger logger = Logger.getLogger('tribeio.github')
+    private Logger logger = Logger.getLogger('tribeio')
 
     @Resource
     private TimerService timerService
