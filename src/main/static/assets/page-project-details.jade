@@ -21,6 +21,7 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                     a(href="https://github.com/tomitribe/{{project.name}}") source code
                     span and
                     a(href="https://github.com/tomitribe/{{project.name}}/issues") issue tracker
+            div(ng-bind-html="project.toc", class="tribe-content-toc", ng-show="project.toc")
             .tribe-contributors
                 h4 Cool people that helped make this happen
                 .tribe-contributors-list

@@ -16,8 +16,13 @@
                     var toc = originalEl.find('#user-content-toc');
                     toc.detach();
                     $scope.project.documentation = $sce.trustAsHtml(originalEl.html());
+                    $scope.project.toc = $sce.trustAsHtml(toc.html());
                     $timeout(function () {
-                        $anchorScroll($location.hash());
+                        var hashValue = $location.hash();
+                        if (!hashValue.startsWith('user-content-')) {
+                            hashValue = 'user-content-' + hashValue;
+                        }
+                        $anchorScroll(hashValue);
                     });
                     // uncomment this when implementing https://github.com/tomitribe/tomitribe.io/issues/72
                     //$templateRequest('app/section-share-with-friends-documentation.html').then(function (template) {
