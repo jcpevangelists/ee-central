@@ -1,5 +1,6 @@
 = https://tomitribe.io/
 :toc:
+:toc-placement: preamble
 
 It features the most relevant opensource projects and tools developed with the help of tribers and non-tribers.
 
