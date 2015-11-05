@@ -7,6 +7,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class HttpBean {
+    public static final String BASE_URL = "https://api.github.com"
     private Logger logger = Logger.getLogger('tribeio')
     private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 
@@ -19,12 +20,12 @@ class HttpBean {
     }
 
     def loadGithubResourceJson(String projectName, String release, String resourceName) {
-        def url = "https://api.github.com/repos/tomitribe/$projectName/contents/$resourceName?access_token=$token&ref=$release"
+        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?access_token=$token&ref=$release"
         new JsonSlurper().parseText(getUrlContentWithToken(url))
     }
 
     String loadGithubResourceHtml(String projectName, String release, String resourceName) {
-        def url = "https://api.github.com/repos/tomitribe/$projectName/contents/$resourceName?access_token=$token&ref=$release"
+        def url = "${BASE_URL}/repos/${ServiceGithub.DOCUMENTATION_ROOT}/$projectName/contents/$resourceName?access_token=$token&ref=$release"
         try {
             getUrlWithToken(url).getText(
                     [requestProperties: [Accept: 'application/vnd.github.3.html']],

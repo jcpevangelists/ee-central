@@ -44,7 +44,7 @@ class ServiceTwitter {
         } catch (ignore) {
             // no-op
         }
-        tweets = new Yaml().loadAll(http.loadGithubResource('tomitribe.io.config', 'master', 'tweets.yaml')).collect {
+        tweets = new Yaml().loadAll(http.loadGithubResource(ServiceGithub.CONFIG_PROJECT, 'master', 'tweets.yaml')).collect {
             new DtoTweet(
                     text: it.text,
                     author: it.author,

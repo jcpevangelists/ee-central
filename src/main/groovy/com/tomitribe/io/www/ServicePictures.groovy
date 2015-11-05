@@ -34,10 +34,12 @@ class ServicePictures {
 
     @Timeout
     void update() {
-        pictures = http.loadGithubResourceNames('tomitribe.io.config', 'master', 'pics').collect {
+        pictures = http.loadGithubResourceNames(ServiceGithub.CONFIG_PROJECT, 'master', 'pics').collect {
             def dto = new DtoPicture(
                     name: it,
-                    content: http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "pics/$it")
+                    content: http.loadGithubResourceEncoded(
+                            ServiceGithub.CONFIG_PROJECT, 'master', "pics/$it"
+                    )
             )
             picturesMap.put(it, dto)
             dto

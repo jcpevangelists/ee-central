@@ -18,6 +18,15 @@ import java.util.logging.Logger
 @Singleton
 @Lock(LockType.READ)
 class ServiceGithub {
+    public static final String DOCUMENTATION_ROOT = System.getProperty(
+            'io_config_root',
+            System.getenv()['io_config_root'] ?: 'tomitribe'
+    )
+
+    public static final String CONFIG_PROJECT = System.getProperty(
+            'io_config_project',
+            System.getenv()['io_config_project'] ?: 'tomitribe.io.config'
+    )
     private Logger logger = Logger.getLogger('tribeio')
 
     public static final int UPDATE_INTERVAL = TimeUnit.MINUTES.toMillis(60)
@@ -40,10 +49,10 @@ class ServiceGithub {
     }
 
     def getContributors(String projectName) {
-        def url = "https://api.github.com/repos/tomitribe/$projectName/contributors"
+        def url = HttpBean.BASE_URL + "/repos/${DOCUMENTATION_ROOT}/$projectName/contributors"
         new JsonSlurper().parseText(http.getUrlContentWithToken(url)).collect {
             def githubContributor = new JsonSlurper().parseText(
-                    http.getUrlContentWithToken("https://api.github.com/users/${it.login}")
+                    http.getUrlContentWithToken(HttpBean.BASE_URL + "/users/${it.login}")
             )
             [
                     contributor  : new DtoContributor(
@@ -85,13 +94,13 @@ class ServiceGithub {
         Map<String, DtoContributor> newContributors = [:]
         Set<DtoContributions> newContributions = []
         def publishedDocsConfiguration = new Yaml().loadAll(
-                http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml')
+                http.loadGithubResource(CONFIG_PROJECT, 'master', 'published_docs.yaml')
         ).collect({ it })
         Map<String, Set<String>> publishedTagsMap = publishedDocsConfiguration.collectEntries {
             [(it.project), it.tags]
         }
         publishedTagsMap.keySet().each { String projectName ->
-            def pageUrl = "https://api.github.com/repos/tomitribe/${projectName}"
+            def pageUrl = HttpBean.BASE_URL + "/repos/${DOCUMENTATION_ROOT}/${projectName}"
             def json = parseJsonText(http.getUrlContentWithToken(pageUrl))
             if (!json) {
                 logger.warning("${projectName} expected to be published but project does not exist.")
@@ -100,27 +109,27 @@ class ServiceGithub {
             Set<String> publishedTags = publishedTagsMap.get(json.name)
             if (!publishedTags) {
                 logger.warning("${projectName} expected to be published but it has no publishable tag. Please check " +
-                        "the https://github.com/tomitribe/tomitribe.io.config/blob/master/published_docs.yaml file.")
+                        "the ${HttpBean.BASE_URL}/${DOCUMENTATION_ROOT}/${CONFIG_PROJECT}/blob/master/published_docs.yaml file.")
                 return
             }
             List<String> tags = parseJsonText(
-                    http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/${json.name}/tags")
+                    http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/${json.name}/tags")
             ).collect({ it.name })
             tags.add(0, 'master') // all projects contain a master branch
             String release = tags.find({ publishedTags.contains(it) })
             if (!release) {
                 logger.warning("${projectName} expected to be published but actual project does not contain any tag " +
                         "listed in the " +
-                        "https://github.com/tomitribe/tomitribe.io.config/blob/master/published_docs.yaml file.")
+                        "${HttpBean.BASE_URL}/${DOCUMENTATION_ROOT}/${CONFIG_PROJECT}/blob/master/published_docs.yaml file.")
                 return
             }
-            def snapshot = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${json.name}/snapshot.png")
-            def icon = http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/${json.name}/icon.png")
-            def longDescription = http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/${json.name}/long_description.adoc")?.trim()
-            def documentation = http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/${json.name}/documentation.adoc")?.trim() ?:
+            def snapshot = http.loadGithubResourceEncoded(CONFIG_PROJECT, 'master', "docs/${json.name}/snapshot.png")
+            def icon = http.loadGithubResourceEncoded(CONFIG_PROJECT, 'master', "docs/${json.name}/icon.png")
+            def longDescription = http.loadGithubResourceHtml(CONFIG_PROJECT, 'master', "docs/${json.name}/long_description.adoc")?.trim()
+            def documentation = http.loadGithubResourceHtml(CONFIG_PROJECT, 'master', "docs/${json.name}/documentation.adoc")?.trim() ?:
                     http.loadGithubResourceHtml(json.name as String, release, 'README.adoc')?.trim()
             def shortDescription = (
-                    http.loadGithubResource('tomitribe.io.config', 'master', "docs/${json.name}/short_description.txt")
+                    http.loadGithubResource(CONFIG_PROJECT, 'master', "docs/${json.name}/short_description.txt")
                             ?: json.description)?.trim()
             if (!longDescription || !documentation || !shortDescription || !snapshot || !icon) {
                 logger.warning("${projectName} expected to be published but it has missing data. " +
