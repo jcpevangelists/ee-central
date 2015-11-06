@@ -7,7 +7,10 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class HttpBean {
-    public static final String BASE_URL = "https://api.github.com"
+    public static final String BASE_URL = System.getProperty(
+            'io_root_url',
+            System.getenv()['io_root_url'] ?: 'https://api.github.com'
+    )
     private Logger logger = Logger.getLogger('tribeio')
     private String token = System.getProperty("io.github.token", System.getenv()['github_atoken'])
 

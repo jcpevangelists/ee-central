@@ -22,7 +22,6 @@ class ServiceGithub {
             'io_config_root',
             System.getenv()['io_config_root'] ?: 'tomitribe'
     )
-
     public static final String CONFIG_PROJECT = System.getProperty(
             'io_config_project',
             System.getenv()['io_config_project'] ?: 'tomitribe.io.config'
@@ -140,6 +139,7 @@ class ServiceGithub {
                         "is icon empty? ${!icon};")
                 return
             }
+            def longDocumentation = http.loadGithubResourceHtml(json.name as String, release, 'documentation.adoc')?.trim()
             def projectContributors = getContributors(json.name as String)
             projectContributors.each { data ->
                 def projectContributor = data.contributor
@@ -154,7 +154,8 @@ class ServiceGithub {
                     icon: icon,
                     documentation: documentation,
                     contributors: projectContributors.collect { it.contributor },
-                    tags: tags.findAll({ publishedTags.contains(it) })
+                    tags: tags.findAll({ publishedTags.contains(it) }),
+                    longDocumentation: longDocumentation
             ))
         }
         this.projects = sortMyConfigFile(publishedDocsConfiguration, newProjects)

@@ -33,6 +33,8 @@ class DtoProject {
     @XmlElement
     String documentation
 
+    String longDocumentation
+
     @XmlElement
     Set<DtoContributor> contributors
 

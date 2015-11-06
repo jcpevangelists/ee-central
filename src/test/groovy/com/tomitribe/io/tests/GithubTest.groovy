@@ -11,7 +11,7 @@ import javax.ejb.TimerService
 import java.nio.charset.StandardCharsets
 
 class GithubTest extends Specification {
-    def restReposPrefix = 'https://api.github.com/repos/tomitribe'
+    def restReposPrefix = HttpBean.BASE_URL + '/repos/tomitribe'
 
     def "getting the list of contributors"() {
         setup:
@@ -27,7 +27,7 @@ class GithubTest extends Specification {
 
         then:
         http.getUrlContentWithToken("$restReposPrefix/$projectName/contributors") >> contributorsJson
-        http.getUrlContentWithToken("https://api.github.com/users/my_user") >> '{"name": "my user name"}'
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/users/my_user") >> '{"name": "my user name"}'
         contributors.size() == 1
         contributors[0].contributor == new DtoContributor(
                 name: 'my user name',
@@ -54,26 +54,26 @@ class GithubTest extends Specification {
         http.loadGithubResource('tomitribe.io.config', 'master', 'published_docs.yaml') >>
                 this.getClass().getResource('/published_docs.yaml').getText(StandardCharsets.UTF_8.name())
 
-        http.getUrlContentWithToken('https://api.github.com/repos/tomitribe/my-cool-project-no-release') >> JsonOutput.toJson([name: 'my-cool-project-no-release'])
-        http.getUrlContentWithToken('https://api.github.com/repos/tomitribe/my-cool-project-no-listed-tag') >> JsonOutput.toJson([name: 'my-cool-project-no-listed-tag'])
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project-no-release") >> JsonOutput.toJson([name: 'my-cool-project-no-release'])
+        http.getUrlContentWithToken(" ${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project-no-listed-tag") >> JsonOutput.toJson([name: 'my-cool-project-no-listed-tag'])
 
-        http.getUrlContentWithToken('https://api.github.com/repos/tomitribe/my-cool-project-no-long-description') >> JsonOutput.toJson([name: 'my-cool-project-no-long-description'])
-        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/my-cool-project-no-long-description/tags") >> JsonOutput.toJson([[name: "v0.0.1"]])
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project-no-long-description") >> JsonOutput.toJson([name: 'my-cool-project-no-long-description'])
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project-no-long-description/tags") >> JsonOutput.toJson([[name: "v0.0.1"]])
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project-no-long-description/snapshot.png") >> 'my_snapshot.png'
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project-no-long-description/icon.png") >> 'my_icon.png'
         http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project-no-long-description/documentation.adoc") >> '<p>my_documentation</p>'
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project-no-long-description/short_description.txt") >> 'my_short_description'
         // no long description -> http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project-no-long-description/long_description.adoc") >> '<p>my_long_description</p>'
 
-        http.getUrlContentWithToken('https://api.github.com/repos/tomitribe/my-cool-project') >> JsonOutput.toJson([name: 'my-cool-project'])
-        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/my-cool-project/tags") >> JsonOutput.toJson([[name: "v0.0.1"], [name: "v0.0.1-beta"]])
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project") >> JsonOutput.toJson([name: 'my-cool-project'])
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project/tags") >> JsonOutput.toJson([[name: "v0.0.1"], [name: "v0.0.1-beta"]])
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/snapshot.png") >> 'my_snapshot.png'
         http.loadGithubResourceEncoded('tomitribe.io.config', 'master', "docs/my-cool-project/icon.png") >> 'my_icon.png'
         http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project/long_description.adoc") >> '<p>my_long_description</p>'
         http.loadGithubResourceHtml('tomitribe.io.config', 'master', "docs/my-cool-project/documentation.adoc") >> '<p>my_documentation</p>'
         http.loadGithubResource('tomitribe.io.config', 'master', "docs/my-cool-project/short_description.txt") >> 'my_short_description'
-        http.getUrlContentWithToken("https://api.github.com/repos/tomitribe/my-cool-project/contributors") >> getClass().getResource('/contributors.json').getText(StandardCharsets.UTF_8.name())
-        http.getUrlContentWithToken("https://api.github.com/users/my_login") >> getClass().getResource('/my_login_contributor.json').getText(StandardCharsets.UTF_8.name())
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/repos/tomitribe/my-cool-project/contributors") >> getClass().getResource('/contributors.json').getText(StandardCharsets.UTF_8.name())
+        http.getUrlContentWithToken("${HttpBean.BASE_URL}/users/my_login") >> getClass().getResource('/my_login_contributor.json').getText(StandardCharsets.UTF_8.name())
 
         projects.size() == 1
         projects[0] == new DtoProject(
