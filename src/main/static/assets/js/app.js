@@ -7,7 +7,8 @@
         'tribe-projects',
         'tribe-contributors',
         'tribe-twitter',
-        'tribe-project-details'])
+        'tribe-project-details',
+        'tribe-project-long-documentation'])
         .config(['$locationProvider', function ($locationProvider) {
             $locationProvider.html5Mode({
                 enabled: true,

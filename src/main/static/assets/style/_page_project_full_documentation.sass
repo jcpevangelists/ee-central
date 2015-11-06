@@ -1,0 +1,53 @@
+@import "variables"
+
+div.tribe-project-documentation
+  $side-padding: 20px
+  > header, > header + section, div.tribe-footer-legal
+    padding: $side-padding
+  > div.tribe-footer-legal
+    padding: 0 $side-padding 0 $side-padding
+  > header
+    *
+      color: $tomitribe-white
+    background: url("../images/project-detail-background.jpg") no-repeat right bottom
+    background-size: cover
+    display: flex
+    flex-flow: column
+    > div.tribe-logo
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+      width: 100%
+      min-height: 66px
+      margin-bottom: 20px
+    > div.tribe-project-name
+      flex-grow: 1
+      display: flex
+      align-items: flex-end
+      *
+        line-height: 1
+      > p
+        margin: 0 0 0 20px
+      > div
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        > div
+          > img
+            width: auto
+            height: 80px
+            padding-bottom: 20px
+            margin-bottom: 20px
+            border-bottom: solid $tomitribe-orange 1px
+      $base-font-size: 20px
+      $title-h1-font-size: $base-font-size * 2
+      > h1
+        text-transform: uppercase
+        font-size: $title-h1-font-size
+      > p
+        font-size: $base-font-size
+
+
+  > section
+    > div.tribe-content
+      @import "page_project_details_documentation"
