@@ -1,5 +1,9 @@
 div(ng-controller="ProjectLongDocumentationController", class="tribe-project-documentation")
     include header-project-documentation
     section
+        .tribe-toc
+            h1 Table of Contents
+            div
+                div(ng-bind-html="toc")
         div(ng-bind-html="longDocumentation", class="tribe-content")
     include footer_legal

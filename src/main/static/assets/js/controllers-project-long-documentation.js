@@ -17,8 +17,9 @@
                         var originalEl = angular.element(data);
                         var toc = originalEl.find('#user-content-toc');
                         toc.detach();
+                        toc.find('#user-content-toctitle').detach();
                         $scope.longDocumentation = $sce.trustAsHtml(originalEl.html());
-                        $scope.project.toc = $sce.trustAsHtml(toc.html());
+                        $scope.toc = $sce.trustAsHtml(toc.html());
                         $timeout(function () {
                             var hashValue = $location.hash();
                             if (!hashValue.startsWith('user-content-')) {

@@ -2,6 +2,7 @@
 
 div.tribe-project-documentation
   $side-padding: 20px
+  background-color: $tomitribe-lightergray
   > header, > header + section, div.tribe-footer-legal
     padding: $side-padding
   > div.tribe-footer-legal
@@ -47,7 +48,43 @@ div.tribe-project-documentation
       > p
         font-size: $base-font-size
 
-
   > section
+    display: flex
+    > div.tribe-toc
+      margin-right: $side-padding
+      width: 250px
+      flex-shrink: 0
+      display: flex
+      flex-direction: column
+      a
+        text-decoration: none
+        color: $tomitribe-orange
+      > h1
+        font-size: 16px
+        font-weight: 700
+        padding: 0 0 $side-padding $side-padding
+        line-height: 1
+      > div
+        flex-grow: 1
+        position: relative
+        > div
+          background-color: $tomitribe-white
+          padding: $side-padding
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 0
+          right: 0
+          overflow-x: auto
+          *
+            white-space: nowrap
+          ul
+            margin: 0
+          > ul
+            list-style: none
+            padding: 0
     > div.tribe-content
       @import "page_project_details_documentation"
+      background-color: $tomitribe-white
+      padding: $side-padding
+      flex-grow: 1
