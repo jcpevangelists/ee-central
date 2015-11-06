@@ -38,7 +38,6 @@ class RestApplication {
         )
     }
 
-
     @GET
     @Path('/update')
     Response update() {

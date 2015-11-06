@@ -43,7 +43,7 @@ class ServiceContributors {
     Timer timer
 
     private Set<DtoContributor> getManagedContributors() {
-        new Yaml().loadAll(http.loadGithubResource('tomitribe.io.config', 'master', 'contributors.yaml')).collect {
+        new Yaml().loadAll(http.loadGithubResource(ServiceGithub.CONFIG_PROJECT, 'master', 'contributors.yaml')).collect {
             new DtoContributor(
                     login: it.login,
                     bio: it.bio,

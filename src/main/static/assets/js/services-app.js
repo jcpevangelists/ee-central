@@ -22,6 +22,11 @@
             }
 
             return {
+                loadLongDocumentation: function (projectName, callback) {
+                    $http.get('rest/project/' + projectName + '/long_documentation').success(function (data) {
+                        callback(data);
+                    });
+                },
                 whenReady: function (callback) {
                     getPromise.success(function (data) {
                         if (!result) {
@@ -30,7 +35,6 @@
                                 contributor.contributions = normalizeArray(contributor.contributions);
                             });
                             contributors = buildMap(contributors, 'login');
-
                             var projects = normalizeArray(data.dtoPage.projects);
                             _.each(projects, function (project) {
                                 project.contributors = _.map(normalizeArray(project.contributors), function (contributor) {
@@ -39,7 +43,6 @@
                                 project.tags = normalizeArray(project.tags);
                             });
                             projects = buildMap(projects, 'name');
-
                             _.each(_.values(contributors), function (contributor) {
                                 var commits = 0;
                                 _.each(contributor.contributions, function (contribution) {

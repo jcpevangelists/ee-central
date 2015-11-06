@@ -18,8 +18,10 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                 div.tribe-separator
                     div
                 div.tribe-github-links
+                    a(href="/projects/documentation/{{project.name}}") doc
+                    span ,
                     a(href="https://github.com/tomitribe/{{project.name}}") source code
-                    span and
+                    span.tribe-and and
                     a(href="https://github.com/tomitribe/{{project.name}}/issues") issue tracker
             div(ng-bind-html="project.toc", class="tribe-content-toc", ng-show="project.toc")
             .tribe-contributors

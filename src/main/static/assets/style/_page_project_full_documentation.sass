@@ -1,0 +1,113 @@
+@import "variables"
+
+div.tribe-project-documentation
+  height: 100vh
+  display: flex
+  flex-direction: column
+  $side-padding: 20px
+  background-color: $tomitribe-lightergray
+  > header, > header + section
+    padding: $side-padding
+  > header
+    flex-shrink: 0
+    *
+      color: $tomitribe-white
+    background: url("../images/project-detail-background.jpg") no-repeat right bottom
+    background-size: cover
+    display: flex
+    flex-flow: column
+    > div.tribe-logo
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+      width: 100%
+      min-height: 66px
+      margin-bottom: 20px
+    > div.tribe-project-name
+      flex-grow: 1
+      display: flex
+      align-items: flex-end
+      *
+        line-height: 1
+      > p
+        margin: 0 0 0 20px
+      > div
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        > div
+          > img
+            width: auto
+            height: 80px
+            padding-bottom: 20px
+            margin-bottom: 20px
+            border-bottom: solid $tomitribe-orange 1px
+      $base-font-size: 20px
+      $title-h1-font-size: $base-font-size * 2
+      > h1
+        text-transform: uppercase
+        font-size: $title-h1-font-size
+      > p
+        font-size: $base-font-size
+
+  > section.tribe-no-long-doc
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    > p
+      font-size: 20px
+
+  > section
+    flex-grow: 1
+    position: relative
+    margin: $side-padding
+    > div
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 0
+      left: 0
+      display: flex
+      > div.tribe-toc
+        margin-right: $side-padding
+        width: 250px
+        flex-shrink: 0
+        a
+          text-decoration: none
+          color: $tomitribe-orange
+        > div
+          height: 100%
+          display: flex
+          flex-direction: column
+          > h1
+            font-size: 16px
+            font-weight: 700
+            padding: 0 0 $side-padding ($side-padding / 2)
+            line-height: 1
+          > div
+            position: relative
+            flex-grow: 1
+            > div
+              background-color: $tomitribe-white
+              padding: $side-padding / 2
+              position: absolute
+              top: 0
+              bottom: 0
+              left: 0
+              right: 0
+              overflow: auto
+              *
+                white-space: nowrap
+              ul
+                margin: 0
+              > ul
+                list-style: none
+                padding: 0
+      > div.tribe-content
+        overflow-y: auto
+        > div
+          @import "page_project_details_documentation"
+        background-color: $tomitribe-white
+        padding: $side-padding
+        flex-grow: 1
