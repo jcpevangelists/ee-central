@@ -1,8 +1,10 @@
 div(ng-controller="ProjectLongDocumentationController", class="tribe-project-documentation")
     include header-project-documentation
-    section
+    section(ng-hide="longDocumentation", class="tribe-no-long-doc")
+        p No detailed documentation available for this project.
+    section(ng-show="longDocumentation")
         div
-            .tribe-toc
+            div(class="tribe-toc", ng-show="toc")
                 div
                     h1 Table of Contents
                     div
