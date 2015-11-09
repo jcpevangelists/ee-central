@@ -1,8 +1,12 @@
 @import "variables"
 
 div.tribe-project-documentation
+  $collapse-width: 600px
   height: 100vh
   display: flex
+  @media (max-width: $collapse-width)
+    height: auto
+    display: block
   flex-direction: column
   $side-padding: 20px
   background-color: $tomitribe-lightergray
@@ -14,41 +18,32 @@ div.tribe-project-documentation
       color: $tomitribe-white
     background: url("../images/project-detail-background.jpg") no-repeat right bottom
     background-size: cover
-    display: flex
-    flex-flow: column
-    > div.tribe-logo
-      display: flex
-      justify-content: space-between
-      flex-wrap: wrap
-      width: 100%
-      min-height: 66px
-      margin-bottom: 20px
     > div.tribe-project-name
-      flex-grow: 1
+      overflow: hidden
       display: flex
-      align-items: flex-end
+      @media (max-width: $collapse-width)
+        display: block
       *
         line-height: 1
-      > p
-        margin: 0 0 0 20px
+      > img
+        flex-shrink: 0
+        width: auto
+        height: 80px
+        @media (max-width: $collapse-width)
+          width: 80px
+          height: auto
       > div
+        margin: 0 0 10px 30px
+        @media (max-width: $collapse-width)
+          margin: 10px 0 0 0
         display: flex
         flex-direction: column
-        justify-content: space-between
-        > div
-          > img
-            width: auto
-            height: 80px
-            padding-bottom: 20px
-            margin-bottom: 20px
-            border-bottom: solid $tomitribe-orange 1px
-      $base-font-size: 20px
-      $title-h1-font-size: $base-font-size * 2
-      > h1
-        text-transform: uppercase
-        font-size: $title-h1-font-size
-      > p
-        font-size: $base-font-size
+        justify-content: flex-end
+        $base-font-size: 18px
+        $title-h1-font-size: $base-font-size * 2
+        > p
+          margin-top: 10px
+          font-size: $base-font-size
 
   > section.tribe-no-long-doc
     display: flex
@@ -61,6 +56,8 @@ div.tribe-project-documentation
   > section
     flex-grow: 1
     position: relative
+    @media (max-width: $collapse-width)
+      position: static
     margin: $side-padding
     > div
       position: absolute
@@ -69,16 +66,27 @@ div.tribe-project-documentation
       right: 0
       left: 0
       display: flex
+      @media (max-width: $collapse-width)
+        display: block
+        position: static
       > div.tribe-toc
         margin-right: $side-padding
         width: 250px
         flex-shrink: 0
+        @media (max-width: $collapse-width)
+          width: 100%
+          flex-shrink: 1
         a
           text-decoration: none
           color: $tomitribe-orange
+          &:hover
+            text-decoration: underline
         > div
           height: 100%
           display: flex
+          @media (max-width: $collapse-width)
+            display: block
+            height: auto
           flex-direction: column
           > h1
             font-size: 16px
@@ -87,18 +95,22 @@ div.tribe-project-documentation
             line-height: 1
           > div
             position: relative
+            @media (max-width: $collapse-width)
+              position: static
             flex-grow: 1
             > div
               background-color: $tomitribe-white
               padding: $side-padding / 2
               position: absolute
+              @media (max-width: $collapse-width)
+                position: static
               top: 0
               bottom: 0
               left: 0
               right: 0
               overflow: auto
-              *
-                white-space: nowrap
+              @media (max-width: $collapse-width)
+                overflow: inherit
               ul
                 margin: 0
               > ul
@@ -109,5 +121,8 @@ div.tribe-project-documentation
         > div
           @import "page_project_details_documentation"
         background-color: $tomitribe-white
+        margin-top: 35px
+        @media (max-width: $collapse-width)
+          margin-top: $side-padding
         padding: $side-padding
         flex-grow: 1
