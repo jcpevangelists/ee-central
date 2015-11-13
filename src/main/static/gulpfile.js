@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var del = require('del');
-var sprity = require('sprity');
+var spritesmith = require('gulp.spritesmith');
 var gulpif = require('gulp-if');
 var gulpsync = require('gulp-sync')(gulp);
 var watch = require('gulp-watch');
@@ -61,12 +61,13 @@ gulp.task('copy-images', function () {
         .pipe(gulp.dest('../../../target/static-resources/app/'));
 });
 gulp.task('sprites', function () {
-    return sprity.src({
-        src: './assets/**/sprite_*.{png,jpg}',
-        style: '../sprite.css',
-        margin: 1,
-        prefix: 'tribe-icon'
-    }).pipe(gulpif('*.png', gulp.dest('../../../target/static-resources/app/images'), gulp.dest('../../../target/static-resources/app/style/')));
+    return gulp.src('./assets/**/sprite_*.{png,jpg}').pipe(spritesmith({
+        imgName: '../images/sprite.png',
+        cssName: 'sprite.css'
+    })).pipe(gulpif('*.png',
+        gulp.dest('../../../target/static-resources/app/images'),
+        gulp.dest('../../../target/static-resources/app/style/'))
+    );
 });
 
 gulp.task('bower', function () {
