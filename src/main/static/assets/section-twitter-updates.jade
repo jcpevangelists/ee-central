@@ -8,5 +8,5 @@ section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
             a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
             p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}}
         .tribe-arrows
-            div(class="tribe-icon tribe-icon-images-sprite_arrow", ng-click="onClick('left')")
-            div(class="tribe-icon tribe-icon-images-sprite_arrow tribe-right", ng-click="onClick()")
+            div(class="icon-sprite_arrow", ng-click="onClick('left')")
+            div(class="icon-sprite_arrow tribe-right", ng-click="onClick()")
