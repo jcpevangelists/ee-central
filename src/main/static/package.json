@@ -24,6 +24,8 @@
     "jstransformer-marked": "1.0.1",
     "bower": "1.6.5",
     "gulp-bower": "0.0.10",
+    "gulp-jslint": "0.2.2",
+    "event-stream": "3.3.1",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.15",
