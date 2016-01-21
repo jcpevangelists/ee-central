@@ -125,10 +125,10 @@ gulp.task('uglify', function () {
         .pipe(gulp.dest('../../../target/static-resources/app/js/'));
 });
 
-gulp.task('clean', function () {
-    return del.sync(['../../../target/static-resources/', '../../../target/apache-tomee/webapps/ROOT/app/'], {
+gulp.task('clean', function (cb) {
+    return del(['../../../target/static-resources/', '../../../target/apache-tomee/webapps/ROOT/app/'], {
         force: true
-    });
+    }, cb);
 });
 
 gulp.task('copy-to-target', function () {
