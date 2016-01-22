@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>tomitribe-io-www</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.6</version>
     <packaging>war</packaging>
     <name>Tomitribe :: IO :: Website</name>
 
@@ -212,7 +212,7 @@
         <url>scm:git:git@github.com:tomitribe/tomitribe.io.git</url>
         <connection>scm:git:git@github.com:tomitribe/tomitribe.io.git</connection>
         <developerConnection>scm:git:git@github.com:tomitribe/tomitribe.io.git</developerConnection>
-        <tag>0.0.1</tag>
+        <tag>0.0.6</tag>
     </scm>
 
     <repositories>
