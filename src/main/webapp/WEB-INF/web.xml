@@ -22,5 +22,9 @@
         <servlet-name>index</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+    
+    <listener>
+        <listener-class>io.javaee.IOApplication</listener-class>
+    </listener>
 
 </web-app>
