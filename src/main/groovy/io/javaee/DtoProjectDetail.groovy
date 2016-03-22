@@ -13,6 +13,5 @@ import javax.xml.bind.annotation.XmlRootElement
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
 class DtoProjectDetail {
     DtoProjectInfo info
-    String description
     List<DtoProjectContributor> contributors
 }

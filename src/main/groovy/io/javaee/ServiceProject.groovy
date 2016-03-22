@@ -19,7 +19,8 @@ class ServiceProject {
             def conf = new Yaml().load(it.getText('UTF-8'))
             return new DtoProjectInfo(
                     name: conf.name as String,
-                    friendlyName: conf.friendly_name as String
+                    friendlyName: conf.friendly_name as String,
+                    description: github.getRepoDescription(conf.name as String),
             )
         }
     }
@@ -31,7 +32,6 @@ class ServiceProject {
         }
         return new DtoProjectDetail(
                 info: info,
-                description: github.getRepoDescription(projectName),
                 contributors: github.getRepoContributors(projectName)
         )
     }

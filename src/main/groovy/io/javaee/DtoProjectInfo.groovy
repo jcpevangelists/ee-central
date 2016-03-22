@@ -14,4 +14,5 @@ import javax.xml.bind.annotation.XmlRootElement
 class DtoProjectInfo {
     String name
     String friendlyName
+    String description
 }
