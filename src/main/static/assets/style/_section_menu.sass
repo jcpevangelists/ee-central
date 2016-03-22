@@ -1,6 +1,6 @@
 @import "variables"
 
-section.tribe-menu
+section.javaee-menu
   display: flex
   flex-wrap: wrap
   text-transform: uppercase
@@ -10,9 +10,9 @@ section.tribe-menu
     display: flex
     flex-direction: column
     align-items: flex-end
-    > .tribe-collapsed-menu
+    > .javaee-collapsed-menu
       > i
-        color: $tomitribe-white
+        color: $javaee-white
       display: none
     > ul
       list-style-type: none
@@ -23,13 +23,13 @@ section.tribe-menu
     margin: 10px
     font-size: 13px
     text-decoration: none
-    color: $tomitribe-lightgray
+    color: $javaee-lightgray
     &:hover
-      color: $tomitribe-orange
+      color: $javaee-orange
 
 @media (max-width: 660px)
   header
-    section.tribe-menu
+    section.javaee-menu
       position: absolute
       top: 20px
       right: 20px
@@ -40,10 +40,10 @@ section.tribe-menu
             > li
               display: block
               text-align: right
-        > .tribe-collapsed-menu
+        > .javaee-collapsed-menu
           display: block
         > ul
-          background-color: transparentize($tomitribe-black, .2)
+          background-color: transparentize($javaee-black, .2)
           margin: 0 15px 0 0
           padding: 20px
           display: none
@@ -55,7 +55,7 @@ section.tribe-menu
 
 @media (max-width: 570px)
   footer
-    section.tribe-menu
+    section.javaee-menu
       div
         > ul
           padding-left: 0

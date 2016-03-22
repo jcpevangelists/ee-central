@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-app-service', [])
-        .factory('tribeAppService', ['$http', function ($http) {
+    angular.module('javaee-app-service', [])
+        .factory('javaeeAppService', ['$http', function ($http) {
             var getPromise = $http.get('rest/application');
             var result = null;
 

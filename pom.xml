@@ -2,16 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--DMB: TODO we want nexus oss as parent -->
     <parent>
         <groupId>com.tomitribe</groupId>
         <artifactId>tomitribe-parent</artifactId>
         <version>5</version>
     </parent>
 
-    <artifactId>tomitribe-io-www</artifactId>
+    <artifactId>javaee-io</artifactId>
     <version>0.0.7-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Tomitribe :: IO :: Website</name>
+    <name>JavaEE :: IO :: Website</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,8 +69,8 @@
                 <version>2.19</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <io_config_root>tomitribe</io_config_root>
-                        <io_config_project>tomitribe.io.config</io_config_project>
+                        <io_config_root>jcpevangelists</io_config_root>
+                        <io_config_project>javaee.io.config</io_config_project>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -209,12 +210,13 @@
     </build>
 
     <scm>
-        <url>scm:git:git@github.com:tomitribe/tomitribe.io.git</url>
-        <connection>scm:git:git@github.com:tomitribe/tomitribe.io.git</connection>
-        <developerConnection>scm:git:git@github.com:tomitribe/tomitribe.io.git</developerConnection>
+        <url>scm:git:git@github.com:jcpevangelists/javaee.io.git</url>
+        <connection>scm:git:git@github.com:jcpevangelists/javaee.io.git</connection>
+        <developerConnection>scm:git:git@github.com:jcpevangelists/javaee.io.git</developerConnection>
         <tag>0.0.1</tag>
     </scm>
 
+    <!-- DMB: TODO We should get io.javaee setup in Nexus OSS -->
     <repositories>
         <repository>
             <id>tomitribe-all</id>

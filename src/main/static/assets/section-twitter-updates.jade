@@ -1,12 +1,12 @@
-section(class="tribe-twitter-updates", ng-controller="TwitterUpdatesController")
+section(class="javaee-twitter-updates", ng-controller="TwitterUpdatesController")
     div
-        .tribe-section-separator
+        .javaee-section-separator
         h1 Twitter latest updates
-        .tribe-tweet
-            .tribe-tweet-text
+        .javaee-tweet
+            .javaee-tweet-text
                 p {{tweet.text}}
             a(href="https://twitter.com/{{tweet.author}}") @{{tweet.author}}
-            p.tribe-date {{tweet.timestamp | date:'MMM yyyy'}}
-        .tribe-arrows
+            p.javaee-date {{tweet.timestamp | date:'MMM yyyy'}}
+        .javaee-arrows
             div(class="icon-sprite_arrow", ng-click="onClick('left')")
-            div(class="icon-sprite_arrow tribe-right", ng-click="onClick()")
+            div(class="icon-sprite_arrow javaee-right", ng-click="onClick()")

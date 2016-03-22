@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('tribeio', [
-        'tribe-app-directives',
-        'tribe-controllers-home',
-        'tribe-projects',
-        'tribe-contributors',
-        'tribe-twitter',
-        'tribe-project-details',
-        'tribe-project-long-documentation'])
+    angular.module('javaeeio', [
+        'javaee-app-directives',
+        'javaee-controllers-home',
+        'javaee-projects',
+        'javaee-contributors',
+        'javaee-twitter',
+        'javaee-project-details',
+        'javaee-project-long-documentation'])
         .config(['$locationProvider', function ($locationProvider) {
             $locationProvider.html5Mode({
                 enabled: true,

@@ -1,10 +1,10 @@
 @import "variables"
 
-section.tribe-project-highlight
+section.javaee-project-highlight
   width: 100%
   position: relative
   color: white
-  > div.tribe-background
+  > div.javaee-background
     position: absolute
     left: 0
     top: 0
@@ -14,7 +14,7 @@ section.tribe-project-highlight
     background-size: cover
     z-index: -1
 
-  > div.tribe-project-highlight-content
+  > div.javaee-project-highlight-content
     width: 100%
     display: flex
     justify-content: center
@@ -22,7 +22,7 @@ section.tribe-project-highlight
       padding: 0 15px 0 15px
       @media(max-width: 840px)
         padding: 0
-      &.tribe-project-highlight-image
+      &.javaee-project-highlight-image
         align-self: flex-end
         overflow: hidden
         > img
@@ -30,7 +30,7 @@ section.tribe-project-highlight
           height: 600px
         @media(max-width: 840px)
           display: none
-      &.tribe-cms
+      &.javaee-cms
         $buttons-height: 40px
         $content-padding: 10px
         $title-height: 250px
@@ -46,8 +46,8 @@ section.tribe-project-highlight
         width: 800px
 
         *
-          color: $tomitribe-white
-        > div.tribe-title
+          color: $javaee-white
+        > div.javaee-title
           margin-top: 50px
           padding-left: 10px
           $img-size: 90px
@@ -58,21 +58,21 @@ section.tribe-project-highlight
               width: $img-size
               height: $img-size
             > div
-              border-bottom: solid $tomitribe-orange 2px
+              border-bottom: solid $javaee-orange 2px
               margin: 30px 0 15px 0
               width: $img-size
           > h2
             margin: 15px 0 15px 0
             font-size: 30px
             text-transform: uppercase
-        > div.tribe-content
+        > div.javaee-content
           flex-grow: 1
           margin: 0 $content-padding 0 $content-padding
           font-size: 15px
           word-wrap: break-word
-          color: $tomitribe-white
+          color: $javaee-white
           a
-            color: $tomitribe-white
+            color: $javaee-white
           *
             margin-top: 10px
             &:first-child
@@ -81,7 +81,7 @@ section.tribe-project-highlight
             margin-bottom: 15px
             &:last-child
               margin-bottom: 0
-        > div.tribe-buttons
+        > div.javaee-buttons
           height: $buttons-height
           display: flex
           align-items: center
@@ -102,8 +102,8 @@ section.tribe-project-highlight
             &:hover
               cursor: pointer
             &:hover
-              border-color: $tomitribe-orange
-              background-color: $tomitribe-orange
+              border-color: $javaee-orange
+              background-color: $javaee-orange
           @media(max-width: 360px)
             margin: 50px 0 50px 0
             width: 100%

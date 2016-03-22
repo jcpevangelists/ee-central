@@ -3,7 +3,7 @@ describe("main app module share directive", function () {
     var $rootScope;
     var $window;
 
-    beforeEach(module('tribe-app-directives'));
+    beforeEach(module('javaee-app-directives'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$window_) {
         $compile = _$compile_;
@@ -17,7 +17,7 @@ describe("main app module share directive", function () {
         };
         $rootScope.baseFullPath = '//test/';
         var simulateClick = function (socialNetwork) {
-            var element = $compile('<i tribe-share-project="' + socialNetwork + '"></i>')($rootScope);
+            var element = $compile('<i javaee-share-project="' + socialNetwork + '"></i>')($rootScope);
             $rootScope.$digest();
             element.triggerHandler('click');
         };

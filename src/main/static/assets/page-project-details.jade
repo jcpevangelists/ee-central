@@ -1,11 +1,11 @@
-div(ng-controller="ProjectDetailsController", class="tribe-project-details")
+div(ng-controller="ProjectDetailsController", class="javaee-project-details")
     include header-project-details
     section
-        div(ng-bind-html="project.documentation", class="tribe-content")
-        .tribe-sidebar
-            .tribe-releases
+        div(ng-bind-html="project.documentation", class="javaee-content")
+        .javaee-sidebar
+            .javaee-releases
                 h4 releases & documentation
-                div.tribe-releases
+                div.javaee-releases
                     table
                         tbody
                             tr
@@ -14,22 +14,22 @@ div(ng-controller="ProjectDetailsController", class="tribe-project-details")
                             tr(ng-repeat="tag in project.tags")
                                 td {{tag}}
                                 td
-                                    a(href="https://github.com/tomitribe/{{project.name}}/tree/{{tag}}") ref
-                div.tribe-separator
+                                    a(href="https://github.com/jcpevangelists/{{project.name}}/tree/{{tag}}") ref
+                div.javaee-separator
                     div
-                div.tribe-github-links
+                div.javaee-github-links
                     a(href="/projects/documentation/{{project.name}}") doc
                     span ,
-                    a(href="https://github.com/tomitribe/{{project.name}}") source code
-                    span.tribe-and and
-                    a(href="https://github.com/tomitribe/{{project.name}}/issues") issue tracker
-            div(ng-bind-html="project.toc", class="tribe-content-toc", ng-show="project.toc")
-            .tribe-contributors
+                    a(href="https://github.com/jcpevangelists/{{project.name}}") source code
+                    span.javaee-and and
+                    a(href="https://github.com/jcpevangelists/{{project.name}}/issues") issue tracker
+            div(ng-bind-html="project.toc", class="javaee-content-toc", ng-show="project.toc")
+            .javaee-contributors
                 h4 Cool people that helped make this happen
-                .tribe-contributors-list
+                .javaee-contributors-list
                     a(ng-repeat="contributor in project.contributors", href="https://github.com/{{contributor.login}}/")
                         img(ng-src="{{contributor.avatarUrl}}")
-            .tribe-other-projects
+            .javaee-other-projects
                 h4 Other projects
                 article(ng-repeat="project in otherProjects")
                     a(href="projects/{{project.name}}")

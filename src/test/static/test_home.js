@@ -1,5 +1,5 @@
 describe("main page top header tests", function () {
-    beforeEach(module('tribe-controllers-home'));
+    beforeEach(module('javaee-controllers-home'));
 
     beforeEach(function () {
         var spy = spyOn(angular, 'element').and.callFake(function () {
@@ -34,7 +34,7 @@ describe("main page top header tests", function () {
 });
 
 describe("highlighted projects tests", function () {
-    beforeEach(module('tribe-controllers-home'));
+    beforeEach(module('javaee-controllers-home'));
 
     it("should load data", function () {
         var data = {
@@ -56,7 +56,7 @@ describe("highlighted projects tests", function () {
                         return 'trusted [' + value + ']'
                     }
                 },
-                tribeAppService: {
+                javaeeAppService: {
                     whenReady: function (callback) {
                         callback(data);
                     }
@@ -77,7 +77,7 @@ describe("highlighted projects tests", function () {
 });
 
 describe("projects carousel tests", function () {
-    beforeEach(module('tribe-controllers-home'));
+    beforeEach(module('javaee-controllers-home'));
 
     it("should load data", function () {
         var data = {
@@ -94,7 +94,7 @@ describe("projects carousel tests", function () {
         inject(function ($controller) {
             $controller('ProjectsCarousselController', {
                 $scope: scope,
-                tribeAppService: {
+                javaeeAppService: {
                     whenReady: function (callback) {
                         callback(data);
                     }

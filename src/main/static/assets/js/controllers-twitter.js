@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-twitter', ['tribe-app-service'])
-        .controller('TwitterUpdatesController', ['$scope', 'tribeAppService', '$timeout',
-            function ($scope, tribeAppService, $timeout) {
-                tribeAppService.whenReady(function (data) {
+    angular.module('javaee-twitter', ['javaee-app-service'])
+        .controller('TwitterUpdatesController', ['$scope', 'javaeeAppService', '$timeout',
+            function ($scope, javaeeAppService, $timeout) {
+                javaeeAppService.whenReady(function (data) {
                     var tweets = data.tweets;
                     $timeout(function () {
                         $scope.$apply();

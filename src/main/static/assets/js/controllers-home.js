@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-controllers-home', [
-        'tribe-app-service', 'ngRoute'])
+    angular.module('javaee-controllers-home', [
+        'javaee-app-service', 'ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider.when('/', {
                 templateUrl: 'app/page-main.html'
@@ -18,9 +18,9 @@
             });
         }])
         .controller('ProjectHighlightController', [
-            '$scope', '$sce', 'tribeAppService',
-            function ($scope, $sce, tribeAppService) {
-                tribeAppService.whenReady(function (data) {
+            '$scope', '$sce', 'javaeeAppService',
+            function ($scope, $sce, javaeeAppService) {
+                javaeeAppService.whenReady(function (data) {
                     var projects = _.values(data.projects);
                     // crest is hardcoded as the only highlighted project for now TODO
                     var project = _.find(projects, function (item) {
@@ -38,17 +38,17 @@
             }
         ])
         .controller('ProjectsCarousselController', [
-            'tribeAppService', '$scope',
-            function (tribeAppService, $scope) {
-                tribeAppService.whenReady(function (data) {
+            'javaeeAppService', '$scope',
+            function (javaeeAppService, $scope) {
+                javaeeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
                 });
             }
         ])
-        .directive('tribeProjectsCarousel', [function () {
+        .directive('javaeeProjectsCarousel', [function () {
             return {
                 link: function ($scope, $element) {
-                    var carousel = $element.find('div.tribe-projects-caroussel > div').first();
+                    var carousel = $element.find('div.javaee-projects-caroussel > div').first();
                     $element.find('div:first-child').bind('click', function () {
                         var article = $element.find('article:last-child');
                         article.detach();
@@ -62,7 +62,7 @@
                 }
             };
         }])
-        .directive('tribeScrollToTop', [function () {
+        .directive('javaeeScrollToTop', [function () {
             return {
                 link: function ($scope, $element) {
                     $element.bind('click', function () {

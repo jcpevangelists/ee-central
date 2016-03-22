@@ -1,13 +1,13 @@
-div(ng-controller="ProjectLongDocumentationController", class="tribe-project-documentation")
+div(ng-controller="ProjectLongDocumentationController", class="javaee-project-documentation")
     include header-project-documentation
-    section(ng-hide="longDocumentation", class="tribe-no-long-doc")
+    section(ng-hide="longDocumentation", class="javaee-no-long-doc")
         p No detailed documentation available for this project.
     section(ng-show="longDocumentation")
         div
-            div(class="tribe-toc", ng-show="toc")
+            div(class="javaee-toc", ng-show="toc")
                 div
                     h1 Table of Contents
                     div
                         div(ng-bind-html="toc")
-            .tribe-content
+            .javaee-content
                 div(ng-bind-html="longDocumentation")

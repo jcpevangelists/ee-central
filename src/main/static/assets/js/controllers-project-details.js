@@ -1,15 +1,15 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-project-details', ['tribe-app-service', 'ngRoute'])
+    angular.module('javaee-project-details', ['javaee-app-service', 'ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider.when('/projects/:project', {
                 templateUrl: 'app/page-project-details.html'
             });
         }])
         .controller('ProjectDetailsController', [
-            '$scope', '$routeParams', '$sce', '$templateRequest', 'tribeAppService', '$anchorScroll', '$timeout', '$location',
-            function ($scope, $routeParams, $sce, $templateRequest, tribeAppService, $anchorScroll, $timeout, $location) {
+            '$scope', '$routeParams', '$sce', '$templateRequest', 'javaeeAppService', '$anchorScroll', '$timeout', '$location',
+            function ($scope, $routeParams, $sce, $templateRequest, javaeeAppService, $anchorScroll, $timeout, $location) {
 
                 function prepareDocumentation(originalDocumentation) {
                     var originalEl = angular.element(originalDocumentation);
@@ -24,7 +24,7 @@
                         }
                         $anchorScroll(hashValue);
                     });
-                    // uncomment this when implementing https://github.com/tomitribe/tomitribe.io/issues/72
+                    // uncomment this when implementing https://github.com/jcpevangelists/javaee.io/issues/72
                     //$templateRequest('app/section-share-with-friends-documentation.html').then(function (template) {
                     //    var originalChildren = originalEl.find('> article > *');
                     //    var shareEl = angular.element(template);
@@ -34,7 +34,7 @@
                     //});
                 }
 
-                tribeAppService.whenReady(function (data) {
+                javaeeAppService.whenReady(function (data) {
                     var project = data.projects[$routeParams.project];
                     $scope.project = _.clone(project);
                     prepareDocumentation(project.documentation);

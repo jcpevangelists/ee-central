@@ -1,15 +1,15 @@
-= https://tomitribe.io/
+= https://javaee.io/
 :toc:
 :toc-placement: preamble
 
-It features the most relevant opensource projects and tools developed with the help of tribers and non-tribers.
+Made by individuals for the good of Java EE and our industry.
 
 == How to build and run the application locally?
 
-You will need a tomitribe github access token. You can use this value as a environment value (*github_atoken*) or
+You will need a jcpevangelists github access token. You can use this value as a environment value (*github_atoken*) or
 a system property (*io.github.token*). If both are set, *io.github.token* will be used.
 
-If you don't have a token, ask link:https://tomitribe.slack.com/messages/@theresa[Theresa] for it.
+If you don't have a token, ask link:https://javaee-wg.slack.com/messages/@tveronezi[Thiago] for it.
 
 Once you have the token ready, simply run `mvn clean install tomee:run`. Your server will be available at
 http://localhost:8080/
@@ -43,16 +43,16 @@ which will watch for changes on *src/main/static/* and updates the running tomee
 static change is detected.
 
 ----
-tveronezi@ubatuba:tomitribe.io$ mvn frontend:gulp
+tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building Tomitribe :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ tomitribe-io-www ---
-[INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/tribe/ui/tomitribe.io/src/main/static
-[INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/tribe/ui/tomitribe.io/src/main/static/gulpfile.js
+[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ javaee-io ---
+[INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/javaee.io/src/main/static/gulpfile.js
 [INFO] [10:49:45] Starting 'sync group6:0'...
 [INFO] [10:49:45] Starting 'sync group5:0'...
 [INFO] [10:49:45] Starting 'clean'...
@@ -60,7 +60,7 @@ tveronezi@ubatuba:tomitribe.io$ mvn frontend:gulp
 [INFO] [10:49:45] Finished 'sync group5:0' after 39 ms
 [INFO] [10:49:45] Starting 'sync group5:1'...
 [INFO] [10:49:45] Starting 'bower'...
-[INFO] [10:49:45] Using cwd:  /home/tveronezi/Documents/development/sources/tribe/ui/tomitribe.io/src/main/static
+[INFO] [10:49:45] Using cwd:  /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
 [INFO] [10:49:45] Using bower dir:  ./bower_components
 [INFO] [10:49:47] Finished 'bower' after 2.24 s
 [INFO] [10:49:47] Finished 'sync group5:1' after 2.24 s
@@ -160,15 +160,15 @@ the devepolers because both tests are triggered by the same `mvn clean install`.
 Sometimes we are interested on frontend testing only. We can do it by executing 'mvn frontend:karma'.
 
 ----
-tveronezi@ubatuba:tomitribe.io$ mvn frontend:karma
+tveronezi@ubatuba:javaee.io$ mvn frontend:karma
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building Tomitribe :: IO :: Website 0.0.1-SNAPSHOT
+[INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ tomitribe-io-www ---
-[INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/tribe/ui/tomitribe.io/src/main/static
+[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ javaee-io ---
+[INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
 [INFO] 08 10 2015 10:07:33.166:WARN [karma]: No captured browser, open http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.177:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.183:INFO [launcher]: Starting browser PhantomJS
@@ -177,7 +177,7 @@ tveronezi@ubatuba:tomitribe.io$ mvn frontend:karma
 ----
 
 The default browser is PhantonJS. In order to debug with the help of a real browser, uncomment this line in
-link:https://github.com/tomitribe/tomitribe.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
+link:https://github.com/jcpevangelists/javaee.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
 
 [source:javascript]
 ----
@@ -193,8 +193,8 @@ When you execute `mvn frontend:karma`, a browser window will popup.
 
 == How to update the application on production?
 
-Please follow the infra documentation: https://github.com/tomitribe/infra/blob/master/tomitribe-io-www/README.adoc
+DMB TODO: Document Openly
 
 == How to publish a project?
 
-Please follow the configuration documentation: https://github.com/tomitribe/tomitribe.io.config/blob/master/README.adoc
+DMB TODO: Document Openly

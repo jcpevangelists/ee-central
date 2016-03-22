@@ -1,6 +1,6 @@
 @import "variables"
 
-div.tribe-project-documentation
+div.javaee-project-documentation
   $collapse-width: 600px
   height: 100vh
   display: flex
@@ -9,16 +9,16 @@ div.tribe-project-documentation
     display: block
   flex-direction: column
   $side-padding: 20px
-  background-color: $tomitribe-lightergray
+  background-color: $javaee-lightergray
   > header, > header + section
     padding: $side-padding
   > header
     flex-shrink: 0
     *
-      color: $tomitribe-white
+      color: $javaee-white
     background: url("../images/project-detail-background.jpg") no-repeat right bottom
     background-size: cover
-    > div.tribe-project-name
+    > div.javaee-project-name
       overflow: hidden
       display: flex
       @media (max-width: $collapse-width)
@@ -45,7 +45,7 @@ div.tribe-project-documentation
           margin-top: 10px
           font-size: $base-font-size
 
-  > section.tribe-no-long-doc
+  > section.javaee-no-long-doc
     display: flex
     flex-direction: column
     justify-content: center
@@ -69,7 +69,7 @@ div.tribe-project-documentation
       @media (max-width: $collapse-width)
         display: block
         position: static
-      > div.tribe-toc
+      > div.javaee-toc
         margin-right: $side-padding
         width: 250px
         flex-shrink: 0
@@ -78,7 +78,7 @@ div.tribe-project-documentation
           flex-shrink: 1
         a
           text-decoration: none
-          color: $tomitribe-orange
+          color: $javaee-orange
           &:hover
             text-decoration: underline
         > div
@@ -99,7 +99,7 @@ div.tribe-project-documentation
               position: static
             flex-grow: 1
             > div
-              background-color: $tomitribe-white
+              background-color: $javaee-white
               padding: $side-padding / 2
               position: absolute
               @media (max-width: $collapse-width)
@@ -116,11 +116,11 @@ div.tribe-project-documentation
               > ul
                 list-style: none
                 padding: 0
-      > div.tribe-content
+      > div.javaee-content
         overflow-y: auto
         > div
           @import "page_project_details_documentation"
-        background-color: $tomitribe-white
+        background-color: $javaee-white
         margin-top: 35px
         @media (max-width: $collapse-width)
           margin-top: $side-padding

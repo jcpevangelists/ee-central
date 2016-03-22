@@ -1,15 +1,15 @@
 (function () {
     'use strict';
 
-    angular.module('tribe-projects', ['tribe-app-service', 'ngRoute'])
+    angular.module('javaee-projects', ['javaee-app-service', 'ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider.when('/projects', {
                 templateUrl: 'app/page-projects.html'
             });
         }])
-        .controller('ProjectsController', ['tribeAppService', '$scope', '$window',
-            function (tribeAppService, $scope, $window) {
-                tribeAppService.whenReady(function (data) {
+        .controller('ProjectsController', ['javaeeAppService', '$scope', '$window',
+            function (javaeeAppService, $scope, $window) {
+                javaeeAppService.whenReady(function (data) {
                     $scope.projects = _.values(data.projects);
                 });
             }]);

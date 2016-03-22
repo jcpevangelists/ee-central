@@ -1,11 +1,11 @@
 @import "variables"
 
-div.tribe-project-details
+div.javaee-project-details
   @import "header_project_details"
 
-  background-color: $tomitribe-lightergray
+  background-color: $javaee-lightergray
   > section
-    background-color: $tomitribe-lightergray
+    background-color: $javaee-lightergray
     margin: 40px 10px 0 10px
     padding-bottom: 40px
     display: flex
@@ -13,50 +13,50 @@ div.tribe-project-details
     @media (max-width: 1250px)
       flex-wrap: wrap
 
-    > div.tribe-sidebar
+    > div.javaee-sidebar
       flex-shrink: 0
       width: 300px
       margin-left: 46px
       @media (max-width: 1200px)
         margin-left: 0
-      > div.tribe-releases
+      > div.javaee-releases
         a
-          color: $tomitribe-orange
+          color: $javaee-orange
           text-decoration: none
         > h4
           margin: 5px 5px 10px 5px
           font-weight: normal
           text-transform: capitalize
-        > div.tribe-releases
+        > div.javaee-releases
           padding: 5px 10px 5px 10px
-          background-color: $tomitribe-white
+          background-color: $javaee-white
           > table
             width: 100%
             > tbody
               > tr
-                $tribe-ref-width: 50px
+                $javaee-ref-width: 50px
                 > th
                   padding-bottom: 10px
                   text-align: left
                   text-transform: uppercase
                   font-weight: bold
                   &:last-child
-                    width: $tribe-ref-width
+                    width: $javaee-ref-width
                 > td
                   text-align: left
                   padding-bottom: 2px
                   &:last-child
-                    width: $tribe-ref-width
-        > div.tribe-separator
-          background-color: $tomitribe-white
+                    width: $javaee-ref-width
+        > div.javaee-separator
+          background-color: $javaee-white
           height: 10px
           padding: 5px 0 0 0
           > div
             margin: 0 10px 0 10px
-            border-top: solid $tomitribe-lightergray 1px
-        > div.tribe-github-links
-          background-color: $tomitribe-white
-          > span.tribe-and
+            border-top: solid $javaee-lightergray 1px
+        > div.javaee-github-links
+          background-color: $javaee-white
+          > span.javaee-and
             margin: 0 0 10px 5px
           > a
             margin: 0 0 10px 5px
@@ -65,13 +65,13 @@ div.tribe-project-details
 
 
 
-      > div.tribe-contributors
+      > div.javaee-contributors
         margin-top: 20px
         > h4
           font-weight: normal
           text-align: center
           margin-bottom: 5px
-        > div.tribe-contributors-list
+        > div.javaee-contributors-list
           display: flex
           flex-wrap: wrap
           > a
@@ -80,7 +80,7 @@ div.tribe-project-details
               width: auto
               height: 50px
 
-      > div.tribe-project-share
+      > div.javaee-project-share
         margin-top: 20px
         > h4
           font-weight: normal
@@ -92,20 +92,20 @@ div.tribe-project-details
             justify-content: center
             padding: 10px
             width: 25px
-            border: solid $tomitribe-lightgray 1px
-            background-color: $tomitribe-white
+            border: solid $javaee-lightgray 1px
+            background-color: $javaee-white
             margin-left: 5px
             &:hover
               cursor: pointer
             &:first-child
               margin-left: 0
             > i
-              color: $tomitribe-lightgray
+              color: $javaee-lightgray
             &:hover
               > i
-                color: $tomitribe-orange
+                color: $javaee-orange
 
-      > div.tribe-other-projects
+      > div.javaee-other-projects
         margin-top: 20px
         > h4
           font-weight: normal
@@ -114,7 +114,7 @@ div.tribe-project-details
           margin-bottom: 10px
           > a
             text-decoration: none
-            color: $tomitribe-black
+            color: $javaee-black
             display: flex
             align-items: center
             > img
@@ -136,16 +136,16 @@ div.tribe-project-details
           &:hover
             > a
               > img
-                border: solid $tomitribe-orange 1px
+                border: solid $javaee-orange 1px
                 background-color: white
               > div
                 > h4
-                  color: $tomitribe-orange
+                  color: $javaee-orange
 
-      > div.tribe-content-toc
+      > div.javaee-content-toc
         margin: 10px 0 0 0
         padding: 10px
-        background-color: $tomitribe-white
+        background-color: $javaee-white
         #user-content-toctitle
           font-size: 16px
           text-transform: uppercase
@@ -158,9 +158,9 @@ div.tribe-project-details
           text-decoration: none
           &:hover
             text-decoration: underline
-          color: $tomitribe-orange
+          color: $javaee-orange
 
-    > div.tribe-content
+    > div.javaee-content
       overflow: auto
       background-color: white
       padding: 20px

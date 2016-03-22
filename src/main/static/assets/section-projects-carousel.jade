@@ -1,13 +1,13 @@
-section(ng-controller="ProjectsCarousselController", class="tribe-projects")
+section(ng-controller="ProjectsCarousselController", class="javaee-projects")
     div
-        .tribe-section-separator
+        .javaee-section-separator
         h1 BECAUSE THAT'S WHAT WE DO
         p.
             A community dedicated to uniting developers and neat tools to promote a healthy ecosystem around Apache
             TomEE, Java EE and Java Open Source in general.
-    div(data-tribe-projects-carousel)
+    div(data-javaee-projects-carousel)
         div(class="icon-sprite_arrow")
-        .tribe-projects-caroussel
+        .javaee-projects-caroussel
             div
                 article(ng-repeat="project in projects")
                     a(href="projects/{{project.name}}")
@@ -15,5 +15,5 @@ section(ng-controller="ProjectsCarousselController", class="tribe-projects")
                             img(ng-src="data:image/png;base64,{{project.icon}}")
                         h3 {{project.friendlyName ? project.friendlyName : project.name}}
                         p {{project.shortDescription}}
-        div(class="icon-sprite_arrow tribe-right")
+        div(class="icon-sprite_arrow javaee-right")
     a(href="projects") see all projects
