@@ -64,7 +64,7 @@ gulp.task('html-to-js', function () {
         .pipe(angularTemplateCache({
             filename: '_templates.js',
             root: 'app/',
-            module: 'tribe-main'
+            module: 'javaeeio-main'
         }))
         .pipe(gulp.dest('../../../target/static-templates/'))
 });
@@ -119,14 +119,14 @@ gulp.task('test', function (done) {
 
 gulp.task('copy-all', function () {
     return gulp.src(['../../../target/static-resources/**/*'])
-        .pipe(gulp.dest('../../../target/apache-tomee/webapps/console/'));
+        .pipe(gulp.dest('../../../target/apache-tomee/webapps/javaee-io/'));
 });
 
 gulp.task('clean', function (callback) {
     return del([
         '../../../target/static-resources/',
-        '../../../target/apache-tomee/webapps/console/app/',
-        '../../../target/apache-tomee/webapps/console/components/'
+        '../../../target/apache-tomee/webapps/javaee-io/app/',
+        '../../../target/apache-tomee/webapps/javaee-io/components/'
     ], {
         force: true
     }, callback);

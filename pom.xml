@@ -56,11 +56,25 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <attachClasses>true</attachClasses>
+          <webResources>
+            <resource>
+              <directory>target/static-resources</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.tomee.maven</groupId>
         <artifactId>tomee-maven-plugin</artifactId>
         <version>${tomee.version}</version>
         <configuration>
-          <context>ROOT</context>
+          <context>javaee-io</context>
           <systemVariables>
             <io_config_root>tomitribe</io_config_root>
             <io_config_project>tomitribe.io.config</io_config_project>

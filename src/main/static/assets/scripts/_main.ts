@@ -1,6 +1,6 @@
 ///<reference path="../../bower_components/DefinitelyTyped/angularjs/angular.d.ts"/>
 
-angular.module('tribe-main', [
+angular.module('javaeeio-main', [
     'ngRoute',
     'ngStorage'
 ])

@@ -3,7 +3,7 @@ describe("testing the home page", function () {
     var $rootScope;
     var $httpBackend;
 
-    beforeEach(module('tribe-main'));
+    beforeEach(module('javaeeio-main'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_) {
         $compile = _$compile_;
