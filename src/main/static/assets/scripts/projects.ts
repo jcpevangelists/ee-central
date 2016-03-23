@@ -36,14 +36,6 @@ angular.module('javaeeio-projects', [])
         };
     }])
 
-    .directive('eeioProjectHighlight', [function () {
-        return {
-            restrict: 'E',
-            scope: {},
-            templateUrl: 'app/templates/dir_projects_project_highlight.html'
-        };
-    }])
-
     .directive('eeioProjectDoc', [function () {
         return {
             restrict: 'E',

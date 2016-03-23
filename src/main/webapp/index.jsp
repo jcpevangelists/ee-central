@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="javaeeio-main">
-<head><title>tribestream console</title>
+<head><title>javaee.io</title>
     <script>
         // doc base
         (function () {
