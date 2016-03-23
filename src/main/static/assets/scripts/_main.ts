@@ -4,6 +4,7 @@ angular.module('javaeeio-main', [
     'ngRoute',
     'ngStorage',
     'javaeeio-header',
+    'javaeeio-footer',
     'javaeeio-projects',
     'javaeeio-contributors'
 ])
