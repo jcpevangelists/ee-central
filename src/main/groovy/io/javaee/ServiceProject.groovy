@@ -44,5 +44,24 @@ class ServiceProject {
         return github.getRepoRaw(projectName, resourceName)
     }
 
+    List<DtoContributor> getAllContributors() {
+        Map<String, DtoContributor> contributors = [:]
+        getAvailableProjects().each { project ->
+            def details = getDetails(project.name)
+            details.contributors.each { projContributor ->
+                DtoContributor contributor = contributors.get(projContributor.login)
+                if (!contributor) {
+                    contributor = new DtoContributor(
+                            login: projContributor.login
+                    )
+                    contributors.put(projContributor.login, contributor)
+                }
+                contributor.projects << project.name
+                contributor.contributions += projContributor.contributions
+            }
+        }
+        return contributors.values() as List<DtoContributor>
+    }
+
 }
 

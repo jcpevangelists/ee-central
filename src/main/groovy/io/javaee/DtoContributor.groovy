@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement
 @XmlRootElement
 @EqualsAndHashCode
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
-class DtoProjectContributor {
+class DtoContributor {
     String login
-    int contributions
+    Set<String> projects = []
+    int contributions = 0
 }
