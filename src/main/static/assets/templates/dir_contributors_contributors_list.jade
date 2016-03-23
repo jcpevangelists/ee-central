@@ -5,5 +5,5 @@ div
       h1 {{contributor.name}}
       h2 {{contributor.company}}
       h2 {{contributor.location}}
-      div
-        span(ng-repeat="project in contributor.projects")
+      .projects
+        span(ng-repeat="project in contributor.projects") {{project}}
