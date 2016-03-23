@@ -15,4 +15,8 @@ class DtoContributorInfo {
     String login
     String name
     String avatar
+    String company
+    String location
+    Set<String> projects
+    int contributions
 }

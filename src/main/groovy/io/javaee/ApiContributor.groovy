@@ -14,17 +14,17 @@ class ApiContributor {
     private ServiceProject project
 
     @Inject
-    private ServiceGithub github
+    private ServiceContributor contributor
 
     @GET
-    List<DtoContributor> list() {
-        return project.allContributors
+    List<DtoContributorInfo> list() {
+        return contributor.getContributorDetails()
     }
 
     @GET
     @Path('/{login}')
     DtoContributorInfo get(@PathParam("login") String login) {
-        return github.getContributor(login)
+        return contributor.getContributor(login)
     }
 
 }

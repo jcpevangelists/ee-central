@@ -77,7 +77,9 @@ class ServiceGithub {
         return new DtoContributorInfo(
                 login: json.login as String,
                 name: json.name as String,
-                avatar: json.avatar_url as String
+                avatar: json.avatar_url as String,
+                company: json.company as String,
+                location: json.location as String
         )
     }
 
