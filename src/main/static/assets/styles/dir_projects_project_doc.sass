@@ -1,4 +1,21 @@
+@import "variables"
+
 eeio-project-doc
-  div.contributors
-    display: flex
-    flex-wrap: wrap
+  > div
+    padding: 5px
+    > div.contributors
+      display: flex
+      flex-wrap: wrap
+      border: solid $app-black 1px
+      padding: 5px 0 0 5px
+    > div.title
+      border: solid $app-black 1px
+      margin-top: 5px
+      padding: 5px
+      > *
+        margin: 0
+    > div.content
+      border: solid $app-black 1px
+      margin-top: 5px
+      padding: 5px
+

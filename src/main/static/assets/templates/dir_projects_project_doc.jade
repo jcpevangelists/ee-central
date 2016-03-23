@@ -2,7 +2,7 @@ div
   .contributors
     div(ng-repeat="contributor in project.detail.contributors")
       eeio-contributor-summary(login="contributor.login")
-  div
+  .title
     h1 {{project.detail.info.friendlyName ? project.detail.info.friendlyName : project.detail.info.name}}
     p {{project.detail.info.description}}
-  div(ng-bind-html="project.doc")
+  .content(ng-bind-html="project.doc")
