@@ -21,6 +21,7 @@ class ServiceProject {
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,
                     description: github.getRepoDescription(conf.name as String),
+                    home: conf.home as String
             )
         }
     }

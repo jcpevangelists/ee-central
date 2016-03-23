@@ -15,4 +15,5 @@ class DtoProjectInfo {
     String name
     String friendlyName
     String description
+    String home
 }
