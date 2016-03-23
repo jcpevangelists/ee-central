@@ -35,6 +35,25 @@ angular.module('javaeeio-contributors', [])
         };
     }])
 
+    .directive('eeioContributorsList', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                login: '='
+            },
+            templateUrl: 'app/templates/dir_contributors_contributors_list.html',
+            controller: ['$scope', '$timeout', 'eeioContributorsService', function ($scope, $timeout, contributorsService) {
+                contributorsService.getContributors().then(function (response) {
+                    $timeout(function () {
+                        $scope.$apply(function () {
+                            $scope.contributors = response.data;
+                        });
+                    });
+                });
+            }]
+        };
+    }])
+
     .run(function () {
         // placeholder
     });

@@ -1,0 +1,9 @@
+div
+  div(ng-repeat="contributor in contributors | orderBy:contributions")
+    img(ng-src="{{contributor.avatar}}", title="{{contributor.name}}")
+    div
+      h1 {{contributor.name}}
+      h2 {{contributor.company}}
+      h2 {{contributor.location}}
+      div
+        span(ng-repeat="project in contributor.projects")
