@@ -4,5 +4,7 @@ div
       eeio-contributor-summary(login="contributor.login")
   .title
     h1 {{project.detail.info.friendlyName ? project.detail.info.friendlyName : project.detail.info.name}}
+    h2
+      a(ng-href="https://github.com/{{project.detail.info.name}}", target="_blank") source code
     p {{project.detail.info.description}}
   .content(ng-bind-html="project.doc")
