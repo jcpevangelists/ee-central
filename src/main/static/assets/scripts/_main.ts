@@ -2,7 +2,8 @@
 
 angular.module('javaeeio-main', [
     'ngRoute',
-    'ngStorage'
+    'ngStorage',
+    'javaeeio-projects'
 ])
 
     .config([
@@ -15,6 +16,14 @@ angular.module('javaeeio-main', [
             $routeProvider
                 .when('/', {
                     templateUrl: 'app/templates/page_home.html'
+                })
+                .when('/project/:owner/:name/:resource', {
+                    templateUrl: 'app/templates/page_project.html',
+                    controller: ['$route', '$scope', function ($route, $scope) {
+                        $scope.owner = $route.current.params['owner'];
+                        $scope.name = $route.current.params['name'];
+                        $scope.resource = $route.current.params['resource'];
+                    }]
                 })
                 .otherwise({
                     controller: ['$scope', '$location', function ($scope, $location) {

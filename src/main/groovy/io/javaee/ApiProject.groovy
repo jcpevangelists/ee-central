@@ -26,9 +26,12 @@ class ApiProject {
 
     @GET
     @Path('/{projectOwner}/{projectName}/{projectResource : .+}')
-    String getPage(@PathParam("projectOwner") String projectOwner, @PathParam("projectName") String projectName,
-                   @PathParam("projectResource") String projectResource) {
-        return srv.getPage("${projectOwner}/${projectName}", projectResource)
+    DtoProjectPage getPage(@PathParam("projectOwner") String projectOwner, @PathParam("projectName") String projectName,
+                           @PathParam("projectResource") String projectResource) {
+        return new DtoProjectPage(
+                name: projectResource,
+                content: srv.getPage("${projectOwner}/${projectName}", projectResource)
+        )
     }
 
 }
