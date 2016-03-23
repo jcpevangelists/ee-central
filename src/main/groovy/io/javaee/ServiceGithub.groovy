@@ -1,10 +1,10 @@
 package io.javaee
 
 import groovy.json.JsonSlurper
-import groovy.transform.Memoized
 
 import javax.ejb.Stateless
 import javax.inject.Inject
+import javax.interceptor.Interceptors
 import java.nio.charset.StandardCharsets
 
 @Stateless
@@ -13,7 +13,7 @@ class ServiceGithub {
     @Inject
     private ServiceApplication application
 
-    @Memoized
+    @Interceptors(InterceptorGithub)
     String getRepoDescription(String projectName) {
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/repos/${projectName}".toURL().getText([
@@ -26,7 +26,7 @@ class ServiceGithub {
         return json.description as String
     }
 
-    @Memoized
+    @Interceptors(InterceptorGithub)
     List<DtoProjectContributor> getRepoContributors(String projectName) {
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/repos/${projectName}/contributors".toURL().getText([
@@ -44,7 +44,7 @@ class ServiceGithub {
         }
     }
 
-    @Memoized
+    @Interceptors(InterceptorGithub)
     String getRepoPage(String projectName, String resourceName) {
         return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
                 requestProperties: [
@@ -54,7 +54,7 @@ class ServiceGithub {
         ], StandardCharsets.UTF_8.name())
     }
 
-    @Memoized
+    @Interceptors(InterceptorGithub)
     byte[] getRepoRaw(String projectName, String resourceName) {
         return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getBytes([
                 requestProperties: [
@@ -64,7 +64,7 @@ class ServiceGithub {
         ])
     }
 
-    @Memoized
+    @Interceptors(InterceptorGithub)
     DtoContributorInfo getContributor(String login) {
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/users/${login}".toURL().getText([
