@@ -3,7 +3,8 @@
 angular.module('javaeeio-main', [
     'ngRoute',
     'ngStorage',
-    'javaeeio-projects'
+    'javaeeio-projects',
+    'javaeeio-contributors'
 ])
 
     .config([

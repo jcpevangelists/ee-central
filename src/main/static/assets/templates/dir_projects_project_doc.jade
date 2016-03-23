@@ -5,4 +5,5 @@ div
   div(ng-bind-html="project.doc")
   div
     ul
-      li(ng-repeat="contributor in project.detail.contributors") {{contributor.login}}
+      li(ng-repeat="contributor in project.detail.contributors")
+        eeio-contributor-summary(login="contributor.login")
