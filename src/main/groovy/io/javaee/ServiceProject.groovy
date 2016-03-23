@@ -15,15 +15,27 @@ class ServiceProject {
     private ServiceGithub github
 
     List<DtoProjectInfo> getAvailableProjects() {
-        return new File(application.documents.file).listFiles().collect {
+        List<DtoProjectInfo> result = []
+        new File(application.documents.file).listFiles().each {
             def conf = new Yaml().load(it.getText('UTF-8'))
-            return new DtoProjectInfo(
+            result << new DtoProjectInfo(
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,
                     description: github.getRepoDescription(conf.name as String),
-                    home: conf.home as String
+                    home: conf.home as String,
+                    spec: true
             )
+            conf.related?.each { relatedConf ->
+                result << new DtoProjectInfo(
+                        name: relatedConf.name as String,
+                        friendlyName: relatedConf.friendly_name as String,
+                        description: github.getRepoDescription(relatedConf.name as String),
+                        home: relatedConf.home as String,
+                        spec: false
+                )
+            }
         }
+        return result
     }
 
     DtoProjectDetail getDetails(String projectName) {

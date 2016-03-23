@@ -3,7 +3,8 @@
 eeio-header
   > div
     width: 100%
-    min-height: 300px
+    background: url(../images/header_home.jpg) no-repeat center center fixed
+    background-size: cover
     > div.head
       display: flex
       justify-content: space-between
@@ -22,5 +23,7 @@ eeio-header
             text-decoration: none
             text-transform: uppercase
             font-size: $app-menu-font-size
+            &:hover
+              color: $app-hover-color
 
 

@@ -2,3 +2,10 @@
 ---
 name: agoncal/agoncal-application-petstore-ee6
 home: README.md
+related:
+  - name: tomitribe/crest
+    friendly_name: Crest
+  - name: AdamBien/enhydrator
+    home: README.md
+
+

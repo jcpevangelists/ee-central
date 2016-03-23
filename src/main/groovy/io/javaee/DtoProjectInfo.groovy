@@ -10,4 +10,5 @@ class DtoProjectInfo {
     String friendlyName
     String description
     String home
+    boolean spec
 }
