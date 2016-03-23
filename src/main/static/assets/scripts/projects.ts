@@ -69,18 +69,20 @@ angular.module('javaeeio-projects', [])
                                 var content = angular.element(response.data.content);
                                 content.find('[href]').each(function (index, el) {
                                     var ael = angular.element(el);
-                                    var images = ael.find('> img');
-                                    if (images.length) {
-                                        var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
-                                        ael.attr('href', href);
-                                        images.each(function (indexImg, elImg) {
-                                            var aelImg = angular.element(elImg);
-                                            aelImg.attr('src', href);
-                                        });
-                                    } else {
-                                        if (!ael.attr('href').startsWith('#')) {
-                                            var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                    if (!ael.attr('href').startsWith('http://') && !ael.attr('href').startsWith('https://')) {
+                                        var images = ael.find('> img');
+                                        if (images.length) {
+                                            var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
                                             ael.attr('href', href);
+                                            images.each(function (indexImg, elImg) {
+                                                var aelImg = angular.element(elImg);
+                                                aelImg.attr('src', href);
+                                            });
+                                        } else {
+                                            if (!ael.attr('href').startsWith('#')) {
+                                                var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                                ael.attr('href', href);
+                                            }
                                         }
                                     }
                                 });

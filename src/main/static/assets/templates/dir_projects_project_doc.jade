@@ -3,4 +3,6 @@ div
     h1 {{project.detail.info.friendlyName ? project.detail.info.friendlyName : project.detail.info.name}}
     p {{project.detail.info.description}}
   div(ng-bind-html="project.doc")
-
+  div
+    ul
+      li(ng-repeat="contributor in project.detail.contributors") {{contributor.login}}
