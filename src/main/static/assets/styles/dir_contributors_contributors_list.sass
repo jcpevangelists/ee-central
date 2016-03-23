@@ -1,0 +1,31 @@
+@import "variables"
+
+eeio-contributors-list
+  .projects
+    display: flex
+    flex-wrap: wrap
+    > span
+      font-size: 9px
+      margin-right: 2px
+  > div
+    display: flex
+    flex-wrap: wrap
+    > a
+      display: block
+      text-decoration: none
+      width: 200px
+      height: 300px
+      margin: 5px 0 0 5px
+      overflow: hidden
+      border: solid $app-black 1px
+      > img
+        width: 100%
+        height: auto
+      > div
+        padding: 5px
+        > h1, > h2
+          margin: 0
+        > h1
+          font-size: 12px
+        > h2
+          font-size: 10px

@@ -1,0 +1,30 @@
+@import "variables"
+
+eeio-project-doc
+  > div
+    padding: 5px
+    > div.contributors
+      display: flex
+      flex-wrap: wrap
+      border: solid $app-black 1px
+      padding: 5px 0 0 5px
+    > div.title
+      border: solid $app-black 1px
+      margin-top: 5px
+      padding: 5px
+      > *
+        margin: 0
+      > h2
+        font-size: 10px
+        > a
+          text-decoration: none
+          &:hover
+            text-decoration: underline
+      > p
+        margin-top: 5px
+
+    > div.content
+      border: solid $app-black 1px
+      margin-top: 5px
+      padding: 5px
+

@@ -1,0 +1,5 @@
+div
+  div(ng-repeat="project in projects")
+    a(ng-href="project/{{project.name}}/{{project.home ? project.home : 'README.adoc'}}")
+      h1 {{project.friendlyName ? project.friendlyName : project.name}}
+      p {{project.description}}
