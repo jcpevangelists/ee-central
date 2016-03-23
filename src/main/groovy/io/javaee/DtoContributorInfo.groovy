@@ -14,4 +14,5 @@ import javax.xml.bind.annotation.XmlRootElement
 class DtoContributorInfo {
     String login
     String name
+    String avatar
 }
