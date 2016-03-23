@@ -40,5 +40,9 @@ class ServiceProject {
         return github.getRepoPage(projectName, resourceName)
     }
 
+    byte[] getRaw(String projectName, String resourceName) {
+        return github.getRepoRaw(projectName, resourceName)
+    }
+
 }
 

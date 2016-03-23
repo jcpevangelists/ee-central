@@ -41,5 +41,12 @@ class ServiceGithub {
         ], StandardCharsets.UTF_8.name())
     }
 
+    @Memoized
+    byte[] getRepoRaw(String projectName, String resourceName) {
+        return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getBytes([
+                requestProperties: [Accept: 'application/vnd.github.v3.raw']
+        ])
+    }
+
 }
 

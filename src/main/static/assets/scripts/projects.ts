@@ -66,7 +66,25 @@ angular.module('javaeeio-projects', [])
                     projectsService.getProjectPage($scope.owner, $scope.name, $scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
-                                $scope.project.doc = $sce.trustAsHtml(response.data.content);
+                                var content = angular.element(response.data.content);
+                                content.find('[href]').each(function (index, el) {
+                                    var ael = angular.element(el);
+                                    var images = ael.find('> img');
+                                    if (images.length) {
+                                        var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                        ael.attr('href', href);
+                                        images.each(function (indexImg, elImg) {
+                                            var aelImg = angular.element(elImg);
+                                            aelImg.attr('src', href);
+                                        });
+                                    } else {
+                                        if (!ael.attr('href').startsWith('#')) {
+                                            var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                            ael.attr('href', href);
+                                        }
+                                    }
+                                });
+                                $scope.project.doc = $sce.trustAsHtml(content.html());
                             });
                         });
                     });
