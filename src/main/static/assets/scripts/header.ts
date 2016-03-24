@@ -2,7 +2,7 @@
 
 angular.module('javaeeio-header', [])
 
-    .directive('eeioHeader', [function () {
+    .directive('eeioHeader', ['$window', function ($window) {
         return {
             restrict: 'E',
             transclude: true,
@@ -10,11 +10,19 @@ angular.module('javaeeio-header', [])
                 login: '='
             },
             templateUrl: 'app/templates/dir_header.html',
-            link: function(scope, el) {
+            link: function (scope, el) {
                 var transcludeEl = el.find('div[ng-transclude]');
-                if(transcludeEl.html() === '') {
+                if (transcludeEl.html() === '') {
                     el.find('.title').remove();
                 }
+                var page = angular.element($window);
+                var background = el.find('.background');
+                page.scroll(function () {
+                    var step = page.scrollTop();
+                    background.css({
+                        'transform': 'translateY(' + (step / 3) + 'px)'
+                    });
+                });
             }
         };
     }])

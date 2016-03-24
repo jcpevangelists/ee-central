@@ -29,19 +29,14 @@ a
     color: $app-hover-color !important
 
 body
+  background-color: $app-bg-color
   > div[ng-view]
     min-height: 100%
     display: flex
     flex-direction: column
     align-items: stretch
-    background-color: $app-bg-color
     > div.page-body
       flex-grow: 1
-      margin: $app-body-padding
-
-eeio-header.home
-  div[ng-transclude]
-    > *
-      margin: 0
-    > p
-      margin-top: 5px
+      padding: $app-body-padding
+      &.home
+        background-color: #ffffff
