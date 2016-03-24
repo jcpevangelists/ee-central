@@ -13,7 +13,7 @@ angular.module('javaeeio-header', [])
             link: function(scope, el) {
                 var transcludeEl = el.find('div[ng-transclude]');
                 if(transcludeEl.html() === '') {
-                    transcludeEl.remove();
+                    el.find('.title').remove();
                 }
             }
         };
