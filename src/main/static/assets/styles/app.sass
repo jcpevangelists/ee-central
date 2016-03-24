@@ -15,15 +15,6 @@ div.app-loading
   height: 100%
   background: url("../../app/images/loading.gif") center no-repeat
 
-body
-  > div[ng-view]
-    height: 100%
-    display: flex
-    flex-direction: column
-    align-items: stretch
-    > div.page-body
-      flex-grow: 1
-
 @import "dir_header"
 @import "dir_footer"
 @import "dir_contributors_contributor_summary"
@@ -31,3 +22,19 @@ body
 @import "dir_projects_project_doc"
 @import "dir_projects_projects_shortlist"
 @import "dir_contributors_contributors_list"
+
+a
+  text-decoration: none
+  &:hover
+    color: $app-hover-color !important
+
+body
+  > div[ng-view]
+    min-height: 100%
+    display: flex
+    flex-direction: column
+    align-items: stretch
+    background-color: #f1f4f6
+    > div.page-body
+      flex-grow: 1
+      margin: $app-body-padding

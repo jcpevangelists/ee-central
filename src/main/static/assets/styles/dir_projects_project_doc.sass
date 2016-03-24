@@ -2,25 +2,42 @@
 
 eeio-project-doc
   > div
-    background-color: #f1f4f6
-    $padding: 40px
-    padding: $padding
+    $padding: $app-body-padding
     display: flex
     flex-direction: row-reverse
-    > div.contributors
+
+    > div.side-bar
       width: 320px
       flex-shrink: 0
       margin-left: $padding
       $margin: 2px
-      img
-        margin: $margin
-      > h1
-        margin: 0 $margin 10px $margin
+      *
         font-size: 15px
         font-weight: 100
+      > div
+        margin: 0 0 $app-body-padding
+        *
+          margin: 0
+          padding: 0
+
+      > div.resources, > div.related
+        > div
+          background-color: #ffffff
+          padding: 10px
+          margin-top: 10px
+          > p
+            margin-bottom: 5px
+
+      > div.contributors
+        img
+          margin: $margin
+        > h1
+          margin: 0 $margin 10px $margin
 
     > div.content
       background-color: #ffffff
       padding: $padding
       flex-grow: 1
+      a
+        color: $app-hover-color
 

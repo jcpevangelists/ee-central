@@ -18,7 +18,7 @@ class ApiProject {
     @GET
     List<DtoProjectInfo> list() {
         // listing the available specs
-        return srv.availableProjects.findAll { it.spec }
+        return srv.availableProjects.findAll { it.related != null }
     }
 
     @GET

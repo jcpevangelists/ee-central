@@ -18,22 +18,45 @@ class ServiceProject {
         List<DtoProjectInfo> result = []
         new File(application.documents.file).listFiles().each {
             def conf = new Yaml().load(it.getText('UTF-8'))
-            result << new DtoProjectInfo(
+            def info = new DtoProjectInfo(
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,
                     description: github.getRepoDescription(conf.name as String),
                     home: conf.home as String,
-                    spec: true
+                    resources: conf.resources?.collect { resource ->
+                        def dto = new DtoProjectResource()
+                        if (String.class.isInstance(resource)) {
+                            dto.url = resource
+                        } else {
+                            dto.url = resource.url
+                            dto.title = resource.title
+                        }
+                        return dto
+                    },
+                    related: []
             )
+
             conf.related?.each { relatedConf ->
-                result << new DtoProjectInfo(
+                def relatedInfo = new DtoProjectInfo(
                         name: relatedConf.name as String,
                         friendlyName: relatedConf.friendly_name as String,
                         description: github.getRepoDescription(relatedConf.name as String),
                         home: relatedConf.home as String,
-                        spec: false
+                        resources: conf.resources?.collect { resource ->
+                            def dto = new DtoProjectResource()
+                            if (String.class.isInstance(resource)) {
+                                dto.url = resource
+                            } else {
+                                dto.url = resource.url
+                                dto.title = resource.title
+                            }
+                            return dto
+                        }
                 )
+                result << relatedInfo
+                info.related << relatedInfo
             }
+            result << info
         }
         return result
     }

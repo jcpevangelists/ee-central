@@ -3,22 +3,23 @@
 eeio-header
   > div
     width: 100%
-    min-height: 200px
     background: url(../images/header_home.jpg) no-repeat center center fixed
     background-size: cover
+    display: flex
+    flex-direction: column
     > div
-      &[ng-transclude]
+      &.title
+        min-height: 300px
+        flex-grow: 1
         display: flex
         flex-direction: column
         justify-content: center
-        align-items: center
         padding: 0 80px 40px 80px
-        > *
-          margin: 0
-          padding: 0
-          text-align: center
+        *
           color: $app-white
+          font-weight: 100
       &.head
+        flex-shrink: 0
         display: flex
         justify-content: space-between
         align-items: center
@@ -33,11 +34,6 @@ eeio-header
             display: inline
             margin-left: 10px
             > a
-              text-decoration: none
               text-transform: uppercase
               font-size: $app-menu-font-size
               color: $app-white
-              &:hover
-                color: $app-hover-color
-
-
