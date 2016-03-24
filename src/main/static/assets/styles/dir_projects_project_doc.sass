@@ -2,29 +2,25 @@
 
 eeio-project-doc
   > div
-    padding: 5px
+    background-color: #f1f4f6
+    $padding: 40px
+    padding: $padding
+    display: flex
+    flex-direction: row-reverse
     > div.contributors
-      display: flex
-      flex-wrap: wrap
-      border: solid $app-black 1px
-      padding: 5px 0 0 5px
-    > div.title
-      border: solid $app-black 1px
-      margin-top: 5px
-      padding: 5px
-      > *
-        margin: 0
-      > h2
-        font-size: 10px
-        > a
-          text-decoration: none
-          &:hover
-            text-decoration: underline
-      > p
-        margin-top: 5px
+      width: 320px
+      flex-shrink: 0
+      margin-left: $padding
+      $margin: 2px
+      img
+        margin: $margin
+      > h1
+        margin: 0 $margin 10px $margin
+        font-size: 15px
+        font-weight: 100
 
     > div.content
-      border: solid $app-black 1px
-      margin-top: 5px
-      padding: 5px
+      background-color: #ffffff
+      padding: $padding
+      flex-grow: 1
 

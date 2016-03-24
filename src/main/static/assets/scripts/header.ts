@@ -5,10 +5,17 @@ angular.module('javaeeio-header', [])
     .directive('eeioHeader', [function () {
         return {
             restrict: 'E',
+            transclude: true,
             scope: {
                 login: '='
             },
-            templateUrl: 'app/templates/dir_header.html'
+            templateUrl: 'app/templates/dir_header.html',
+            link: function(scope, el) {
+                var transcludeEl = el.find('div[ng-transclude]');
+                if(transcludeEl.html() === '') {
+                    transcludeEl.remove();
+                }
+            }
         };
     }])
 

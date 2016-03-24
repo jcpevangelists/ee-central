@@ -1,10 +1,6 @@
 div
   .contributors
-    div(ng-repeat="contributor in project.detail.contributors")
-      eeio-contributor-summary(login="contributor.login")
-  .title
-    h1 {{project.detail.info.friendlyName ? project.detail.info.friendlyName : project.detail.info.name}}
-    h2
-      a(ng-href="https://github.com/{{project.detail.info.name}}", target="_blank") source code
-    p {{project.detail.info.description}}
+    h1 Cool people that helped make this happen
+    div
+      eeio-contributor-summary(ng-repeat="contributor in project.detail.contributors", login="contributor.login")
   .content(ng-bind-html="project.doc")

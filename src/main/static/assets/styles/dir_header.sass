@@ -3,27 +3,41 @@
 eeio-header
   > div
     width: 100%
+    min-height: 200px
     background: url(../images/header_home.jpg) no-repeat center center fixed
     background-size: cover
-    > div.head
-      display: flex
-      justify-content: space-between
-      align-items: center
-      padding: 40px
-      > a
-        > img
-          width: 250px
-          height: auto
-      > ul
-        list-style: none
-        > li
-          display: inline
-          margin-left: 10px
-          > a
-            text-decoration: none
-            text-transform: uppercase
-            font-size: $app-menu-font-size
-            &:hover
-              color: $app-hover-color
+    > div
+      &[ng-transclude]
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 0 80px 40px 80px
+        > *
+          margin: 0
+          padding: 0
+          text-align: center
+          color: $app-white
+      &.head
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 40px
+        > a
+          > img
+            width: 250px
+            height: auto
+        > ul
+          list-style: none
+          > li
+            display: inline
+            margin-left: 10px
+            > a
+              text-decoration: none
+              text-transform: uppercase
+              font-size: $app-menu-font-size
+              color: $app-white
+              &:hover
+                color: $app-hover-color
 
 
