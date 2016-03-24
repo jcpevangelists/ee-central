@@ -36,8 +36,14 @@ eeio-project-doc
             margin-bottom: 5px
 
       > div.contributors
+        > div
+          @media (max-width: $collapse-width)
+            display: flex
+            flex-wrap: wrap
         img
           margin: $margin
+          @media (max-width: $collapse-width)
+            margin: $margin ($margin * 2) $margin 0
         > h1
           margin: 0 $margin 10px $margin
 

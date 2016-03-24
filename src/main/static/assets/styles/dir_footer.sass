@@ -7,6 +7,8 @@ eeio-footer
     justify-content: space-between
     align-items: center
     padding: 10px 40px
+    @media (max-width: $app-mobile-width)
+      padding: 10px
     background-color: $app-footer-bg-color
     > a
       > img
@@ -14,6 +16,8 @@ eeio-footer
         height: auto
     > ul
       list-style: none
+      margin: 0
+      padding: 0
       > li
         display: inline
         margin-left: 10px
