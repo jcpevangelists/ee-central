@@ -3,10 +3,10 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="javaeeio-pu">
-        <jta-data-source>jdbc/io</jta-data-source>
-        <properties>
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-        </properties>
-    </persistence-unit>
+  <persistence-unit name="javaeeio-pu">
+    <jta-data-source>jdbc/io</jta-data-source>
+    <properties>
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+    </properties>
+  </persistence-unit>
 </persistence>

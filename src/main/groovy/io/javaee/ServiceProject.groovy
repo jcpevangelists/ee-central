@@ -9,15 +9,12 @@ import javax.inject.Inject
 class ServiceProject {
 
     @Inject
-    private ServiceApplication application
-
-    @Inject
     private ServiceGithub github
 
     List<DtoProjectInfo> getAvailableProjects() {
         List<DtoProjectInfo> result = []
-        new File(application.documents.file).listFiles().each {
-            def conf = new Yaml().load(it.getText('UTF-8'))
+        github.configurationFiles.each {
+            def conf = new Yaml().load(it)
             def info = new DtoProjectInfo(
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,

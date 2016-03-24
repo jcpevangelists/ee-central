@@ -10,8 +10,28 @@ import java.nio.charset.StandardCharsets
 @Stateless
 class ServiceGithub {
 
+    private String specsUrl = "https://api.github.com/repos/jcpevangelists/javaee.io.config/contents/specs"
+
     @Inject
     private ServiceApplication application
+
+    @Interceptors(InterceptorGithub)
+    List<String> getConfigurationFiles() {
+        List<String> result = []
+        def names = new JsonSlurper().parseText(specsUrl.toURL().getText([
+                requestProperties: [
+                        'Accept'       : 'application/vnd.github.v3+json',
+                        'Authorization': "token ${application.githubAuthToken}"
+                ]
+        ], StandardCharsets.UTF_8.name())).collect { it.name }
+        names.each {
+            result << new String(
+                    getRepoRaw('jcpevangelists/javaee.io.config', "specs/${it}"),
+                    StandardCharsets.UTF_8.name()
+            )
+        }
+        return result
+    }
 
     @Interceptors(InterceptorGithub)
     String getRepoDescription(String projectName) {
