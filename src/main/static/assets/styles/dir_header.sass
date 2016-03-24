@@ -24,6 +24,8 @@ eeio-header
         flex-direction: column
         justify-content: center
         padding: 0 80px 40px 80px
+        @media (max-width: $app-mobile-width)
+          padding: 0 20px 20px 20px
         *
           color: $app-white
           font-weight: 100
@@ -33,11 +35,18 @@ eeio-header
         justify-content: space-between
         align-items: center
         padding: 40px
+        @media (max-width: $app-mobile-width)
+          flex-direction: column
+          justify-content: center
+          padding: 0
+
         > a
           > img
             width: 250px
             height: auto
         > ul
+          margin: 0
+          padding: 0
           list-style: none
           > li
             display: inline

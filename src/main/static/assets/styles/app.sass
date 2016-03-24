@@ -38,6 +38,8 @@ body
     > div.page-body
       flex-grow: 1
       padding: $app-body-padding
+      @media (max-width: $app-mobile-width)
+        padding: $app-body-padding 5px
       &.home
         background-color: #ffffff
       &.contributors
