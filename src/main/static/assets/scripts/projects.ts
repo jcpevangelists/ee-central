@@ -36,6 +36,29 @@ angular.module('javaeeio-projects', [])
         };
     }])
 
+    .directive('eeioProjectNameDescription', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                owner: '=',
+                name: '='
+            },
+            templateUrl: 'app/templates/dir_projects_project_name_description.html',
+            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService',
+                function ($scope, $timeout, $sce, projectsService) {
+                    $scope.project = {};
+                    projectsService.getProject($scope.owner, $scope.name).then(function (response) {
+                        $timeout(function () {
+                            $scope.$apply(function () {
+                                $scope.project.detail = response.data;
+                            });
+                        });
+                    });
+                }
+            ]
+        };
+    }])
+
     .directive('eeioProjectDoc', [function () {
         return {
             restrict: 'E',

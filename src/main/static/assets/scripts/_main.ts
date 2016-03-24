@@ -3,6 +3,8 @@
 angular.module('javaeeio-main', [
     'ngRoute',
     'ngStorage',
+    'javaeeio-header',
+    'javaeeio-footer',
     'javaeeio-projects',
     'javaeeio-contributors'
 ])
@@ -17,6 +19,9 @@ angular.module('javaeeio-main', [
             $routeProvider
                 .when('/', {
                     templateUrl: 'app/templates/page_home.html'
+                })
+                .when('/contributors', {
+                    templateUrl: 'app/templates/page_contributors.html'
                 })
                 .when('/project/:owner/:name/:resource*', {
                     templateUrl: 'app/templates/page_project.html',
