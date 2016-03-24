@@ -13,7 +13,7 @@ class ServiceProject {
 
     List<DtoProjectInfo> getAvailableProjects() {
         List<DtoProjectInfo> result = []
-        github.configurationFiles.each {
+        github.getConfigurationFiles().each {
             def conf = new Yaml().load(it)
             def info = new DtoProjectInfo(
                     name: conf.name as String,
