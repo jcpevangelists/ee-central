@@ -4,17 +4,32 @@ import org.yaml.snakeyaml.Yaml
 
 import javax.ejb.Stateless
 import javax.inject.Inject
+import java.util.logging.Level
+import java.util.logging.Logger
 
 @Stateless
 class ServiceProject {
+    private Logger logger = Logger.getLogger(this.class.name)
 
     @Inject
     private ServiceGithub github
 
+    private def loadYaml(String content) {
+        try {
+            return new Yaml().load(content)
+        } catch (e) {
+            logger.log(Level.WARNING, "Invalid yaml file", e)
+            return null
+        }
+    }
+
     List<DtoProjectInfo> getAvailableProjects() {
         List<DtoProjectInfo> result = []
         github.getConfigurationFiles().each {
-            def conf = new Yaml().load(it)
+            def conf = loadYaml(it)
+            if (!conf) {
+                return
+            }
             def info = new DtoProjectInfo(
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,
@@ -63,9 +78,13 @@ class ServiceProject {
         if (!info) {
             throw new ExceptionApplication("Project not found: '${projectName}'")
         }
+        Set<DtoProjectContributor> contributors = github.getRepoContributors(projectName)
+        info.related.each {
+            contributors.addAll(github.getRepoContributors(it.name))
+        }
         return new DtoProjectDetail(
                 info: info,
-                contributors: github.getRepoContributors(projectName)
+                contributors: contributors
         )
     }
 
