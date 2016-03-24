@@ -19,12 +19,12 @@ class ServiceProject {
             return new Yaml().load(content)
         } catch (e) {
             logger.log(Level.WARNING, "Invalid yaml file", e)
-            return null
         }
+        return null
     }
 
-    List<DtoProjectInfo> getAvailableProjects() {
-        List<DtoProjectInfo> result = []
+    Set<DtoProjectInfo> getAvailableProjects() {
+        Set<DtoProjectInfo> result = []
         github.getConfigurationFiles().each {
             def conf = loadYaml(it)
             if (!conf) {
@@ -54,7 +54,7 @@ class ServiceProject {
                         friendlyName: relatedConf.friendly_name as String,
                         description: github.getRepoDescription(relatedConf.name as String),
                         home: relatedConf.home as String,
-                        resources: conf.resources?.collect { resource ->
+                        resources: relatedConf.resources?.collect { resource ->
                             def dto = new DtoProjectResource()
                             if (String.class.isInstance(resource)) {
                                 dto.url = resource
