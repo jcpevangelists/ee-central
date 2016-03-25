@@ -68,8 +68,8 @@ angular.module('javaeeio-projects', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_projects_project_doc.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService',
-                function ($scope, $timeout, $sce, projectsService) {
+            controller: ['$scope', '$timeout', '$sce', '$location', 'eeioProjectsService',
+                function ($scope, $timeout, $sce, $location, projectsService) {
                     $scope.project = {};
                     projectsService.getProject($scope.owner, $scope.name).then(function (response) {
                         $timeout(function () {
@@ -84,18 +84,24 @@ angular.module('javaeeio-projects', [])
                                 var content = angular.element(response.data.content);
                                 content.find('[href]').each(function (index, el) {
                                     var ael = angular.element(el);
-                                    if (!ael.attr('href').startsWith('http://') && !ael.attr('href').startsWith('https://')) {
+                                    var currentHref = ael.attr('href');
+                                    if (!currentHref.startsWith('http://') && !currentHref.startsWith('https://')) {
                                         var images = ael.find('> img');
                                         if (images.length) {
-                                            var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                            var pathRoot = '/project/' + $scope.owner + '/' + $scope.name + '/';
+                                            var currentHrefSplit = currentHref.split('/');
+                                            var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
+                                            resourceNamePath.pop();
+                                            var resourceName = resourceNamePath.join('/') + '/' + currentHref;
+                                            var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + resourceName;
                                             ael.attr('href', href);
                                             images.each(function (indexImg, elImg) {
                                                 var aelImg = angular.element(elImg);
                                                 aelImg.attr('src', href);
                                             });
                                         } else {
-                                            if (!ael.attr('href').startsWith('#')) {
-                                                var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + ael.attr('href');
+                                            if (!currentHref.startsWith('#')) {
+                                                var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + currentHref;
                                                 ael.attr('href', href);
                                             }
                                         }
