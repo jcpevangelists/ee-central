@@ -10,7 +10,6 @@ import javax.ejb.Startup
 @Startup
 @Lock(LockType.READ)
 class ServiceApplication {
-    private URL documents
     private String githubAuthToken
 
     @PostConstruct
@@ -19,15 +18,6 @@ class ServiceApplication {
         if (!this.githubAuthToken) {
             throw new ExceptionApplication("no github authentication token defined")
         }
-    }
-
-    @Lock(LockType.WRITE)
-    void init(URL documents) {
-        this.documents = documents
-    }
-
-    URL getDocuments() {
-        return documents
     }
 
     String getGithubAuthToken() {

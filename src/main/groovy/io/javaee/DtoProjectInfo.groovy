@@ -12,4 +12,22 @@ class DtoProjectInfo {
     String home
     Collection<DtoProjectInfo> related
     Collection<DtoProjectResource> resources
+
+    boolean equals(o) {
+        if (this.is(o)) {
+            return true
+        }
+        if (getClass() != o.class) {
+            return false
+        }
+        DtoProjectInfo that = (DtoProjectInfo) o
+        if (name != that.name) {
+            return false
+        }
+        return true
+    }
+
+    int hashCode() {
+        return name.hashCode()
+    }
 }

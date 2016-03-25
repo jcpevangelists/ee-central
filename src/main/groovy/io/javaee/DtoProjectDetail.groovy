@@ -7,5 +7,5 @@ import groovy.transform.ToString
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
 class DtoProjectDetail {
     DtoProjectInfo info
-    List<DtoProjectContributor> contributors
+    Collection<DtoProjectContributor> contributors
 }

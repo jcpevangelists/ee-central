@@ -70,6 +70,7 @@ class ServiceGithubCache {
         cache.put('getRepoPage', [:].asSynchronized())
         cache.put('getRepoRaw', [:].asSynchronized())
         cache.put('getContributor', [:].asSynchronized())
+        cache.put('getConfigurationFiles', [:].asSynchronized())
         logger.fine("Cache reset.")
     }
 
