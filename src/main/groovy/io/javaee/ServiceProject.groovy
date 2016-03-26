@@ -45,7 +45,8 @@ class ServiceProject {
                         }
                         return dto
                     },
-                    related: []
+                    related: [],
+                    spec: true
             )
 
             conf.related?.each { relatedConf ->
