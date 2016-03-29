@@ -35,6 +35,9 @@ class ServiceGithub {
 
     @Interceptors(InterceptorGithub)
     String getRepoDescription(String projectName) {
+        if (!projectName) {
+            return null
+        }
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/repos/${projectName}".toURL().getText([
                         requestProperties: [
