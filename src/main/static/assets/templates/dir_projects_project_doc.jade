@@ -3,7 +3,7 @@ div
     .contributors
       h1 Cool people that helped make this happen
       div
-        eeio-contributor-summary(ng-repeat="contributor in project.detail.contributors", login="contributor.login")
+        eeio-contributor-summary(ng-repeat="contributor in project.detail.contributors | orderBy:'contributions':true", login="contributor.login")
     .resources
       h1 External resources
       div

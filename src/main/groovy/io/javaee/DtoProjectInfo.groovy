@@ -12,6 +12,7 @@ class DtoProjectInfo {
     String home
     Collection<DtoProjectInfo> related
     Collection<DtoProjectResource> resources
+    boolean spec
 
     boolean equals(o) {
         if (this.is(o)) {
