@@ -9,11 +9,22 @@ angular.module('javaeeio-projects', [])
                 getProjects: function () {
                     return $http.get('api/project');
                 },
-                getProject: function (owner, name) {
-                    return $http.get('api/project/' + owner + '/' + name);
+                getProject: function (configFile) {
+                    if (!configFile) {
+                        return {
+                            then: function () {
+                            }
+                        };
+                    } else {
+                        return $http.get('api/project/' + configFile);
+                    }
                 },
-                getProjectPage: function (owner, name, resource) {
-                    return $http.get('api/project/' + owner + '/' + name + '/' + resource);
+                getProjectPage: function (configFile, resource) {
+                    if (resource === null || resource === undefined) {
+                        return $http.get('api/project/page/' + configFile + '/');
+                    } else {
+                        return $http.get('api/project/page/' + configFile + '/' + resource);
+                    }
                 }
             };
         }
@@ -40,14 +51,13 @@ angular.module('javaeeio-projects', [])
         return {
             restrict: 'E',
             scope: {
-                owner: '=',
-                name: '='
+                configFile: '='
             },
             templateUrl: 'app/templates/dir_projects_project_name_description.html',
             controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService',
                 function ($scope, $timeout, $sce, projectsService) {
                     $scope.project = {};
-                    projectsService.getProject($scope.owner, $scope.name).then(function (response) {
+                    projectsService.getProject($scope.configFile).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.project.detail = response.data;
@@ -63,22 +73,21 @@ angular.module('javaeeio-projects', [])
         return {
             restrict: 'E',
             scope: {
-                owner: '=',
-                name: '=',
+                configFile: '=',
                 resource: '='
             },
             templateUrl: 'app/templates/dir_projects_project_doc.html',
             controller: ['$scope', '$timeout', '$sce', '$location', 'eeioProjectsService',
                 function ($scope, $timeout, $sce, $location, projectsService) {
                     $scope.project = {};
-                    projectsService.getProject($scope.owner, $scope.name).then(function (response) {
+                    projectsService.getProject($scope.configFile).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.project.detail = response.data;
                             });
                         });
                     });
-                    projectsService.getProjectPage($scope.owner, $scope.name, $scope.resource).then(function (response) {
+                    projectsService.getProjectPage($scope.configFile, $scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
                                 var content = angular.element(response.data.content);
@@ -88,12 +97,12 @@ angular.module('javaeeio-projects', [])
                                     if (!currentHref.startsWith('http://') && !currentHref.startsWith('https://')) {
                                         var images = ael.find('> img');
                                         if (images.length) {
-                                            var pathRoot = '/project/' + $scope.owner + '/' + $scope.name + '/';
+                                            var pathRoot = '/project/' + $scope.configFile + '/';
                                             var currentHrefSplit = currentHref.split('/');
                                             var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
                                             resourceNamePath.pop();
                                             var resourceName = resourceNamePath.join('/') + '/' + currentHref;
-                                            var href = 'api/project/raw/' + $scope.owner + '/' + $scope.name + '/' + resourceName;
+                                            var href = 'api/project/raw/' + $scope.configFile + '/' + resourceName;
                                             ael.attr('href', href);
                                             images.each(function (indexImg, elImg) {
                                                 var aelImg = angular.element(elImg);
@@ -101,7 +110,7 @@ angular.module('javaeeio-projects', [])
                                             });
                                         } else {
                                             if (!currentHref.startsWith('#')) {
-                                                var href = 'project/' + $scope.owner + '/' + $scope.name + '/' + currentHref;
+                                                var href = 'project/' + $scope.configFile + '/' + currentHref;
                                                 ael.attr('href', href);
                                             }
                                         }

@@ -15,5 +15,5 @@ div
       h1 Related projects
       div
         p(ng-repeat="related in project.detail.info.related")
-          a(ng-href="project/{{related.name}}/{{related.home ? related.home : 'README.adoc'}}") {{related.friendlyName ? related.friendlyName : related.name}}
+          a(ng-href="project/{{related}}") {{related}}
   .content(ng-bind-html="project.doc")
