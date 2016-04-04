@@ -9,8 +9,11 @@ eeio-projects-shortlist
       font-weight: 100
     > a[ng-repeat="project in projects"]
       display: block
-      border-bottom: solid black 1px
+      border-bottom: solid $app-black 1px
       $spacing: $app-body-padding
       padding-bottom: $spacing
       margin-bottom: $spacing
+      &:hover
+        *
+          color: $app-hover-color
 
