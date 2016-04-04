@@ -23,13 +23,13 @@ angular.module('javaeeio-main', [
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html'
                 })
-                .when('/project/:owner/:name/:resource*', {
+                .when('/project/:configFile/:resourceName*', {
                     templateUrl: 'app/templates/page_project.html',
-                    controller: ['$route', '$scope', function ($route, $scope) {
-                        $scope.owner = $route.current.params['owner'];
-                        $scope.name = $route.current.params['name'];
-                        $scope.resource = $route.current.params['resource'];
-                    }]
+                    controller: 'ProjectPageController'
+                })
+                .when('/project/:configFile', {
+                    templateUrl: 'app/templates/page_project.html',
+                    controller: 'ProjectPageController'
                 })
                 .otherwise({
                     controller: ['$scope', '$location', function ($scope, $location) {
@@ -39,6 +39,11 @@ angular.module('javaeeio-main', [
                 });
         }
     ])
+
+    .controller('ProjectPageController', ['$route', '$scope', function ($route, $scope) {
+        $scope.configFile = $route.current.params['configFile'];
+        $scope.resource = $route.current.params['resourceName'];
+    }])
 
     .run(['$rootScope', function ($rootScope) {
         $rootScope.baseFullPath = angular.element('head base').first().attr('href');

@@ -1,4 +1,4 @@
 div
-  a(ng-repeat="project in projects", ng-href="project/{{project.name}}/{{project.home ? project.home : 'README.adoc'}}")
+  a(ng-repeat="project in projects", ng-href="project/{{project.configFile}}")
     h1 {{project.friendlyName ? project.friendlyName : project.name}}
     p {{project.description}}

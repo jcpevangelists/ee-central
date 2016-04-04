@@ -6,18 +6,25 @@ import javax.ejb.Stateless
 import javax.inject.Inject
 import javax.interceptor.Interceptors
 import java.nio.charset.StandardCharsets
+import java.util.logging.Level
+import java.util.logging.Logger
 
 @Stateless
 class ServiceGithub {
+    private Logger logger = Logger.getLogger(this.class.name)
 
-    private String specsUrl = "https://api.github.com/repos/jcpevangelists/javaee.io.config/contents/specs"
+    private String docRoot = System.getProperty(
+            'javaeeio_config_root',
+            System.getenv()['javaeeio_config_root'] ?: 'jcpevangelists/javaee.io.config'
+    )
+    private String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
 
     @Inject
     private ServiceApplication application
 
     @Interceptors(InterceptorGithub)
-    List<String> getConfigurationFiles() {
-        List<String> result = []
+    List<DtoConfigFile> getConfigurationFiles() {
+        List<DtoConfigFile> result = []
         def names = new JsonSlurper().parseText(specsUrl.toURL().getText([
                 requestProperties: [
                         'Accept'       : 'application/vnd.github.v3+json',
@@ -25,9 +32,12 @@ class ServiceGithub {
                 ]
         ], StandardCharsets.UTF_8.name())).collect { it.name }
         names.each {
-            result << new String(
-                    getRepoRaw('jcpevangelists/javaee.io.config', "specs/${it}"),
-                    StandardCharsets.UTF_8.name()
+            result << new DtoConfigFile(
+                    name: it,
+                    content: new String(
+                            getRepoRaw(docRoot, "specs/${it}"),
+                            StandardCharsets.UTF_8.name()
+                    )
             )
         }
         return result
@@ -51,6 +61,9 @@ class ServiceGithub {
 
     @Interceptors(InterceptorGithub)
     List<DtoProjectContributor> getRepoContributors(String projectName) {
+        if (!projectName) {
+            return []
+        }
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/repos/${projectName}/contributors".toURL().getText([
                         requestProperties: [
@@ -69,12 +82,17 @@ class ServiceGithub {
 
     @Interceptors(InterceptorGithub)
     String getRepoPage(String projectName, String resourceName) {
-        return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
-                requestProperties: [
-                        'Accept'       : 'application/vnd.github.v3.html',
-                        'Authorization': "token ${application.githubAuthToken}"
-                ]
-        ], StandardCharsets.UTF_8.name())
+        try {
+            return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
+                    requestProperties: [
+                            'Accept'       : 'application/vnd.github.v3.html',
+                            'Authorization': "token ${application.githubAuthToken}"
+                    ]
+            ], StandardCharsets.UTF_8.name())
+        } catch (FileNotFoundException fnf) {
+            logger.log(Level.FINE, "The project ${projectName} has no document named ${resourceName}", fnf)
+            return ''
+        }
     }
 
     @Interceptors(InterceptorGithub)
@@ -107,4 +125,3 @@ class ServiceGithub {
     }
 
 }
-

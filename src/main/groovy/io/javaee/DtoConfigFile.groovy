@@ -5,6 +5,7 @@ import groovy.transform.ToString
 
 @EqualsAndHashCode
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
-class DtoProjectPage {
+class DtoConfigFile {
+    String name
     String content
 }
