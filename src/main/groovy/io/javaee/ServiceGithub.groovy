@@ -6,9 +6,12 @@ import javax.ejb.Stateless
 import javax.inject.Inject
 import javax.interceptor.Interceptors
 import java.nio.charset.StandardCharsets
+import java.util.logging.Level
+import java.util.logging.Logger
 
 @Stateless
 class ServiceGithub {
+    private Logger logger = Logger.getLogger(this.class.name)
 
     private String docRoot = System.getProperty(
             'javaeeio_config_root',
@@ -79,12 +82,17 @@ class ServiceGithub {
 
     @Interceptors(InterceptorGithub)
     String getRepoPage(String projectName, String resourceName) {
-        return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
-                requestProperties: [
-                        'Accept'       : 'application/vnd.github.v3.html',
-                        'Authorization': "token ${application.githubAuthToken}"
-                ]
-        ], StandardCharsets.UTF_8.name())
+        try {
+            return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
+                    requestProperties: [
+                            'Accept'       : 'application/vnd.github.v3.html',
+                            'Authorization': "token ${application.githubAuthToken}"
+                    ]
+            ], StandardCharsets.UTF_8.name())
+        } catch (FileNotFoundException fnf) {
+            logger.log(Level.FINE, "The project ${projectName} has no document named ${resourceName}", fnf)
+            return ''
+        }
     }
 
     @Interceptors(InterceptorGithub)

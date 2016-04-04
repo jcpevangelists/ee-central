@@ -125,6 +125,28 @@ angular.module('javaeeio-projects', [])
         };
     }])
 
+    .directive('eeioProjectDocRelated', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                configFile: '='
+            },
+            templateUrl: 'app/templates/dir_projects_project_doc_related.html',
+            controller: ['$scope', '$timeout', 'eeioProjectsService',
+                function ($scope, $timeout, projectsService) {
+                    $scope.related = {};
+                    projectsService.getProject($scope.configFile).then(function (response) {
+                        $timeout(function () {
+                            $scope.$apply(function () {
+                                $scope.related = response.data;
+                            });
+                        });
+                    });
+                }
+            ]
+        };
+    }])
+
     .run(function () {
         // placeholder
     });

@@ -42,7 +42,7 @@ class ServiceProject {
                     configFile: it.name,
                     name: conf.name as String,
                     friendlyName: conf.friendly_name as String,
-                    description: github.getRepoDescription(conf.name as String),
+                    description: conf.name ? github.getRepoDescription(conf.name as String) : '',
                     home: conf.home as String,
                     resources: conf.resources?.collect { resource ->
                         def dto = new DtoProjectResource()
