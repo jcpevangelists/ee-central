@@ -6,7 +6,7 @@ import groovy.transform.ToString
 class DtoGroupMessage {
     String id
     String author
-    Date updated
-    String link
+    String updated
     String title
+    String summary
 }

@@ -15,9 +15,9 @@ class ServiceGoogleGroups {
             return new DtoGroupMessage(
                     id: it.id.text(),
                     author: it.author.text(),
-                    updated: Date.parse("yyyy-MM-dd'T'HH:mm:ss", it.updated.text() as String),
-                    link: it.link.text(),
-                    title: it.title.text()
+                    updated: it.updated.text(),
+                    title: it.title.text(),
+                    summary: it.summary.text()
             )
         }
     }
