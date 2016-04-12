@@ -1,17 +1,22 @@
 package io.javaee
 
+import org.tomitribe.sabot.Config
+
 import javax.annotation.PostConstruct
 import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Schedule
 import javax.ejb.Singleton
+import javax.inject.Inject
 import java.nio.charset.StandardCharsets
 
 @Singleton
 @Lock(LockType.READ)
 class ServiceGoogleGroups {
 
-    private String url = 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50'
+    @Inject
+    @Config(value = 'google_forum_url')
+    private String url
 
     Collection<DtoGroupMessage> messages
 
