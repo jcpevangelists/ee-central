@@ -1,6 +1,7 @@
 package io.javaee
 
 import groovy.json.JsonSlurper
+import org.tomitribe.sabot.Config
 
 import javax.ejb.Stateless
 import javax.inject.Inject
@@ -13,17 +14,16 @@ import java.util.logging.Logger
 class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
-    private String docRoot = System.getProperty(
-            'javaeeio_config_root',
-            System.getenv()['javaeeio_config_root'] ?: 'jcpevangelists/javaee.io.config'
-    )
-    private String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
+    @Inject
+    @Config(value = 'javaeeio_config_root')
+    private String docRoot
 
     @Inject
     private ServiceApplication application
 
     @Interceptors(InterceptorGithub)
     List<DtoConfigFile> getConfigurationFiles() {
+        String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
         List<DtoConfigFile> result = []
         def names = new JsonSlurper().parseText(specsUrl.toURL().getText([
                 requestProperties: [

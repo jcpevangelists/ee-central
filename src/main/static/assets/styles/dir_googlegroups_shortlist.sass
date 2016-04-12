@@ -1,0 +1,45 @@
+@import "variables"
+
+eeio-googlegroups-shortlist
+  > div
+    background: url(../images/mail.jpg) no-repeat center center fixed
+    background-size: cover
+    > h1
+      font-weight: 100
+      text-align: center
+      color: $app-white
+    > div
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      > a[ng-repeat="msg in messages"]
+        background-color: #ffffff
+        display: block
+        max-width: 300px
+        margin: 10px
+        border: solid #ffffff 2px
+        padding: 10px 10px 40px 10px
+        position: relative
+        > h1, > h2, > h3, > p
+          margin: 0
+          font-weight: 100
+          overflow: hidden
+        > h1
+          font-size: 18px
+        > h2
+          font-size: 13px
+          font-weight: bold
+        > h3
+          font-size: 11px
+          margin-bottom: 10px
+        > p
+          font-size: 15px
+          &:last-child
+            text-align: right
+            position: absolute
+            bottom: 10px
+            right: 10px
+        &:hover
+          > p:last-child
+            color: $app-hover-color
+          border-color: $app-hover-color

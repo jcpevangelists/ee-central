@@ -22,6 +22,7 @@ div.app-loading
 @import "dir_projects_project_doc"
 @import "dir_projects_projects_shortlist"
 @import "dir_contributors_contributors_list"
+@import "dir_googlegroups_shortlist"
 
 a
   text-decoration: none
@@ -37,13 +38,5 @@ body
     align-items: stretch
     > div.page-body
       flex-grow: 1
-      padding: $app-body-padding
-      @media (max-width: $app-mobile-width)
-        padding: $app-body-padding 5px
-      &.home
-        background-color: #ffffff
-      &.contributors
-        > h1, > h2
-          margin: 0
-          font-weight: 100
-          text-align: center
+    @import "page_home"
+    @import "page_contributors"

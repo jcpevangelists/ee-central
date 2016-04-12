@@ -1,24 +1,18 @@
 package io.javaee
 
-import javax.annotation.PostConstruct
+import org.tomitribe.sabot.Config
+
 import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Singleton
-import javax.ejb.Startup
+import javax.inject.Inject
 
 @Singleton
-@Startup
 @Lock(LockType.READ)
 class ServiceApplication {
+    @Inject
+    @Config(value = 'github_atoken')
     private String githubAuthToken
-
-    @PostConstruct
-    void postConstruct() {
-        this.githubAuthToken = System.getProperty("io.github.token", System.getenv()['github_atoken'])
-        if (!this.githubAuthToken) {
-            throw new ExceptionApplication("no github authentication token defined")
-        }
-    }
 
     String getGithubAuthToken() {
         return githubAuthToken
