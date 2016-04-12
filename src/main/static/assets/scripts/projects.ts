@@ -6,6 +6,9 @@ angular.module('javaeeio-projects', [])
         '$http',
         function ($http) {
             return {
+                getSpecs: function () {
+                    return $http.get('api/specs');
+                },
                 getProjects: function () {
                     return $http.get('api/project');
                 },
@@ -36,6 +39,13 @@ angular.module('javaeeio-projects', [])
             scope: {},
             templateUrl: 'app/templates/dir_projects_projects_shortlist.html',
             controller: ['$scope', '$timeout', 'eeioProjectsService', function ($scope, $timeout, projectsService) {
+                projectsService.getSpecs().then(function (response) {
+                    $timeout(function () {
+                        $scope.$apply(function () {
+                            $scope.specs = response.data;
+                        });
+                    });
+                });
                 projectsService.getProjects().then(function (response) {
                     $timeout(function () {
                         $scope.$apply(function () {
