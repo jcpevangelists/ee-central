@@ -2,6 +2,7 @@
 
 eeio-projects-shortlist
   > div
+    background-color: $app-bg-white
     padding: 10px
     *
       margin: 0
@@ -13,6 +14,10 @@ eeio-projects-shortlist
       $spacing: $app-body-padding
       padding-bottom: $spacing
       margin-bottom: $spacing
+      &:last-child
+        border-bottom: 0
+        padding-bottom: 0
+        margin-bottom: 0
       &:hover
         *
           color: $app-hover-color
