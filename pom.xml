@@ -15,7 +15,6 @@
     <tomee.version>7.0.0-SNAPSHOT</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
-    <tomee.args>-Xmx512m -XX:PermSize=256m -Dgithub_atoken="${env.github_atoken}" -Dio_config_root="tomitribe" -Dio_config_project="tomitribe.io.config" -Djavaeeio_config_root="tveronezi/javaee.io.config"</tomee.args>
   </properties>
 
   <dependencies>
@@ -86,7 +85,11 @@
         <version>${tomee.version}</version>
         <configuration>
           <context>javaee-io</context>
-          <args>${tomee.args}</args>
+          <systemVariables>
+            <io_config_root>tomitribe</io_config_root>
+            <io_config_project>tomitribe.io.config</io_config_project>
+            <javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>
+          </systemVariables>
         </configuration>
       </plugin>
       <plugin>
