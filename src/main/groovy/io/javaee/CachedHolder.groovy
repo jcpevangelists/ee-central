@@ -5,15 +5,16 @@ import javax.ejb.Lock
 import javax.ejb.LockType
 import javax.ejb.Schedule
 import javax.ejb.Singleton
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 import java.util.logging.Logger
 
 @Singleton
 @Lock(LockType.READ)
-class ServiceGithubCache {
-
+class CachedHolder {
     private Logger logger = Logger.getLogger(this.class.name)
 
-    private Map<String, Map<ParamsKey, Object>> cache = [:].asSynchronized()
+    private ConcurrentMap<String, Map<ParamsKey, Object>> cache = new ConcurrentHashMap<>()
 
     private class ParamsKey {
         public Object[] params
@@ -38,6 +39,7 @@ class ServiceGithubCache {
     }
 
     Object get(String methodName, Object[] arguments) {
+        this.cache.putIfAbsent(methodName, [:])
         def methodCache = this.cache.get(methodName)
         def key = new ParamsKey(
                 params: arguments
@@ -48,7 +50,6 @@ class ServiceGithubCache {
         throw new ExceptionCache('cache entry not found')
     }
 
-    @Lock(LockType.WRITE)
     void set(String methodName, Object[] arguments, Object value) {
         def methodCache = this.cache.get(methodName)
         methodCache.put(new ParamsKey(
@@ -61,18 +62,9 @@ class ServiceGithubCache {
     @PostConstruct
     void reset() {
         // simply create a new map. Running consumers will continue to use the old cache until they are done.
-        this.cache = [:].asSynchronized()
-
-        // every time you annotate a new method with "@Interceptors(InterceptorGithub)",
-        // don't forget to add it here too.
-        cache.put('getRepoDescription', [:].asSynchronized())
-        cache.put('getRepoContributors', [:].asSynchronized())
-        cache.put('getRepoPage', [:].asSynchronized())
-        cache.put('getRepoRaw', [:].asSynchronized())
-        cache.put('getContributor', [:].asSynchronized())
-        cache.put('getConfigurationFiles', [:].asSynchronized())
-        logger.fine("Cache reset.")
+        if (!this.cache.isEmpty()) {
+            this.cache = new ConcurrentHashMap<>()
+            logger.info("Cache cleared.")
+        }
     }
-
 }
-

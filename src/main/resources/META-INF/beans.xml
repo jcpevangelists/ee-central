@@ -1,1 +1,5 @@
-<beans></beans>
+<beans>
+  <interceptors>
+    <class>io.javaee.CachedInterceptor</class>
+  </interceptors>
+</beans>
