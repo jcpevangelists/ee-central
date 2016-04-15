@@ -2,12 +2,12 @@ package io.javaee
 
 import org.yaml.snakeyaml.Yaml
 
-import javax.ejb.Stateless
+import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 import java.util.logging.Level
 import java.util.logging.Logger
 
-@Stateless
+@ApplicationScoped
 class ServiceProject {
     private Logger logger = Logger.getLogger(this.class.name)
 

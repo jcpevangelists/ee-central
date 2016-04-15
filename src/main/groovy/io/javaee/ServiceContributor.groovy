@@ -1,9 +1,9 @@
 package io.javaee
 
-import javax.ejb.Stateless
+import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
-@Stateless
+@ApplicationScoped
 class ServiceContributor {
 
     @Inject

@@ -3,14 +3,16 @@ package io.javaee
 import groovy.json.JsonSlurper
 import org.tomitribe.sabot.Config
 
-import javax.ejb.Stateless
+import javax.ejb.Lock
+import javax.ejb.LockType
+import javax.ejb.Singleton
 import javax.inject.Inject
-import javax.interceptor.Interceptors
 import java.nio.charset.StandardCharsets
 import java.util.logging.Level
 import java.util.logging.Logger
 
-@Stateless
+@Singleton
+@Lock(LockType.READ)
 class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
@@ -21,7 +23,7 @@ class ServiceGithub {
     @Inject
     private ServiceApplication application
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     List<DtoConfigFile> getConfigurationFiles() {
         String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
         List<DtoConfigFile> result = []
@@ -43,7 +45,7 @@ class ServiceGithub {
         return result
     }
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     String getRepoDescription(String projectName) {
         if (!projectName) {
             return null
@@ -59,7 +61,7 @@ class ServiceGithub {
         return json.description as String
     }
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     List<DtoProjectContributor> getRepoContributors(String projectName) {
         if (!projectName) {
             return []
@@ -80,7 +82,7 @@ class ServiceGithub {
         }
     }
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     String getRepoPage(String projectName, String resourceName) {
         try {
             return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
@@ -95,7 +97,7 @@ class ServiceGithub {
         }
     }
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     byte[] getRepoRaw(String projectName, String resourceName) {
         return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getBytes([
                 requestProperties: [
@@ -105,7 +107,7 @@ class ServiceGithub {
         ])
     }
 
-    @Interceptors(InterceptorGithub)
+    @Cached
     DtoContributorInfo getContributor(String login) {
         def json = new JsonSlurper().parseText(
                 "https://api.github.com/users/${login}".toURL().getText([
