@@ -104,7 +104,7 @@ angular.module('javaeeio-projects', [])
                                 content.find('[href]').each(function (index, el) {
                                     var ael = angular.element(el);
                                     var currentHref = ael.attr('href');
-                                    if (!currentHref.startsWith('http://') && !currentHref.startsWith('https://')) {
+                                    if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
                                         var images = ael.find('> img');
                                         if (images.length) {
                                             var pathRoot = '/project/' + $scope.configFile + '/';
@@ -119,7 +119,7 @@ angular.module('javaeeio-projects', [])
                                                 aelImg.attr('src', href);
                                             });
                                         } else {
-                                            if (!currentHref.startsWith('#')) {
+                                            if (!s.startsWith(currentHref, '#')) {
                                                 var href = 'project/' + $scope.configFile + '/' + currentHref;
                                                 ael.attr('href', href);
                                             }
