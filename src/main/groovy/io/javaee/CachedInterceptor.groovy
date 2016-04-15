@@ -1,28 +1,43 @@
 package io.javaee
 
+import javax.annotation.PostConstruct
+import javax.annotation.PreDestroy
 import javax.inject.Inject
 import javax.interceptor.AroundInvoke
 import javax.interceptor.Interceptor
 import javax.interceptor.InvocationContext
-import java.util.logging.Logger
 
 @Interceptor
 @Cached
 class CachedInterceptor {
-    private Logger logger = Logger.getLogger(this.class.name)
-
     @Inject
     private CachedHolder holder
 
+    @PostConstruct
+    void initCache(InvocationContext ctx) {
+        holder.createCache(ctx.target)
+    }
+
+    @PreDestroy
+    void cleanCache(InvocationContext ctx) {
+        try {
+            holder.removeCache(ctx.target)
+        } catch (IllegalStateException ignore) {
+            // holder is already undeployed.
+        }
+    }
+
     @AroundInvoke
-    public Object invoke(InvocationContext ctx) throws Exception {
+    Object invoke(InvocationContext ctx) throws Exception {
+        if (!ctx.method.getAnnotation(Cached)) {
+            return ctx.proceed()
+        }
         Object result
         try {
-            result = holder.get(ctx.method.name, ctx.parameters)
+            result = holder.get(ctx.target, ctx.method, ctx.parameters)
         } catch (ExceptionCache ignore) {
             result = ctx.proceed()
-            holder.set(ctx.method.name, ctx.parameters, result)
-            logger.info("New cache entry for ${ctx.method.name}(${ctx.parameters?.join(', ')})")
+            holder.set(ctx.target, ctx.method, ctx.parameters, result)
         }
         return result;
     }

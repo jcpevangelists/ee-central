@@ -3,14 +3,16 @@ package io.javaee
 import groovy.json.JsonSlurper
 import org.tomitribe.sabot.Config
 
-import javax.ejb.Stateless
+import javax.ejb.Lock
+import javax.ejb.LockType
+import javax.ejb.Singleton
 import javax.inject.Inject
 import java.nio.charset.StandardCharsets
 import java.util.logging.Level
 import java.util.logging.Logger
 
-@Stateless
-@Cached
+@Singleton
+@Lock(LockType.READ)
 class ServiceGithub {
     private Logger logger = Logger.getLogger(this.class.name)
 
