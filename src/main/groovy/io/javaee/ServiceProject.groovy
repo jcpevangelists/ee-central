@@ -79,7 +79,7 @@ class ServiceProject {
         )
     }
 
-    String getPage(String configFile, String resourceName) {
+    String getProjectPage(String configFile, String resourceName) {
         def conf = loadYaml(github.getConfigurationFiles().find {
             it.name == configFile
         })

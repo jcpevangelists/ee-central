@@ -32,7 +32,7 @@ class ApiProject {
     DtoProjectPage getPage(@PathParam("configFile") String configFile,
                            @PathParam("projectResource") String projectResource) {
         return new DtoProjectPage(
-                content: srv.getPage(configFile, projectResource)
+                content: srv.getProjectPage(configFile, projectResource)
         )
     }
 
@@ -40,7 +40,7 @@ class ApiProject {
     @Path('/page/{configFile}/')
     DtoProjectPage getPage(@PathParam("configFile") String configFile) {
         return new DtoProjectPage(
-                content: srv.getPage(configFile, null)
+                content: srv.getProjectPage(configFile, null)
         )
     }
 
