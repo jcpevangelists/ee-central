@@ -50,9 +50,12 @@ class ServiceTwitter {
         return this.twitter.getUserTimeline('javaee_guardian').collect {
             def tweet = it.retweetedStatus ?: it
             return new DtoTweet(
+                    id: tweet.id,
+                    authorName: tweet.user.name,
                     author: tweet.user.screenName,
                     message: tweet.text,
-                    date: tweet.createdAt.format("yyyy-MM-dd'T'HH:mm:ssZ")
+                    date: tweet.createdAt.format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    image: tweet.user.profileImageURLHttps
             )
         }
     }

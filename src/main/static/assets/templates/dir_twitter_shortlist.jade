@@ -1,0 +1,12 @@
+div
+  h1 Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+    | sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+  div
+    div(ng-repeat="tweet in tweets")
+      img(ng-src="{{tweet.image}}")
+      div
+        h1
+          a(ng-href='https://twitter.com/{{tweet.author}}', target="_blank") {{tweet.authorName ? tweet.authorName : '@' + tweet.author }}
+        h2
+          a(ng-href='https://twitter.com/{{tweet.author}}/status/{{tweet.id}}', target="_blank") {{tweet.date | date : 'medium'}}
+        p {{tweet.message}}

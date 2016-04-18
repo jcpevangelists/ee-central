@@ -7,7 +7,8 @@ angular.module('javaeeio-main', [
     'javaeeio-footer',
     'javaeeio-projects',
     'javaeeio-contributors',
-    'javaeeio-googlegroups'
+    'javaeeio-googlegroups',
+    'javaeeio-twitter'
 ])
 
     .config([
