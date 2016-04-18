@@ -22,6 +22,15 @@ angular.module('javaeeio-main', [
                 .when('/', {
                     templateUrl: 'app/templates/page_home.html'
                 })
+                .when('/docs', {
+                    templateUrl: 'app/templates/page_documents.html'
+                })
+                .when('/forum', {
+                    templateUrl: 'app/templates/page_forum.html'
+                })
+                .when('/social', {
+                    templateUrl: 'app/templates/page_social.html'
+                })
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html'
                 })
