@@ -3,6 +3,7 @@
 angular.module('javaeeio-main', [
     'ngRoute',
     'ngStorage',
+    'javaeeio-menu',
     'javaeeio-header',
     'javaeeio-footer',
     'javaeeio-projects',
@@ -20,25 +21,36 @@ angular.module('javaeeio-main', [
             });
             $routeProvider
                 .when('/', {
-                    redirectTo: '/page'
+                    templateUrl: 'app/templates/page_home.html',
+                    controller: 'HomeController'
                 })
                 .when('/page', {
                     templateUrl: 'app/templates/page_home.html',
-                    controller: ['$scope', function ($scope) {
-                        $scope.resource = 'javaee_guardians.adoc'
-                    }]
+                    controller: 'HomeController'
                 })
                 .when('/docs', {
-                    templateUrl: 'app/templates/page_documents.html'
+                    templateUrl: 'app/templates/page_documents.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('docs');
+                    }]
                 })
                 .when('/forum', {
-                    templateUrl: 'app/templates/page_forum.html'
+                    templateUrl: 'app/templates/page_forum.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('forum');
+                    }]
                 })
                 .when('/social', {
-                    templateUrl: 'app/templates/page_social.html'
+                    templateUrl: 'app/templates/page_social.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('social');
+                    }]
                 })
                 .when('/contributors', {
-                    templateUrl: 'app/templates/page_contributors.html'
+                    templateUrl: 'app/templates/page_contributors.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('contributors');
+                    }]
                 })
                 .when('/project/:configFile/:resourceName*', {
                     templateUrl: 'app/templates/page_project.html',
@@ -49,17 +61,24 @@ angular.module('javaeeio-main', [
                     controller: 'ProjectPageController'
                 })
                 .otherwise({
-                    controller: ['$scope', '$location', function ($scope, $location) {
+                    controller: ['$scope', '$location', 'eeioMenuService', function ($scope, $location, menu) {
                         $scope.path = $location.path();
+                        menu.setSelected(null);
                     }],
                     templateUrl: 'app/templates/page_404.html'
                 });
         }
     ])
 
-    .controller('ProjectPageController', ['$route', '$scope', function ($route, $scope) {
+    .controller('ProjectPageController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
         $scope.configFile = $route.current.params['configFile'];
         $scope.resource = $route.current.params['resourceName'];
+        menu.setSelected('docs');
+    }])
+
+    .controller('HomeController', ['$scope', 'eeioMenuService', function ($scope, menu) {
+        $scope.resource = 'javaee_guardians.adoc';
+        menu.setSelected('home');
     }])
 
     .run(['$rootScope', function ($rootScope) {

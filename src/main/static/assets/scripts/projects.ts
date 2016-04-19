@@ -13,7 +13,7 @@ angular.module('javaeeio-projects', [])
                         if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
                             var images = ael.find('> img');
                             if (images.length) {
-                                var pathRoot = '/' + pRoot + '/';
+                                var pathRoot = '/' + pRoot;
                                 var currentHrefSplit = currentHref.split('/');
                                 var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
                                 resourceNamePath.pop();
@@ -26,7 +26,7 @@ angular.module('javaeeio-projects', [])
                                 });
                             } else {
                                 if (!s.startsWith(currentHref, '#')) {
-                                    var href = pRoot + '/' + currentHref;
+                                    var href = pRoot + currentHref;
                                     ael.attr('href', href);
                                 }
                             }
@@ -140,7 +140,7 @@ angular.module('javaeeio-projects', [])
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.project.doc = $sce.trustAsHtml(docService.normalizeResources(
-                                    'project/' + $scope.configFile,
+                                    'project/' + $scope.configFile + '/',
                                     'api/project/raw/' + $scope.configFile,
                                     response.data.content
                                 ));
@@ -181,13 +181,13 @@ angular.module('javaeeio-projects', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_application_page.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService',
-                function ($scope, $timeout, $sce, projectsService, docService) {
+            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService', '$location',
+                function ($scope, $timeout, $sce, projectsService, docService, $location) {
                     projectsService.getAppPage($scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
                                 var newHtml = docService.normalizeResources(
-                                    'page',
+                                    $location.path(),
                                     'api/application/raw',
                                     response.data
                                 );

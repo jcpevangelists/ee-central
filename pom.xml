@@ -11,7 +11,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     <tomee.version>7.0.0-SNAPSHOT</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
@@ -110,7 +109,7 @@
             <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
             <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
             <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
-            <javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>
+            <!--<javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>-->
           </systemVariables>
         </configuration>
       </plugin>
