@@ -18,7 +18,7 @@ angular.module('javaeeio-projects', [])
                                 var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
                                 resourceNamePath.pop();
                                 var resourceName = resourceNamePath.join('/') + '/' + currentHref;
-                                var href = sRoot + '/' + resourceName;
+                                var href = sRoot + resourceName;
                                 ael.attr('href', href);
                                 images.each(function (indexImg, elImg) {
                                     var aelImg = angular.element(elImg);
@@ -141,7 +141,7 @@ angular.module('javaeeio-projects', [])
                             $scope.$apply(function () {
                                 $scope.project.doc = $sce.trustAsHtml(docService.normalizeResources(
                                     'project/' + $scope.configFile + '/',
-                                    'api/project/raw/' + $scope.configFile,
+                                    'api/project/raw/' + $scope.configFile + '/',
                                     response.data.content
                                 ));
                             });
@@ -187,7 +187,7 @@ angular.module('javaeeio-projects', [])
                         $timeout(function () {
                             $scope.$apply(function () {
                                 var newHtml = docService.normalizeResources(
-                                    $location.path(),
+                                    'page/',
                                     'api/application/raw',
                                     response.data
                                 );
