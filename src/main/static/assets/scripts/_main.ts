@@ -20,7 +20,10 @@ angular.module('javaeeio-main', [
             });
             $routeProvider
                 .when('/', {
-                    redirectTo: '/page'
+                    templateUrl: 'app/templates/page_home.html',
+                    controller: ['$scope', function ($scope) {
+                        $scope.resource = 'javaee_guardians.adoc'
+                    }]
                 })
                 .when('/page', {
                     templateUrl: 'app/templates/page_home.html',
