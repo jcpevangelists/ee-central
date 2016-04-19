@@ -52,6 +52,9 @@ eeio-header
           > li
             display: inline
             margin-left: 10px
+            @media (max-width: $app-mobile-width)
+              &:first-child
+                margin-left: 0
             > a
               text-transform: uppercase
               font-size: $app-menu-font-size
@@ -67,7 +70,12 @@ eeio-header
           background-color: $app-footer-bg-color
           opacity: 0.9
           padding: 20px
+          > eeio-menu > ul
+            @media (max-width: $app-mobile-width)
+              margin-top: 0
           > a
+            @media (max-width: $app-mobile-width)
+              display: none
             > img
               width: 130px
 
