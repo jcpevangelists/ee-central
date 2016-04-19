@@ -28,6 +28,10 @@ angular.module('javaeeio-main', [
                     templateUrl: 'app/templates/page_home.html',
                     controller: 'HomeController'
                 })
+                .when('/page/:resourceName*', {
+                    templateUrl: 'app/templates/page_home.html',
+                    controller: 'HomeController'
+                })
                 .when('/docs', {
                     templateUrl: 'app/templates/page_documents.html',
                     controller: ['eeioMenuService', function (menu) {
@@ -76,8 +80,11 @@ angular.module('javaeeio-main', [
         menu.setSelected('docs');
     }])
 
-    .controller('HomeController', ['$scope', 'eeioMenuService', function ($scope, menu) {
-        $scope.resource = 'javaee_guardians.adoc';
+    .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
+        $scope.resource = $route.current.params['resourceName'];
+        if (!$scope.resource) {
+            $scope.resource = 'javaee_guardians.adoc';
+        }
         menu.setSelected('home');
     }])
 
