@@ -16,6 +16,7 @@ class CachedInterceptor {
     @PostConstruct
     void initCache(InvocationContext ctx) {
         holder.createCache(ctx.target)
+        ctx.proceed()
     }
 
     @PreDestroy

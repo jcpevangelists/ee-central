@@ -7,7 +7,8 @@ angular.module('javaeeio-main', [
     'javaeeio-footer',
     'javaeeio-projects',
     'javaeeio-contributors',
-    'javaeeio-googlegroups'
+    'javaeeio-googlegroups',
+    'javaeeio-twitter'
 ])
 
     .config([
@@ -19,7 +20,22 @@ angular.module('javaeeio-main', [
             });
             $routeProvider
                 .when('/', {
-                    templateUrl: 'app/templates/page_home.html'
+                    redirectTo: '/page'
+                })
+                .when('/page', {
+                    templateUrl: 'app/templates/page_home.html',
+                    controller: ['$scope', function ($scope) {
+                        $scope.resource = 'javaee_guardians.adoc'
+                    }]
+                })
+                .when('/docs', {
+                    templateUrl: 'app/templates/page_documents.html'
+                })
+                .when('/forum', {
+                    templateUrl: 'app/templates/page_forum.html'
+                })
+                .when('/social', {
+                    templateUrl: 'app/templates/page_social.html'
                 })
                 .when('/contributors', {
                     templateUrl: 'app/templates/page_contributors.html'

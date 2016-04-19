@@ -17,7 +17,26 @@
     <groovy.version>2.4.6</groovy.version>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>twitter4j.org</id>
+      <name>twitter4j.org Repository</name>
+      <url>http://twitter4j.org/maven2</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <dependencies>
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-core</artifactId>
+      <version>4.0.4</version>
+    </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>sabot</artifactId>
@@ -86,8 +105,11 @@
         <configuration>
           <context>javaee-io</context>
           <systemVariables>
-            <io_config_root>tomitribe</io_config_root>
-            <io_config_project>tomitribe.io.config</io_config_project>
+            <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
+            <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
+            <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
+            <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
+            <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
             <javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>
           </systemVariables>
         </configuration>
