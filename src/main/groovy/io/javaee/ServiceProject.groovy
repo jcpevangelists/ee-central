@@ -79,6 +79,10 @@ class ServiceProject {
         )
     }
 
+    String getApplicationPage(String resourceName) {
+        return github.getAppPage(resourceName)
+    }
+
     String getProjectPage(String configFile, String resourceName) {
         def conf = loadYaml(github.getConfigurationFiles().find {
             it.name == configFile
@@ -91,6 +95,12 @@ class ServiceProject {
             computedResourceName = 'README.adoc'
         }
         return github.getRepoPage(conf.name as String, computedResourceName)
+    }
+
+
+
+    byte[] getApplicationRaw(String resourceName) {
+        return github.getAppRaw(resourceName)
     }
 
     byte[] getRaw(String configFile, String resourceName) {

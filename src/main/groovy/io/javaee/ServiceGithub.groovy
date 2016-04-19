@@ -83,6 +83,11 @@ class ServiceGithub {
     }
 
     @Cached
+    String getAppPage(String resourceName) {
+        return getRepoPage(docRoot, 'pages/' + resourceName)
+    }
+
+    @Cached
     String getRepoPage(String projectName, String resourceName) {
         try {
             return "https://api.github.com/repos/${projectName}/contents/${resourceName}".toURL().getText([
@@ -105,6 +110,11 @@ class ServiceGithub {
                         'Authorization': "token ${application.githubAuthToken}"
                 ]
         ])
+    }
+
+    @Cached
+    byte[] getAppRaw(String resourceName) {
+        return getRepoRaw(docRoot, 'pages/' + resourceName)
     }
 
     @Cached

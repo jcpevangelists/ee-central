@@ -2,6 +2,42 @@
 
 angular.module('javaeeio-projects', [])
 
+    .factory('eeioProjectsDocService', ['$location',
+        function ($location) {
+            return {
+                normalizeResources: function (pRoot, sRoot, originalHtml) {
+                    var content = angular.element(originalHtml);
+                    content.find('[href]').each(function (index, el) {
+                        var ael = angular.element(el);
+                        var currentHref = ael.attr('href');
+                        if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
+                            var images = ael.find('> img');
+                            if (images.length) {
+                                var pathRoot = '/' + pRoot + '/';
+                                var currentHrefSplit = currentHref.split('/');
+                                var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
+                                resourceNamePath.pop();
+                                var resourceName = resourceNamePath.join('/') + '/' + currentHref;
+                                var href = sRoot + '/' + resourceName;
+                                ael.attr('href', href);
+                                images.each(function (indexImg, elImg) {
+                                    var aelImg = angular.element(elImg);
+                                    aelImg.attr('src', href);
+                                });
+                            } else {
+                                if (!s.startsWith(currentHref, '#')) {
+                                    var href = pRoot + '/' + currentHref;
+                                    ael.attr('href', href);
+                                }
+                            }
+                        }
+                    });
+                    return content.html();
+                }
+            };
+        }
+    ])
+
     .factory('eeioProjectsService', [
         '$http',
         function ($http) {
@@ -28,6 +64,9 @@ angular.module('javaeeio-projects', [])
                     } else {
                         return $http.get('api/project/page/' + configFile + '/' + resource);
                     }
+                },
+                getAppPage: function (resource) {
+                    return $http.get('api/application/page/' + resource);
                 }
             };
         }
@@ -87,8 +126,8 @@ angular.module('javaeeio-projects', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_projects_project_doc.html',
-            controller: ['$scope', '$timeout', '$sce', '$location', 'eeioProjectsService',
-                function ($scope, $timeout, $sce, $location, projectsService) {
+            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService',
+                function ($scope, $timeout, $sce, projectsService, docService) {
                     $scope.project = {};
                     projectsService.getProject($scope.configFile).then(function (response) {
                         $timeout(function () {
@@ -100,33 +139,11 @@ angular.module('javaeeio-projects', [])
                     projectsService.getProjectPage($scope.configFile, $scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {
-                                var content = angular.element(response.data.content);
-                                content.find('[href]').each(function (index, el) {
-                                    var ael = angular.element(el);
-                                    var currentHref = ael.attr('href');
-                                    if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
-                                        var images = ael.find('> img');
-                                        if (images.length) {
-                                            var pathRoot = '/project/' + $scope.configFile + '/';
-                                            var currentHrefSplit = currentHref.split('/');
-                                            var resourceNamePath = $location.url().substring(pathRoot.length).split('/');
-                                            resourceNamePath.pop();
-                                            var resourceName = resourceNamePath.join('/') + '/' + currentHref;
-                                            var href = 'api/project/raw/' + $scope.configFile + '/' + resourceName;
-                                            ael.attr('href', href);
-                                            images.each(function (indexImg, elImg) {
-                                                var aelImg = angular.element(elImg);
-                                                aelImg.attr('src', href);
-                                            });
-                                        } else {
-                                            if (!s.startsWith(currentHref, '#')) {
-                                                var href = 'project/' + $scope.configFile + '/' + currentHref;
-                                                ael.attr('href', href);
-                                            }
-                                        }
-                                    }
-                                });
-                                $scope.project.doc = $sce.trustAsHtml(content.html());
+                                $scope.project.doc = $sce.trustAsHtml(docService.normalizeResources(
+                                    'project/' + $scope.configFile,
+                                    'api/project/raw/' + $scope.configFile,
+                                    response.data.content
+                                ));
                             });
                         });
                     });
@@ -149,6 +166,32 @@ angular.module('javaeeio-projects', [])
                         $timeout(function () {
                             $scope.$apply(function () {
                                 $scope.related = response.data;
+                            });
+                        });
+                    });
+                }
+            ]
+        };
+    }])
+
+    .directive('eeioApplicationPage', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                resource: '='
+            },
+            templateUrl: 'app/templates/dir_application_page.html',
+            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService',
+                function ($scope, $timeout, $sce, projectsService, docService) {
+                    projectsService.getAppPage($scope.resource).then(function (response) {
+                        $timeout(function () {
+                            $scope.$apply(function () {
+                                var newHtml = docService.normalizeResources(
+                                    'page',
+                                    'api/application/raw',
+                                    response.data
+                                );
+                                $scope.page = $sce.trustAsHtml(newHtml);
                             });
                         });
                     });
