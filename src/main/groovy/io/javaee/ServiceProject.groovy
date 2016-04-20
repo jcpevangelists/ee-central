@@ -24,14 +24,14 @@ class ServiceProject {
     }
 
     private DtoProjectInfo getDtoProjectInfo(String configFile) {
-        DtoProjectInfo info = availableProjects.find { it.configFile == configFile }
+        DtoProjectInfo info = getAvailableProjects().find { it.configFile == configFile }
         if (!info) {
             throw new ExceptionApplication("Project not found: '${configFile}'")
         }
         return info
     }
 
-    Set<DtoProjectInfo> getAvailableProjects() {
+    Collection<DtoProjectInfo> getAvailableProjects() {
         Set<DtoProjectInfo> result = []
         github.getConfigurationFiles().each {
             def conf = loadYaml(it)
@@ -98,7 +98,6 @@ class ServiceProject {
     }
 
 
-
     byte[] getApplicationRaw(String resourceName) {
         return github.getAppRaw(resourceName)
     }
@@ -108,7 +107,7 @@ class ServiceProject {
         return github.getRepoRaw(info.name, resourceName)
     }
 
-    List<DtoContributor> getAllContributors() {
+    Collection<DtoContributor> getAllContributors() {
         Map<String, DtoContributor> contributors = [:]
         getAvailableProjects().each { project ->
             def details = getDetails(project.configFile)

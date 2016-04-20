@@ -14,7 +14,7 @@ class ApiGoogleGroups {
 
     @GET
     @Path('/messages')
-    Set<DtoGroupMessage> listMessages() {
+    Collection<DtoGroupMessage> listMessages() {
         return srv.listMessages()
     }
 

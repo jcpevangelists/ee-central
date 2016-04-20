@@ -24,7 +24,7 @@ class ServiceGithub {
     private ServiceApplication application
 
     @Cached
-    List<DtoConfigFile> getConfigurationFiles() {
+    Collection<DtoConfigFile> getConfigurationFiles() {
         String specsUrl = new URI("https://api.github.com/repos/${docRoot}/").resolve('contents/specs').toString()
         List<DtoConfigFile> result = []
         def names = new JsonSlurper().parseText(specsUrl.toURL().getText([
@@ -62,7 +62,7 @@ class ServiceGithub {
     }
 
     @Cached
-    List<DtoProjectContributor> getRepoContributors(String projectName) {
+    Collection<DtoProjectContributor> getRepoContributors(String projectName) {
         if (!projectName) {
             return []
         }

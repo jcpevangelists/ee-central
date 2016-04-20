@@ -6,15 +6,15 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 
 @Produces('application/json')
-@Path('/twitter')
-class ApiTwitter {
+@Path('/guardian')
+class ApiGuardian {
 
     @Inject
-    private ServiceTwitter srv
+    private ServiceContributor srv
 
     @GET
-    Collection<DtoTweet> list() {
-        return srv.getTweets()
+    Collection<DtoGuardian> list() {
+        return srv.getGuardians()
     }
 
 }

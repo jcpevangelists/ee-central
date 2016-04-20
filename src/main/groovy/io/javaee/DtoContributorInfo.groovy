@@ -11,6 +11,6 @@ class DtoContributorInfo {
     String avatar
     String company
     String location
-    Set<String> projects
+    Collection<String> projects
     int contributions
 }

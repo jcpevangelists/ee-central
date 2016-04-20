@@ -46,6 +46,15 @@ class ServiceTwitter {
     }
 
     @Cached
+    DtoTwitterUser getUser(String name) {
+        def raw = this.twitter.showUser(name)
+        return new DtoTwitterUser(
+                screenName: raw.screenName,
+                name: raw.name
+        )
+    }
+
+    @Cached
     Collection<DtoTweet> getTweets() {
         return this.twitter.getUserTimeline('javaee_guardian').collect {
             def tweet = it.retweetedStatus ?: it

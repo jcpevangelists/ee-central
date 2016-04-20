@@ -16,7 +16,7 @@ class ApiProject {
     private ServiceProject srv
 
     @GET
-    Set<DtoProjectInfo> list() {
+    Collection<DtoProjectInfo> list() {
         // listing the available specs
         return srv.availableProjects
     }
