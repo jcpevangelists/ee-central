@@ -3,11 +3,14 @@ package io.javaee
 import org.tomitribe.sabot.Config
 import org.yaml.snakeyaml.Yaml
 
-import javax.enterprise.context.ApplicationScoped
+import javax.ejb.Lock
+import javax.ejb.LockType
+import javax.ejb.Singleton
 import javax.inject.Inject
 import java.nio.charset.StandardCharsets
 
-@ApplicationScoped
+@Singleton
+@Lock(LockType.READ)
 class ServiceContributor {
 
     @Inject
@@ -27,6 +30,7 @@ class ServiceContributor {
         return github.getContributor(login)
     }
 
+    @Cached
     Collection<DtoContributorInfo> getContributorDetails() {
         Map<String, DtoContributor> contributions = project.allContributors.collectEntries {
             [(it.login): it]
@@ -40,6 +44,7 @@ class ServiceContributor {
         }
     }
 
+    @Cached
     Collection<DtoGuardian> getGuardians() {
         byte[] raw
         try {
