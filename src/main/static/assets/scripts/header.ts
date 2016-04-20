@@ -25,10 +25,10 @@ angular.module('javaeeio-header', [])
                         'transform': 'translateY(' + (step / 3) + 'px)'
                     });
                     // header out
-                    var heightValue = header.outerHeight();
-                    if (heightValue < step) {
+                    var headerHeight = header.outerHeight();
+                    if (el.outerHeight() < step) {
                         if (!header.hasClass('floating')) {
-                            headerSpacing.css('height', heightValue + 'px');
+                            headerSpacing.css('height', headerHeight + 'px');
                             header.addClass('floating');
                         }
                     } else {
