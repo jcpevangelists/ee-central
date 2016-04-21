@@ -21,7 +21,7 @@ angular.module('javaeeio-menu', [])
             restrict: 'E',
             scope: {},
             templateUrl: 'app/templates/dir_menu.html',
-            controller: ['$scope', '$timeout', 'eeioMenuService', function ($scope, $timeout, srv) {
+            controller: ['$element', '$scope', '$timeout', 'eeioMenuService', function ($element, $scope, $timeout, srv) {
                 $scope.setSelected = function (value) {
                     $timeout(function () {
                         $scope.$apply(function () {
@@ -31,6 +31,9 @@ angular.module('javaeeio-menu', [])
                     });
                 };
                 $scope.setSelected(srv.getSelected());
+                $scope.toggleExpanded = function() {
+                    $element.toggleClass('expanded');
+                };
             }]
         };
     }])

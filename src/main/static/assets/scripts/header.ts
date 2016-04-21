@@ -18,22 +18,22 @@ angular.module('javaeeio-header', [])
                 var page = angular.element($window);
                 var background = el.find('.background');
                 var header = el.find('.head');
-                var headerSpacing = el.find('.head-spacing');
                 page.scroll(function () {
                     var step = page.scrollTop();
                     background.css({
                         'transform': 'translateY(' + (step / 3) + 'px)'
                     });
                     // header out
-                    var headerHeight = header.outerHeight();
+                    var menu = header.find('eeio-menu');
                     if (el.outerHeight() < step) {
                         if (!header.hasClass('floating')) {
-                            headerSpacing.css('height', headerHeight + 'px');
                             header.addClass('floating');
+                            menu.addClass('floating');
                         }
                     } else {
-                        headerSpacing.css('height', '');
                         header.removeClass('floating');
+                        menu.removeClass('floating');
+                        menu.removeClass('expanded');
                     }
                 });
             }
