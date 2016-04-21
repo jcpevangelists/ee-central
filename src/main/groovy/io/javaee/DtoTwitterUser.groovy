@@ -6,4 +6,5 @@ import groovy.transform.ToString
 class DtoTwitterUser {
     String screenName
     String name
+    String pic
 }

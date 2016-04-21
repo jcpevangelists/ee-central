@@ -50,7 +50,8 @@ class ServiceTwitter {
         def raw = this.twitter.showUser(name)
         return new DtoTwitterUser(
                 screenName: raw.screenName,
-                name: raw.name
+                name: raw.name,
+                pic: raw.biggerProfileImageURLHttps
         )
     }
 
