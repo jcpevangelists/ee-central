@@ -10,7 +10,9 @@ angular.module('javaeeio-projects', [])
                     content.find('[href]').each(function (index, el) {
                         var ael = angular.element(el);
                         var currentHref = ael.attr('href');
-                        if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
+                        if (s.startsWith(currentHref, '../')) {
+                            ael.attr('href', currentHref.substring('../'.length));
+                        } else if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {
                             var images = ael.find('> img');
                             if (images.length) {
                                 var pathRoot = '/' + pRoot;
