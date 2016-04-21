@@ -8,6 +8,7 @@ angular.module('javaeeio-main', [
     'javaeeio-footer',
     'javaeeio-projects',
     'javaeeio-contributors',
+    'javaeeio-guardians',
     'javaeeio-googlegroups',
     'javaeeio-twitter'
 ])
@@ -54,6 +55,12 @@ angular.module('javaeeio-main', [
                     templateUrl: 'app/templates/page_contributors.html',
                     controller: ['eeioMenuService', function (menu) {
                         menu.setSelected('contributors');
+                    }]
+                })
+                .when('/guardians', {
+                    templateUrl: 'app/templates/page_guardians.html',
+                    controller: ['eeioMenuService', function (menu) {
+                        menu.setSelected('guardians');
                     }]
                 })
                 .when('/project/:configFile/:resourceName*', {

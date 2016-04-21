@@ -3,29 +3,34 @@
 eeio-footer
   > div
     width: 100%
-    display: flex
-    justify-content: space-between
-    align-items: center
-    padding: 10px 40px
-    @media (max-width: $app-mobile-width)
-      padding: 10px
-      flex-direction: column
-    background-color: $app-footer-bg-color
-    > a
-      > img
-        width: 130px
-        height: auto
-    > eeio-menu > ul
-      list-style: none
-      margin: 0
-      padding: 0
-      @media (max-width: $app-mobile-width)
-        margin-top: 20px
-      > li
-        display: inline
-        margin-left: 10px
+    > div
+      &:first-child
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 10px 40px
+        @media (max-width: $app-mobile-width)
+          padding: 10px
+          flex-direction: column
+        background-color: $app-footer-bg-color
         > a
-          text-transform: uppercase
-          font-size: $app-menu-font-size
+          > img
+            width: 130px
+            height: auto
+        > eeio-menu > ul
+          list-style: none
+          margin: 0
+          padding: 0
           @media (max-width: $app-mobile-width)
-            font-size: $app-menu-font-size-mobile
+            margin-top: 20px
+          > li
+            display: inline
+            margin-left: 10px
+            > a
+              text-transform: uppercase
+              font-size: $app-menu-font-size
+              @media (max-width: $app-mobile-width)
+                font-size: $app-menu-font-size-mobile
+      &:last-child
+        background-color: #000000
+        height: 20px

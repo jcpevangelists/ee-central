@@ -17,7 +17,7 @@ class ApiContributor {
     private ServiceContributor contributor
 
     @GET
-    List<DtoContributorInfo> list() {
+    Collection<DtoContributorInfo> list() {
         return contributor.getContributorDetails()
     }
 

@@ -7,6 +7,6 @@ import groovy.transform.ToString
 @ToString(includePackage = false, includeNames = true, includeFields = true, excludes = ['metaClass'])
 class DtoContributor {
     String login
-    Set<String> projects = []
+    Collection<String> projects = new HashSet<>()
     int contributions = 0
 }
