@@ -1,7 +1,7 @@
 div
   h1 Our tweets and retweets
   div
-    div(ng-repeat="tweet in tweets")
+    div(ng-repeat="tweet in tweets | orderBy:'date':true")
       img(ng-src="{{tweet.image}}")
       div
         h1
