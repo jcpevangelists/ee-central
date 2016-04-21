@@ -58,7 +58,10 @@ class ServiceContributor {
             if (it.twitter) {
                 twitterBean = twitter.getUser(it.twitter as String)
             }
-            return new DtoGuardian(twitter: twitterBean)
+            return new DtoGuardian(
+                    name: it.name as String,
+                    twitter: twitterBean
+            )
         }
     }
 
