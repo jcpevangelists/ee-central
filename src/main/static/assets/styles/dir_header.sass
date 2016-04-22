@@ -35,15 +35,11 @@ eeio-header
         justify-content: space-between
         align-items: center
         padding: 40px 40px 0 40px
-        @media (max-width: $app-mobile-width)
-          flex-direction: column
-          justify-content: center
-          padding: 10px
         > a
           > img
             width: 250px
             height: auto
-        > eeio-menu > ul
+        > eeio-menu > div > ul
           margin: 0
           @media (max-width: $app-mobile-width)
             margin-top: 20px
@@ -52,39 +48,47 @@ eeio-header
           > li
             display: inline
             margin-left: 10px
-            @media (max-width: $app-mobile-width)
-              &:first-child
-                margin-left: 0
+            &:first-child
+              margin-left: 0
             > a
               text-transform: uppercase
               font-size: $app-menu-font-size
-              @media (max-width: $app-mobile-width)
-                font-size: $app-menu-font-size-mobile
               color: $app-white
-        &.floating
-          z-index: 2000
-          position: fixed
-          top: 0
-          right: 0
-          left: 0
-          background-color: $app-footer-bg-color
-          opacity: 0.9
-          padding: 20px
-          > eeio-menu > ul
-            @media (max-width: $app-mobile-width)
-              margin-top: 0
-          > a
-            @media (max-width: $app-mobile-width)
-              display: none
-            > img
-              width: 130px
 
-eeio-header.home
-  div[ng-transclude]
-    > *
-      margin: 0
-    > p
-      margin-top: 5px
+  @mixin is-floating()
+    > div
+      z-index: 2000
+      position: fixed
+      top: 10px
+      right: 10px
+      background-color: #000000
+      opacity: 0.7
+      > ul
+        display: none
+        padding: 0 40px 40px 40px !important
+        > li
+          display: block !important
+          margin: 0 !important
+          padding-top: 10px
+          &:first-child
+            padding-top: 0
+      > div
+        display: block
+
+  eeio-menu
+    &.floating
+      @include is-floating
+    &.expanded
+      > div
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+
+        // left: 10px
+        > ul
+          display: block
+    @media (max-width: $app-mobile-width)
+      @include is-floating
 
 eeio-header.contributors
   .background

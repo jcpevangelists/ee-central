@@ -1,11 +1,12 @@
 div
-  h1 Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-    | sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
   div
     .specs(ng-show="specs.length > 0")
       a(ng-repeat="project in specs", ng-href="project/{{project.configFile}}")
-        h1 {{project.friendlyName ? project.friendlyName : project.name}}
-        p {{project.description}}
+        div
+          h1 {{project.friendlyName ? project.friendlyName : project.name}}
+          h2 {{project.description}}
+        div
+          span Check it out
     .all-projects(ng-show="projects.length > 0")
       h1 All documents
       ul

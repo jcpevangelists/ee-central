@@ -1,13 +1,16 @@
-ul
-  li(ng-class="{'selected': selectedItem === 'home'}")
-    a(href=".") Home
-  li(ng-class="{'selected': selectedItem === 'docs'}")
-    a(href="docs") Documents
-  li(ng-class="{'selected': selectedItem === 'forum'}")
-    a(href="forum") Forum
-  li(ng-class="{'selected': selectedItem === 'social'}")
-    a(href="social") Social
-  li(ng-class="{'selected': selectedItem === 'contributors'}")
-    a(href="contributors") Contributors
-  li(ng-class="{'selected': selectedItem === 'guardians'}")
-    a(href="guardians") Guardians
+div
+  div(ng-click="toggleExpanded()")
+    i.fa.fa-bars
+  ul
+    li(ng-class="{'selected': selectedItem === 'home'}")
+      a(href=".") Home
+    li(ng-class="{'selected': selectedItem === 'docs'}")
+      a(href="docs") Documents
+    li(ng-class="{'selected': selectedItem === 'forum'}")
+      a(href="forum") Forum
+    li(ng-class="{'selected': selectedItem === 'social'}")
+      a(href="social") Social
+    li(ng-class="{'selected': selectedItem === 'contributors'}")
+      a(href="contributors") Contributors
+    li(ng-class="{'selected': selectedItem === 'guardians'}")
+      a(href="guardians") Guardians
