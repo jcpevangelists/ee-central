@@ -9,6 +9,19 @@ Made by individuals for the good of Java EE and our industry.
 You will need a jcpevangelists github access token. You can use this value as a environment value (*github_atoken*) or
 a system property (*io.github.token*). If both are set, *io.github.token* will be used.
 
+You will also need a Twitter OAuth Token.  Visit link:https://dev.twitter.com/oauth/overview/application-owner-access-tokens[Twitter Application Tokens] for it.
+Export the following environment variables based on the tokens from Twitter:
+
+```
+project_twitter_oauth_consumer_key
+project_twitter_oauth_consumer_secret
+project_twitter_oauth_access_token
+project_twitter_oauth_access_token_secret
+```
+
+For now, since we're not using Twitter integration, they just have to be not-blank.
+
+
 If you don't have a token, ask link:https://javaee-wg.slack.com/messages/@tveronezi[Thiago] for it.
 
 Once you have the token ready, simply run `mvn clean install tomee:run`. Your server will be available at
