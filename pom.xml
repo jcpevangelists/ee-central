@@ -11,7 +11,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <tomee.version>7.0.0-SNAPSHOT</tomee.version>
+    <tomee.version>7.0.0-M3</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
   </properties>
