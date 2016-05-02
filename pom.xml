@@ -14,6 +14,12 @@
     <tomee.version>7.0.0-M3</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
+
+    <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
+    <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
+    <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
+    <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
+    <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
   </properties>
 
   <repositories>
@@ -104,11 +110,11 @@
         <configuration>
           <context>javaee-io</context>
           <systemVariables>
-            <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
-            <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
-            <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
-            <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
-            <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
+            <javaeeio_github_atoken>${javaeeio_github_atoken}</javaeeio_github_atoken>
+            <javaeeio_twitter_oauth_consumer_key>${javaeeio_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
+            <javaeeio_twitter_oauth_consumer_secret>${javaeeio_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
+            <javaeeio_twitter_oauth_access_token>${javaeeio_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
+            <javaeeio_twitter_oauth_access_token_secret>${javaeeio_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
             <!--<javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>-->
           </systemVariables>
         </configuration>
