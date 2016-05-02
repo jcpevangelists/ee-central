@@ -200,7 +200,6 @@
           </execution>
         </executions>
         <configuration>
-          <installDirectory>${user.home}/.tribe/node-installation-dir</installDirectory>
           <workingDirectory>src/main/static</workingDirectory>
         </configuration>
       </plugin>
