@@ -81,6 +81,15 @@ class CachedHolder {
         logger.info("Removed cache entry for ${beanInstance}#${key})")
     }
 
+    @Lock(LockType.WRITE)
+    void clearCache() {
+        this.caches.values().each {
+            it.clear()
+        }
+        this.idInstance.clear()
+        this.instanceId.clear()
+    }
+
     class TimerPayload implements Serializable {
         public Long beanId
         public String entryKey
