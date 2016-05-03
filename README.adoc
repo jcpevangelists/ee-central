@@ -4,6 +4,12 @@
 
 Made by individuals for the good of Java EE and our industry.
 
+== Live demo application
+
+Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/
+
+Changes in this source code will automatically update the demo application.
+
 == How to build and run the application locally?
 
 You will need a jcpevangelists github access token. You can use this value as a environment value (*github_atoken*) or
