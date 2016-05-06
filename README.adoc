@@ -8,6 +8,8 @@ Made by individuals for the good of Java EE and our industry.
 
 Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/
 
+Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/api/cache/clear to clear up cache.
+
 Changes in this source code will automatically update the demo application.
 
 == How to build and run the application locally?
