@@ -210,10 +210,18 @@ browsers: [
 
 When you execute `mvn frontend:karma`, a browser window will popup.
 
-== How to update the application on production?
+== How to publish content?
 
-DMB TODO: Document Openly
+The content of this application is based on another github project: link:https://github.com/jcpevangelists/javaee.io.config[].
 
-== How to publish a project?
+The files under link:https://github.com/jcpevangelists/javaee.io.config/tree/master/specs[] configure the projects
+listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/docs[].
 
-DMB TODO: Document Openly
+This file - link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/javaee_guardians.adoc[] - is the
+one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/[]. The other
+files go to the `page` route. For example, link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/page_a.adoc[]
+goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/page/page_a.adoc[].
+
+Updates on link:https://github.com/jcpevangelists/javaee.io.config/[] are automatically reflected on the demo site.
+
+
