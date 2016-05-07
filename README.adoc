@@ -4,10 +4,31 @@
 
 Made by individuals for the good of Java EE and our industry.
 
+== Live demo application
+
+Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/
+
+Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/api/cache/clear to clear up cache.
+
+Changes in this source code will automatically update the demo application.
+
 == How to build and run the application locally?
 
 You will need a jcpevangelists github access token. You can use this value as a environment value (*github_atoken*) or
 a system property (*io.github.token*). If both are set, *io.github.token* will be used.
+
+You will also need a Twitter OAuth Token.  Visit link:https://dev.twitter.com/oauth/overview/application-owner-access-tokens[Twitter Application Tokens] for it.
+Export the following environment variables based on the tokens from Twitter:
+
+```
+project_twitter_oauth_consumer_key
+project_twitter_oauth_consumer_secret
+project_twitter_oauth_access_token
+project_twitter_oauth_access_token_secret
+```
+
+For now, since we're not using Twitter integration, they just have to be not-blank.
+
 
 If you don't have a token, ask link:https://javaee-wg.slack.com/messages/@tveronezi[Thiago] for it.
 
@@ -191,10 +212,18 @@ browsers: [
 
 When you execute `mvn frontend:karma`, a browser window will popup.
 
-== How to update the application on production?
+== How to publish content?
 
-DMB TODO: Document Openly
+The content of this application is based on another github project: link:https://github.com/jcpevangelists/javaee.io.config[].
 
-== How to publish a project?
+The files under link:https://github.com/jcpevangelists/javaee.io.config/tree/master/specs[] configure the projects
+listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/docs[].
 
-DMB TODO: Document Openly
+This file - link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/javaee_guardians.adoc[] - is the
+one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/[]. The other
+files go to the `page` route. For example, link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/page_a.adoc[]
+goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/page/page_a.adoc[].
+
+Updates on link:https://github.com/jcpevangelists/javaee.io.config/[] are automatically reflected on the demo site.
+
+
