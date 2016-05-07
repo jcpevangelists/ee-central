@@ -90,7 +90,8 @@ angular.module('javaeeio-main', [
     .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
         $scope.resource = $route.current.params['resourceName'];
         if (!$scope.resource) {
-            $scope.resource = 'javaee_guardians.adoc';
+            //$scope.resource = 'javaee_guardians.adoc';
+            $scope.resource = 'frontpage.adoc';
         }
         menu.setSelected('home');
     }])
