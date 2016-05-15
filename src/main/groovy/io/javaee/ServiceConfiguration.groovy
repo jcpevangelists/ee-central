@@ -26,18 +26,18 @@ class ServiceConfiguration implements ConfigurationObserver {
                 properties.setProperty(key, propVal)
             }
         }
-        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50')
-        setIfEmpty('javaeeio_config_root', {
-            def result = System.getProperty('javaeeio_config_root')
-            if (!result) {
-                return 'jcpevangelists/javaee.io.config'
+        
+        // add all system properties that start with javaeeio_
+        System.getProperties().entrySet().each { def entry ->
+            if (entry.key.startsWith("javaeeio_")) {
+                setIfEmpty(entry.key, entry.value)
+                // also add without the javaeeio_ prefix in the key
+                setIfEmpty(entry.key.substring("javaeeio_".length()), entry.value)
             }
-            return result
-        })
-        setIfEmpty('github_atoken', System.getProperty('javaeeio_github_atoken'))
-        setIfEmpty('javaeeio_twitter_oauth_consumer_key', System.getProperty('javaeeio_twitter_oauth_consumer_key'))
-        setIfEmpty('javaeeio_twitter_oauth_consumer_secret', System.getProperty('javaeeio_twitter_oauth_consumer_secret'))
-        setIfEmpty('javaeeio_twitter_oauth_access_token', System.getProperty('javaeeio_twitter_oauth_access_token'))
-        setIfEmpty('javaeeio_twitter_oauth_access_token_secret', System.getProperty('javaeeio_twitter_oauth_access_token_secret'))
+        }
+        
+        // set defaults if values not set already
+        setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50')
+        setIfEmpty('javaeeio_config_root', 'jcpevangelists/javaee.io.config')
     }
 }
