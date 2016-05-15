@@ -2,4 +2,7 @@
   <interceptors>
     <class>io.javaee.CachedInterceptor</class>
   </interceptors>
+  <alternatives>
+      <!--<class>io.javaee.devel.ServiceProjectDevelSpecializer</class>-->
+  </alternatives>
 </beans>
