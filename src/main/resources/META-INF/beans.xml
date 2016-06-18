@@ -1,6 +1,6 @@
 <beans>
   <interceptors>
-    <class>io.javaee.CachedInterceptor</class>
+      ${javaeeio_cache_interceptor}
   </interceptors>
   <alternatives>
       ${javaeeio_devel_service_project_alternative}

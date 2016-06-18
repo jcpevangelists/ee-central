@@ -43,6 +43,18 @@ as available on node.js. The good news is that we don't need to worry about a th
 maven project. `mvn clean install tomee:run` will perform all the heavy lifting. It downloads the dependencies
 and executes node.js, gulp and the tomee server.
 
+== Development mode ==
+
+You may specify `javaeeio_config_root` maven property to point to an alternative github repository. 
+This is in case you want to check your changes before sending pull request to the main config repository.
+
+To aid in development and customize the application for typical development environment, enable `devel` maven profile. 
+This will turn off caching and enable some alternatives that tweak the application for development.
+
+In order to preview your local html pages, you may use `javaeeio_devel_pages_root` maven property to point to a folder on you disk. 
+See link:src/main/groovy/io/javaee/ServiceProjectDevelSpecializer.groovy[ServiceProjectDevelSpecializer.groovy] for more info.
+
+
 == What about front-end development?
 
 Front-end developers don't need to restart servers. In fact, front-end developers don't like to waste a single second
@@ -62,6 +74,10 @@ static change visible in the web site.
 In order to make it automatic, run `mvn frontend:gulp` in another terminal. It will trigger the default gulp task,
 which will watch for changes on *src/main/static/* and updates the running tomee instance accordingly as soon as a
 static change is detected.
+
+Furthermore, if you will most probably want to disable building frontend in usual backend development lifecycle. 
+In that case, add `-Dfrontend.skip=true` to usual maven commands. 
+For example, to rebuild and restart the app in tomee (while the frontend task is running in background), run: `mvn -Dfrontend.skip=true install tomee:run`.
 
 ----
 tveronezi@ubatuba:javaee.io$ mvn frontend:gulp

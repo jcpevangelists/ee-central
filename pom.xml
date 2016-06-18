@@ -22,6 +22,11 @@
     <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
     <javaeeio_config_root>${env.project_config_root}</javaeeio_config_root>
     <javaeeio_devel_pages_root>${env.project_devel_pages_root}</javaeeio_devel_pages_root>
+
+    <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
+    <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
+    
+    <javaeeio_cache_interceptor>${javaeeio_class_tag_begin}io.javaee.CachedInterceptor${javaeeio_class_tag_end}</javaeeio_cache_interceptor>
   </properties>
 
   <repositories>
@@ -239,6 +244,7 @@
           <properties>
               <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
               <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
+              <javaeeio_cache_interceptor></javaeeio_cache_interceptor>
               <javaeeio_devel_service_project_alternative>${javaeeio_class_tag_begin}io.javaee.devel.ServiceProjectDevelSpecializer${javaeeio_class_tag_end}</javaeeio_devel_service_project_alternative>
           </properties>
       </profile>
