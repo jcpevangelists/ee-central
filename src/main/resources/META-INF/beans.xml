@@ -3,6 +3,6 @@
     <class>io.javaee.CachedInterceptor</class>
   </interceptors>
   <alternatives>
-      <!--<class>io.javaee.devel.ServiceProjectDevelSpecializer</class>-->
+      ${javaeeio_devel_service_project_alternative}
   </alternatives>
 </beans>
