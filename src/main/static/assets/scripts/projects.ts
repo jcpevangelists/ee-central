@@ -10,6 +10,7 @@ angular.module('javaeeio-projects', [])
                     content.find('[href]').each(function (index, el) {
                         var ael = angular.element(el);
                         var currentHref = ael.attr('href');
+                        /* s is a global var, probably a convenience variable of type String to provide static methods? */
                         if (s.startsWith(currentHref, '../')) {
                             ael.attr('href', currentHref.substring('../'.length));
                         } else if (!s.startsWith(currentHref, 'http://') && !s.startsWith(currentHref, 'https://')) {

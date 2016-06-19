@@ -17,22 +17,28 @@ eeio-footer
           > img
             width: 130px
             height: auto
-        > eeio-menu > div > ul
-          list-style: none
-          margin: 0
-          padding: 0
-          @media (max-width: $app-mobile-width)
-            margin-top: 20px
-          > li
-            display: inline
-            margin-left: 10px
-            &:first-child
-              margin-left: 0
-            > a
+        > eeio-footer-menu 
+          div.sidebarblock ul
+            list-style: none
+            margin: 0
+            padding: 0
+            @media (max-width: $app-mobile-width)
+              margin-top: 20px
+            > li
+              margin-left: 10px
               text-transform: uppercase
               font-size: $app-menu-font-size
+              font-style: italic
+              text-indent: -1em;
+              padding-left: 1em;
+              a
+                font-style: normal
               @media (max-width: $app-mobile-width)
                 font-size: $app-menu-font-size-mobile
+              p
+                margin: 0;
+          hr
+            display: none
       &:last-child
         background-color: #000000
         height: 20px
