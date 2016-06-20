@@ -2,6 +2,7 @@
 .idea
 target/
 src/main/static/node_modules/
+src/main/static/node/
 src/main/static/bower_components/
 src/main/webapp/app
 npm-debug.log

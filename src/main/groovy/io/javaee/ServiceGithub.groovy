@@ -34,15 +34,20 @@ class ServiceGithub {
                 ]
         ], StandardCharsets.UTF_8.name())).collect { it.name }
         names.each {
-            result << new DtoConfigFile(
-                    name: it,
-                    content: new String(
-                            getRepoRaw(docRoot, "specs/${it}"),
-                            StandardCharsets.UTF_8.name()
-                    )
-            )
+            result << getConfigurationFile(it, "specs/${it}")
         }
         return result
+    }
+    
+    @Cached
+    DtoConfigFile getConfigurationFile(String configName, String path) {
+        return new DtoConfigFile(
+                name: configName,
+                content: new String(
+                        getRepoRaw(docRoot, path),
+                        StandardCharsets.UTF_8.name()
+                )
+        )        
     }
 
     @Cached

@@ -11,9 +11,22 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <tomee.version>7.0.0-SNAPSHOT</tomee.version>
+    <tomee.version>7.0.0-M3</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
+
+    <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
+    <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
+    <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
+    <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
+    <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
+    <javaeeio_config_root>${env.project_config_root}</javaeeio_config_root>
+    <javaeeio_devel_pages_root>${env.project_devel_pages_root}</javaeeio_devel_pages_root>
+
+    <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
+    <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
+    
+    <javaeeio_cache_interceptor>${javaeeio_class_tag_begin}io.javaee.CachedInterceptor${javaeeio_class_tag_end}</javaeeio_cache_interceptor>
   </properties>
 
   <repositories>
@@ -82,6 +95,12 @@
     </dependency>
   </dependencies>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -104,12 +123,13 @@
         <configuration>
           <context>javaee-io</context>
           <systemVariables>
-            <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
-            <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
-            <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
-            <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
-            <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
-            <!--<javaeeio_config_root>tveronezi/javaee.io.config</javaeeio_config_root>-->
+            <javaeeio_github_atoken>${javaeeio_github_atoken}</javaeeio_github_atoken>
+            <javaeeio_twitter_oauth_consumer_key>${javaeeio_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
+            <javaeeio_twitter_oauth_consumer_secret>${javaeeio_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
+            <javaeeio_twitter_oauth_access_token>${javaeeio_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
+            <javaeeio_twitter_oauth_access_token_secret>${javaeeio_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
+            <javaeeio_config_root>${javaeeio_config_root}</javaeeio_config_root>
+            <javaeeio_devel_pages_root>${javaeeio_devel_pages_root}</javaeeio_devel_pages_root>
           </systemVariables>
         </configuration>
       </plugin>
@@ -152,60 +172,83 @@
           </dependency>
         </dependencies>
       </plugin>
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.0</version>
-        <executions>
-          <execution>
-            <id>install-node-and-npm</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-            <configuration>
-              <nodeVersion>v5.10.1</nodeVersion>
-              <npmVersion>3.8.6</npmVersion>
-            </configuration>
-          </execution>
-          <execution>
-            <id>npm-install</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>bower-install</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>bower</goal>
-            </goals>
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>gulp-build</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>gulp</goal>
-            </goals>
-            <configuration>
-              <arguments>build-with-tests</arguments>
-            </configuration>
-          </execution>
-        </executions>
-        <configuration>
-          <installDirectory>${user.home}/.tribe/node-installation-dir</installDirectory>
-          <workingDirectory>src/main/static</workingDirectory>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+      <profile>
+          <id>frontend</id>
+          <activation>
+              <property>
+                  <name>!frontend.skip</name>
+              </property>
+          </activation>
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>com.github.eirslett</groupId>
+                      <artifactId>frontend-maven-plugin</artifactId>
+                      <version>1.0</version>
+                      <executions>
+                          <execution>
+                              <id>install-node-and-npm</id>
+                              <phase>generate-resources</phase>
+                              <goals>
+                                  <goal>install-node-and-npm</goal>
+                              </goals>
+                              <configuration>
+                                  <nodeVersion>v5.10.1</nodeVersion>
+                                  <npmVersion>3.8.6</npmVersion>
+                              </configuration>
+                          </execution>
+                          <execution>
+                              <id>npm-install</id>
+                              <phase>generate-resources</phase>
+                              <goals>
+                                  <goal>npm</goal>
+                              </goals>
+                              <configuration>
+                                  <arguments>install</arguments>
+                              </configuration>
+                          </execution>
+                          <execution>
+                              <id>bower-install</id>
+                              <phase>generate-resources</phase>
+                              <goals>
+                                  <goal>bower</goal>
+                              </goals>
+                              <configuration>
+                                  <arguments>install</arguments>
+                              </configuration>
+                          </execution>
+                          <execution>
+                              <id>gulp-build</id>
+                              <phase>generate-resources</phase>
+                              <goals>
+                                  <goal>gulp</goal>
+                              </goals>
+                              <configuration>
+                                  <arguments>build-with-tests</arguments>
+                              </configuration>
+                          </execution>
+                      </executions>
+                      <configuration>
+                          <workingDirectory>src/main/static</workingDirectory>
+                      </configuration>
+                  </plugin>
+              </plugins>
+          </build>
+      </profile>
+      <profile>
+          <id>devel</id>
+          <properties>
+              <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
+              <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
+              <javaeeio_cache_interceptor></javaeeio_cache_interceptor>
+              <javaeeio_devel_service_project_alternative>${javaeeio_class_tag_begin}io.javaee.devel.ServiceProjectDevelSpecializer${javaeeio_class_tag_end}</javaeeio_devel_service_project_alternative>
+          </properties>
+      </profile>
+  </profiles>
 
   <scm>
     <url>scm:git:git@github.com:jcpevangelists/javaee.io.git</url>

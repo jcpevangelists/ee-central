@@ -23,11 +23,11 @@ angular.module('javaeeio-main', [
             $routeProvider
                 .when('/', {
                     templateUrl: 'app/templates/page_home.html',
-                    controller: 'HomeController'
+                    controller: 'RootPageController'
                 })
                 .when('/page', {
                     templateUrl: 'app/templates/page_home.html',
-                    controller: 'HomeController'
+                    controller: 'RootPageController'
                 })
                 .when('/page/:resourceName*', {
                     templateUrl: 'app/templates/page_home.html',
@@ -87,14 +87,19 @@ angular.module('javaeeio-main', [
         menu.setSelected('docs');
     }])
 
+    .controller('RootPageController', ['$location', function ($location) {
+        $location.path('/page/frontpage.adoc');
+    }])
+
     .controller('HomeController', ['$route', '$scope', 'eeioMenuService', function ($route, $scope, menu) {
         $scope.resource = $route.current.params['resourceName'];
         if (!$scope.resource) {
-            $scope.resource = 'javaee_guardians.adoc';
+            //$scope.resource = 'javaee_guardians.adoc';
+            $scope.resource = 'frontpage.adoc';
         }
         menu.setSelected('home');
     }])
-
+    
     .run(['$rootScope', function ($rootScope) {
         $rootScope.baseFullPath = angular.element('head base').first().attr('href');
     }])
