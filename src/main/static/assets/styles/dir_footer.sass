@@ -18,26 +18,36 @@ eeio-footer
             width: 130px
             height: auto
         > eeio-footer-menu 
-          div.sidebarblock ul /*development*/,
-          article ul
-            list-style: none
-            margin: 0
-            padding: 0
-            @media (max-width: $app-mobile-width)
-              margin-top: 20px
-            > li
-              margin-left: 10px
-              text-transform: uppercase
-              font-size: $app-menu-font-size
-              font-style: italic
-              text-indent: -1em;
-              padding-left: 1em;
-              a
-                font-style: normal
+          div.sidebarblock /*development*/,
+          article
+            table
+              border-collapse: separate
+              border-spacing: 10px 0
+            td
+              vertical-align: top
+              hr
+                visibility: hidden
+                display: block
+            th
+              text-align: left
+            ul
+              list-style: none
+              margin: 0
+              padding: 0
               @media (max-width: $app-mobile-width)
-                font-size: $app-menu-font-size-mobile
-              p
-                margin: 0;
+                margin-top: 20px
+              > li
+                text-transform: uppercase
+                font-size: $app-menu-font-size
+                font-style: italic
+                text-indent: -1em;
+                padding-left: 1em;
+                a
+                  font-style: normal
+                @media (max-width: $app-mobile-width)
+                  font-size: $app-menu-font-size-mobile
+                p
+                  margin: 0;
           hr
             display: none
       &:last-child
