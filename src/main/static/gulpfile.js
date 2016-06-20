@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var del = require('del');
 var gulpsync = require('gulp-sync')(gulp);
-var jade = require('gulp-jade');
+var jade = require('gulp-pug');
 var sass = require('gulp-sass');
 var es = require('event-stream');
 var autoprefixer = require('gulp-autoprefixer');
@@ -73,7 +73,7 @@ gulp.task('copy-templates', function () {
         .pipe(gulp.dest('../../../target/static-resources/app/scripts/'));
 });
 
-gulp.task('js', gulpsync.sync(['lint-ts', 'compile-ts', 'copy-ts', 'js-third-party']));
+gulp.task('js', gulpsync.sync(['compile-ts', 'copy-ts', 'js-third-party']));
 gulp.task('lint-ts', function () {
     return gulp.src('./assets/**/*.ts')
         .pipe(tslint())
