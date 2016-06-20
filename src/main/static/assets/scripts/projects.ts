@@ -188,8 +188,8 @@ angular.module('javaeeio-projects', [])
                 resource: '='
             },
             templateUrl: 'app/templates/dir_application_page.html',
-            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService', '$location',
-                function ($scope, $timeout, $sce, projectsService, docService, $location) {
+            controller: ['$scope', '$timeout', '$sce', 'eeioProjectsService', 'eeioProjectsDocService',
+                function ($scope, $timeout, $sce, projectsService, docService) {
                     projectsService.getAppPage($scope.resource).then(function (response) {
                         $timeout(function () {
                             $scope.$apply(function () {

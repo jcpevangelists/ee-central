@@ -1,8 +1,8 @@
 @import "variables"
 
 eeio-projects-shortlist
-  $collapse-value: 800px
-  $margin: 50px
+  $collapse-value: 1020px
+  $margin: 40px
   > div
     > h1
       font-weight: 100
@@ -12,17 +12,25 @@ eeio-projects-shortlist
 
     > div
       display: flex
-      margin-top: $margin
+      align-items: flex-start
       @media (max-width: $collapse-value)
         flex-direction: column
+        align-items: stretch
       > div
         &.all-projects
+          background-color: #ffffff
           flex-shrink: 0
           max-width: 400px
-          padding: 0 0 40px 40px
+          padding: 40px
+          border: solid #d6d9dc 2px
+          margin-left: 40px
+          margin-right: 40px
+          margin-top: 30px
           @media (max-width: $collapse-value)
-            padding: 10px
-            margin-top: $margin
+            max-width: 100%
+            margin-left: 30px
+            margin-right: 30px
+            margin-top: 10px
           > h1
             margin: 0
             font-weight: 100
@@ -30,46 +38,61 @@ eeio-projects-shortlist
           > ul
             list-style: none
             padding: 0
+            > li
+              overflow: hidden
+              text-overflow: ellipsis
+              white-space: nowrap
+              > a
+                font-size: 25px
+            font-weight: 100
         &.specs
+          $one-column-treshold: 1461px
           flex-grow: 1
           background-color: $app-bg-white
           padding: 10px
           display: flex
           flex-wrap: wrap
           justify-content: center
+          @media (max-width: $one-column-treshold)
+            flex-direction: column
+            align-items: stretch
           *
             margin: 0
             padding: 0
             font-weight: 100
           > a[ng-repeat="project in specs"]
-            display: flex
-            flex-direction: column
             border: solid #d6d9dc 2px
             width: 400px
+            @media (max-width: $one-column-treshold)
+              width: auto
             margin: 20px
-            > div:first-child
-              flex-grow: 1
-              > h1
-                padding: 20px
-                background-color: #d6d9dc
-                color: white
-                font-size: 30px
-              > h2
-                padding: 20px
-                font-size: 20px
-            > div:last-child
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+            > h1
+              align-self: stretch
+              padding: 20px
+              background-color: #d6d9dc
+              color: white
+              font-size: 30px
+              overflow: hidden
+              text-overflow: ellipsis
+              white-space: nowrap
               flex-shrink: 0
-              display: flex
-              justify-content: flex-end
-              > span
-                padding: 10px
-                border: solid #d6d9dc 1px
-                margin: 20px
-                color: #c5c8cb
-                font-size: 12px
+            > h2
+              align-self: stretch
+              padding: 20px
+              font-size: 20px
+              flex-grow: 1
+            > span
+              flex-shrink: 0
+              padding: 10px
+              border: solid #d6d9dc 1px
+              margin: 20px
+              color: #c5c8cb
+              font-size: 16px
             &:hover
               border-color: $app-hover-color
-              > div:last-child
-                > span
-                  border-color: $app-hover-color
-                  color: $app-hover-color
+              > span
+                border-color: $app-hover-color
+                color: $app-hover-color
