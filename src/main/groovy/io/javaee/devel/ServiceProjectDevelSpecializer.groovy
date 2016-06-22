@@ -46,7 +46,7 @@ class ServiceProjectDevelSpecializer extends ServiceProject {
                 return getPageFromFile(f)
             }
         }
-        logger.warning("resource " + resourceName + " not found, searching in standard location")
+        logger.warning("resource ${resourceName} not found, searching in standard location")
         return super.getApplicationPage(resourceName)
     }
     
