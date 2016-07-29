@@ -38,7 +38,7 @@ class ServiceConfiguration implements ConfigurationObserver {
         
         // set defaults if values not set already
         setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50')
-        setIfEmpty('eecentral_config_root', 'jcpevangelists/javaee.io.config')
+        setIfEmpty('eecentral_config_root', 'jcpevangelists/ee-central.config')
         setIfEmpty('devel_pages_root', ' ')
     }
 }

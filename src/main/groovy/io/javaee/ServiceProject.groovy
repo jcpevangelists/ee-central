@@ -92,7 +92,7 @@ class ServiceProject {
             logger.log(Level.CONFIG, "Configuration yaml file '${name}' for page ${resourceName} not found, "
                     + "using defaults", e)
             return new DtoPageHeader (
-                h1: "JavaEE.io",
+                h1: "ee-central",
                 h2: "Open, Collaborative forum for pushing forward on Java EE"
             )
         }

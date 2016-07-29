@@ -1,4 +1,4 @@
-= https://javaee.io/
+= https://ee-central/
 :toc:
 :toc-placement: preamble
 
@@ -80,7 +80,7 @@ In that case, add `-Dfrontend.skip=true` to usual maven commands.
 For example, to rebuild and restart the app in tomee (while the frontend task is running in background), run: `mvn -Dfrontend.skip=true install tomee:run`.
 
 ----
-tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
+tveronezi@ubatuba:ee-central$ mvn frontend:gulp
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
@@ -88,8 +88,8 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
 [INFO] ------------------------------------------------------------------------
 [INFO]
 [INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ ee-central ---
-[INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
-[INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/javaee.io/src/main/static/gulpfile.js
+[INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/ee-central/src/main/static
+[INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/ee-central/src/main/static/gulpfile.js
 [INFO] [10:49:45] Starting 'sync group6:0'...
 [INFO] [10:49:45] Starting 'sync group5:0'...
 [INFO] [10:49:45] Starting 'clean'...
@@ -97,7 +97,7 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
 [INFO] [10:49:45] Finished 'sync group5:0' after 39 ms
 [INFO] [10:49:45] Starting 'sync group5:1'...
 [INFO] [10:49:45] Starting 'bower'...
-[INFO] [10:49:45] Using cwd:  /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] [10:49:45] Using cwd:  /home/tveronezi/Documents/development/sources/ee-central/src/main/static
 [INFO] [10:49:45] Using bower dir:  ./bower_components
 [INFO] [10:49:47] Finished 'bower' after 2.24 s
 [INFO] [10:49:47] Finished 'sync group5:1' after 2.24 s
@@ -197,7 +197,7 @@ the devepolers because both tests are triggered by the same `mvn clean install`.
 Sometimes we are interested on frontend testing only. We can do it by executing 'mvn frontend:karma'.
 
 ----
-tveronezi@ubatuba:javaee.io$ mvn frontend:karma
+tveronezi@ubatuba:ee-central$ mvn frontend:karma
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
@@ -205,7 +205,7 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:karma
 [INFO] ------------------------------------------------------------------------
 [INFO]
 [INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ ee-central ---
-[INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
+[INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/ee-central/src/main/static
 [INFO] 08 10 2015 10:07:33.166:WARN [karma]: No captured browser, open http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.177:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.183:INFO [launcher]: Starting browser PhantomJS
@@ -214,7 +214,7 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:karma
 ----
 
 The default browser is PhantonJS. In order to debug with the help of a real browser, uncomment this line in
-link:https://github.com/jcpevangelists/javaee.io/blob/master/src/main/static/karma.conf.js[karma.conf.js]
+link:https://github.com/jcpevangelists/ee-central/blob/master/src/main/static/karma.conf.js[karma.conf.js]
 
 [source:javascript]
 ----
@@ -230,16 +230,16 @@ When you execute `mvn frontend:karma`, a browser window will popup.
 
 == How to publish content?
 
-The content of this application is based on another github project: link:https://github.com/jcpevangelists/javaee.io.config[].
+The content of this application is based on another github project: link:https://github.com/jcpevangelists/ee-central.config[].
 
-The files under link:https://github.com/jcpevangelists/javaee.io.config/tree/master/specs[] configure the projects
+The files under link:https://github.com/jcpevangelists/ee-central.config/tree/master/specs[] configure the projects
 listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/docs[].
 
-This file - link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/javaee_guardians.adoc[] - is the
+This file - link:https://github.com/jcpevangelists/ee-central.config/blob/master/pages/javaee_guardians.adoc[] - is the
 one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/[]. The other
-files go to the `page` route. For example, link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/page_a.adoc[]
+files go to the `page` route. For example, link:https://github.com/jcpevangelists/ee-central.config/blob/master/pages/page_a.adoc[]
 goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/page/page_a.adoc[].
 
-Updates on link:https://github.com/jcpevangelists/javaee.io.config/[] are automatically reflected on the demo site.
+Updates on link:https://github.com/jcpevangelists/ee-central.config/[] are automatically reflected on the demo site.
 
 

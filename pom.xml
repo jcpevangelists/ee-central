@@ -251,9 +251,9 @@
   </profiles>
 
   <scm>
-    <url>scm:git:git@github.com:jcpevangelists/javaee.io.git</url>
-    <connection>scm:git:git@github.com:jcpevangelists/javaee.io.git</connection>
-    <developerConnection>scm:git:git@github.com:jcpevangelists/javaee.io.git</developerConnection>
+    <url>scm:git:git@github.com:jcpevangelists/ee-central.git</url>
+    <connection>scm:git:git@github.com:jcpevangelists/ee-central.git</connection>
+    <developerConnection>scm:git:git@github.com:jcpevangelists/ee-central.git</developerConnection>
     <tag>0.0.1</tag>
   </scm>
 
