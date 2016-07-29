@@ -1,8 +1,8 @@
 <beans>
   <interceptors>
-      ${javaeeio_cache_interceptor}
+      ${eecentral_cache_interceptor}
   </interceptors>
   <alternatives>
-      ${javaeeio_devel_service_project_alternative}
+      ${eecentral_devel_service_project_alternative}
   </alternatives>
 </beans>

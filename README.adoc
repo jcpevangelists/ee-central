@@ -6,9 +6,9 @@ Made by individuals for the good of Java EE and our industry.
 
 == Live demo application
 
-Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/
+Checkout the demo application here: http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/
 
-Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/api/cache/clear to clear up cache.
+Hit http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/api/cache/clear to clear up cache.
 
 Changes in this source code will automatically update the demo application.
 
@@ -45,13 +45,13 @@ and executes node.js, gulp and the tomee server.
 
 == Development mode ==
 
-You may specify `javaeeio_config_root` maven property to point to an alternative github repository. 
+You may specify `eecentral_config_root` maven property to point to an alternative github repository.
 This is in case you want to check your changes before sending pull request to the main config repository.
 
 To aid in development and customize the application for typical development environment, enable `devel` maven profile. 
 This will turn off caching and enable some alternatives that tweak the application for development.
 
-In order to preview your local html pages, you may use `javaeeio_devel_pages_root` maven property to point to a folder on you disk. 
+In order to preview your local html pages, you may use `eecentral_devel_pages_root` maven property to point to a folder on you disk.
 See link:src/main/groovy/io/javaee/ServiceProjectDevelSpecializer.groovy[ServiceProjectDevelSpecializer.groovy] for more info.
 
 
@@ -87,7 +87,7 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:gulp
 [INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ javaee-io ---
+[INFO] --- frontend-maven-plugin:0.0.26:gulp (default-cli) @ ee-central ---
 [INFO] Running 'gulp.js --no-color' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
 [INFO] [10:49:45] Using gulpfile ~/Documents/development/sources/javaee.io/src/main/static/gulpfile.js
 [INFO] [10:49:45] Starting 'sync group6:0'...
@@ -204,7 +204,7 @@ tveronezi@ubatuba:javaee.io$ mvn frontend:karma
 [INFO] Building JavaEE :: IO :: Website 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ javaee-io ---
+[INFO] --- frontend-maven-plugin:0.0.26:karma (default-cli) @ ee-central ---
 [INFO] Running 'karma start karma.conf.js --no-colors' in /home/tveronezi/Documents/development/sources/javaee.io/src/main/static
 [INFO] 08 10 2015 10:07:33.166:WARN [karma]: No captured browser, open http://localhost:9876/
 [INFO] 08 10 2015 10:07:33.177:INFO [karma]: Karma v0.13.10 server started at http://localhost:9876/
@@ -233,12 +233,12 @@ When you execute `mvn frontend:karma`, a browser window will popup.
 The content of this application is based on another github project: link:https://github.com/jcpevangelists/javaee.io.config[].
 
 The files under link:https://github.com/jcpevangelists/javaee.io.config/tree/master/specs[] configure the projects
-listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/docs[].
+listed on link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/docs[].
 
 This file - link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/javaee_guardians.adoc[] - is the
-one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/[]. The other
+one that is shown in the home page - link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/[]. The other
 files go to the `page` route. For example, link:https://github.com/jcpevangelists/javaee.io.config/blob/master/pages/page_a.adoc[]
-goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/javaee-io/page/page_a.adoc[].
+goes to link:http://ec2-54-174-245-236.compute-1.amazonaws.com/ee-central/page/page_a.adoc[].
 
 Updates on link:https://github.com/jcpevangelists/javaee.io.config/[] are automatically reflected on the demo site.
 

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.javaee</groupId>
-  <artifactId>javaee-io</artifactId>
+  <artifactId>ee-central</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>JavaEE :: IO :: Website</name>
@@ -15,18 +15,18 @@
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
 
-    <javaeeio_github_atoken>${env.github_atoken}</javaeeio_github_atoken>
-    <javaeeio_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
-    <javaeeio_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
-    <javaeeio_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
-    <javaeeio_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
-    <javaeeio_config_root>${env.project_config_root}</javaeeio_config_root>
-    <javaeeio_devel_pages_root>${env.project_devel_pages_root}</javaeeio_devel_pages_root>
+    <eecentral_github_atoken>${env.github_atoken}</eecentral_github_atoken>
+    <eecentral_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</eecentral_twitter_oauth_consumer_key>
+    <eecentral_twitter_oauth_consumer_secret>${env.project_twitter_oauth_consumer_secret}</eecentral_twitter_oauth_consumer_secret>
+    <eecentral_twitter_oauth_access_token>${env.project_twitter_oauth_access_token}</eecentral_twitter_oauth_access_token>
+    <eecentral_twitter_oauth_access_token_secret>${env.project_twitter_oauth_access_token_secret}</eecentral_twitter_oauth_access_token_secret>
+    <eecentral_config_root>${env.project_config_root}</eecentral_config_root>
+    <eecentral_devel_pages_root>${env.project_devel_pages_root}</eecentral_devel_pages_root>
 
-    <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
-    <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
+    <eecentral_class_tag_begin>&lt;class&gt;</eecentral_class_tag_begin>
+    <eecentral_class_tag_end>&lt;/class&gt;</eecentral_class_tag_end>
     
-    <javaeeio_cache_interceptor>${javaeeio_class_tag_begin}io.javaee.CachedInterceptor${javaeeio_class_tag_end}</javaeeio_cache_interceptor>
+    <eecentral_cache_interceptor>${eecentral_class_tag_begin}io.javaee.CachedInterceptor${eecentral_class_tag_end}</eecentral_cache_interceptor>
   </properties>
 
   <repositories>
@@ -121,15 +121,15 @@
         <artifactId>tomee-maven-plugin</artifactId>
         <version>${tomee.version}</version>
         <configuration>
-          <context>javaee-io</context>
+          <context>ee-central</context>
           <systemVariables>
-            <javaeeio_github_atoken>${javaeeio_github_atoken}</javaeeio_github_atoken>
-            <javaeeio_twitter_oauth_consumer_key>${javaeeio_twitter_oauth_consumer_key}</javaeeio_twitter_oauth_consumer_key>
-            <javaeeio_twitter_oauth_consumer_secret>${javaeeio_twitter_oauth_consumer_secret}</javaeeio_twitter_oauth_consumer_secret>
-            <javaeeio_twitter_oauth_access_token>${javaeeio_twitter_oauth_access_token}</javaeeio_twitter_oauth_access_token>
-            <javaeeio_twitter_oauth_access_token_secret>${javaeeio_twitter_oauth_access_token_secret}</javaeeio_twitter_oauth_access_token_secret>
-            <javaeeio_config_root>${javaeeio_config_root}</javaeeio_config_root>
-            <javaeeio_devel_pages_root>${javaeeio_devel_pages_root}</javaeeio_devel_pages_root>
+            <eecentral_github_atoken>${eecentral_github_atoken}</eecentral_github_atoken>
+            <eecentral_twitter_oauth_consumer_key>${eecentral_twitter_oauth_consumer_key}</eecentral_twitter_oauth_consumer_key>
+            <eecentral_twitter_oauth_consumer_secret>${eecentral_twitter_oauth_consumer_secret}</eecentral_twitter_oauth_consumer_secret>
+            <eecentral_twitter_oauth_access_token>${eecentral_twitter_oauth_access_token}</eecentral_twitter_oauth_access_token>
+            <eecentral_twitter_oauth_access_token_secret>${eecentral_twitter_oauth_access_token_secret}</eecentral_twitter_oauth_access_token_secret>
+            <eecentral_config_root>${eecentral_config_root}</eecentral_config_root>
+            <eecentral_devel_pages_root>${eecentral_devel_pages_root}</eecentral_devel_pages_root>
           </systemVariables>
         </configuration>
       </plugin>
@@ -242,10 +242,10 @@
       <profile>
           <id>devel</id>
           <properties>
-              <javaeeio_class_tag_begin>&lt;class&gt;</javaeeio_class_tag_begin>
-              <javaeeio_class_tag_end>&lt;/class&gt;</javaeeio_class_tag_end>
-              <javaeeio_cache_interceptor></javaeeio_cache_interceptor>
-              <javaeeio_devel_service_project_alternative>${javaeeio_class_tag_begin}io.javaee.devel.ServiceProjectDevelSpecializer${javaeeio_class_tag_end}</javaeeio_devel_service_project_alternative>
+              <eecentral_class_tag_begin>&lt;class&gt;</eecentral_class_tag_begin>
+              <eecentral_class_tag_end>&lt;/class&gt;</eecentral_class_tag_end>
+              <eecentral_cache_interceptor></eecentral_cache_interceptor>
+              <eecentral_devel_service_project_alternative>${eecentral_class_tag_begin}io.javaee.devel.ServiceProjectDevelSpecializer${eecentral_class_tag_end}</eecentral_devel_service_project_alternative>
           </properties>
       </profile>
   </profiles>

@@ -18,19 +18,19 @@ class ServiceTwitter {
     private Twitter twitter
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_consumer_key')
+    @Config(value = 'eecentral_twitter_oauth_consumer_key')
     private String oAuthConsumerKey
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_consumer_secret')
+    @Config(value = 'eecentral_twitter_oauth_consumer_secret')
     private String oAuthConsumerSecret
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_access_token')
+    @Config(value = 'eecentral_twitter_oauth_access_token')
     private String oAuthAccessToken
 
     @Inject
-    @Config(value = 'javaeeio_twitter_oauth_access_token_secret')
+    @Config(value = 'eecentral_twitter_oauth_access_token_secret')
     private String oAuthAccessTokenSecret
 
     @PostConstruct

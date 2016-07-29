@@ -119,14 +119,14 @@ gulp.task('test', function (done) {
 
 gulp.task('copy-all', function () {
     return gulp.src(['../../../target/static-resources/**/*'])
-        .pipe(gulp.dest('../../../target/apache-tomee/webapps/javaee-io/'));
+        .pipe(gulp.dest('../../../target/apache-tomee/webapps/ee-central/'));
 });
 
 gulp.task('clean', function (callback) {
     return del([
         '../../../target/static-resources/',
-        '../../../target/apache-tomee/webapps/javaee-io/app/',
-        '../../../target/apache-tomee/webapps/javaee-io/components/'
+        '../../../target/apache-tomee/webapps/ee-central/app/',
+        '../../../target/apache-tomee/webapps/ee-central/components/'
     ], {
         force: true
     }, callback);

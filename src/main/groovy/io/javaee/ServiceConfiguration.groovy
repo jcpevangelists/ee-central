@@ -27,18 +27,18 @@ class ServiceConfiguration implements ConfigurationObserver {
             }
         }
         
-        // add all system properties that start with javaeeio_
+        // add all system properties that start with eecentral_
         System.getProperties().entrySet().each { def entry ->
-            if (entry.key.startsWith("javaeeio_")) {
+            if (entry.key.startsWith("eecentral_")) {
                 setIfEmpty(entry.key, entry.value)
-                // also add without the javaeeio_ prefix in the key
-                setIfEmpty(entry.key.substring("javaeeio_".length()), entry.value)
+                // also add without the eecentral_ prefix in the key
+                setIfEmpty(entry.key.substring("eecentral_".length()), entry.value)
             }
         }
         
         // set defaults if values not set already
         setIfEmpty('google_forum_url', 'https://groups.google.com/forum/feed/javaee-guardians/topics/atom.xml?num=50')
-        setIfEmpty('javaeeio_config_root', 'jcpevangelists/javaee.io.config')
+        setIfEmpty('eecentral_config_root', 'jcpevangelists/javaee.io.config')
         setIfEmpty('devel_pages_root', ' ')
     }
 }
