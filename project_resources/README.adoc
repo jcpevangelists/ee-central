@@ -1,0 +1,7 @@
+= EE-Central general resources
+
+Resources to be used either in the webpage or to promote ee-central. 
+
+List of resources:
+
+ - ee-central logo ( link:logo[logo] folder) - donated by Payara Services
