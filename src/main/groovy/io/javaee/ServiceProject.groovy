@@ -12,9 +12,9 @@ class ServiceProject {
     private Logger logger = Logger.getLogger(this.class.name)
 
     @Inject
-    private ServiceGithub github
+    ServiceGithub github
 
-    private def loadYaml(DtoConfigFile configFile) {
+    def loadYaml(DtoConfigFile configFile) {
         try {
             return new Yaml().load(configFile.content)
         } catch (e) {
@@ -23,7 +23,7 @@ class ServiceProject {
         return null
     }
 
-    private DtoProjectInfo getDtoProjectInfo(String configFile) {
+    DtoProjectInfo getDtoProjectInfo(String configFile) {
         DtoProjectInfo info = getAvailableProjects().find { it.configFile == configFile }
         if (!info) {
             throw new ExceptionApplication("Project not found: '${configFile}'")
