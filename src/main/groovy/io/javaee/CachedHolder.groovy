@@ -19,6 +19,8 @@ import java.util.logging.Logger
 @Lock(LockType.READ)
 class CachedHolder {
     private Logger logger = Logger.getLogger(this.class.name)
+    // used as value in instead of null, because ConcurrentHashMap in caches does not accept null
+    private static Object EMPTY_VALUE = new Object();
 
     private ConcurrentMap<Object, ConcurrentHashMap<String, Object>> caches
     private ConcurrentMap<Long, Object> idInstance
@@ -54,7 +56,8 @@ class CachedHolder {
         def methodCache = this.caches.get(beanInstance)
         String key = "${method.name}(${arguments?.join(', ')})"
         if (methodCache.containsKey(key)) {
-            return methodCache.get(key)
+            def value = methodCache.get(key)
+            return EMPTY_VALUE.equals(value) ? null : value
         }
         throw new ExceptionCache('cache entry not found')
     }
@@ -62,6 +65,9 @@ class CachedHolder {
     void set(Object beanInstance, Method method, Object[] arguments, Object value) {
         def methodCache = this.caches.get(beanInstance)
         String key = "${method.name}(${arguments?.join(', ')})"
+        if (value == null) {
+            value = EMPTY_VALUE
+        }
         if (!methodCache.put(key, value)) {
             logger.info("New cache entry for ${beanInstance}#${method.name}(${arguments?.join(', ')})")
             timerService.createTimer(TimeUnit.MINUTES.toMillis(60), new TimerPayload(
