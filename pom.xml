@@ -14,6 +14,8 @@
     <tomee.version>7.0.0-M3</tomee.version>
     <javaee.api>7.0</javaee.api>
     <groovy.version>2.4.6</groovy.version>
+    <frontend.bower.arguments>install</frontend.bower.arguments>
+    <frontend.gulp.arguments>build-with-tests</frontend.gulp.arguments>
 
     <eecentral_github_atoken>${env.github_atoken}</eecentral_github_atoken>
     <eecentral_twitter_oauth_consumer_key>${env.project_twitter_oauth_consumer_key}</eecentral_twitter_oauth_consumer_key>
@@ -218,7 +220,7 @@
                                   <goal>bower</goal>
                               </goals>
                               <configuration>
-                                  <arguments>install</arguments>
+                                  <arguments>${frontend.bower.arguments}</arguments>
                               </configuration>
                           </execution>
                           <execution>
@@ -228,7 +230,7 @@
                                   <goal>gulp</goal>
                               </goals>
                               <configuration>
-                                  <arguments>build-with-tests</arguments>
+                                  <arguments>${frontend.gulp.arguments}</arguments>
                               </configuration>
                           </execution>
                       </executions>
